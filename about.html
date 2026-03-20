@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About NeuraPulse — an AI blog dedicated to making artificial intelligence understandable for everyone. Meet our team of AI writers and researchers.">
+<meta name="keywords" content="about NeuraPulse, AI blog team, artificial intelligence writers, AI researchers India">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="About — NeuraPulse AI Blog">
+<meta property="og:description" content="Meet the team behind NeuraPulse — making AI understandable for everyone.">
+<meta property="og:url" content="https://neuraplus-ai.github.io/about.html">
+<link rel="canonical" href="https://neuraplus-ai.github.io/about.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>About Us — NeuraPulse AI Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"About NeuraPulse","url":"https://neuraplus-ai.github.io/about.html","description":"About NeuraPulse — making AI understandable for everyone."}</script>
+<style>
+:root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:#1e2d45;--accent:#00e5ff;--accent2:#7c3aed;--text:#e2e8f0;--text-dim:#64748b;--text-muted:#334155;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pdot 2s ease-in-out infinite;}
+@keyframes pdot{0%,100%{opacity:1;}50%{opacity:0.5;}}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+.nav-cta{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.5rem 1.2rem;border-radius:4px;text-decoration:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text-dim);border-radius:2px;}
+.wrap{max-width:1280px;margin:0 auto;padding:0 3rem;}
+.page-hero{padding:9rem 0 5rem;}
+.page-tag{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
+.page-tag::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.page-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-0.04em;line-height:1.1;margin-bottom:1.5rem;}
+.page-hero h1 em{font-style:normal;color:transparent;-webkit-text-stroke:1px var(--accent);}
+.hero-text{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.hero-text p{color:var(--text-dim);font-size:1.1rem;line-height:1.8;}
+.hero-visual{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;display:flex;align-items:center;justify-content:center;}
+.mission{padding:5rem 0;border-top:1px solid var(--border);}
+.mission h2{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:700;letter-spacing:-0.03em;margin-bottom:2rem;}
+.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;}
+.mission-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:border-color 0.3s;}
+.mission-card:hover{border-color:var(--accent);}
+.mission-icon{font-size:2rem;margin-bottom:1rem;display:block;}
+.mission-card h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:0.75rem;}
+.mission-card p{font-size:0.9rem;color:var(--text-dim);}
+.team{padding:5rem 0;border-top:1px solid var(--border);}
+.team h2{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:700;letter-spacing:-0.03em;margin-bottom:0.5rem;}
+.team-sub{color:var(--text-dim);margin-bottom:3rem;}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.member{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;text-align:center;transition:border-color 0.3s;}
+.member:hover{border-color:var(--accent);}
+.member-av{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:white;margin:0 auto 1rem;}
+.member h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.25rem;}
+.member-role{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:block;}
+.member p{font-size:0.8rem;color:var(--text-dim);}
+.stats-row{padding:4rem 0;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
+.snum{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--accent);display:block;}
+.slbl{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);}
+.cta-section{padding:5rem 0;border-top:1px solid var(--border);text-align:center;}
+.cta-section h2{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:1rem;}
+.cta-section p{color:var(--text-dim);margin-bottom:2rem;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn{font-family:'Space Mono',monospace;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.9rem 2rem;border-radius:4px;text-decoration:none;border:none;cursor:pointer;transition:all 0.2s;display:inline-block;}
+.btn-p{color:var(--bg);background:var(--accent);}
+.btn-p:hover{box-shadow:0 0 30px rgba(0,229,255,0.4);}
+.btn-g{color:var(--text-dim);background:transparent;border:1px solid var(--border);}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);}
+footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.flogo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--text);}
+.flinks{display:flex;gap:2rem;list-style:none;}
+.flinks a{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s;}
+.flinks a:hover{color:var(--accent);}
+.fcopy{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-muted);}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){
+  nav{padding:0 1.5rem;}
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(5,8,16,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}
+  .hamburger{display:flex;}
+  .wrap{padding:0 1.5rem;}
+  .hero-text{grid-template-columns:1fr;}
+  .mission-grid{grid-template-columns:1fr;}
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><span class="logo-dot"></span>NeuraPulse</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Subscribe</a>
+  <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<main>
+<div class="wrap">
+  <div class="page-hero fade-in">
+    <div class="page-tag">About Us</div>
+    <h1>Making <em>AI</em><br>Understandable<br>For Everyone</h1>
+    <div class="hero-text">
+      <p>NeuraPulse was born from a simple frustration: AI research was advancing at a breathtaking pace, but accessible, honest writing about it was rare. We set out to fix that — writing deep, accurate, jargon-free articles about the technologies shaping the future.</p>
+      <div class="hero-visual">
+        <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" width="100%">
+          <rect width="300" height="220" fill="transparent"/>
+          <circle cx="150" cy="110" r="80" fill="none" stroke="rgba(0,229,255,0.15)" stroke-width="1"/>
+          <circle cx="150" cy="110" r="55" fill="none" stroke="rgba(124,58,237,0.2)" stroke-width="1"/>
+          <circle cx="150" cy="110" r="30" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.3)" stroke-width="1.5"/>
+          <circle cx="150" cy="110" r="8" fill="var(--accent)"/>
+          <g stroke="rgba(0,229,255,0.25)" stroke-width="1" fill="none">
+            <line x1="150" y1="110" x2="90" y2="60"/><line x1="150" y1="110" x2="210" y2="60"/>
+            <line x1="150" y1="110" x2="70" y2="120"/><line x1="150" y1="110" x2="230" y2="120"/>
+            <line x1="150" y1="110" x2="100" y2="165"/><line x1="150" y1="110" x2="200" y2="165"/>
+          </g>
+          <circle cx="90" cy="60" r="5" fill="none" stroke="rgba(124,58,237,0.6)" stroke-width="1.5"/>
+          <circle cx="210" cy="60" r="5" fill="none" stroke="rgba(124,58,237,0.6)" stroke-width="1.5"/>
+          <circle cx="70" cy="120" r="5" fill="none" stroke="rgba(0,229,255,0.6)" stroke-width="1.5"/>
+          <circle cx="230" cy="120" r="5" fill="none" stroke="rgba(0,229,255,0.6)" stroke-width="1.5"/>
+          <circle cx="100" cy="165" r="5" fill="none" stroke="rgba(124,58,237,0.6)" stroke-width="1.5"/>
+          <circle cx="200" cy="165" r="5" fill="none" stroke="rgba(124,58,237,0.6)" stroke-width="1.5"/>
+          <text x="150" y="205" font-family="monospace" font-size="9" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="3">NEURAPLUS NETWORK</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="mission fade-in">
+    <div class="page-tag">Our Mission</div>
+    <h2>Why NeuraPulse Exists</h2>
+    <div class="mission-grid">
+      <div class="mission-card">
+        <span class="mission-icon">🎯</span>
+        <h3>Accuracy First</h3>
+        <p>Every article is thoroughly researched and fact-checked. We cite sources, acknowledge uncertainty, and never sensationalize AI capabilities or risks.</p>
+      </div>
+      <div class="mission-card">
+        <span class="mission-icon">💡</span>
+        <h3>Clarity Always</h3>
+        <p>Complex ideas deserve clear explanations. We translate cutting-edge research into writing that engineers, students, and curious non-experts can all engage with.</p>
+      </div>
+      <div class="mission-card">
+        <span class="mission-icon">🌏</span>
+        <h3>Global Perspective</h3>
+        <p>AI is a global story. We cover developments from labs worldwide, with a particular focus on the growing AI ecosystem in India and Southeast Asia.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row fade-in">
+    <div><span class="snum">148+</span><span class="slbl">Articles Published</span></div>
+    <div><span class="snum">32K</span><span class="slbl">Monthly Readers</span></div>
+    <div><span class="snum">4.2K</span><span class="slbl">Newsletter Subscribers</span></div>
+    <div><span class="snum">12</span><span class="slbl">Expert Writers</span></div>
+  </div>
+
+  <div class="team fade-in">
+    <div class="page-tag">The Team</div>
+    <h2>Written by AI Enthusiasts</h2>
+    <p class="team-sub">Our writers combine technical expertise with a passion for clear communication.</p>
+    <div class="team-grid">
+      <div class="member">
+        <div class="member-av">AK</div>
+        <h3>Arjun Kapoor</h3>
+        <span class="member-role">Lead Writer · LLMs</span>
+        <p>Former ML engineer. Writes about language models, transformers, and the frontier of AI research.</p>
+      </div>
+      <div class="member">
+        <div class="member-av" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">SR</div>
+        <h3>Sneha Rao</h3>
+        <span class="member-role">Writer · Computer Vision</span>
+        <p>PhD student in computer vision. Covers image generation, object detection, and multimodal AI.</p>
+      </div>
+      <div class="member">
+        <div class="member-av" style="background:linear-gradient(135deg,#34d399,#059669)">PM</div>
+        <h3>Priya Mehta</h3>
+        <span class="member-role">Writer · AI Ethics</span>
+        <p>Policy researcher and ethicist. Focuses on AI safety, alignment, bias, and the societal impact of AI.</p>
+      </div>
+      <div class="member">
+        <div class="member-av" style="background:linear-gradient(135deg,#f472b6,#9333ea)">RV</div>
+        <h3>Rahul Verma</h3>
+        <span class="member-role">Writer · Robotics</span>
+        <p>Robotics engineer turned writer. Covers embodied AI, autonomous systems, and physical AI hardware.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section fade-in">
+    <h2>Join the NeuraPulse Community</h2>
+    <p>Get the most important AI developments delivered to your inbox every Tuesday.</p>
+    <div class="cta-btns">
+      <a href="contact.html" class="btn btn-p">Subscribe to Newsletter</a>
+      <a href="blog.html" class="btn btn-g">Read Our Articles</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <span class="flogo">NeuraPulse<span style="color:var(--accent)">.</span></span>
+  <ul class="flinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <p class="fcopy">© 2026 NeuraPulse</p>
+</footer>
+
+<script>
+document.getElementById('ham').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
+const obs=new IntersectionObserver((e)=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target);}});},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

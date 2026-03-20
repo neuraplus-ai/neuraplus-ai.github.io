@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Read all NeuraPulse AI blog posts — covering LLMs, computer vision, AI ethics, robotics, generative AI and the latest research in artificial intelligence.">
+<meta name="keywords" content="AI blog posts, artificial intelligence articles, LLM articles, machine learning blog, AI research articles">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Blog — NeuraPulse AI Articles">
+<meta property="og:description" content="All NeuraPulse articles on AI, LLMs, computer vision, robotics and ethics.">
+<meta property="og:url" content="https://neuraplus-ai.github.io/blog.html">
+<link rel="canonical" href="https://neuraplus-ai.github.io/blog.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>Blog — NeuraPulse AI Articles & Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"NeuraPulse Blog","url":"https://neuraplus-ai.github.io/blog.html","description":"All NeuraPulse AI articles and research deep dives."}</script>
+<style>
+:root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:#1e2d45;--accent:#00e5ff;--accent2:#7c3aed;--accent3:#f59e0b;--text:#e2e8f0;--text-dim:#64748b;--text-muted:#334155;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pdot 2s ease-in-out infinite;}
+@keyframes pdot{0%,100%{opacity:1;}50%{opacity:0.5;}}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+.nav-cta{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.5rem 1.2rem;border-radius:4px;text-decoration:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text-dim);border-radius:2px;}
+.page-hero{padding:9rem 3rem 4rem;max-width:1280px;margin:0 auto;}
+.page-tag{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
+.page-tag::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.page-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-0.04em;line-height:1.1;margin-bottom:1rem;}
+.page-hero p{color:var(--text-dim);font-size:1.1rem;max-width:500px;}
+.search-filter{padding:0 3rem 2rem;max-width:1280px;margin:0 auto;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
+.sbox{position:relative;flex:1;min-width:250px;}
+.sbox input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.85rem 0.85rem 0.85rem 2.8rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;}
+.sbox input:focus{border-color:var(--accent);}
+.sbox input::placeholder{color:var(--text-muted);}
+.sicon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text-dim);}
+.pills{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.pill{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);border:1px solid var(--border);padding:0.4rem 1rem;border-radius:100px;cursor:pointer;transition:all 0.2s;background:none;}
+.pill:hover,.pill.active{color:var(--accent);border-color:var(--accent);background:rgba(0,229,255,0.05);}
+.blog-section{padding:0 3rem 5rem;max-width:1280px;margin:0 auto;}
+.blog-count{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:2rem;}
+.articles{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.art-card{background:var(--surface);padding:2rem;text-decoration:none;color:inherit;display:block;transition:background 0.2s;position:relative;}
+.art-card:hover{background:var(--surface2);}
+.art-img{width:100%;height:180px;border-radius:8px;margin-bottom:1.5rem;overflow:hidden;}
+.cat{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:3px;display:inline-block;margin-bottom:0.75rem;width:fit-content;}
+.c1{color:var(--accent);background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.2);}
+.c2{color:#a78bfa;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.2);}
+.c3{color:var(--accent3);background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);}
+.c4{color:#34d399;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);}
+.c5{color:#f472b6;background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);}
+.art-card h2{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:-0.02em;line-height:1.3;margin-bottom:0.75rem;transition:color 0.2s;}
+.art-card:hover h2{color:var(--accent);}
+.art-card p{font-size:0.875rem;color:var(--text-dim);line-height:1.6;margin-bottom:1.5rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.art-meta{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid var(--border);}
+.art-author{display:flex;align-items:center;gap:0.6rem;}
+.av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.6rem;color:white;}
+.aname{font-size:0.8rem;font-weight:500;}
+.adata{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--text-dim);}
+.rtime{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);border:1px solid var(--border);padding:0.2rem 0.6rem;border-radius:3px;}
+footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.flogo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--text);}
+.flinks{display:flex;gap:2rem;list-style:none;}
+.flinks a{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s;}
+.flinks a:hover{color:var(--accent);}
+.fcopy{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-muted);}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){
+  nav{padding:0 1.5rem;}
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(5,8,16,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}
+  .hamburger{display:flex;}
+  .page-hero,.search-filter,.blog-section{padding-left:1.5rem;padding-right:1.5rem;}
+  .articles{grid-template-columns:1fr;}
+  footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><span class="logo-dot"></span>NeuraPulse</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Subscribe</a>
+  <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<main>
+<div class="page-hero">
+  <div class="page-tag">All Articles</div>
+  <h1>AI Blog Posts &<br>Research Deep Dives</h1>
+  <p>Expert-written articles on artificial intelligence — from beginner explainers to advanced research breakdowns.</p>
+</div>
+
+<div class="search-filter">
+  <div class="sbox"><span class="sicon">🔍</span><input type="search" id="srch" placeholder="Search all articles..." aria-label="Search"></div>
+  <div class="pills">
+    <button class="pill active" onclick="filter('all',this)">All</button>
+    <button class="pill" onclick="filter('llm',this)">LLMs</button>
+    <button class="pill" onclick="filter('vision',this)">Vision</button>
+    <button class="pill" onclick="filter('ethics',this)">Ethics</button>
+    <button class="pill" onclick="filter('robotics',this)">Robotics</button>
+    <button class="pill" onclick="filter('research',this)">Research</button>
+    <button class="pill" onclick="filter('agi',this)">AGI</button>
+  </div>
+</div>
+
+<div class="blog-section">
+  <p class="blog-count" id="count">Showing 9 articles</p>
+  <div class="articles" id="articles">
+
+    <article class="art-card fade-in" data-cat="llm">
+      <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><g opacity="0.7"><circle cx="80" cy="90" r="5" fill="#a78bfa"/><circle cx="80" cy="60" r="5" fill="#a78bfa"/><circle cx="80" cy="120" r="5" fill="#a78bfa"/><circle cx="150" cy="75" r="5" fill="#67e8f9"/><circle cx="150" cy="105" r="5" fill="#67e8f9"/><circle cx="220" cy="90" r="7" fill="#00e5ff"/></g><g stroke="rgba(0,229,255,0.3)" stroke-width="1" fill="none"><line x1="83" y1="93" x2="147" y2="78"/><line x1="83" y1="63" x2="147" y2="78"/><line x1="83" y1="123" x2="147" y2="108"/><line x1="153" y1="78" x2="217" y2="93"/><line x1="153" y1="108" x2="217" y2="93"/></g><text x="150" y="165" font-family="monospace" font-size="9" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="2">ATTENTION MECHANISM</text></svg></div>
+      <span class="cat c1">Large Language Models</span>
+      <h2>The Attention Mechanism: Why Transformers Changed Everything</h2>
+      <p>An in-depth exploration of how self-attention allows neural networks to weigh the importance of every token relative to others — and why this birthed an AI revolution.</p>
+      <div class="art-meta"><div class="art-author"><div class="av">AK</div><div><div class="aname">Arjun Kapoor</div><div class="adata">Mar 18, 2026</div></div></div><span class="rtime">12 min</span></div>
+    </article>
+
+    <article class="art-card fade-in" data-cat="vision">
+      <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><circle cx="150" cy="90" r="65" fill="none" stroke="rgba(124,58,237,0.3)" stroke-width="1"/><circle cx="150" cy="90" r="45" fill="none" stroke="rgba(124,58,237,0.4)" stroke-width="1"/><circle cx="150" cy="90" r="25" fill="rgba(124,58,237,0.2)" stroke="rgba(124,58,237,0.6)" stroke-width="1.5"/><line x1="80" y1="90" x2="220" y2="90" stroke="rgba(0,229,255,0.3)" stroke-width="1"/><line x1="150" y1="20" x2="150" y2="160" stroke="rgba(0,229,255,0.3)" stroke-width="1"/><circle cx="150" cy="90" r="4" fill="#00e5ff"/></svg></div>
+      <span class="cat c2">Computer Vision</span>
+      <h2>How Diffusion Models Generate Photorealistic Images from Pure Noise</h2>
+      <p>Stable Diffusion, DALL-E, Midjourney — they all share a deceptively elegant core idea. We break down the math and magic behind these powerful generative models.</p>
+      <div class="art-meta"><div class="art-author"><div class="av">SR</div><div><div class="aname">Sneha Rao</div><div class="adata">Mar 15, 2026</div></div></div><span class="rtime">9 min</span></div>
+    </article>
+
+    <article class="art-card fade-in" data-cat="ethics">
+      <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><rect x="20" y="45" width="260" height="90" rx="6" fill="none" stroke="rgba(245,158,11,0.2)" stroke-width="1"/><rect x="30" y="58" width="60" height="10" rx="2" fill="rgba(245,158,11,0.3)"/><rect x="30" y="76" width="130" height="8" rx="2" fill="rgba(100,116,139,0.2)"/><rect x="30" y="90" width="100" height="8" rx="2" fill="rgba(100,116,139,0.15)"/><rect x="30" y="104" width="160" height="8" rx="2" fill="rgba(100,116,139,0.2)"/><circle cx="255" cy="63" r="16" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/><text x="255" y="68" font-size="12" fill="rgba(245,158,11,0.9)" text-anchor="middle">!</text></svg></div>
+      <span class="cat c3">AI Ethics</span>
+      <h2>The Alignment Problem: Teaching AI to Want What We Actually Want</h2>
+      <p>As language models grow more capable, the gap between what we say and what we mean widens dangerously. This might be the most important challenge in computer science.</p>
+      <div class="art-meta"><div class="art-author"><div class="av">PM</div><div><div class="aname">Priya Mehta</div><div class="adata">Mar 12, 2026</div></div></div><span class="rtime">14 min</span></div>
+    </article>
+
+    <article class="art-card fade-in" data-cat="robotics">
+      <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><rect x="60" y="65" width="180" height="65" rx="32" fill="none" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/><rect x="80" y="80" width="140" height="35" rx="17" fill="rgba(52,211,153,0.08)"/><circle cx="150" cy="97" r="13" fill="rgba(52,211,153,0.3)" stroke="rgba(52,211,153,0.6)" stroke-width="1.5"/><line x1="62" y1="97" x2="32" y2="67" stroke="rgba(52,211,153,0.4)" stroke-width="2" stroke-linecap="round"/><line x1="238" y1="97" x2="268" y2="67" stroke="rgba(52,211,153,0.4)" stroke-width="2" stroke-linecap="round"/><line x1="118" y1="130" x2="98" y2="158" stroke="rgba(52,211,153,0.4)" stroke-width="2" stroke-linecap="round"/><line x1="182" y1="130" x2="202" y2="158" stroke="rgba(52,211,153,0.4)" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <span class="cat c4">Robotics</span>
+      <h2>Boston Dynamics to GPT: How Language Models Are Entering Physical Space</h2>
+      <p>The convergence of foundation models with robotic hardware is producing machines that can understand language, reason about their environment, and act in the real world.</p>
+      <div class="art-meta"><div class="art-author"><div class="av">RV</div><div><div class="aname">Rahul Verma</div><div class="adata">Mar 10, 2026</div></div></div><span class="rtime">11 min</span></div>
+    </article>
+
+    <article class="art-card fade-in" data-cat="llm">
+      <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><rect x="40" y="28" width="20" height="20" rx="2" fill="rgba(0,229,255,0.7)"/><rect x="63" y="28" width="20" height="20" rx="2" fill="rgba(0,229,255,0.3)"/><rect x="86" y="28" width="20" height="20" rx="2" fill="rgba(0,229,255,0.5)"/><rect x="40" y="51" width="20" height="20" rx="2" fill="rgba(0,229,255,0.2)"/><rect x="63" y="51" width="20" height="20" rx="2" fill="rgba(0,229,255,0.8)"/><rect x="86" y="51" width="20" height="20" rx="2" fill="rgba(0,229,255,0.4)"/><rect x="40" y="74" width="20" height="20" rx="2" fill="rgba(0,229,255,0.5)"/><rect x="63" y="74" width="20" height="20" rx="2" fill="rgba(0,229,255,0.1)"/><rect x="86" y="74" width="20" height="20" rx="2" fill="rgba(0,229,255,0.6)"/><text x="195" y="80" font-family="sans-serif" font-size="16" fill="rgba(0,229,255,0.8)" font-weight="700">ATTN</text><text x="195" y="98" font-family="monospace" font-size="9" fill="rgba(100,116,139,0.6)">HEADS ×16</text></svg></div>
+      <span class="cat c1">LLM</span>
+      <h2>Context Windows Are Getting Absurd — And That's a Good Thing</h2>
+      <p>From 4K to 2 million tokens: what expanding context windows mean for how models reason, retrieve, and hallucinate. Practical implications for developers building on frontier models.</p>
+      <div class="art-meta"><div class="art-author"><div class="av">AK</div><div><div class="aname">Arjun Kapoor</div><div class="adata">Mar 8, 2026</div></div></div><span class="rtime">8 min</span></div>
+    </article>
+
+    <article class="art-card fade-in" data-cat="research">
+      <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><rect x="55" y="20" width="190" height="135" rx="4" fill="rgba(17,24,39,0.8)" stroke="rgba(244,114,182,0.2)" stroke-width="1"/><rect x="70" y="35" width="120" height="9" rx="2" fill="rgba(244,114,182,0.5)"/><rect x="70" y="50" width="80" height="7" rx="2" fill="rgba(100,116,139,0.3)"/><rect x="70" y="67" width="160" height="4" rx="1" fill="rgba(100,116,139,0.2)"/><rect x="70" y="76" width="145" height="4" rx="1" fill="rgba(100,116,139,0.15)"/><rect x="70" y="85" width="155" height="4" rx="1" fill="rgba(100,116,139,0.2)"/><rect x="70" y="100" width="75" height="28" rx="3" fill="rgba(244,114,182,0.1)" stroke="rgba(244,114,182,0.3)" stroke-width="1"/><rect x="155" y="100" width="75" height="28" rx="3" fill="rgba(244,114,182,0.05)" stroke="rgba(244,114,182,0.2)" stroke-width="1"/></svg></div>
+      <span class="cat c5">Research</span>
+      <h2>5 arXiv Papers You Missed This Month That Could Change AI Forever</h2>
+      <p>Scaling laws, sparse autoencoders, and one deeply weird paper about emergent abilities — our monthly research roundup distills the most consequential findings from the last 30 days.</p>
+      <div class="art-meta"><div class="art-author"><div class="av">SR</div><div><div class="aname">Sneha Rao</div><div class="adata">Mar 5, 2026</div></div></div><span class="rtime">7 min</span></div>
+    </article>
+
+    <article class="art-card fade-in" data-cat="agi">
+      <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><ellipse cx="150" cy="85" rx="75" ry="60" fill="none" stroke="rgba(124,58,237,0.3)" stroke-width="1.5"/><path d="M 130 45 Q 150 25 170 45" fill="none" stroke="rgba(124,58,237,0.4)" stroke-width="1.5"/><circle cx="150" cy="85" r="22" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.5)" stroke-width="1.5"/><circle cx="150" cy="85" r="7" fill="#7c3aed"/><g stroke="rgba(0,229,255,0.2)" stroke-width="1"><line x1="150" y1="85" x2="118" y2="58"/><line x1="150" y1="85" x2="182" y2="58"/><line x1="150" y1="85" x2="108" y2="90"/><line x1="150" y1="85" x2="192" y2="90"/></g></svg></div>
+      <span class="cat c3">AGI</span>
+      <h2>AGI by 2027? A Measured Look at the Claims and the Evidence</h2>
+      <p>Every major lab is making bold claims about artificial general intelligence. We examine what AGI actually means, what milestones have been hit, and why predictions have a terrible track record.</p>
+      <div class="art-meta"><div class="art-author"><div class="av">PM</div><div><div class="aname">Priya Mehta</div><div class="adata">Mar 2, 2026</div></div></div><span class="rtime">16 min</span></div>
+    </article>
+
+    <article class="art-card fade-in" data-cat="ethics">
+      <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><rect x="30" y="40" width="240" height="100" rx="8" fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.15)" stroke-width="1"/><circle cx="80" cy="90" r="25" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.3)" stroke-width="1.5"/><text x="80" y="95" font-size="18" text-anchor="middle" fill="rgba(245,158,11,0.7)">⚖</text><rect x="125" y="68" width="130" height="9" rx="2" fill="rgba(245,158,11,0.2)"/><rect x="125" y="83" width="110" height="7" rx="2" fill="rgba(100,116,139,0.2)"/><rect x="125" y="96" width="120" height="7" rx="2" fill="rgba(100,116,139,0.15)"/><rect x="125" y="109" width="90" height="7" rx="2" fill="rgba(100,116,139,0.2)"/></svg></div>
+      <span class="cat c3">AI Ethics</span>
+      <h2>Who Is Responsible When AI Makes a Mistake? The Legal Grey Zone</h2>
+      <p>As AI systems become decision-makers in healthcare, finance, and justice, questions of accountability become urgent. A deep look at the emerging legal frameworks around AI liability.</p>
+      <div class="art-meta"><div class="art-author"><div class="av">RV</div><div><div class="aname">Rahul Verma</div><div class="adata">Feb 28, 2026</div></div></div><span class="rtime">10 min</span></div>
+    </article>
+
+    <article class="art-card fade-in" data-cat="vision">
+      <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><rect x="30" y="30" width="110" height="110" rx="4" fill="rgba(124,58,237,0.1)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/><rect x="45" y="45" width="80" height="80" rx="4" fill="rgba(124,58,237,0.15)"/><circle cx="85" cy="85" r="20" fill="rgba(124,58,237,0.3)" stroke="rgba(124,58,237,0.6)" stroke-width="1.5"/><line x1="155" y1="85" x2="185" y2="85" stroke="rgba(0,229,255,0.5)" stroke-width="2" marker-end="url(#ar)"/><rect x="190" y="45" width="80" height="80" rx="4" fill="rgba(0,229,255,0.08)" stroke="rgba(0,229,255,0.2)" stroke-width="1"/><circle cx="230" cy="85" r="20" fill="rgba(0,229,255,0.15)" stroke="rgba(0,229,255,0.4)" stroke-width="1.5"/></svg></div>
+      <span class="cat c2">Computer Vision</span>
+      <h2>Vision Transformers vs CNNs: The Battle for Image Understanding</h2>
+      <p>Convolutional neural networks dominated computer vision for a decade. Then Vision Transformers arrived and rewrote the rules. Which approach wins, and why does it depend?</p>
+      <div class="art-meta"><div class="art-author"><div class="av">AK</div><div><div class="aname">Arjun Kapoor</div><div class="adata">Feb 25, 2026</div></div></div><span class="rtime">13 min</span></div>
+    </article>
+
+  </div>
+</div>
+</main>
+
+<footer>
+  <span class="flogo">NeuraPulse<span style="color:var(--accent)">.</span></span>
+  <ul class="flinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <p class="fcopy">© 2026 NeuraPulse</p>
+</footer>
+
+<script>
+document.getElementById('ham').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
+const obs=new IntersectionObserver((e)=>{e.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('visible'),80*i);obs.unobserve(en.target);}});},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+function filter(cat,btn){
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  const cards=document.querySelectorAll('.art-card');
+  let count=0;
+  cards.forEach(c=>{
+    if(cat==='all'||c.dataset.cat===cat){c.style.display='block';count++;}
+    else c.style.display='none';
+  });
+  document.getElementById('count').textContent='Showing '+count+' article'+(count!==1?'s':'');
+}
+document.getElementById('srch').addEventListener('input',function(){
+  const q=this.value.toLowerCase();
+  let count=0;
+  document.querySelectorAll('.art-card').forEach(c=>{
+    const show=c.innerText.toLowerCase().includes(q)||!q;
+    c.style.display=show?'block':'none';
+    if(show)count++;
+  });
+  document.getElementById('count').textContent='Showing '+count+' article'+(count!==1?'s':'');
+});
+</script>
+</body>
+</html>
