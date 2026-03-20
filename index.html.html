@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuraPulse — AI Insights & Frontiers</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050810;
+    --surface: #0c1120;
+    --surface2: #111827;
+    --border: #1e2d45;
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --accent3: #f59e0b;
+    --text: #e2e8f0;
+    --text-dim: #64748b;
+    --text-muted: #334155;
+    --glow: rgba(0,229,255,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 2px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 68px;
+    background: rgba(5,8,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: box-shadow 0.2s;
+  }
+
+  .nav-cta:hover {
+    box-shadow: 0 0 20px rgba(0,229,255,0.5);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+    top: -100px; right: -150px;
+    pointer-events: none;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 70%);
+    bottom: 0; left: -100px;
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    max-width: 900px;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    max-width: 540px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 30px rgba(0,229,255,0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: transparent;
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-item { }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    overflow: hidden;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 0;
+  }
+
+  .ticker {
+    display: flex;
+    gap: 3rem;
+    animation: ticker-scroll 25s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker-item {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .ticker-item span {
+    color: var(--accent);
+  }
+
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION ── */
+  section {
+    padding: 6rem 3rem;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 3rem;
+  }
+
+  /* ── FEATURED POST ── */
+  .featured-post {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+
+  .featured-post:hover {
+    border-color: var(--accent);
+  }
+
+  .featured-post:hover .featured-img-overlay {
+    opacity: 0;
+  }
+
+  .featured-visual {
+    position: relative;
+    min-height: 420px;
+    overflow: hidden;
+    background: var(--surface2);
+  }
+
+  .featured-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* SVG art for featured */
+  .featured-svg-art {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .featured-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(0,229,255,0.1));
+    transition: opacity 0.3s;
+  }
+
+  .featured-content {
+    padding: 3rem;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .post-category {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+  }
+
+  .cat-llm { color: var(--accent); background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); }
+  .cat-vision { color: #a78bfa; background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.2); }
+  .cat-ethics { color: var(--accent3); background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); }
+  .cat-robotics { color: #34d399; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2); }
+  .cat-research { color: #f472b6; background: rgba(244,114,182,0.1); border: 1px solid rgba(244,114,182,0.2); }
+
+  .featured-content h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    transition: color 0.2s;
+  }
+
+  .featured-post:hover .featured-content h2 {
+    color: var(--accent);
+  }
+
+  .featured-content p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .author-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .post-meta-info { }
+
+  .post-author {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+  }
+
+  .post-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    display: block;
+  }
+
+  .read-time {
+    margin-left: auto;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+  }
+
+  /* ── BLOG GRID ── */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .blog-card {
+    background: var(--surface);
+    padding: 2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blog-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(0,229,255,0.03));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .blog-card:hover { background: var(--surface2); }
+  .blog-card:hover::after { opacity: 1; }
+
+  .card-visual {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .blog-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin: 0.75rem 0;
+    transition: color 0.2s;
+  }
+
+  .blog-card:hover h3 { color: var(--accent); }
+
+  .blog-card p {
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-footer .post-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+  }
+
+  .read-arrow {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    transition: all 0.2s;
+  }
+
+  .blog-card:hover .read-arrow {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: rotate(45deg);
+  }
+
+  /* ── TOPICS STRIP ── */
+  .topics-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .topic-pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .topic-pill:hover, .topic-pill.active {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(0,229,255,0.05);
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter-section {
+    padding: 5rem 3rem;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .newsletter-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .newsletter-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .newsletter-card h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-card p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1.2rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter-input::placeholder { color: var(--text-muted); }
+  .newsletter-input:focus { border-color: var(--accent); }
+
+  .form-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--text);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .featured-post { grid-template-columns: 1fr; }
+    .featured-visual { min-height: 240px; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .newsletter-card { grid-template-columns: 1fr; padding: 2.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span class="logo-dot"></span>
+    NeuraPulse
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Research</a></li>
+    <li><a href="#">Models</a></li>
+    <li><a href="#">Ethics</a></li>
+    <li><a href="#">Tools</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <a href="#newsletter" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-tag">Est. 2024 · AI Intelligence Hub</div>
+
+  <h1>Where <em>Artificial</em><br>Intelligence<br>Gets Human</h1>
+
+  <p class="hero-desc">Deep dives into large language models, computer vision, AI ethics, and the research shaping tomorrow's machines. Written for curious minds.</p>
+
+  <div class="hero-actions">
+    <a href="#featured" class="btn-primary">Explore Articles</a>
+    <a href="#topics" class="btn-ghost">Browse Topics</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">148+</span>
+      <span class="stat-label">Articles Published</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">32K</span>
+      <span class="stat-label">Monthly Readers</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">12</span>
+      <span class="stat-label">Expert Writers</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Research Backed</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item"><span>↗</span> GPT-5 Architecture Breakdown</span>
+    <span class="ticker-item"><span>↗</span> Diffusion Models Explained</span>
+    <span class="ticker-item"><span>↗</span> Reinforcement Learning from Human Feedback</span>
+    <span class="ticker-item"><span>↗</span> AI Safety & Alignment</span>
+    <span class="ticker-item"><span>↗</span> Multimodal Systems 2025</span>
+    <span class="ticker-item"><span>↗</span> Neural Architecture Search</span>
+    <span class="ticker-item"><span>↗</span> GPT-5 Architecture Breakdown</span>
+    <span class="ticker-item"><span>↗</span> Diffusion Models Explained</span>
+    <span class="ticker-item"><span>↗</span> Reinforcement Learning from Human Feedback</span>
+    <span class="ticker-item"><span>↗</span> AI Safety & Alignment</span>
+    <span class="ticker-item"><span>↗</span> Multimodal Systems 2025</span>
+    <span class="ticker-item"><span>↗</span> Neural Architecture Search</span>
+  </div>
+</div>
+
+<!-- FEATURED -->
+<section id="featured">
+  <div class="section-label">Featured</div>
+  <div class="section-title">This Week's Deep Dive</div>
+
+  <div class="featured-post fade-in">
+    <div class="featured-visual">
+      <div class="featured-svg-art">
+        <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <radialGradient id="bg1" cx="50%" cy="50%">
+              <stop offset="0%" stop-color="#1a0d3d"/>
+              <stop offset="100%" stop-color="#050810"/>
+            </radialGradient>
+            <filter id="blur1"><feGaussianBlur stdDeviation="3"/></filter>
+          </defs>
+          <rect width="560" height="420" fill="url(#bg1)"/>
+          <!-- Neural network nodes -->
+          <g opacity="0.6">
+            <circle cx="80" cy="210" r="6" fill="#7c3aed" filter="url(#blur1)"/>
+            <circle cx="80" cy="210" r="3" fill="#a78bfa"/>
+            <circle cx="80" cy="140" r="6" fill="#7c3aed" filter="url(#blur1)"/>
+            <circle cx="80" cy="140" r="3" fill="#a78bfa"/>
+            <circle cx="80" cy="280" r="6" fill="#7c3aed" filter="url(#blur1)"/>
+            <circle cx="80" cy="280" r="3" fill="#a78bfa"/>
+
+            <circle cx="200" cy="175" r="6" fill="#00e5ff" filter="url(#blur1)"/>
+            <circle cx="200" cy="175" r="3" fill="#67e8f9"/>
+            <circle cx="200" cy="245" r="6" fill="#00e5ff" filter="url(#blur1)"/>
+            <circle cx="200" cy="245" r="3" fill="#67e8f9"/>
+            <circle cx="200" cy="315" r="6" fill="#00e5ff" filter="url(#blur1)"/>
+            <circle cx="200" cy="315" r="3" fill="#67e8f9"/>
+            <circle cx="200" cy="105" r="6" fill="#00e5ff" filter="url(#blur1)"/>
+            <circle cx="200" cy="105" r="3" fill="#67e8f9"/>
+
+            <circle cx="320" cy="175" r="6" fill="#7c3aed" filter="url(#blur1)"/>
+            <circle cx="320" cy="175" r="3" fill="#a78bfa"/>
+            <circle cx="320" cy="245" r="6" fill="#7c3aed" filter="url(#blur1)"/>
+            <circle cx="320" cy="245" r="3" fill="#a78bfa"/>
+            <circle cx="320" cy="315" r="6" fill="#7c3aed" filter="url(#blur1)"/>
+            <circle cx="320" cy="315" r="3" fill="#a78bfa"/>
+            <circle cx="320" cy="105" r="6" fill="#7c3aed" filter="url(#blur1)"/>
+            <circle cx="320" cy="105" r="3" fill="#a78bfa"/>
+
+            <circle cx="440" cy="210" r="8" fill="#00e5ff" filter="url(#blur1)"/>
+            <circle cx="440" cy="210" r="4" fill="#00e5ff"/>
+            <circle cx="440" cy="140" r="8" fill="#00e5ff" filter="url(#blur1)"/>
+            <circle cx="440" cy="140" r="4" fill="#00e5ff"/>
+            <circle cx="440" cy="280" r="8" fill="#00e5ff" filter="url(#blur1)"/>
+            <circle cx="440" cy="280" r="4" fill="#00e5ff"/>
+          </g>
+          <!-- Connections -->
+          <g stroke="rgba(124,58,237,0.25)" stroke-width="1" fill="none">
+            <line x1="83" y1="213" x2="197" y2="178"/>
+            <line x1="83" y1="213" x2="197" y2="248"/>
+            <line x1="83" y1="210" x2="197" y2="108"/>
+            <line x1="83" y1="143" x2="197" y2="108"/>
+            <line x1="83" y1="143" x2="197" y2="178"/>
+            <line x1="83" y1="283" x2="197" y2="248"/>
+            <line x1="83" y1="283" x2="197" y2="318"/>
+          </g>
+          <g stroke="rgba(0,229,255,0.2)" stroke-width="1" fill="none">
+            <line x1="203" y1="178" x2="317" y2="108"/>
+            <line x1="203" y1="178" x2="317" y2="178"/>
+            <line x1="203" y1="248" x2="317" y2="178"/>
+            <line x1="203" y1="248" x2="317" y2="248"/>
+            <line x1="203" y1="108" x2="317" y2="108"/>
+            <line x1="203" y1="318" x2="317" y2="248"/>
+            <line x1="203" y1="318" x2="317" y2="318"/>
+          </g>
+          <g stroke="rgba(0,229,255,0.3)" stroke-width="1.5" fill="none">
+            <line x1="323" y1="108" x2="437" y2="143"/>
+            <line x1="323" y1="178" x2="437" y2="213"/>
+            <line x1="323" y1="248" x2="437" y2="213"/>
+            <line x1="323" y1="248" x2="437" y2="283"/>
+            <line x1="323" y1="318" x2="437" y2="283"/>
+          </g>
+          <!-- Floating label -->
+          <text x="280" y="390" font-family="Space Mono, monospace" font-size="10" fill="rgba(100,116,139,0.8)" text-anchor="middle" letter-spacing="3">TRANSFORMER ARCHITECTURE</text>
+        </svg>
+      </div>
+      <div class="featured-img-overlay"></div>
+    </div>
+    <div class="featured-content">
+      <div>
+        <span class="post-category cat-llm">Large Language Models</span>
+        <h2>The Attention Mechanism: Why Transformers Changed Everything</h2>
+        <p>An in-depth exploration of how self-attention allows neural networks to weigh the importance of every token relative to others — and why this simple idea birthed a revolution in AI that nobody saw coming.</p>
+      </div>
+      <div>
+        <div class="post-meta">
+          <div class="author-avatar">AK</div>
+          <div class="post-meta-info">
+            <span class="post-author">Arjun Kapoor</span>
+            <span class="post-date">March 18, 2026</span>
+          </div>
+          <span class="read-time">12 min read</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section id="topics" style="padding-top:0">
+  <div class="section-label">Browse</div>
+  <div class="section-title">All Topics</div>
+
+  <div class="topics-strip">
+    <span class="topic-pill active">All</span>
+    <span class="topic-pill">Large Language Models</span>
+    <span class="topic-pill">Computer Vision</span>
+    <span class="topic-pill">Robotics</span>
+    <span class="topic-pill">AI Ethics</span>
+    <span class="topic-pill">Research Papers</span>
+    <span class="topic-pill">Generative AI</span>
+    <span class="topic-pill">Reinforcement Learning</span>
+    <span class="topic-pill">AI Safety</span>
+    <span class="topic-pill">NLP</span>
+    <span class="topic-pill">AGI</span>
+  </div>
+</section>
+
+<!-- BLOG GRID -->
+<section style="padding-top:0">
+  <div class="section-label">Latest</div>
+  <div class="section-title">Recent Articles</div>
+
+  <div class="blog-grid">
+
+    <!-- Card 1 -->
+    <div class="blog-card fade-in">
+      <div class="card-visual">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="300" height="160" fill="#0c1120"/>
+          <circle cx="150" cy="80" r="60" fill="none" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+          <circle cx="150" cy="80" r="40" fill="none" stroke="rgba(124,58,237,0.4)" stroke-width="1"/>
+          <circle cx="150" cy="80" r="20" fill="rgba(124,58,237,0.2)" stroke="rgba(124,58,237,0.6)" stroke-width="1.5"/>
+          <line x1="90" y1="80" x2="210" y2="80" stroke="rgba(0,229,255,0.3)" stroke-width="1"/>
+          <line x1="150" y1="20" x2="150" y2="140" stroke="rgba(0,229,255,0.3)" stroke-width="1"/>
+          <line x1="107" y1="37" x2="193" y2="123" stroke="rgba(0,229,255,0.15)" stroke-width="1"/>
+          <line x1="193" y1="37" x2="107" y2="123" stroke="rgba(0,229,255,0.15)" stroke-width="1"/>
+          <circle cx="150" cy="80" r="3" fill="#00e5ff"/>
+          <text x="150" y="150" font-family="Space Mono, monospace" font-size="8" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="2">DIFFUSION PROCESS</text>
+        </svg>
+      </div>
+      <span class="post-category cat-vision">Computer Vision</span>
+      <h3>How Diffusion Models Generate Photorealistic Images from Pure Noise</h3>
+      <p>Stable Diffusion, DALL-E, Midjourney — they all share a deceptively elegant core idea. We break down the math and the magic behind denoising diffusion probabilistic models.</p>
+      <div class="card-footer">
+        <span class="post-date">Mar 15, 2026 · 9 min</span>
+        <div class="read-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="blog-card fade-in">
+      <div class="card-visual">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="300" height="160" fill="#0c1120"/>
+          <rect x="20" y="40" width="260" height="80" rx="6" fill="none" stroke="rgba(245,158,11,0.2)" stroke-width="1"/>
+          <rect x="30" y="50" width="60" height="10" rx="2" fill="rgba(245,158,11,0.3)"/>
+          <rect x="100" y="50" width="80" height="10" rx="2" fill="rgba(245,158,11,0.15)"/>
+          <rect x="30" y="70" width="120" height="8" rx="2" fill="rgba(100,116,139,0.2)"/>
+          <rect x="30" y="85" width="90" height="8" rx="2" fill="rgba(100,116,139,0.15)"/>
+          <rect x="30" y="100" width="150" height="8" rx="2" fill="rgba(100,116,139,0.2)"/>
+          <circle cx="250" cy="50" r="15" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
+          <text x="250" y="54" font-family="Space Mono" font-size="10" fill="rgba(245,158,11,0.9)" text-anchor="middle">!</text>
+          <text x="150" y="150" font-family="Space Mono, monospace" font-size="8" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="2">AI ETHICS FRAMEWORK</text>
+        </svg>
+      </div>
+      <span class="post-category cat-ethics">AI Ethics</span>
+      <h3>The Alignment Problem: Teaching AI to Want What We Actually Want</h3>
+      <p>As language models grow more capable, the gap between what we say we want and what we mean widens dangerously. This is the alignment problem, and it might be the most important challenge in computer science.</p>
+      <div class="card-footer">
+        <span class="post-date">Mar 12, 2026 · 14 min</span>
+        <div class="read-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="blog-card fade-in">
+      <div class="card-visual">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="300" height="160" fill="#0c1120"/>
+          <rect x="60" y="60" width="180" height="60" rx="30" fill="none" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+          <rect x="80" y="75" width="140" height="30" rx="15" fill="rgba(52,211,153,0.1)"/>
+          <circle cx="150" cy="90" r="12" fill="rgba(52,211,153,0.3)" stroke="rgba(52,211,153,0.6)" stroke-width="1.5"/>
+          <!-- arms -->
+          <line x1="60" y1="90" x2="30" y2="60" stroke="rgba(52,211,153,0.4)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="240" y1="90" x2="270" y2="60" stroke="rgba(52,211,153,0.4)" stroke-width="2" stroke-linecap="round"/>
+          <!-- legs -->
+          <line x1="120" y1="120" x2="100" y2="145" stroke="rgba(52,211,153,0.4)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="180" y1="120" x2="200" y2="145" stroke="rgba(52,211,153,0.4)" stroke-width="2" stroke-linecap="round"/>
+          <text x="150" y="150" font-family="Space Mono, monospace" font-size="8" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="2">ROBOTIC SYSTEMS</text>
+        </svg>
+      </div>
+      <span class="post-category cat-robotics">Robotics</span>
+      <h3>Boston Dynamics to GPT: How Language Models Are Entering Physical Space</h3>
+      <p>The convergence of foundation models with robotic hardware is producing machines that can understand language, reason about their environment, and act — a shift that redefines what "robot" means.</p>
+      <div class="card-footer">
+        <span class="post-date">Mar 10, 2026 · 11 min</span>
+        <div class="read-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="blog-card fade-in">
+      <div class="card-visual">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="300" height="160" fill="#0c1120"/>
+          <!-- Attention matrix visualization -->
+          <g opacity="0.8">
+            <rect x="40" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.7)"/>
+            <rect x="62" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.3)"/>
+            <rect x="84" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.1)"/>
+            <rect x="106" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.5)"/>
+            <rect x="128" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.2)"/>
+
+            <rect x="40" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.2)"/>
+            <rect x="62" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.8)"/>
+            <rect x="84" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.1)"/>
+            <rect x="106" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.4)"/>
+            <rect x="128" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.15)"/>
+
+            <rect x="40" y="74" width="20" height="20" rx="2" fill="rgba(0,229,255,0.15)"/>
+            <rect x="62" y="74" width="20" height="20" rx="2" fill="rgba(0,229,255,0.2)"/>
+            <rect x="84" y="74" width="20" height="20" rx="2" fill="rgba(0,229,255,0.9)"/>
+            <rect x="106" y="74" width="20" height="20" rx="2" fill="rgba(0,229,255,0.1)"/>
+            <rect x="128" y="74" width="20" height="20" rx="2" fill="rgba(0,229,255,0.3)"/>
+
+            <rect x="40" y="96" width="20" height="20" rx="2" fill="rgba(0,229,255,0.4)"/>
+            <rect x="62" y="96" width="20" height="20" rx="2" fill="rgba(0,229,255,0.1)"/>
+            <rect x="84" y="96" width="20" height="20" rx="2" fill="rgba(0,229,255,0.3)"/>
+            <rect x="106" y="96" width="20" height="20" rx="2" fill="rgba(0,229,255,0.6)"/>
+            <rect x="128" y="96" width="20" height="20" rx="2" fill="rgba(0,229,255,0.2)"/>
+          </g>
+          <text x="200" y="75" font-family="Syne, sans-serif" font-size="14" fill="rgba(0,229,255,0.8)" font-weight="700">ATTN</text>
+          <text x="200" y="92" font-family="Space Mono" font-size="9" fill="rgba(100,116,139,0.6)">HEADS ×16</text>
+          <text x="150" y="150" font-family="Space Mono, monospace" font-size="8" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="2">SELF-ATTENTION MATRIX</text>
+        </svg>
+      </div>
+      <span class="post-category cat-llm">LLM</span>
+      <h3>Context Windows Are Getting Absurd — And That's a Good Thing</h3>
+      <p>From 4K to 2M tokens: what expanding context windows mean for how models reason, retrieve, and hallucinate. The practical implications for developers building on top of frontier models.</p>
+      <div class="card-footer">
+        <span class="post-date">Mar 8, 2026 · 8 min</span>
+        <div class="read-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="blog-card fade-in">
+      <div class="card-visual">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="300" height="160" fill="#0c1120"/>
+          <!-- Research paper mockup -->
+          <rect x="50" y="20" width="200" height="120" rx="4" fill="rgba(17,24,39,0.8)" stroke="rgba(244,114,182,0.2)" stroke-width="1"/>
+          <rect x="65" y="35" width="120" height="8" rx="2" fill="rgba(244,114,182,0.5)"/>
+          <rect x="65" y="48" width="80" height="6" rx="2" fill="rgba(100,116,139,0.3)"/>
+          <rect x="65" y="64" width="170" height="4" rx="1" fill="rgba(100,116,139,0.2)"/>
+          <rect x="65" y="72" width="155" height="4" rx="1" fill="rgba(100,116,139,0.15)"/>
+          <rect x="65" y="80" width="165" height="4" rx="1" fill="rgba(100,116,139,0.2)"/>
+          <rect x="65" y="95" width="80" height="25" rx="3" fill="rgba(244,114,182,0.1)" stroke="rgba(244,114,182,0.3)" stroke-width="1"/>
+          <rect x="155" y="95" width="80" height="25" rx="3" fill="rgba(244,114,182,0.05)" stroke="rgba(244,114,182,0.2)" stroke-width="1"/>
+          <text x="150" y="153" font-family="Space Mono, monospace" font-size="8" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="2">ARXIV RESEARCH</text>
+        </svg>
+      </div>
+      <span class="post-category cat-research">Research</span>
+      <h3>5 arXiv Papers You Missed This Month That Could Change AI Forever</h3>
+      <p>Scaling laws, sparse autoencoders, and one deeply weird paper about emergent abilities — our monthly research roundup distills the most consequential findings from the last 30 days.</p>
+      <div class="card-footer">
+        <span class="post-date">Mar 5, 2026 · 7 min</span>
+        <div class="read-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="blog-card fade-in">
+      <div class="card-visual">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="300" height="160" fill="#0c1120"/>
+          <!-- AGI brain concept -->
+          <ellipse cx="150" cy="75" rx="70" ry="55" fill="none" stroke="rgba(124,58,237,0.3)" stroke-width="1.5"/>
+          <path d="M 130 40 Q 150 20 170 40" fill="none" stroke="rgba(124,58,237,0.4)" stroke-width="1.5"/>
+          <path d="M 100 60 Q 80 45 90 70" fill="none" stroke="rgba(124,58,237,0.3)" stroke-width="1.5"/>
+          <path d="M 200 60 Q 220 45 210 70" fill="none" stroke="rgba(124,58,237,0.3)" stroke-width="1.5"/>
+          <line x1="150" y1="30" x2="150" y2="120" stroke="rgba(124,58,237,0.2)" stroke-width="1"/>
+          <circle cx="150" cy="75" r="20" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.5)" stroke-width="1.5"/>
+          <circle cx="150" cy="75" r="6" fill="#7c3aed"/>
+          <!-- Rays -->
+          <g stroke="rgba(0,229,255,0.2)" stroke-width="1">
+            <line x1="150" y1="75" x2="120" y2="50"/>
+            <line x1="150" y1="75" x2="180" y2="50"/>
+            <line x1="150" y1="75" x2="110" y2="80"/>
+            <line x1="150" y1="75" x2="190" y2="80"/>
+            <line x1="150" y1="75" x2="130" y2="105"/>
+            <line x1="150" y1="75" x2="170" y2="105"/>
+          </g>
+          <text x="150" y="153" font-family="Space Mono, monospace" font-size="8" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="2">AGI TIMELINE</text>
+        </svg>
+      </div>
+      <span class="post-category cat-ethics">AGI</span>
+      <h3>AGI by 2027? A Measured Look at the Claims and the Evidence</h3>
+      <p>Every major lab is making bold claims. We examine what AGI actually means, what milestones have been hit, and why predictions in AI have a notoriously terrible track record — yet something feels different now.</p>
+      <div class="card-footer">
+        <span class="post-date">Mar 2, 2026 · 16 min</span>
+        <div class="read-arrow">→</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-section" id="newsletter">
+  <div class="newsletter-card fade-in">
+    <div>
+      <div class="section-label" style="margin-bottom:0.75rem">Newsletter</div>
+      <h2>Stay Sharp on AI Every Week</h2>
+      <p>No fluff. No hype. Just the most important AI developments, research papers, and ideas — delivered to your inbox every Tuesday morning.</p>
+    </div>
+    <div class="newsletter-form">
+      <div class="form-row">
+        <input type="text" class="newsletter-input" placeholder="Your name" style="flex:0.7"/>
+        <input type="email" class="newsletter-input" placeholder="you@email.com"/>
+      </div>
+      <button class="btn-primary" style="width:100%; text-align:center;" onclick="handleSubscribe(this)">Subscribe — It's Free</button>
+      <p class="form-note">✦ No spam · Unsubscribe anytime · 4,200+ readers</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NeuraPulse<span style="color:var(--accent)">.</span></div>
+  <ul class="footer-links">
+    <li><a href="#">Research</a></li>
+    <li><a href="#">Models</a></li>
+    <li><a href="#">Ethics</a></li>
+    <li><a href="#">Newsletter</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 NeuraPulse. All rights reserved.</p>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * i);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Topic pills
+  document.querySelectorAll('.topic-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+
+  // Subscribe
+  function handleSubscribe(btn) {
+    btn.textContent = '✓ You\'re subscribed!';
+    btn.style.background = '#34d399';
+    btn.style.pointerEvents = 'none';
+  }
+
+  // Blog card clicks
+  document.querySelectorAll('.blog-card, .featured-post').forEach(card => {
+    card.addEventListener('click', () => {
+      card.style.transform = 'scale(0.99)';
+      setTimeout(() => card.style.transform = '', 150);
+    });
+  });
+</script>
+</body>
+</html>
