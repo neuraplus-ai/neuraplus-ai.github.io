@@ -1,10 +1,9 @@
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="shortcut icon" href="favicon.svg">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#050810"/>
-  <circle cx="32" cy="30" r="22" fill="none" stroke="#00e5ff" stroke-width="2.5"/>
-  <circle cx="32" cy="30" r="14" fill="none" stroke="#7c3aed" stroke-width="1.5" opacity="0.7"/>
-  <circle cx="32" cy="30" r="8" fill="#0c1120" stroke="#00e5ff" stroke-width="2"/>
-  <text x="32" y="35" font-family="Arial Black, sans-serif" font-weight="900" font-size="11" fill="#e2e8f0" text-anchor="middle">N</text>
-  <circle cx="44" cy="14" r="4" fill="#00e5ff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="80" fill="#050810"/>
+  <rect x="106" y="106" width="300" height="300" rx="50" fill="#0c1120" stroke="#00e5ff" stroke-width="6"/>
+  <text x="186" y="320" font-family="Arial Black, sans-serif" font-weight="900" font-size="180" fill="#e2e8f0">N</text>
+  <rect x="330" y="118" width="16" height="70" rx="8" fill="#00e5ff"/>
+  <rect x="296" y="152" width="84" height="16" rx="8" fill="#00e5ff"/>
+  <rect x="106" y="410" width="180" height="12" rx="6" fill="#7c3aed"/>
+  <rect x="292" y="410" width="114" height="12" rx="6" fill="#00e5ff"/>
 </svg>
