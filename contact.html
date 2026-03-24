@@ -10,21 +10,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
   
   <!-- modify this form HTML and place wherever you want your form -->
-<form
-  action="https://formspree.io/f/mgongnnn"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Contact NeuraPulse — get in touch with our AI blog team, submit a guest post, or subscribe to our weekly AI newsletter.">
@@ -127,6 +112,250 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;mar
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+  <div class="container">
+  <form action="https://formspree.io/f/mgongnnn" method="POST" class="contact-form">
+    
+    <h2>Get in Touch</h2>
+    <p>We’d love to hear from you 👋</p>
+
+    <div class="input-group">
+      <input type="text" name="name" required>
+      <label>Your Name</label>
+    </div>
+
+    <div class="input-group">
+      <input type="email" name="email" required>
+      <label>Your Email</label>
+    </div>
+
+    <div class="input-group">
+      <textarea name="message" rows="4" required></textarea>
+      <label>Your Message</label>
+    </div>
+
+    <!-- Anti-spam -->
+    <input type="text" name="_gotcha" style="display:none">
+
+    <button type="submit">Send Message 🚀</button>
+
+  </form>
+</div>
+
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Form Box */
+.contact-form {
+  background: #fff;
+  padding: 30px;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.contact-form h2 {
+  margin-bottom: 5px;
+}
+
+.contact-form p {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Floating Labels */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-group label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #999;
+  font-size: 14px;
+  pointer-events: none;
+  transition: 0.3s;
+  background: #fff;
+  padding: 0 5px;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label,
+.input-group textarea:focus + label,
+.input-group textarea:valid + label {
+  top: -8px;
+  font-size: 12px;
+  color: #667eea;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #667eea;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #5a67d8;
+}
+</style>
+  <div class="contact-container">
+  <form action="https://formspree.io/f/mgongnnn" method="POST" class="contact-form">
+
+    <h2>Send Us a Message</h2>
+    <p>Fill the form below — message goes directly to our inbox!</p>
+
+    <!-- Name -->
+    <label>Your Name *</label>
+    <input type="text" name="name" placeholder="Enter your name" required>
+
+    <!-- Email -->
+    <label>Email Address *</label>
+    <input type="email" name="email" placeholder="Enter your email" required>
+
+    <!-- Subject -->
+    <label>Subject</label>
+    <select name="subject">
+      <option>General Inquiry</option>
+      <option>Support</option>
+      <option>Business</option>
+      <option selected>Other</option>
+    </select>
+
+    <!-- Message -->
+    <label>Message *</label>
+    <textarea name="message" rows="5" placeholder="Write your message..." required></textarea>
+
+    <!-- Anti-spam -->
+    <input type="text" name="_gotcha" style="display:none">
+
+    <!-- Button -->
+    <button type="submit">SEND MESSAGE →</button>
+
+  </form>
+</div>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #050816;
+  color: #fff;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.contact-form {
+  width: 420px;
+  background: #0a0f2c;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 200, 255, 0.1);
+}
+
+.contact-form h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.contact-form p {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* Labels */
+.contact-form label {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #8aa0ff;
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+/* Inputs */
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  padding: 12px;
+  background: #050816;
+  border: 1px solid #1f2a4d;
+  border-radius: 6px;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* Focus glow effect */
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+  border-color: #00e0ff;
+  box-shadow: 0 0 8px #00e0ff;
+}
+
+/* Textarea */
+.contact-form textarea {
+  resize: none;
+}
+
+/* Button */
+.contact-form button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  border: none;
+  background: #00cfe8;
+  color: #000;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #00e0ff;
+  box-shadow: 0 0 10px #00e0ff;
+}
+</style>
 <nav>
   <a href="index.html" class="logo"><span class="logo-dot"></span>NeuraPulse</a>
   <ul class="nav-links" id="navLinks">
