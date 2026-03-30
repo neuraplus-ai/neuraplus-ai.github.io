@@ -152,8 +152,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <div class="blog-section">
-  <p class="blog-count" id="count">Showing 9 articles</p>
+  <p class="blog-count" id="count">Showing 10 articles</p>
   <div class="articles" id="articles">
+
+    <article class="art-card fade-in" data-cat="llm">
+      <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><rect x="24" y="28" width="252" height="124" rx="10" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.25)"/><rect x="40" y="44" width="82" height="92" rx="6" fill="rgba(124,58,237,0.2)"/><rect x="136" y="44" width="124" height="14" rx="3" fill="rgba(0,229,255,0.35)"/><rect x="136" y="66" width="110" height="10" rx="3" fill="rgba(100,116,139,0.35)"/><rect x="136" y="82" width="95" height="10" rx="3" fill="rgba(100,116,139,0.25)"/><rect x="136" y="98" width="118" height="10" rx="3" fill="rgba(100,116,139,0.3)"/><circle cx="81" cy="90" r="18" fill="rgba(0,229,255,0.5)"/><text x="81" y="95" font-size="13" text-anchor="middle" fill="#050810">AI</text></svg></div>
+      <span class="cat c1">Beginner AI</span>
+      <h2>AI Tools for Beginners: A Practical Starter Guide</h2>
+      <p>A no-fluff guide to the first AI tools you should learn, what each one is best for, and a weekly workflow to turn experimentation into outcomes.</p>
+      <div class="art-meta"><div class="art-author"><div class="av">PL</div><div><div class="aname">Prashant Lalwani</div><div class="adata">Mar 30, 2026</div></div></div><span class="rtime">10 min</span></div>
+    </article>
 
     <article class="art-card fade-in" data-cat="llm">
       <div class="art-img"><svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="180" fill="#0c1120"/><g opacity="0.7"><circle cx="80" cy="90" r="5" fill="#a78bfa"/><circle cx="80" cy="60" r="5" fill="#a78bfa"/><circle cx="80" cy="120" r="5" fill="#a78bfa"/><circle cx="150" cy="75" r="5" fill="#67e8f9"/><circle cx="150" cy="105" r="5" fill="#67e8f9"/><circle cx="220" cy="90" r="7" fill="#00e5ff"/></g><g stroke="rgba(0,229,255,0.3)" stroke-width="1" fill="none"><line x1="83" y1="93" x2="147" y2="78"/><line x1="83" y1="63" x2="147" y2="78"/><line x1="83" y1="123" x2="147" y2="108"/><line x1="153" y1="78" x2="217" y2="93"/><line x1="153" y1="108" x2="217" y2="93"/></g><text x="150" y="165" font-family="monospace" font-size="9" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="2">ATTENTION MECHANISM</text></svg></div>
@@ -257,6 +265,7 @@ function filter(cat,btn){
   });
   document.getElementById('count').textContent='Showing '+count+' article'+(count!==1?'s':'');
 }
+
 document.getElementById('srch').addEventListener('input',function(){
   const q=this.value.toLowerCase();
   let count=0;
