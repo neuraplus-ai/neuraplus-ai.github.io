@@ -76,7 +76,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 nav{position:fixed;top:41px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
 .logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pdot 2s ease-in-out infinite;}
-@keyframes pdot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.7);}}
+@frames pdot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.7);}}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s;}
 .nav-links a:hover,.nav-links a.active{color:var(--accent);}
@@ -109,7 +109,7 @@ nav{position:fixed;top:41px;left:0;right:0;z-index:100;display:flex;align-items:
 .ticker{display:flex;gap:3rem;animation:tick 25s linear infinite;white-space:nowrap;}
 .ticker-item{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:1rem;flex-shrink:0;}
 .ticker-item span{color:var(--accent);}
-@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+@frames tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
 /* SECTIONS */
 .section{padding:5rem 3rem;max-width:1280px;margin:0 auto;}
@@ -148,7 +148,7 @@ nav{position:fixed;top:41px;left:0;right:0;z-index:100;display:flex;align-items:
 .ai-sr-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 1s infinite;}
 .ai-sr-dot:nth-child(2){animation-delay:0.2s;}
 .ai-sr-dot:nth-child(3){animation-delay:0.4s;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+@frames blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
 
 /* FEATURED */
 .feat{display:grid;grid-template-columns:1.4fr 1fr;border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color 0.3s;text-decoration:none;color:inherit;display:grid;}
@@ -252,7 +252,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
   box-shadow:0 12px 48px rgba(0,0,0,0.6);
   animation:slideup 0.25s ease;
 }
-@keyframes slideup{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+@frames slideup{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 #np-panel.open{display:flex;}
 #np-ph{
   padding:12px 14px;
@@ -287,7 +287,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
 .np-dots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:#00e5ff;margin:0 2px;animation:bounce 1.2s infinite;opacity:0.6;}
 .np-dots span:nth-child(2){animation-delay:0.2s;}
 .np-dots span:nth-child(3){animation-delay:0.4s;}
-@keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-5px);}}
+@frames bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-5px);}}
 #np-ir{padding:10px 12px;border-top:1px solid rgba(0,229,255,0.12);display:flex;gap:8px;align-items:center;background:#0d1130;}
 #np-in{
   flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(0,229,255,0.15);
@@ -434,7 +434,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
       <div>
         <span class="cat c1">AI Tools</span>
         <h2>Best AI Tools for Blogging and SEO in 2026: The Complete Guide</h2>
-        <p>From keyword research to content generation — discover the AI-powered tools that top bloggers use to rank on Google page 1 and grow their audience in 2026.</p>
+        <p>From word research to content generation — discover the AI-powered tools that top bloggers use to rank on Google page 1 and grow their audience in 2026.</p>
       </div>
       <div class="pmeta">
         <div class="avatar">PL</div>
@@ -618,8 +618,8 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
 </div>
 
 <script>
-// ── OpenAI API Key (replace with your key or use a proxy) ──
-const NP_KEY = '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';
+// ── OpenAI API Key (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) ──
+const NP_KEY = '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';
 
 // ── Article index for AI Search ──
 const NP_ARTICLES = [
@@ -674,7 +674,7 @@ document.getElementById('srch').addEventListener('input',function(){
 
 async function runAISearch(q){
   const res=document.getElementById('aiSearchResults');
-  if(NP_KEY==='YOUR_OPENAI_KEY_HERE'){
+  if(NP_KEY==='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'){
     // Fallback: basic keyword match
     const matches=NP_ARTICLES.filter(a=>
       a.title.toLowerCase().includes(q.toLowerCase())||
@@ -748,9 +748,9 @@ async function npSend(){
   msgs.appendChild(tb);
   msgs.scrollTop=msgs.scrollHeight;
 
-  if(NP_KEY==='YOUR_OPENAI_KEY_HERE'){
+  if(NP_KEY==='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'){
     setTimeout(()=>{
-      tb.textContent='Please add your OpenAI API key in the index.html file (search for YOUR_OPENAI_KEY_HERE) to activate the AI chat.';
+      tb.textContent='Please add your OpenAI API key in the index.html file (search for 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) to activate the AI chat.';
       btn.disabled=false;msgs.scrollTop=msgs.scrollHeight;
     },800);
     return;
