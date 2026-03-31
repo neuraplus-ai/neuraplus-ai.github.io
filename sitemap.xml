@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<!-- MAIN PAGES -->
-<url><loc>https://neuraplus-ai.github.io/</loc><lastmod>2026-03-24</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-<url><loc>https://neuraplus-ai.github.io/blog.html</loc><lastmod>2026-03-24</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
-<url><loc>https://neuraplus-ai.github.io/about.html</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-<url><loc>https://neuraplus-ai.github.io/contact.html</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<!-- KEYWORD BLOGS -->
+<url><loc>https://neuraplus-ai.github.io/</loc><lastmod>2026-03-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+<url><loc>https://neuraplus-ai.github.io/blog.html</loc><lastmod>2026-03-31</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+<url><loc>https://neuraplus-ai.github.io/about.html</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://neuraplus-ai.github.io/contact.html</loc><lastmod>2026-03-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 <url><loc>https://neuraplus-ai.github.io/blog/ai-tools-blogging-seo.html</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 <url><loc>https://neuraplus-ai.github.io/blog/how-ai-works.html</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 <url><loc>https://neuraplus-ai.github.io/blog/ai-tools-website-development.html</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -15,7 +13,6 @@
 <url><loc>https://neuraplus-ai.github.io/blog/best-ai-tools-interview.html</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 <url><loc>https://neuraplus-ai.github.io/blog/ai-tools-productivity.html</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 <url><loc>https://neuraplus-ai.github.io/blog/future-of-ai-2026.html</loc><lastmod>2026-03-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-<!-- ORIGINAL BLOGS -->
 <url><loc>https://neuraplus-ai.github.io/blog/attention-mechanism.html</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://neuraplus-ai.github.io/blog/diffusion-models.html</loc><lastmod>2026-03-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://neuraplus-ai.github.io/blog/alignment-problem.html</loc><lastmod>2026-03-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
