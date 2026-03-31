@@ -770,6 +770,53 @@ async function npSend(){
   btn.disabled=false;
   msgs.scrollTop=msgs.scrollHeight;
 }
+  const chatDiv = document.getElementById('chat');
+const input = document.getElementById('input');
+
+input.addEventListener('keypress', async (e) => {
+  if (e.key === 'Enter') {
+    const msg = input.value;
+    chatDiv.innerHTML += `<p><b>You:</b> ${msg}</p>`;
+    input.value = '';
+
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer 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',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',  // Free, fast
+        messages: [{ role: 'user', content: msg }],
+        stream: true
+      })
+    });
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let aiMsg = document.createElement('p');
+    aiMsg.innerHTML = '<b>AI:</b> ';
+    chatDiv.appendChild(aiMsg);
+    let aiSpan = document.createElement('span');
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = decoder.decode(value);
+      const lines = chunk.split('\n');
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const data = line.slice(6);
+          if (data === '[DONE]') break;
+          const parsed = JSON.parse(data);
+          const token = parsed.choices[0].delta.content;
+          if (token) aiSpan.textContent += token;
+        }
+      }
+    }
+    aiMsg.appendChild(aiSpan);
+  }
+});
 </script>
 </body>
 </html>
