@@ -8,24 +8,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
 <!-- End Google Tag Manager -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="NeuraPulse — Your trusted source for Artificial Intelligence blogs, research, LLMs, computer vision, AI ethics and the future of intelligence. Read expert AI articles written for curious minds.">
-<meta name="keywords" content="artificial intelligence blog, AI research, machine learning, LLM, deep learning, AI ethics, NeuraPulse, AI tools, how AI works">
+<meta name="description" content="NeuraPulse — Your trusted source for Artificial Intelligence blogs, research, LLMs, computer vision, AI ethics and the future of intelligence.">
+<meta name="keywords" content="artificial intelligence blog, AI research, machine learning, LLM, deep learning, AI ethics, NeuraPulse">
 <meta name="author" content="Prashant Lalwani">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="NeuraPulse — AI Insights, Research & the Future of Intelligence">
-<meta property="og:description" content="Deep dives into AI research, large language models, computer vision, ethics and the future of intelligence.">
 <meta property="og:url" content="https://neuraplus-ai.github.io/">
-<meta property="og:site_name" content="NeuraPulse">
 <link rel="canonical" href="https://neuraplus-ai.github.io/">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="shortcut icon" href="favicon.svg">
-<link rel="apple-touch-icon" href="favicon.svg">
 <title>NeuraPulse — AI Insights, Research & the Future of Intelligence</title>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"NeuraPulse","url":"https://neuraplus-ai.github.io/","description":"Your trusted source for deep dives into Artificial Intelligence.","publisher":{"@type":"Organization","name":"NeuraPulse","url":"https://neuraplus-ai.github.io/"},"author":{"@type":"Person","name":"Prashant Lalwani"}}</script>
-<!-- Google tag -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"NeuraPulse","url":"https://neuraplus-ai.github.io/","description":"Your trusted source for deep dives into Artificial Intelligence.","publisher":{"@type":"Organization","name":"NeuraPulse"},"author":{"@type":"Person","name":"Prashant Lalwani"}}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JNSQJZJDN1');</script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -76,15 +74,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .sec-label{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
 .sec-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
 .sec-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.03em;margin-bottom:3rem;}
-/* SEARCH */
+/* AI SEARCH */
 .search-wrap{padding:3rem 3rem 0;max-width:1280px;margin:0 auto;}
 .search-box{position:relative;max-width:600px;}
 .search-box input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem 1rem 1rem 3rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border-color 0.2s;}
 .search-box input::placeholder{color:var(--text-muted);}
 .search-box input:focus{border-color:var(--accent);}
 .search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text-dim);}
+.ai-search-badge{position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);padding:0.2rem 0.5rem;border-radius:3px;pointer-events:none;}
+.ai-search-results{margin-top:0.75rem;display:none;background:var(--surface);border:1px solid rgba(0,229,255,0.2);border-radius:8px;overflow:hidden;}
+.ai-sr-item{display:block;padding:0.9rem 1.2rem;text-decoration:none;color:inherit;border-bottom:1px solid var(--border);transition:background 0.2s;}
+.ai-sr-item:last-child{border-bottom:none;}
+.ai-sr-item:hover{background:var(--surface2);}
+.ai-sr-title{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--accent);margin-bottom:0.2rem;}
+.ai-sr-desc{font-size:0.78rem;color:var(--text-dim);}
+.ai-sr-thinking{padding:0.9rem 1.2rem;font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--text-dim);display:flex;align-items:center;gap:0.5rem;}
+.ai-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 1s infinite;}
+.ai-dot:nth-child(2){animation-delay:0.2s;}.ai-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
 /* FEATURED */
-.feat{display:grid;grid-template-columns:1.4fr 1fr;border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color 0.3s;text-decoration:none;color:inherit;display:grid;}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color 0.3s;text-decoration:none;color:inherit;}
 .feat:hover{border-color:var(--accent);}
 .feat-vis{position:relative;min-height:420px;background:var(--surface2);}
 .feat-art{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
@@ -105,11 +114,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .pauthor{font-size:0.85rem;font-weight:500;display:block;}
 .pdate{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);display:block;}
 .rtime{margin-left:auto;font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);border:1px solid var(--border);padding:0.2rem 0.6rem;border-radius:3px;}
-/* TOPICS */
+/* TOPICS & GRID */
 .topics{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:2rem;}
 .pill{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);border:1px solid var(--border);padding:0.5rem 1.2rem;border-radius:100px;cursor:pointer;transition:all 0.2s;background:none;}
 .pill:hover,.pill.active{color:var(--accent);border-color:var(--accent);background:rgba(0,229,255,0.05);}
-/* BLOG GRID */
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
 .blog-card{background:var(--surface);padding:2rem;transition:background 0.2s;text-decoration:none;color:inherit;display:block;}
 .blog-card:hover{background:var(--surface2);}
@@ -125,7 +133,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nl-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;overflow:hidden;}
 .nl-card::before{content:'';position:absolute;top:-50%;right:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.1) 0%,transparent 70%);pointer-events:none;}
 .nl-card h2{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:1rem;}
-.nl-card > div > p{color:var(--text-dim);}
+.nl-card>div>p{color:var(--text-dim);}
 .nl-form{display:flex;flex-direction:column;gap:1rem;}
 .frow{display:flex;gap:0.75rem;}
 .finput{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0.85rem 1.2rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;}
@@ -150,15 +158,49 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
 /* ANIMATIONS */
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
+/* CHAT BOT */
+#np-fab{position:fixed;bottom:28px;right:28px;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9999;border:none;box-shadow:0 4px 24px rgba(0,229,255,0.3);font-size:22px;transition:transform 0.2s;}
+#np-fab:hover{transform:scale(1.1);}
+.np-notif{position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:#00e5ff;border:2px solid #050810;animation:pdot 2s ease-in-out infinite;}
+#np-panel{position:fixed;bottom:96px;right:28px;width:340px;height:480px;background:#080B18;border:1px solid rgba(0,229,255,0.2);border-radius:16px;display:none;flex-direction:column;z-index:9999;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.6);}
+@keyframes slideup{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+#np-panel.open{display:flex;animation:slideup 0.25s ease;}
+#np-ph{padding:12px 14px;background:#0d1130;border-bottom:1px solid rgba(0,229,255,0.15);display:flex;align-items:center;gap:10px;}
+.np-av{width:32px;height:32px;border-radius:8px;flex-shrink:0;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:#fff;}
+.np-hinfo strong{display:block;font-size:13px;font-weight:600;color:#e2e8f0;font-family:'Syne',sans-serif;}
+.np-hinfo span{font-size:11px;color:#00e5ff;display:flex;align-items:center;gap:4px;}
+.np-hinfo span::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#00e5ff;animation:pdot 2s infinite;}
+#np-powered{padding:5px 14px;background:rgba(0,229,255,0.04);border-bottom:1px solid rgba(0,229,255,0.08);font-family:'Space Mono',monospace;font-size:0.6rem;color:#334155;letter-spacing:0.06em;}
+#np-powered span{color:rgba(0,229,255,0.5);}
+#np-close{margin-left:auto;background:none;border:none;color:#64748b;font-size:16px;cursor:pointer;padding:2px 6px;}
+#np-close:hover{color:#e2e8f0;}
+.np-chips{padding:8px 12px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid rgba(0,229,255,0.08);}
+.np-chip{background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.18);color:#00e5ff;font-size:11px;padding:3px 10px;border-radius:20px;cursor:pointer;transition:background 0.2s;font-family:'DM Sans',sans-serif;}
+.np-chip:hover{background:rgba(0,229,255,0.14);}
+#np-msgs{flex:1;padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth;}
+#np-msgs::-webkit-scrollbar{width:3px;}
+#np-msgs::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.15);border-radius:2px;}
+.np-m{max-width:85%;padding:9px 13px;border-radius:10px;font-size:12.5px;line-height:1.5;font-family:'DM Sans',sans-serif;}
+.np-bot{background:#0d1130;border:1px solid rgba(0,229,255,0.1);color:#e2e8f0;align-self:flex-start;border-radius:3px 10px 10px 10px;}
+.np-user{background:linear-gradient(135deg,#7c3aed,#5b1fdf);color:#ede9ff;align-self:flex-end;border-radius:10px 3px 10px 10px;}
+.np-dots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:#00e5ff;margin:0 2px;animation:bounce 1.2s infinite;opacity:0.6;}
+.np-dots span:nth-child(2){animation-delay:0.2s;}.np-dots span:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-5px);}}
+#np-ir{padding:10px 12px;border-top:1px solid rgba(0,229,255,0.12);display:flex;gap:8px;align-items:center;background:#0d1130;}
+#np-in{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(0,229,255,0.15);border-radius:8px;padding:7px 11px;color:#e2e8f0;font-size:12.5px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;}
+#np-in::placeholder{color:#334155;}
+#np-in:focus{border-color:rgba(0,229,255,0.4);}
+#np-sb{background:#00e5ff;color:#040810;border:none;border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity 0.2s;}
+#np-sb:hover{opacity:0.85;}
+#np-sb:disabled{opacity:0.4;cursor:not-allowed;}
 /* MOBILE */
 @media(max-width:900px){
-  nav{padding:0 1.5rem;}
+  nav{padding:0 1.5rem;top:0;}
   .nav-links{display:none;}
-  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(5,8,16,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:109px;left:0;right:0;background:rgba(5,8,16,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}
   .hamburger{display:flex;}
   .section,.search-wrap,.nl-section{padding-left:1.5rem;padding-right:1.5rem;}
-  .feat{grid-template-columns:1fr;}
-  .feat-vis{min-height:220px;}
+  .feat{grid-template-columns:1fr;}.feat-vis{min-height:220px;}
   .blog-grid{grid-template-columns:1fr;}
   .nl-card{grid-template-columns:1fr;padding:2rem;gap:2rem;}
   .hero{padding:7rem 1.5rem 3rem;}
@@ -166,6 +208,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
   .ft{grid-template-columns:1fr 1fr;gap:2rem;}
   .fb{flex-direction:column;gap:1rem;text-align:center;}
   footer{padding:2rem 1.5rem;}
+  #np-panel{width:calc(100vw - 32px);right:16px;}
 }
 </style>
 </head>
@@ -174,6 +217,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
 <nav role="navigation" aria-label="Main navigation">
   <a href="index.html" class="logo"><span class="logo-dot"></span>NeuraPulse</a>
   <ul class="nav-links" id="navLinks">
@@ -185,12 +229,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="contact.html" class="nav-cta">Subscribe</a>
   <button class="hamburger" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
- 
+
 <main>
-<!-- HERO -->
 <section class="hero">
   <div class="hgrid"></div><div class="hglow"></div><div class="hglow2"></div>
-  <div class="hero-tag">Est. 2024 · AI Intelligence Hub</div>
+  <div class="hero-tag">Est. 2024 &middot; AI Intelligence Hub</div>
   <h1>Where <em>Artificial</em><br>Intelligence<br>Gets Human</h1>
   <p class="hero-desc">Your trusted source for deep dives into Artificial Intelligence — from large language models and generative AI to robotics, ethics, and the research redefining what machines can do. No hype. Just clarity.</p>
   <div class="hero-actions">
@@ -204,34 +247,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div><span class="stat-num">100%</span><span class="stat-lbl">Research Backed</span></div>
   </div>
 </section>
- 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker">
-    <span class="ticker-item"><span>↗</span>AI Tools for Blogging & SEO</span>
-    <span class="ticker-item"><span>↗</span>How AI Works Step by Step</span>
-    <span class="ticker-item"><span>↗</span>Best AI Tools for Writers</span>
-    <span class="ticker-item"><span>↗</span>AI Safety & Alignment</span>
-    <span class="ticker-item"><span>↗</span>Future of AI 2026</span>
-    <span class="ticker-item"><span>↗</span>How to Build AI Tools</span>
-    <span class="ticker-item"><span>↗</span>AI Tools for Blogging & SEO</span>
-    <span class="ticker-item"><span>↗</span>How AI Works Step by Step</span>
-    <span class="ticker-item"><span>↗</span>Best AI Tools for Writers</span>
-    <span class="ticker-item"><span>↗</span>AI Safety & Alignment</span>
-    <span class="ticker-item"><span>↗</span>Future of AI 2026</span>
-    <span class="ticker-item"><span>↗</span>How to Build AI Tools</span>
-  </div>
-</div>
- 
-<!-- SEARCH -->
+
+<div class="ticker-wrap"><div class="ticker">
+  <span class="ticker-item"><span>&#x2197;</span>AI Tools for Blogging &amp; SEO</span>
+  <span class="ticker-item"><span>&#x2197;</span>How AI Works Step by Step</span>
+  <span class="ticker-item"><span>&#x2197;</span>Best AI Tools for Writers</span>
+  <span class="ticker-item"><span>&#x2197;</span>AI Safety &amp; Alignment</span>
+  <span class="ticker-item"><span>&#x2197;</span>Future of AI 2026</span>
+  <span class="ticker-item"><span>&#x2197;</span>How to Build AI Tools</span>
+  <span class="ticker-item"><span>&#x2197;</span>AI Tools for Blogging &amp; SEO</span>
+  <span class="ticker-item"><span>&#x2197;</span>How AI Works Step by Step</span>
+  <span class="ticker-item"><span>&#x2197;</span>Best AI Tools for Writers</span>
+  <span class="ticker-item"><span>&#x2197;</span>AI Safety &amp; Alignment</span>
+  <span class="ticker-item"><span>&#x2197;</span>Future of AI 2026</span>
+  <span class="ticker-item"><span>&#x2197;</span>How to Build AI Tools</span>
+</div></div>
+
 <div class="search-wrap">
   <div class="search-box">
-    <span class="search-icon">🔍</span>
-    <input type="search" id="srch" placeholder="Search articles — LLMs, AI tools, ethics, robotics..." aria-label="Search">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="search" id="srch" placeholder="Search articles — LLMs, AI tools, ethics, robotics..." aria-label="Search" autocomplete="off">
+    <span class="ai-search-badge">AI Search</span>
   </div>
+  <div class="ai-search-results" id="aiSearchResults"></div>
 </div>
- 
-<!-- FEATURED -->
+
 <section class="section" id="featured">
   <div class="sec-label">Featured</div>
   <div class="sec-title">This Week's Deep Dive</div>
@@ -241,17 +281,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
           <defs><radialGradient id="rg" cx="50%" cy="50%"><stop offset="0%" stop-color="#1a0d3d"/><stop offset="100%" stop-color="#050810"/></radialGradient></defs>
           <rect width="560" height="420" fill="url(#rg)"/>
-          <g opacity="0.7">
-            <circle cx="80" cy="210" r="5" fill="#a78bfa"/><circle cx="80" cy="140" r="5" fill="#a78bfa"/><circle cx="80" cy="280" r="5" fill="#a78bfa"/>
-            <circle cx="200" cy="175" r="5" fill="#67e8f9"/><circle cx="200" cy="245" r="5" fill="#67e8f9"/>
-            <circle cx="320" cy="175" r="5" fill="#a78bfa"/><circle cx="320" cy="245" r="5" fill="#a78bfa"/>
-            <circle cx="440" cy="210" r="7" fill="#00e5ff"/>
-          </g>
-          <g stroke="rgba(0,229,255,0.3)" stroke-width="1" fill="none">
-            <line x1="83" y1="213" x2="197" y2="178"/><line x1="83" y1="143" x2="197" y2="178"/>
-            <line x1="203" y1="178" x2="317" y2="178"/><line x1="323" y1="178" x2="437" y2="213"/>
-          </g>
-          <text x="280" y="400" font-family="monospace" font-size="10" fill="rgba(100,116,139,0.8)" text-anchor="middle" letter-spacing="3">AI TOOLS FOR BLOGGING & SEO</text>
+          <g opacity="0.7"><circle cx="80" cy="210" r="5" fill="#a78bfa"/><circle cx="80" cy="140" r="5" fill="#a78bfa"/><circle cx="80" cy="280" r="5" fill="#a78bfa"/><circle cx="200" cy="175" r="5" fill="#67e8f9"/><circle cx="200" cy="245" r="5" fill="#67e8f9"/><circle cx="320" cy="175" r="5" fill="#a78bfa"/><circle cx="320" cy="245" r="5" fill="#a78bfa"/><circle cx="440" cy="210" r="7" fill="#00e5ff"/></g>
+          <g stroke="rgba(0,229,255,0.3)" stroke-width="1" fill="none"><line x1="83" y1="213" x2="197" y2="178"/><line x1="83" y1="143" x2="197" y2="178"/><line x1="203" y1="178" x2="317" y2="178"/><line x1="323" y1="178" x2="437" y2="213"/></g>
         </svg>
       </div>
       <div class="feat-ov"></div>
@@ -270,8 +301,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </a>
 </section>
- 
-<!-- TOPICS -->
+
 <section class="section" style="padding-top:0">
   <div class="sec-label">Browse</div>
   <div class="sec-title">All Topics</div>
@@ -286,92 +316,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button class="pill" onclick="filterCards('agi',this)">AGI</button>
   </div>
 </section>
- 
-<!-- BLOG GRID -->
+
 <section class="section" style="padding-top:0">
   <div class="sec-label">Latest</div>
   <div class="sec-title">Recent Articles</div>
   <div class="blog-grid" id="blogGrid">
- 
     <a href="blog/how-ai-works.html" class="blog-card fade-in" data-cat="llm">
       <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><circle cx="150" cy="80" r="55" fill="none" stroke="rgba(124,58,237,0.4)" stroke-width="1.5"/><circle cx="150" cy="80" r="35" fill="none" stroke="rgba(0,229,255,0.3)" stroke-width="1"/><circle cx="150" cy="80" r="16" fill="rgba(0,229,255,0.1)" stroke="rgba(0,229,255,0.6)" stroke-width="1.5"/><circle cx="150" cy="80" r="4" fill="#00e5ff"/><g stroke="rgba(0,229,255,0.2)" stroke-width="1"><line x1="150" y1="80" x2="118" y2="52"/><line x1="150" y1="80" x2="182" y2="52"/><line x1="150" y1="80" x2="108" y2="85"/><line x1="150" y1="80" x2="192" y2="85"/></g></svg></div>
-      <span class="cat c2">AI Basics</span>
-      <h3>How AI Works Step by Step: A Complete Beginner's Guide</h3>
-      <p>From neural networks to training data — a clear, jargon-free explanation of how artificial intelligence actually works, written for curious minds everywhere.</p>
-      <div class="cfoot"><span class="pdate">Mar 24, 2026 · 14 min</span><div class="arrow">→</div></div>
+      <span class="cat c2">AI Basics</span><h3>How AI Works Step by Step: A Complete Beginner's Guide</h3>
+      <p>From neural networks to training data — a clear, jargon-free explanation of how artificial intelligence actually works.</p>
+      <div class="cfoot"><span class="pdate">Mar 24, 2026 &middot; 14 min</span><div class="arrow">&#x2192;</div></div>
     </a>
- 
     <a href="blog/ai-tools-blogging-seo.html" class="blog-card fade-in" data-cat="tools">
-      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="30" width="260" height="100" rx="8" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.2)" stroke-width="1"/><rect x="35" y="45" width="80" height="10" rx="3" fill="rgba(0,229,255,0.4)"/><rect x="35" y="62" width="150" height="7" rx="2" fill="rgba(100,116,139,0.3)"/><rect x="35" y="75" width="130" height="7" rx="2" fill="rgba(100,116,139,0.2)"/><rect x="35" y="88" width="100" height="7" rx="2" fill="rgba(100,116,139,0.25)"/><circle cx="255" cy="55" r="18" fill="rgba(0,229,255,0.1)" stroke="rgba(0,229,255,0.4)" stroke-width="1.5"/><text x="255" y="60" font-size="14" fill="rgba(0,229,255,0.8)" text-anchor="middle">✦</text></svg></div>
-      <span class="cat c1">AI Tools</span>
-      <h3>Best AI Tools for Blogging and SEO in 2026</h3>
-      <p>The complete guide to AI-powered tools that top bloggers use for keyword research, content creation, and Google ranking in 2026.</p>
-      <div class="cfoot"><span class="pdate">Mar 24, 2026 · 15 min</span><div class="arrow">→</div></div>
+      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="30" width="260" height="100" rx="8" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.2)" stroke-width="1"/><rect x="35" y="45" width="80" height="10" rx="3" fill="rgba(0,229,255,0.4)"/><rect x="35" y="62" width="150" height="7" rx="2" fill="rgba(100,116,139,0.3)"/><circle cx="255" cy="55" r="18" fill="rgba(0,229,255,0.1)" stroke="rgba(0,229,255,0.4)" stroke-width="1.5"/></svg></div>
+      <span class="cat c1">AI Tools</span><h3>Best AI Tools for Blogging and SEO in 2026</h3>
+      <p>The complete guide to AI-powered tools that top bloggers use for keyword research, content creation, and Google ranking.</p>
+      <div class="cfoot"><span class="pdate">Mar 24, 2026 &middot; 15 min</span><div class="arrow">&#x2192;</div></div>
     </a>
- 
     <a href="blog/best-ai-tools-writers.html" class="blog-card fade-in" data-cat="tools">
-      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="50" y="20" width="200" height="120" rx="6" fill="rgba(244,114,182,0.05)" stroke="rgba(244,114,182,0.25)" stroke-width="1"/><rect x="65" y="38" width="120" height="9" rx="2" fill="rgba(244,114,182,0.5)"/><rect x="65" y="54" width="170" height="5" rx="1" fill="rgba(100,116,139,0.2)"/><rect x="65" y="65" width="155" height="5" rx="1" fill="rgba(100,116,139,0.15)"/><rect x="65" y="76" width="165" height="5" rx="1" fill="rgba(100,116,139,0.2)"/><rect x="65" y="93" width="75" height="28" rx="4" fill="rgba(244,114,182,0.1)" stroke="rgba(244,114,182,0.3)" stroke-width="1"/></svg></div>
-      <span class="cat c5">AI Tools</span>
-      <h3>Best AI Tools for Writers: The Ultimate 2026 Guide</h3>
-      <p>From AI writing assistants to grammar checkers and research tools — everything writers need to create better content faster in 2026.</p>
-      <div class="cfoot"><span class="pdate">Mar 24, 2026 · 12 min</span><div class="arrow">→</div></div>
+      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="50" y="20" width="200" height="120" rx="6" fill="rgba(244,114,182,0.05)" stroke="rgba(244,114,182,0.25)" stroke-width="1"/><rect x="65" y="38" width="120" height="9" rx="2" fill="rgba(244,114,182,0.5)"/><rect x="65" y="54" width="170" height="5" rx="1" fill="rgba(100,116,139,0.2)"/></svg></div>
+      <span class="cat c5">AI Tools</span><h3>Best AI Tools for Writers: The Ultimate 2026 Guide</h3>
+      <p>From AI writing assistants to grammar checkers and research tools — everything writers need to create better content faster.</p>
+      <div class="cfoot"><span class="pdate">Mar 24, 2026 &middot; 12 min</span><div class="arrow">&#x2192;</div></div>
     </a>
- 
     <a href="blog/ai-tools-website-development.html" class="blog-card fade-in" data-cat="tools">
-      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="20" width="260" height="120" rx="6" fill="rgba(52,211,153,0.05)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/><rect x="20" y="20" width="260" height="28" rx="6" fill="rgba(52,211,153,0.1)"/><circle cx="36" cy="34" r="5" fill="rgba(244,114,182,0.6)"/><circle cx="52" cy="34" r="5" fill="rgba(245,158,11,0.6)"/><circle cx="68" cy="34" r="5" fill="rgba(52,211,153,0.6)"/><rect x="30" y="58" width="110" height="70" rx="4" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/><rect x="155" y="58" width="115" height="32" rx="4" fill="rgba(0,229,255,0.08)" stroke="rgba(0,229,255,0.2)" stroke-width="1"/><rect x="155" y="96" width="115" height="32" rx="4" fill="rgba(124,58,237,0.08)" stroke="rgba(124,58,237,0.2)" stroke-width="1"/></svg></div>
-      <span class="cat c4">AI Tools</span>
-      <h3>Best AI Tools for Website Development in 2026</h3>
+      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="20" width="260" height="120" rx="6" fill="rgba(52,211,153,0.05)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/><rect x="20" y="20" width="260" height="28" rx="6" fill="rgba(52,211,153,0.1)"/><circle cx="36" cy="34" r="5" fill="rgba(244,114,182,0.6)"/><circle cx="52" cy="34" r="5" fill="rgba(245,158,11,0.6)"/><circle cx="68" cy="34" r="5" fill="rgba(52,211,153,0.6)"/></svg></div>
+      <span class="cat c4">AI Tools</span><h3>Best AI Tools for Website Development in 2026</h3>
       <p>From AI code generators to design tools — the complete guide to AI-powered tools that will transform how you build websites.</p>
-      <div class="cfoot"><span class="pdate">Mar 24, 2026 · 13 min</span><div class="arrow">→</div></div>
+      <div class="cfoot"><span class="pdate">Mar 24, 2026 &middot; 13 min</span><div class="arrow">&#x2192;</div></div>
     </a>
- 
     <a href="blog/best-ai-tools-logo-design.html" class="blog-card fade-in" data-cat="tools">
-      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><polygon points="150,25 185,65 185,105 150,125 115,105 115,65" fill="rgba(244,114,182,0.1)" stroke="rgba(244,114,182,0.4)" stroke-width="1.5"/><text x="150" y="83" font-family="Arial Black,sans-serif" font-size="28" font-weight="900" fill="rgba(244,114,182,0.7)" text-anchor="middle">N</text><circle cx="182" cy="34" r="6" fill="#f472b6"/><text x="150" y="148" font-family="monospace" font-size="9" fill="rgba(100,116,139,0.6)" text-anchor="middle" letter-spacing="3">AI LOGO DESIGN</text></svg></div>
-      <span class="cat c5">AI Design</span>
-      <h3>Best Free AI Tools for Logo Design in 2026</h3>
-      <p>Create professional logos in minutes using free AI-powered logo generators — no design skills needed. The complete comparison guide.</p>
-      <div class="cfoot"><span class="pdate">Mar 24, 2026 · 11 min</span><div class="arrow">→</div></div>
+      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><polygon points="150,25 185,65 185,105 150,125 115,105 115,65" fill="rgba(244,114,182,0.1)" stroke="rgba(244,114,182,0.4)" stroke-width="1.5"/><text x="150" y="83" font-family="Arial Black,sans-serif" font-size="28" font-weight="900" fill="rgba(244,114,182,0.7)" text-anchor="middle">N</text><circle cx="182" cy="34" r="6" fill="#f472b6"/></svg></div>
+      <span class="cat c5">AI Design</span><h3>Best Free AI Tools for Logo Design in 2026</h3>
+      <p>Create professional logos in minutes using free AI-powered logo generators — no design skills needed.</p>
+      <div class="cfoot"><span class="pdate">Mar 24, 2026 &middot; 11 min</span><div class="arrow">&#x2192;</div></div>
     </a>
- 
     <a href="blog/best-ai-tools-interview.html" class="blog-card fade-in" data-cat="tools">
-      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="30" y="35" width="240" height="90" rx="8" fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.2)" stroke-width="1"/><circle cx="75" cy="80" r="25" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.3)" stroke-width="1.5"/><text x="75" y="85" font-size="18" text-anchor="middle" fill="rgba(245,158,11,0.7)">👤</text><rect x="115" y="58" width="140" height="9" rx="2" fill="rgba(245,158,11,0.3)"/><rect x="115" y="74" width="120" height="7" rx="2" fill="rgba(100,116,139,0.2)"/><rect x="115" y="87" width="130" height="7" rx="2" fill="rgba(100,116,139,0.15)"/><rect x="115" y="100" width="100" height="7" rx="2" fill="rgba(100,116,139,0.2)"/></svg></div>
-      <span class="cat c3">Career AI</span>
-      <h3>Best AI Tools for Interview Preparation in 2026</h3>
-      <p>From AI mock interviews to resume optimizers — the tools that give job seekers a significant edge in competitive hiring processes.</p>
-      <div class="cfoot"><span class="pdate">Mar 24, 2026 · 13 min</span><div class="arrow">→</div></div>
+      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="30" y="35" width="240" height="90" rx="8" fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.2)" stroke-width="1"/><circle cx="75" cy="80" r="25" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.3)" stroke-width="1.5"/><rect x="115" y="58" width="140" height="9" rx="2" fill="rgba(245,158,11,0.3)"/></svg></div>
+      <span class="cat c3">Career AI</span><h3>Best AI Tools for Interview Preparation in 2026</h3>
+      <p>From AI mock interviews to resume optimizers — the tools that give job seekers a significant edge.</p>
+      <div class="cfoot"><span class="pdate">Mar 24, 2026 &middot; 13 min</span><div class="arrow">&#x2192;</div></div>
     </a>
- 
     <a href="blog/how-to-build-ai-tools.html" class="blog-card fade-in" data-cat="llm">
-      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="25" width="260" height="110" rx="6" fill="rgba(0,229,255,0.04)" stroke="rgba(0,229,255,0.15)" stroke-width="1"/><text x="35" y="52" font-family="monospace" font-size="11" fill="rgba(0,229,255,0.5)">const ai = new AI({</text><text x="45" y="68" font-family="monospace" font-size="11" fill="rgba(124,58,237,0.7)">  model: "gpt-4",</text><text x="45" y="84" font-family="monospace" font-size="11" fill="rgba(124,58,237,0.7)">  prompt: system,</text><text x="35" y="100" font-family="monospace" font-size="11" fill="rgba(0,229,255,0.5)">});</text><text x="35" y="116" font-family="monospace" font-size="11" fill="rgba(52,211,153,0.6)">await ai.generate();</text></svg></div>
-      <span class="cat c1">Development</span>
-      <h3>How to Build AI Tools: A Developer's Complete Guide</h3>
-      <p>From APIs to deployment — everything you need to build, launch, and monetize your own AI-powered tools and applications in 2026.</p>
-      <div class="cfoot"><span class="pdate">Mar 24, 2026 · 16 min</span><div class="arrow">→</div></div>
+      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="25" width="260" height="110" rx="6" fill="rgba(0,229,255,0.04)" stroke="rgba(0,229,255,0.15)" stroke-width="1"/><text x="35" y="52" font-family="monospace" font-size="11" fill="rgba(0,229,255,0.5)">const ai = new AI({</text><text x="45" y="68" font-family="monospace" font-size="11" fill="rgba(124,58,237,0.7)">  model: "llama-3.3",</text><text x="35" y="84" font-family="monospace" font-size="11" fill="rgba(0,229,255,0.5)">});</text><text x="35" y="100" font-family="monospace" font-size="11" fill="rgba(52,211,153,0.6)">await ai.generate();</text></svg></div>
+      <span class="cat c1">Development</span><h3>How to Build AI Tools: A Developer's Complete Guide</h3>
+      <p>From APIs to deployment — everything you need to build, launch, and monetize your own AI-powered tools.</p>
+      <div class="cfoot"><span class="pdate">Mar 24, 2026 &middot; 16 min</span><div class="arrow">&#x2192;</div></div>
     </a>
- 
     <a href="blog/attention-mechanism.html" class="blog-card fade-in" data-cat="llm">
-      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><g opacity="0.8"><rect x="40" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.7)"/><rect x="62" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.3)"/><rect x="84" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.5)"/><rect x="40" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.2)"/><rect x="62" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.8)"/><rect x="84" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.4)"/></g><text x="200" y="75" font-family="sans-serif" font-size="14" fill="rgba(0,229,255,0.8)" font-weight="700">ATTN</text><text x="200" y="92" font-family="monospace" font-size="9" fill="rgba(100,116,139,0.6)">HEADS ×16</text></svg></div>
-      <span class="cat c1">LLM</span>
-      <h3>The Attention Mechanism: Why Transformers Changed Everything</h3>
-      <p>An in-depth exploration of how self-attention works and why this single idea birthed a revolution in artificial intelligence.</p>
-      <div class="cfoot"><span class="pdate">Mar 18, 2026 · 12 min</span><div class="arrow">→</div></div>
+      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><g opacity="0.8"><rect x="40" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.7)"/><rect x="62" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.3)"/><rect x="84" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.5)"/><rect x="40" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.2)"/><rect x="62" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.8)"/></g><text x="200" y="75" font-family="sans-serif" font-size="14" fill="rgba(0,229,255,0.8)" font-weight="700">ATTN</text><text x="200" y="92" font-family="monospace" font-size="9" fill="rgba(100,116,139,0.6)">HEADS x16</text></svg></div>
+      <span class="cat c1">LLM</span><h3>The Attention Mechanism: Why Transformers Changed Everything</h3>
+      <p>An in-depth exploration of how self-attention works and why this single idea birthed a revolution in AI.</p>
+      <div class="cfoot"><span class="pdate">Mar 18, 2026 &middot; 12 min</span><div class="arrow">&#x2192;</div></div>
     </a>
- 
     <a href="blog/alignment-problem.html" class="blog-card fade-in" data-cat="ethics">
-      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="40" width="260" height="80" rx="6" fill="none" stroke="rgba(245,158,11,0.2)" stroke-width="1"/><rect x="30" y="50" width="60" height="10" rx="2" fill="rgba(245,158,11,0.3)"/><rect x="30" y="70" width="120" height="8" rx="2" fill="rgba(100,116,139,0.2)"/><circle cx="250" cy="55" r="15" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/><text x="250" y="60" font-size="12" fill="rgba(245,158,11,0.9)" text-anchor="middle">!</text></svg></div>
-      <span class="cat c3">AI Ethics</span>
-      <h3>The Alignment Problem: Teaching AI to Want What We Actually Want</h3>
-      <p>Why ensuring AI systems do what we actually intend is one of the hardest and most important challenges in modern computer science.</p>
-      <div class="cfoot"><span class="pdate">Mar 12, 2026 · 14 min</span><div class="arrow">→</div></div>
+      <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="40" width="260" height="80" rx="6" fill="none" stroke="rgba(245,158,11,0.2)" stroke-width="1"/><rect x="30" y="50" width="60" height="10" rx="2" fill="rgba(245,158,11,0.3)"/><circle cx="250" cy="55" r="15" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/><text x="250" y="60" font-size="12" fill="rgba(245,158,11,0.9)" text-anchor="middle">!</text></svg></div>
+      <span class="cat c3">AI Ethics</span><h3>The Alignment Problem: Teaching AI to Want What We Actually Want</h3>
+      <p>Why ensuring AI systems do what we intend is one of the hardest challenges in modern computer science.</p>
+      <div class="cfoot"><span class="pdate">Mar 12, 2026 &middot; 14 min</span><div class="arrow">&#x2192;</div></div>
     </a>
- 
   </div>
-  <div style="text-align:center;margin-top:3rem;">
-    <a href="blog.html" class="btn-g">View All Articles →</a>
-  </div>
+  <div style="text-align:center;margin-top:3rem;"><a href="blog.html" class="btn-g">View All Articles &#x2192;</a></div>
 </section>
- 
-<!-- NEWSLETTER -->
+
 <div class="nl-section" id="newsletter">
   <div class="nl-card fade-in">
     <div>
@@ -385,13 +392,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <input type="email" class="finput" id="nlEmail" placeholder="you@email.com" aria-label="Email">
       </div>
       <button class="btn-p" style="width:100%;text-align:center;border:none;cursor:pointer;" onclick="doSub(this)">Subscribe — It's Free</button>
-      <p class="fnote">✦ No spam · Unsubscribe anytime · 4,200+ readers</p>
+      <p class="fnote">&#x2726; No spam &middot; Unsubscribe anytime &middot; 4,200+ readers</p>
     </div>
   </div>
 </div>
 </main>
- 
-<!-- FOOTER -->
+
 <footer>
   <div class="ft">
     <div>
@@ -403,43 +409,181 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="fcol"><h4>Connect</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="contact.html#newsletter">Newsletter</a></li><li><a href="sitemap.xml">Sitemap</a></li></ul></div>
   </div>
   <div class="fb">
-    <p class="fcopy">© 2026 NeuraPulse · Made by Prashant Lalwani</p>
+    <p class="fcopy">&#169; 2026 NeuraPulse &middot; Made by Prashant Lalwani</p>
     <div class="socials">
-      <a href="https://twitter.com/NeuraPulseAI" class="soc" target="_blank" aria-label="Twitter">𝕏</a>
+      <a href="https://twitter.com/NeuraPulseAI" class="soc" target="_blank" aria-label="Twitter">&#x1D54F;</a>
       <a href="https://linkedin.com/company/neuraplus" class="soc" target="_blank" aria-label="LinkedIn">in</a>
     </div>
   </div>
 </footer>
- 
+
+<!-- ═══════════════════════════════════════════
+     NEURAPLUS AI CHAT BOT — GROQ POWERED
+     
+     HOW TO CONNECT YOUR GROQ KEY:
+     1. Go to https://console.groq.com/keys
+     2. Sign up FREE — no credit card needed
+     3. Click "Create API Key"
+     4. Copy the key (starts with gsk_...)
+     5. Replace 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 below
+     6. Save file → push to GitHub → done!
+═══════════════════════════════════════════ -->
+
+<style>
+#np-fab{position:fixed;bottom:28px;right:28px;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9999;border:none;box-shadow:0 4px 24px rgba(0,229,255,0.3);font-size:22px;transition:transform 0.2s;}
+#np-fab:hover{transform:scale(1.1);}
+#np-fab .np-notif{position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:#00e5ff;border:2px solid #050810;animation:np-pdot 2s ease-in-out infinite;}
+@keyframes np-pdot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.7);}}
+@keyframes np-slideup{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+@keyframes np-bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-5px);}}
+#np-panel{position:fixed;bottom:96px;right:28px;width:340px;height:500px;background:#080B18;border:1px solid rgba(0,229,255,0.2);border-radius:16px;display:none;flex-direction:column;z-index:9999;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.6);}
+#np-panel.open{display:flex;animation:np-slideup 0.25s ease;}
+#np-ph{padding:12px 14px;background:#0d1130;border-bottom:1px solid rgba(0,229,255,0.15);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+#np-ph .np-av{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:#fff;flex-shrink:0;}
+#np-ph .np-hi strong{display:block;font-size:13px;font-weight:600;color:#e2e8f0;font-family:'Syne',sans-serif;}
+#np-ph .np-hi span{font-size:11px;color:#00e5ff;display:flex;align-items:center;gap:4px;}
+#np-ph .np-hi span::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#00e5ff;animation:np-pdot 2s infinite;}
+#np-pw{padding:5px 14px;background:rgba(0,229,255,0.04);border-bottom:1px solid rgba(0,229,255,0.08);font-family:'Space Mono',monospace;font-size:0.6rem;color:#334155;letter-spacing:0.06em;flex-shrink:0;}
+#np-pw span{color:rgba(0,229,255,0.5);}
+#np-close{margin-left:auto;background:none;border:none;color:#64748b;font-size:16px;cursor:pointer;padding:2px 6px;line-height:1;}
+#np-close:hover{color:#e2e8f0;}
+#np-chips{padding:8px 12px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid rgba(0,229,255,0.08);flex-shrink:0;}
+.np-chip{background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.18);color:#00e5ff;font-size:11px;padding:3px 10px;border-radius:20px;cursor:pointer;transition:background 0.2s;font-family:'DM Sans',sans-serif;}
+.np-chip:hover{background:rgba(0,229,255,0.14);}
+#np-msgs{flex:1;padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth;}
+#np-msgs::-webkit-scrollbar{width:3px;}
+#np-msgs::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.15);border-radius:2px;}
+.np-m{max-width:85%;padding:9px 13px;border-radius:10px;font-size:12.5px;line-height:1.55;font-family:'DM Sans',sans-serif;}
+.np-bot{background:#0d1130;border:1px solid rgba(0,229,255,0.1);color:#e2e8f0;align-self:flex-start;border-radius:3px 10px 10px 10px;}
+.np-user{background:linear-gradient(135deg,#7c3aed,#5b1fdf);color:#ede9ff;align-self:flex-end;border-radius:10px 3px 10px 10px;}
+.np-dots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:#00e5ff;margin:0 2px;animation:np-bounce 1.2s infinite;opacity:0.6;}
+.np-dots span:nth-child(2){animation-delay:0.2s;}.np-dots span:nth-child(3){animation-delay:0.4s;}
+#np-ir{padding:10px 12px;border-top:1px solid rgba(0,229,255,0.12);display:flex;gap:8px;align-items:center;background:#0d1130;flex-shrink:0;}
+#np-in{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(0,229,255,0.15);border-radius:8px;padding:7px 11px;color:#e2e8f0;font-size:12.5px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;}
+#np-in::placeholder{color:#334155;}
+#np-in:focus{border-color:rgba(0,229,255,0.4);}
+#np-sb{background:#00e5ff;color:#040810;border:none;border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity 0.2s;}
+#np-sb:hover{opacity:0.85;}
+#np-sb:disabled{opacity:0.4;cursor:not-allowed;}
+#np-scroll-anchor{display:none;}
+@media(max-width:600px){#np-panel{width:calc(100vw - 32px);right:16px;height:460px;}}
+</style>
+
+<!-- FAB Button -->
+<button id="np-fab" onclick="npToggle()" aria-label="Open AI Chat">
+  🤖<span class="np-notif"></span>
+</button>
+
+<!-- Chat Panel -->
+<div id="np-panel">
+  <div id="np-ph">
+    <div class="np-av">N<sup style="font-size:7px">+</sup></div>
+    <div class="np-hi">
+      <strong>NeuraPulse AI</strong>
+      <span>Online · Ask me about AI</span>
+    </div>
+    <button id="np-close" onclick="npToggle()">✕</button>
+  </div>
+  <div id="np-pw">Powered by <span>Groq · Llama 3.3 70B</span> · Ultra-fast</div>
+  <div id="np-chips">
+    <span class="np-chip" onclick="npQuick('What is an LLM?')">What is an LLM?</span>
+    <span class="np-chip" onclick="npQuick('How does attention work?')">Attention?</span>
+    <span class="np-chip" onclick="npQuick('Best AI tools 2026?')">Best AI tools?</span>
+    <span class="np-chip" onclick="npQuick('What is AI alignment?')">Alignment?</span>
+  </div>
+  <div id="np-msgs">
+    <div class="np-m np-bot">Hey! 👋 I'm NeuraPulse AI — powered by Groq's Llama 3.3. Ask me anything about AI, LLMs, tools, or any article on this blog!</div>
+  </div>
+  <div id="np-ir">
+    <input id="np-in" placeholder="Ask anything about AI..." onkeydown="if(event.key==='Enter')npSend()">
+    <button id="np-sb" onclick="npSend()">→</button>
+  </div>
+</div>
+
+<!-- Scroll anchor for "Try AI Chat" CTA button -->
+<div id="np-scroll-anchor"></div>
+
 <script>
-// Hamburger
-document.getElementById('ham').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
-// Fade in
-const obs=new IntersectionObserver((e)=>{e.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('visible'),80*i);obs.unobserve(en.target);}});},{threshold:0.1});
-document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
-// Topics filter
-function filterCards(cat,btn){
-  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.blog-card').forEach(c=>{
-    c.style.display=(cat==='all'||c.dataset.cat===cat)?'block':'none';
-  });
+// =============================================
+// STEP 1: Paste your Groq API key below
+// Get FREE key → https://console.groq.com/keys
+// =============================================
+var NP_GROQ_KEY = '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';
+// =============================================
+
+var NP_URL   = 'https://api.groq.com/openai/v1/chat/completions';
+var NP_MODEL = 'llama-3.3-70b-versatile';
+var NP_SYS   = 'You are the NeuraPulse AI assistant. NeuraPulse is a premium AI research blog covering LLMs, AI tools, ethics, robotics and research. Answer clearly, concisely, no hype. Max 100 words. Mention relevant NeuraPulse articles when helpful.';
+
+var npOpen    = false;
+var npHistory = [];
+
+function npToggle(){
+  npOpen = !npOpen;
+  document.getElementById('np-panel').classList.toggle('open', npOpen);
+  if(npOpen) document.getElementById('np-in').focus();
 }
-// Search
-document.getElementById('srch').addEventListener('input',function(){
-  const q=this.value.toLowerCase();
-  document.querySelectorAll('.blog-card').forEach(c=>{
-    c.style.display=c.innerText.toLowerCase().includes(q)||!q?'block':'none';
-  });
-});
-// Newsletter
-function doSub(b){
-  const e=document.getElementById('nlEmail').value;
-  if(!e){alert('Please enter your email!');return;}
-  b.textContent='✓ Subscribed!';
-  b.style.background='#34d399';
-  b.style.pointerEvents='none';
+
+// Called by "Try AI Chat" buttons anywhere on the page
+function npOpenChat(){
+  if(!npOpen) npToggle();
+  document.getElementById('np-panel').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function npQuick(q){
+  document.getElementById('np-in').value = q;
+  document.getElementById('np-chips').style.display = 'none';
+  npSend();
+}
+
+async function npSend(){
+  var inp  = document.getElementById('np-in');
+  var msgs = document.getElementById('np-msgs');
+  var btn  = document.getElementById('np-sb');
+  var text = inp.value.trim();
+  if(!text) return;
+  inp.value = ''; btn.disabled = true;
+  npHistory.push({role:'user', content:text});
+
+  var ub = document.createElement('div');
+  ub.className = 'np-m np-user'; ub.textContent = text;
+  msgs.appendChild(ub);
+
+  var tb = document.createElement('div');
+  tb.className = 'np-m np-bot';
+  tb.innerHTML = '<div class="np-dots"><span></span><span></span><span></span></div>';
+  msgs.appendChild(tb);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  if(NP_GROQ_KEY === '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'){
+    setTimeout(function(){
+      tb.textContent = '🔑 Add your FREE Groq key in the HTML file — find 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 and replace it. Get a free key at console.groq.com/keys (no billing needed!)';
+      btn.disabled = false; msgs.scrollTop = msgs.scrollHeight;
+    }, 700);
+    return;
+  }
+
+  try{
+    var r = await fetch(NP_URL, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json', 'Authorization':'Bearer ' + NP_GROQ_KEY},
+      body: JSON.stringify({
+        model: NP_MODEL,
+        messages: [{role:'system', content:NP_SYS}].concat(npHistory),
+        max_tokens: 150, temperature: 0.7
+      })
+    });
+    var d = await r.json();
+    var reply = d.choices && d.choices[0] ? d.choices[0].message.content : 'Something went wrong, please try again.';
+    npHistory.push({role:'assistant', content:reply});
+    tb.textContent = reply;
+  } catch(e){
+    tb.textContent = 'Error: ' + e.message;
+  }
+  btn.disabled = false;
+  msgs.scrollTop = msgs.scrollHeight;
 }
 </script>
+
 </body>
 </html>
