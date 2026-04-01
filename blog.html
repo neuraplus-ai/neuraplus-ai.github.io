@@ -385,8 +385,8 @@ document.getElementById('srch').addEventListener('input',function(){
      Step 1 → Go to https://console.groq.com/keys
      Step 2 → Sign up FREE (no credit card needed)
      Step 3 → Click "Create API Key", copy it (starts with gsk_...)
-     Step 4 → Find the line:  var NP_KEY = 'YOUR_GROQ_KEY_HERE';
-     Step 5 → Replace YOUR_GROQ_KEY_HERE with your real key
+     Step 4 → Find the line:  var NP_KEY = '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';
+     Step 5 → Replace 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 with your real key
      Step 6 → Save file, push to GitHub — DONE!
      ───────────────────────────────────── -->
 
@@ -460,10 +460,10 @@ document.getElementById('srch').addEventListener('input',function(){
 <script>
 // ══════════════════════════════════════════════
 //  STEP 1: Get FREE key at console.groq.com/keys
-//  STEP 2: Replace YOUR_GROQ_KEY_HERE below
+//  STEP 2: Replace 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 below
 //  STEP 3: Save + git push — that's it!
 // ══════════════════════════════════════════════
-var NP_KEY = 'YOUR_GROQ_KEY_HERE';
+var NP_KEY = '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';
 // ══════════════════════════════════════════════
 
 var NP_URL   = 'https://api.groq.com/openai/v1/chat/completions';
@@ -489,9 +489,9 @@ async function npSd(){
   var tb=document.createElement('div'); tb.className='np-b'; tb.innerHTML='<div class="npd"><span></span><span></span><span></span></div>'; ms.appendChild(tb);
   ms.scrollTop=99999;
 
-  if(NP_KEY==='YOUR_GROQ_KEY_HERE'){
+  if(NP_KEY==='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'){
     setTimeout(function(){
-      tb.textContent='Please add your FREE Groq key — open this file, find YOUR_GROQ_KEY_HERE and replace it. Get a free key at console.groq.com/keys';
+      tb.textContent='Please add your FREE Groq key — open this file, find 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 and replace it. Get a free key at console.groq.com/keys';
       btn.disabled=false; ms.scrollTop=99999;
     },600);
     return;
