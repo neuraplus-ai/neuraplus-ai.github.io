@@ -435,17 +435,60 @@ function doSub(b){
     <div style="background:#0066cc;color:white;padding:10px;display:flex;justify-content:space-between;">
         <span>🤖 AI Chat</span>
         <button onclick="toggleChat()" style="background:none;border:none;color:white;font-size:18px;cursor:pointer;">×</button>
+  <!-- ===== AI CHATBOT WIDGET ===== -->
+<style>
+.chat-fab{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;border:1px solid var(--border);background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;font-size:1.35rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9998;box-shadow:0 12px 28px rgba(0,0,0,.35)}
+.chat-box{position:fixed;right:20px;bottom:90px;width:min(370px,calc(100vw - 32px));height:560px;background:var(--surface);border:1px solid var(--border);border-radius:14px;display:none;flex-direction:column;overflow:hidden;z-index:9999;box-shadow:0 22px 46px rgba(0,0,0,.45)}
+.chat-head{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:rgba(0,229,255,.06)}
+.chat-title{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.chat-close{background:transparent;border:none;color:var(--text-dim);font-size:1.2rem;cursor:pointer}
+.chat-thread{padding:14px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:10px 12px;border-radius:10px;font-size:.9rem;line-height:1.55;white-space:pre-wrap}
+.msg.user{align-self:flex-end;background:rgba(0,229,255,.12);border:1px solid rgba(0,229,255,.35)}
+.msg.ai{align-self:flex-start;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.35)}
+.chat-controls{border-top:1px solid var(--border);padding:10px;display:flex;flex-direction:column;gap:8px}
+.key-row{display:flex;gap:8px}
+.chat-input,.chat-key{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);padding:10px;font-size:.85rem;outline:none}
+.chat-send{border:none;border-radius:7px;background:var(--accent);color:var(--bg);padding:10px 14px;cursor:pointer;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
+.chat-note{color:var(--text-muted);font-size:.7rem}
+</style>
+
+<button id="chatFab" class="chat-fab" aria-label="Open AI assistant">💬</button>
+<div id="chatBox" class="chat-box" aria-live="polite">
+  <div class="chat-head">
+    <span class="chat-title">NeuraPulse AI Bot</span>
+    <button id="chatClose" class="chat-close" aria-label="Close">×</button>
+  </div>
+  <div id="chatThread" class="chat-thread"></div>
+  <div class="chat-controls">
+    <div class="key-row">
+      <input id="groqKey" class="chat-key" type="password" placeholder="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 (gsk_...)" aria-label="Groq API key">
+      <button id="saveKey" class="chat-send" type="button">Save</button>
     </div>
     <div id="chat" style="height:400px;overflow-y:auto;padding:10px;"></div>
     <div style="padding:10px;border-top:1px solid #eee;">
         <input id="chat-input" placeholder="Type message..." style="width:80%;padding:8px;border:1px solid #ddd;border-radius:5px;">
         <button onclick="sendChat()" style="width:18%;padding:8px;background:#0066cc;color:white;border:none;border-radius:5px;">Send</button>
+    <div class="key-row">
+      <input id="chatInput" class="chat-input" type="text" placeholder="Ask about AI, your articles, or research..." aria-label="Type your message">
+      <button id="chatSend" class="chat-send" type="button">Send</button>
     </div>
+    <p class="chat-note">Your key is stored only in this browser's localStorage. Do not commit keys to HTML.</p>
+  </div>
 </div>
 
 <script>
 // ===== HIGHLIGHT: PASTE YOUR GROQ KEY HERE =====
 const GROQ_KEY = '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';  // From console.groq.com/keys
+(()=>{
+  const fab=document.getElementById('chatFab');
+  const box=document.getElementById('chatBox');
+  const close=document.getElementById('chatClose');
+  const sendBtn=document.getElementById('chatSend');
+  const saveBtn=document.getElementById('saveKey');
+  const input=document.getElementById('chatInput');
+  const keyInput=document.getElementById('groqKey');
+  const thread=document.getElementById('chatThread');
 
 let chatVisible = false;
 function toggleChat() {
@@ -453,9 +496,19 @@ function toggleChat() {
     chatVisible = !chatVisible;
     container.style.display = chatVisible ? 'block' : 'none';
 }
+  keyInput.value=localStorage.getItem('groq_api_key')||'';
+  appendMsg('ai','Hi! I can answer AI questions and summarize content from NeuraPulse articles.');
 
 // Add open button
 document.body.insertAdjacentHTML('beforeend', '<button onclick="toggleChat()" style="position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:#0066cc;color:white;border:none;border-radius:50%;font-size:24px;cursor:pointer;z-index:9998;box-shadow:0 4px 12px rgba(0,0,0,0.3);">💬</button>');
+  fab.addEventListener('click',()=>box.style.display='flex');
+  close.addEventListener('click',()=>box.style.display='none');
+  saveBtn.addEventListener('click',()=>{
+    const k=keyInput.value.trim();
+    if(!k.startsWith('gsk_')) return alert('Please enter a valid Groq key starting with gsk_.');
+    localStorage.setItem('groq_api_key',k);
+    appendMsg('ai','✅ Groq API key saved in this browser.');
+  });
 
 async function sendChat() {
     const input = document.getElementById('chat-input');
@@ -498,6 +551,8 @@ async function sendChat() {
         }
     }
 }
+  input.addEventListener('keydown',(e)=>{if(e.key==='Enter') sendChat();});
+  sendBtn.addEventListener('click',sendChat);
 
 function addChatMessage(text, type) {
     const chat = document.getElementById('chat');
@@ -508,8 +563,53 @@ function addChatMessage(text, type) {
     div.innerHTML = `<span class="${type === 'user' ? 'user-msg' : 'ai-msg'}">${text}</span><span class="content"></span>`;
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight;
+  function appendMsg(role,text){
+    const div=document.createElement('div');
+    div.className=`msg ${role}`;
+    div.textContent=text;
+    thread.appendChild(div);
+    thread.scrollTop=thread.scrollHeight;
     return div;
 }
+  }
+
+  async function sendChat(){
+    const message=input.value.trim();
+    if(!message) return;
+    const apiKey=(localStorage.getItem('groq_api_key')||'').trim();
+    if(!apiKey) return alert('Save your Groq API key first.');
+
+    appendMsg('user',message);
+    input.value='';
+    const aiNode=appendMsg('ai','Thinking…');
+
+    try{
+      const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':`Bearer ${apiKey}`},
+        body:JSON.stringify({
+          model:'llama-3.3-70b-versatile',
+          temperature:0.4,
+          stream:false,
+          messages:[
+            {role:'system',content:'You are NeuraPulse AI Bot. Give concise, factual answers about AI and reference practical examples.'},
+            {role:'user',content:message}
+          ]
+        })
+      });
+      if(!res.ok){
+        const err=await res.text();
+        throw new Error(`Groq request failed (${res.status}): ${err.slice(0,120)}`);
+      }
+      const data=await res.json();
+      const out=data?.choices?.[0]?.message?.content?.trim()||'No response received.';
+      aiNode.textContent=out;
+      thread.scrollTop=thread.scrollHeight;
+    }catch(err){
+      aiNode.textContent=`⚠️ ${err.message}`;
+    }
+  }
+})();
 </script>
 <!-- ===== END AI CHATBOT WIDGET ===== -->
 </body>
