@@ -35,45 +35,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
 ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
-
-/* ═══════════════════════════════════════
-   TOP CTA BAR
-═══════════════════════════════════════ */
-.np-cta-bar{
-  background:linear-gradient(90deg,rgba(124,58,237,0.15) 0%,rgba(0,229,255,0.08) 50%,rgba(124,58,237,0.15) 100%);
-  border-bottom:1px solid rgba(0,229,255,0.2);
-  padding:0.6rem 3rem;
-  display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
-  position:relative;z-index:101;
-}
-.np-cta-logo{
-  width:30px;height:30px;border-radius:7px;
-  border:1.5px solid var(--accent);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:12px;color:var(--text);
-  background:#080B18;flex-shrink:0;letter-spacing:-0.5px;
-}
-.np-cta-logo sup{color:var(--accent);font-size:8px;}
-.np-cta-text{flex:1;min-width:140px;}
-.np-cta-text strong{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);}
-.np-cta-text span{font-size:0.75rem;color:var(--text-dim);margin-left:0.75rem;}
-.np-cta-btns{display:flex;gap:0.6rem;flex-wrap:wrap;}
-.np-cbtn{
-  font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;
-  padding:0.4rem 1rem;border-radius:4px;cursor:pointer;border:none;
-  transition:all 0.2s;text-decoration:none;display:inline-block;white-space:nowrap;
-}
-.np-cbtn-primary{background:var(--accent);color:#040810;}
-.np-cbtn-primary:hover{box-shadow:0 0 16px rgba(0,229,255,0.4);transform:translateY(-1px);}
-.np-cbtn-purple{background:rgba(124,58,237,0.25);color:#c4b5fd;border:1px solid rgba(124,58,237,0.4);}
-.np-cbtn-purple:hover{background:rgba(124,58,237,0.4);}
-.np-cbtn-ghost{background:transparent;color:var(--text-dim);border:1px solid var(--border);}
-.np-cbtn-ghost:hover{border-color:var(--accent);color:var(--accent);}
-.np-cta-close{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px;padding:2px 6px;margin-left:auto;flex-shrink:0;}
-.np-cta-close:hover{color:var(--text);}
-
 /* NAV */
-nav{position:fixed;top:41px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
 .logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pdot 2s ease-in-out infinite;}
 @keyframes pdot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.7);}}
@@ -84,9 +47,8 @@ nav{position:fixed;top:41px;left:0;right:0;z-index:100;display:flex;align-items:
 .nav-cta:hover{box-shadow:0 0 20px rgba(0,229,255,0.5);}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
 .hamburger span{display:block;width:22px;height:2px;background:var(--text-dim);border-radius:2px;}
-
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:10rem 3rem 4rem;position:relative;overflow:hidden;}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 4rem;position:relative;overflow:hidden;}
 .hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.03) 1px,transparent 1px);background-size:60px 60px;}
 .hglow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.12) 0%,transparent 70%);top:-100px;right:-150px;pointer-events:none;}
 .hglow2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.07) 0%,transparent 70%);bottom:0;left:-100px;pointer-events:none;}
@@ -103,53 +65,24 @@ nav{position:fixed;top:41px;left:0;right:0;z-index:100;display:flex;align-items:
 .stats{display:flex;gap:3rem;margin-top:5rem;padding-top:3rem;border-top:1px solid var(--border);flex-wrap:wrap;}
 .stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:var(--text);display:block;}
 .stat-lbl{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);}
-
 /* TICKER */
 .ticker-wrap{overflow:hidden;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0.75rem 0;}
 .ticker{display:flex;gap:3rem;animation:tick 25s linear infinite;white-space:nowrap;}
 .ticker-item{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:1rem;flex-shrink:0;}
 .ticker-item span{color:var(--accent);}
 @keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-
 /* SECTIONS */
 .section{padding:5rem 3rem;max-width:1280px;margin:0 auto;}
 .sec-label{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
 .sec-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
 .sec-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.03em;margin-bottom:3rem;}
-
-/* ═══════════════════════════════════════
-   AI SEARCH (upgraded)
-═══════════════════════════════════════ */
+/* SEARCH */
 .search-wrap{padding:3rem 3rem 0;max-width:1280px;margin:0 auto;}
 .search-box{position:relative;max-width:600px;}
 .search-box input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem 1rem 1rem 3rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border-color 0.2s;}
 .search-box input::placeholder{color:var(--text-muted);}
 .search-box input:focus{border-color:var(--accent);}
 .search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text-dim);}
-.ai-search-badge{
-  position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);
-  font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;
-  color:var(--accent);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);
-  padding:0.2rem 0.5rem;border-radius:3px;pointer-events:none;
-}
-.ai-search-results{
-  margin-top:0.75rem;display:none;
-  background:var(--surface);border:1px solid rgba(0,229,255,0.2);border-radius:8px;overflow:hidden;
-}
-.ai-sr-item{
-  display:block;padding:0.9rem 1.2rem;text-decoration:none;color:inherit;
-  border-bottom:1px solid var(--border);transition:background 0.2s;
-}
-.ai-sr-item:last-child{border-bottom:none;}
-.ai-sr-item:hover{background:var(--surface2);}
-.ai-sr-title{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--accent);margin-bottom:0.2rem;}
-.ai-sr-desc{font-size:0.78rem;color:var(--text-dim);}
-.ai-sr-thinking{padding:0.9rem 1.2rem;font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--text-dim);display:flex;align-items:center;gap:0.5rem;}
-.ai-sr-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 1s infinite;}
-.ai-sr-dot:nth-child(2){animation-delay:0.2s;}
-.ai-sr-dot:nth-child(3){animation-delay:0.4s;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
-
 /* FEATURED */
 .feat{display:grid;grid-template-columns:1.4fr 1fr;border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color 0.3s;text-decoration:none;color:inherit;display:grid;}
 .feat:hover{border-color:var(--accent);}
@@ -172,12 +105,10 @@ nav{position:fixed;top:41px;left:0;right:0;z-index:100;display:flex;align-items:
 .pauthor{font-size:0.85rem;font-weight:500;display:block;}
 .pdate{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);display:block;}
 .rtime{margin-left:auto;font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);border:1px solid var(--border);padding:0.2rem 0.6rem;border-radius:3px;}
-
 /* TOPICS */
 .topics{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:2rem;}
 .pill{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);border:1px solid var(--border);padding:0.5rem 1.2rem;border-radius:100px;cursor:pointer;transition:all 0.2s;background:none;}
 .pill:hover,.pill.active{color:var(--accent);border-color:var(--accent);background:rgba(0,229,255,0.05);}
-
 /* BLOG GRID */
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
 .blog-card{background:var(--surface);padding:2rem;transition:background 0.2s;text-decoration:none;color:inherit;display:block;}
@@ -189,7 +120,6 @@ nav{position:fixed;top:41px;left:0;right:0;z-index:100;display:flex;align-items:
 .cfoot{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid var(--border);}
 .arrow{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:0.75rem;transition:all 0.2s;}
 .blog-card:hover .arrow{border-color:var(--accent);color:var(--accent);transform:rotate(45deg);}
-
 /* NEWSLETTER */
 .nl-section{padding:5rem 3rem;max-width:1280px;margin:0 auto;}
 .nl-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;overflow:hidden;}
@@ -202,7 +132,6 @@ nav{position:fixed;top:41px;left:0;right:0;z-index:100;display:flex;align-items:
 .finput::placeholder{color:var(--text-muted);}
 .finput:focus{border-color:var(--accent);}
 .fnote{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-muted);}
-
 /* FOOTER */
 footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0 auto;}
 .ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
@@ -218,134 +147,33 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
 .socials{display:flex;gap:1rem;}
 .soc{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);text-decoration:none;font-size:0.75rem;transition:all 0.2s;}
 .soc:hover{border-color:var(--accent);color:var(--accent);}
-
 /* ANIMATIONS */
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
-
-/* ═══════════════════════════════════════
-   AI CHAT BOT
-═══════════════════════════════════════ */
-#np-fab{
-  position:fixed;bottom:28px;right:28px;
-  width:54px;height:54px;border-radius:50%;
-  background:linear-gradient(135deg,#7c3aed,#00e5ff);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;z-index:9999;border:none;
-  box-shadow:0 4px 24px rgba(0,229,255,0.3);
-  font-size:22px;transition:transform 0.2s;
-}
-#np-fab:hover{transform:scale(1.1);}
-#np-fab .np-notif{
-  position:absolute;top:-2px;right:-2px;
-  width:14px;height:14px;border-radius:50%;
-  background:#00e5ff;border:2px solid #050810;
-  animation:pdot 2s ease-in-out infinite;
-}
-#np-panel{
-  position:fixed;bottom:96px;right:28px;
-  width:340px;height:460px;
-  background:#080B18;
-  border:1px solid rgba(0,229,255,0.2);
-  border-radius:16px;display:none;flex-direction:column;
-  z-index:9999;overflow:hidden;
-  box-shadow:0 12px 48px rgba(0,0,0,0.6);
-  animation:slideup 0.25s ease;
-}
-@keyframes slideup{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-#np-panel.open{display:flex;}
-#np-ph{
-  padding:12px 14px;
-  background:#0d1130;
-  border-bottom:1px solid rgba(0,229,255,0.15);
-  display:flex;align-items:center;gap:10px;
-}
-#np-ph .np-av{
-  width:32px;height:32px;border-radius:8px;flex-shrink:0;
-  background:linear-gradient(135deg,#7c3aed,#00e5ff);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:#fff;
-}
-#np-ph .np-hinfo strong{display:block;font-size:13px;font-weight:600;color:#e2e8f0;font-family:'Syne',sans-serif;}
-#np-ph .np-hinfo span{font-size:11px;color:#00e5ff;display:flex;align-items:center;gap:4px;}
-#np-ph .np-hinfo span::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#00e5ff;animation:pdot 2s infinite;}
-#np-close{margin-left:auto;background:none;border:none;color:#64748b;font-size:16px;cursor:pointer;padding:2px 6px;border-radius:4px;}
-#np-close:hover{color:#e2e8f0;}
-.np-chips{padding:8px 12px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid rgba(0,229,255,0.08);}
-.np-chip{
-  background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.18);
-  color:#00e5ff;font-size:11px;padding:3px 10px;border-radius:20px;
-  cursor:pointer;transition:background 0.2s;font-family:'DM Sans',sans-serif;
-}
-.np-chip:hover{background:rgba(0,229,255,0.14);}
-#np-msgs{flex:1;padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth;}
-#np-msgs::-webkit-scrollbar{width:3px;}
-#np-msgs::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.15);border-radius:2px;}
-.np-m{max-width:85%;padding:9px 13px;border-radius:10px;font-size:12.5px;line-height:1.5;font-family:'DM Sans',sans-serif;}
-.np-bot{background:#0d1130;border:1px solid rgba(0,229,255,0.1);color:#e2e8f0;align-self:flex-start;border-radius:3px 10px 10px 10px;}
-.np-user{background:linear-gradient(135deg,#7c3aed,#5b1fdf);color:#ede9ff;align-self:flex-end;border-radius:10px 3px 10px 10px;}
-.np-dots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:#00e5ff;margin:0 2px;animation:bounce 1.2s infinite;opacity:0.6;}
-.np-dots span:nth-child(2){animation-delay:0.2s;}
-.np-dots span:nth-child(3){animation-delay:0.4s;}
-@keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-5px);}}
-#np-ir{padding:10px 12px;border-top:1px solid rgba(0,229,255,0.12);display:flex;gap:8px;align-items:center;background:#0d1130;}
-#np-in{
-  flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(0,229,255,0.15);
-  border-radius:8px;padding:7px 11px;color:#e2e8f0;font-size:12.5px;
-  font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;
-}
-#np-in::placeholder{color:#334155;}
-#np-in:focus{border-color:rgba(0,229,255,0.4);}
-#np-sb{
-  background:var(--accent);color:#040810;border:none;border-radius:8px;
-  width:34px;height:34px;cursor:pointer;font-size:14px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity 0.2s;
-}
-#np-sb:hover{opacity:0.85;}
-#np-sb:disabled{opacity:0.4;cursor:not-allowed;}
-
 /* MOBILE */
 @media(max-width:900px){
-  nav{padding:0 1.5rem;top:41px;}
+  nav{padding:0 1.5rem;}
   .nav-links{display:none;}
-  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:109px;left:0;right:0;background:rgba(5,8,16,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(5,8,16,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}
   .hamburger{display:flex;}
   .section,.search-wrap,.nl-section{padding-left:1.5rem;padding-right:1.5rem;}
   .feat{grid-template-columns:1fr;}
   .feat-vis{min-height:220px;}
   .blog-grid{grid-template-columns:1fr;}
   .nl-card{grid-template-columns:1fr;padding:2rem;gap:2rem;}
-  .hero{padding:9rem 1.5rem 3rem;}
+  .hero{padding:7rem 1.5rem 3rem;}
   .stats{gap:1.5rem;}
   .ft{grid-template-columns:1fr 1fr;gap:2rem;}
   .fb{flex-direction:column;gap:1rem;text-align:center;}
   footer{padding:2rem 1.5rem;}
-  .np-cta-bar{padding:0.6rem 1.5rem;}
-  #np-panel{width:calc(100vw - 32px);right:16px;}
 }
 </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-<!-- ═══════════════════════════════════════
-     TOP CTA BAR
-════════════════════════════════════════ -->
-<div class="np-cta-bar" id="npCtaBar">
-  <div class="np-cta-logo">N<sup>+</sup></div>
-  <div class="np-cta-text">
-    <strong>NeuraPulse AI is live</strong>
-    <span>Ask anything about AI · Free · No signup needed</span>
-  </div>
-  <div class="np-cta-btns">
-    <button class="np-cbtn np-cbtn-primary" onclick="openChat()">Try AI Chat</button>
-    <a href="blog.html" class="np-cbtn np-cbtn-purple">Read Latest</a>
-    <a href="#newsletter" class="np-cbtn np-cbtn-ghost">Newsletter</a>
-  </div>
-  <button class="np-cta-close" onclick="document.getElementById('npCtaBar').style.display='none';document.querySelector('nav').style.top='0';" title="Close">✕</button>
-</div>
-
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <nav role="navigation" aria-label="Main navigation">
   <a href="index.html" class="logo"><span class="logo-dot"></span>NeuraPulse</a>
   <ul class="nav-links" id="navLinks">
@@ -357,7 +185,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
   <a href="contact.html" class="nav-cta">Subscribe</a>
   <button class="hamburger" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-
+ 
 <main>
 <!-- HERO -->
 <section class="hero">
@@ -376,7 +204,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
     <div><span class="stat-num">100%</span><span class="stat-lbl">Research Backed</span></div>
   </div>
 </section>
-
+ 
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
@@ -394,17 +222,15 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
     <span class="ticker-item"><span>↗</span>How to Build AI Tools</span>
   </div>
 </div>
-
-<!-- AI SEARCH -->
+ 
+<!-- SEARCH -->
 <div class="search-wrap">
   <div class="search-box">
     <span class="search-icon">🔍</span>
-    <input type="search" id="srch" placeholder="Search articles — LLMs, AI tools, ethics, robotics..." aria-label="Search" autocomplete="off">
-    <span class="ai-search-badge">AI Search</span>
+    <input type="search" id="srch" placeholder="Search articles — LLMs, AI tools, ethics, robotics..." aria-label="Search">
   </div>
-  <div class="ai-search-results" id="aiSearchResults"></div>
 </div>
-
+ 
 <!-- FEATURED -->
 <section class="section" id="featured">
   <div class="sec-label">Featured</div>
@@ -444,7 +270,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
     </div>
   </a>
 </section>
-
+ 
 <!-- TOPICS -->
 <section class="section" style="padding-top:0">
   <div class="sec-label">Browse</div>
@@ -460,13 +286,13 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
     <button class="pill" onclick="filterCards('agi',this)">AGI</button>
   </div>
 </section>
-
+ 
 <!-- BLOG GRID -->
 <section class="section" style="padding-top:0">
   <div class="sec-label">Latest</div>
   <div class="sec-title">Recent Articles</div>
   <div class="blog-grid" id="blogGrid">
-
+ 
     <a href="blog/how-ai-works.html" class="blog-card fade-in" data-cat="llm">
       <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><circle cx="150" cy="80" r="55" fill="none" stroke="rgba(124,58,237,0.4)" stroke-width="1.5"/><circle cx="150" cy="80" r="35" fill="none" stroke="rgba(0,229,255,0.3)" stroke-width="1"/><circle cx="150" cy="80" r="16" fill="rgba(0,229,255,0.1)" stroke="rgba(0,229,255,0.6)" stroke-width="1.5"/><circle cx="150" cy="80" r="4" fill="#00e5ff"/><g stroke="rgba(0,229,255,0.2)" stroke-width="1"><line x1="150" y1="80" x2="118" y2="52"/><line x1="150" y1="80" x2="182" y2="52"/><line x1="150" y1="80" x2="108" y2="85"/><line x1="150" y1="80" x2="192" y2="85"/></g></svg></div>
       <span class="cat c2">AI Basics</span>
@@ -474,7 +300,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
       <p>From neural networks to training data — a clear, jargon-free explanation of how artificial intelligence actually works, written for curious minds everywhere.</p>
       <div class="cfoot"><span class="pdate">Mar 24, 2026 · 14 min</span><div class="arrow">→</div></div>
     </a>
-
+ 
     <a href="blog/ai-tools-blogging-seo.html" class="blog-card fade-in" data-cat="tools">
       <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="30" width="260" height="100" rx="8" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.2)" stroke-width="1"/><rect x="35" y="45" width="80" height="10" rx="3" fill="rgba(0,229,255,0.4)"/><rect x="35" y="62" width="150" height="7" rx="2" fill="rgba(100,116,139,0.3)"/><rect x="35" y="75" width="130" height="7" rx="2" fill="rgba(100,116,139,0.2)"/><rect x="35" y="88" width="100" height="7" rx="2" fill="rgba(100,116,139,0.25)"/><circle cx="255" cy="55" r="18" fill="rgba(0,229,255,0.1)" stroke="rgba(0,229,255,0.4)" stroke-width="1.5"/><text x="255" y="60" font-size="14" fill="rgba(0,229,255,0.8)" text-anchor="middle">✦</text></svg></div>
       <span class="cat c1">AI Tools</span>
@@ -482,7 +308,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
       <p>The complete guide to AI-powered tools that top bloggers use for keyword research, content creation, and Google ranking in 2026.</p>
       <div class="cfoot"><span class="pdate">Mar 24, 2026 · 15 min</span><div class="arrow">→</div></div>
     </a>
-
+ 
     <a href="blog/best-ai-tools-writers.html" class="blog-card fade-in" data-cat="tools">
       <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="50" y="20" width="200" height="120" rx="6" fill="rgba(244,114,182,0.05)" stroke="rgba(244,114,182,0.25)" stroke-width="1"/><rect x="65" y="38" width="120" height="9" rx="2" fill="rgba(244,114,182,0.5)"/><rect x="65" y="54" width="170" height="5" rx="1" fill="rgba(100,116,139,0.2)"/><rect x="65" y="65" width="155" height="5" rx="1" fill="rgba(100,116,139,0.15)"/><rect x="65" y="76" width="165" height="5" rx="1" fill="rgba(100,116,139,0.2)"/><rect x="65" y="93" width="75" height="28" rx="4" fill="rgba(244,114,182,0.1)" stroke="rgba(244,114,182,0.3)" stroke-width="1"/></svg></div>
       <span class="cat c5">AI Tools</span>
@@ -490,7 +316,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
       <p>From AI writing assistants to grammar checkers and research tools — everything writers need to create better content faster in 2026.</p>
       <div class="cfoot"><span class="pdate">Mar 24, 2026 · 12 min</span><div class="arrow">→</div></div>
     </a>
-
+ 
     <a href="blog/ai-tools-website-development.html" class="blog-card fade-in" data-cat="tools">
       <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="20" width="260" height="120" rx="6" fill="rgba(52,211,153,0.05)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/><rect x="20" y="20" width="260" height="28" rx="6" fill="rgba(52,211,153,0.1)"/><circle cx="36" cy="34" r="5" fill="rgba(244,114,182,0.6)"/><circle cx="52" cy="34" r="5" fill="rgba(245,158,11,0.6)"/><circle cx="68" cy="34" r="5" fill="rgba(52,211,153,0.6)"/><rect x="30" y="58" width="110" height="70" rx="4" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/><rect x="155" y="58" width="115" height="32" rx="4" fill="rgba(0,229,255,0.08)" stroke="rgba(0,229,255,0.2)" stroke-width="1"/><rect x="155" y="96" width="115" height="32" rx="4" fill="rgba(124,58,237,0.08)" stroke="rgba(124,58,237,0.2)" stroke-width="1"/></svg></div>
       <span class="cat c4">AI Tools</span>
@@ -498,7 +324,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
       <p>From AI code generators to design tools — the complete guide to AI-powered tools that will transform how you build websites.</p>
       <div class="cfoot"><span class="pdate">Mar 24, 2026 · 13 min</span><div class="arrow">→</div></div>
     </a>
-
+ 
     <a href="blog/best-ai-tools-logo-design.html" class="blog-card fade-in" data-cat="tools">
       <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><polygon points="150,25 185,65 185,105 150,125 115,105 115,65" fill="rgba(244,114,182,0.1)" stroke="rgba(244,114,182,0.4)" stroke-width="1.5"/><text x="150" y="83" font-family="Arial Black,sans-serif" font-size="28" font-weight="900" fill="rgba(244,114,182,0.7)" text-anchor="middle">N</text><circle cx="182" cy="34" r="6" fill="#f472b6"/><text x="150" y="148" font-family="monospace" font-size="9" fill="rgba(100,116,139,0.6)" text-anchor="middle" letter-spacing="3">AI LOGO DESIGN</text></svg></div>
       <span class="cat c5">AI Design</span>
@@ -506,7 +332,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
       <p>Create professional logos in minutes using free AI-powered logo generators — no design skills needed. The complete comparison guide.</p>
       <div class="cfoot"><span class="pdate">Mar 24, 2026 · 11 min</span><div class="arrow">→</div></div>
     </a>
-
+ 
     <a href="blog/best-ai-tools-interview.html" class="blog-card fade-in" data-cat="tools">
       <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="30" y="35" width="240" height="90" rx="8" fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.2)" stroke-width="1"/><circle cx="75" cy="80" r="25" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.3)" stroke-width="1.5"/><text x="75" y="85" font-size="18" text-anchor="middle" fill="rgba(245,158,11,0.7)">👤</text><rect x="115" y="58" width="140" height="9" rx="2" fill="rgba(245,158,11,0.3)"/><rect x="115" y="74" width="120" height="7" rx="2" fill="rgba(100,116,139,0.2)"/><rect x="115" y="87" width="130" height="7" rx="2" fill="rgba(100,116,139,0.15)"/><rect x="115" y="100" width="100" height="7" rx="2" fill="rgba(100,116,139,0.2)"/></svg></div>
       <span class="cat c3">Career AI</span>
@@ -514,7 +340,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
       <p>From AI mock interviews to resume optimizers — the tools that give job seekers a significant edge in competitive hiring processes.</p>
       <div class="cfoot"><span class="pdate">Mar 24, 2026 · 13 min</span><div class="arrow">→</div></div>
     </a>
-
+ 
     <a href="blog/how-to-build-ai-tools.html" class="blog-card fade-in" data-cat="llm">
       <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="25" width="260" height="110" rx="6" fill="rgba(0,229,255,0.04)" stroke="rgba(0,229,255,0.15)" stroke-width="1"/><text x="35" y="52" font-family="monospace" font-size="11" fill="rgba(0,229,255,0.5)">const ai = new AI({</text><text x="45" y="68" font-family="monospace" font-size="11" fill="rgba(124,58,237,0.7)">  model: "gpt-4",</text><text x="45" y="84" font-family="monospace" font-size="11" fill="rgba(124,58,237,0.7)">  prompt: system,</text><text x="35" y="100" font-family="monospace" font-size="11" fill="rgba(0,229,255,0.5)">});</text><text x="35" y="116" font-family="monospace" font-size="11" fill="rgba(52,211,153,0.6)">await ai.generate();</text></svg></div>
       <span class="cat c1">Development</span>
@@ -522,7 +348,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
       <p>From APIs to deployment — everything you need to build, launch, and monetize your own AI-powered tools and applications in 2026.</p>
       <div class="cfoot"><span class="pdate">Mar 24, 2026 · 16 min</span><div class="arrow">→</div></div>
     </a>
-
+ 
     <a href="blog/attention-mechanism.html" class="blog-card fade-in" data-cat="llm">
       <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><g opacity="0.8"><rect x="40" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.7)"/><rect x="62" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.3)"/><rect x="84" y="30" width="20" height="20" rx="2" fill="rgba(0,229,255,0.5)"/><rect x="40" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.2)"/><rect x="62" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.8)"/><rect x="84" y="52" width="20" height="20" rx="2" fill="rgba(0,229,255,0.4)"/></g><text x="200" y="75" font-family="sans-serif" font-size="14" fill="rgba(0,229,255,0.8)" font-weight="700">ATTN</text><text x="200" y="92" font-family="monospace" font-size="9" fill="rgba(100,116,139,0.6)">HEADS ×16</text></svg></div>
       <span class="cat c1">LLM</span>
@@ -530,7 +356,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
       <p>An in-depth exploration of how self-attention works and why this single idea birthed a revolution in artificial intelligence.</p>
       <div class="cfoot"><span class="pdate">Mar 18, 2026 · 12 min</span><div class="arrow">→</div></div>
     </a>
-
+ 
     <a href="blog/alignment-problem.html" class="blog-card fade-in" data-cat="ethics">
       <div class="cvis"><svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="300" height="160" fill="#0c1120"/><rect x="20" y="40" width="260" height="80" rx="6" fill="none" stroke="rgba(245,158,11,0.2)" stroke-width="1"/><rect x="30" y="50" width="60" height="10" rx="2" fill="rgba(245,158,11,0.3)"/><rect x="30" y="70" width="120" height="8" rx="2" fill="rgba(100,116,139,0.2)"/><circle cx="250" cy="55" r="15" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/><text x="250" y="60" font-size="12" fill="rgba(245,158,11,0.9)" text-anchor="middle">!</text></svg></div>
       <span class="cat c3">AI Ethics</span>
@@ -538,13 +364,13 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
       <p>Why ensuring AI systems do what we actually intend is one of the hardest and most important challenges in modern computer science.</p>
       <div class="cfoot"><span class="pdate">Mar 12, 2026 · 14 min</span><div class="arrow">→</div></div>
     </a>
-
+ 
   </div>
   <div style="text-align:center;margin-top:3rem;">
     <a href="blog.html" class="btn-g">View All Articles →</a>
   </div>
 </section>
-
+ 
 <!-- NEWSLETTER -->
 <div class="nl-section" id="newsletter">
   <div class="nl-card fade-in">
@@ -564,7 +390,7 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
   </div>
 </div>
 </main>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="ft">
@@ -584,64 +410,14 @@ footer{border-top:1px solid var(--border);padding:3rem;max-width:1280px;margin:0
     </div>
   </div>
 </footer>
-
-<!-- ═══════════════════════════════════════
-     AI CHAT BOT (Floating)
-════════════════════════════════════════ -->
-<button id="np-fab" onclick="toggleChat()" aria-label="Open AI Chat">
-  🤖
-  <span class="np-notif"></span>
-</button>
-
-<div id="np-panel">
-  <div id="np-ph">
-    <div class="np-av">N<sup style="font-size:7px">+</sup></div>
-    <div class="np-hinfo">
-      <strong>NeuraPulse AI</strong>
-      <span>Online · Ask me about AI</span>
-    </div>
-    <button id="np-close" onclick="toggleChat()">✕</button>
-  </div>
-  <div class="np-chips" id="npChips">
-    <span class="np-chip" onclick="npQuick('What is an LLM?')">What is an LLM?</span>
-    <span class="np-chip" onclick="npQuick('How does attention work?')">Attention mechanism?</span>
-    <span class="np-chip" onclick="npQuick('Best AI tools in 2026?')">Best AI tools?</span>
-    <span class="np-chip" onclick="npQuick('What is AI alignment?')">AI alignment?</span>
-  </div>
-  <div id="np-msgs">
-    <div class="np-m np-bot">Hey! 👋 I'm the NeuraPulse AI. Ask me anything about artificial intelligence, LLMs, AI tools, or the articles on this blog!</div>
-  </div>
-  <div id="np-ir">
-    <input id="np-in" placeholder="Ask anything about AI..." onkeydown="if(event.key==='Enter')npSend()">
-    <button id="np-sb" onclick="npSend()">→</button>
-  </div>
-</div>
-
+ 
 <script>
-// ── OpenAI API Key (replace with your key or use a proxy) ──
-const NP_KEY = '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';
-
-// ── Article index for AI Search ──
-const NP_ARTICLES = [
-  {title:"How AI Works Step by Step",url:"blog/how-ai-works.html",desc:"Neural networks, training data, deep learning explained for beginners"},
-  {title:"Best AI Tools for Blogging and SEO 2026",url:"blog/ai-tools-blogging-seo.html",desc:"Keyword research, content generation, Google ranking tools"},
-  {title:"Best AI Tools for Writers 2026",url:"blog/best-ai-tools-writers.html",desc:"Writing assistants, grammar checkers, research tools"},
-  {title:"Best AI Tools for Website Development",url:"blog/ai-tools-website-development.html",desc:"AI code generators, design tools, website builders"},
-  {title:"Best Free AI Tools for Logo Design",url:"blog/best-ai-tools-logo-design.html",desc:"Free AI logo generators, no design skills needed"},
-  {title:"Best AI Tools for Interview Preparation",url:"blog/best-ai-tools-interview.html",desc:"AI mock interviews, resume optimizers, job seekers"},
-  {title:"How to Build AI Tools",url:"blog/how-to-build-ai-tools.html",desc:"APIs, deployment, monetizing AI apps for developers"},
-  {title:"The Attention Mechanism",url:"blog/attention-mechanism.html",desc:"Self-attention, transformers, LLMs, how GPT works"},
-  {title:"The Alignment Problem",url:"blog/alignment-problem.html",desc:"AI safety, RLHF, teaching AI to follow human values"},
-];
-
-// ── Hamburger ──
+// Hamburger
 document.getElementById('ham').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
-
-// ── Fade in ──
+// Fade in
 const obs=new IntersectionObserver((e)=>{e.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('visible'),80*i);obs.unobserve(en.target);}});},{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
-
-// ── Topics filter ──
+// Topics filter
 function filterCards(cat,btn){
   document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
@@ -649,126 +425,20 @@ function filterCards(cat,btn){
     c.style.display=(cat==='all'||c.dataset.cat===cat)?'block':'none';
   });
 }
-
-// ── AI Search ──
-let searchTimer;
+// Search
 document.getElementById('srch').addEventListener('input',function(){
-  const q=this.value.trim();
-  const res=document.getElementById('aiSearchResults');
-
-  // Basic filter on cards
+  const q=this.value.toLowerCase();
   document.querySelectorAll('.blog-card').forEach(c=>{
-    c.style.display=c.innerText.toLowerCase().includes(q.toLowerCase())||!q?'block':'none';
+    c.style.display=c.innerText.toLowerCase().includes(q)||!q?'block':'none';
   });
-
-  clearTimeout(searchTimer);
-  if(!q){res.style.display='none';return;}
-
-  // AI semantic search after 600ms pause
-  if(q.length>3){
-    res.style.display='block';
-    res.innerHTML='<div class="ai-sr-thinking"><span class="ai-sr-dot"></span><span class="ai-sr-dot"></span><span class="ai-sr-dot"></span> AI searching...</div>';
-    searchTimer=setTimeout(()=>runAISearch(q),600);
-  }
 });
-
-async function runAISearch(q){
-  const res=document.getElementById('aiSearchResults');
-  if(NP_KEY==='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'){
-    // Fallback: basic keyword match
-    const matches=NP_ARTICLES.filter(a=>
-      a.title.toLowerCase().includes(q.toLowerCase())||
-      a.desc.toLowerCase().includes(q.toLowerCase())
-    ).slice(0,3);
-    if(!matches.length){res.style.display='none';return;}
-    res.innerHTML=matches.map(a=>`<a href="${a.url}" class="ai-sr-item"><div class="ai-sr-title">${a.title}</div><div class="ai-sr-desc">${a.desc}</div></a>`).join('');
-    return;
-  }
-  try{
-    const ctx=NP_ARTICLES.map((a,i)=>`${i}: "${a.title}" — ${a.desc}`).join('\n');
-    const r=await fetch('https://api.openai.com/v1/chat/completions',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':`Bearer ${NP_KEY}`},
-      body:JSON.stringify({model:'gpt-4o-mini',messages:[{role:'user',content:`Articles:\n${ctx}\n\nQuery: "${q}"\n\nReturn top 3 relevant article indices as JSON array like [0,2,4]. Only JSON, nothing else.`}],max_tokens:20})
-    });
-    const d=await r.json();
-    const indices=JSON.parse(d.choices[0].message.content.trim());
-    if(!indices.length){res.style.display='none';return;}
-    res.innerHTML=indices.map(i=>`<a href="${NP_ARTICLES[i].url}" class="ai-sr-item"><div class="ai-sr-title">${NP_ARTICLES[i].title}</div><div class="ai-sr-desc">${NP_ARTICLES[i].desc}</div></a>`).join('');
-  }catch(e){res.style.display='none';}
-}
-
-// ── Newsletter ──
+// Newsletter
 function doSub(b){
   const e=document.getElementById('nlEmail').value;
   if(!e){alert('Please enter your email!');return;}
   b.textContent='✓ Subscribed!';
   b.style.background='#34d399';
   b.style.pointerEvents='none';
-}
-
-// ── Chat Bot ──
-let npOpen=false;
-const npHistory=[];
-const NP_SYSTEM=`You are the NeuraPulse AI assistant. NeuraPulse is a premium AI research blog covering LLMs, AI tools, ethics, robotics and research. Answer questions clearly and concisely — no hype, no fluff. Keep responses under 100 words. Mention relevant NeuraPulse articles when fitting.`;
-
-function openChat(){npOpen=false;toggleChat();}
-function toggleChat(){
-  npOpen=!npOpen;
-  const panel=document.getElementById('np-panel');
-  if(npOpen){panel.classList.add('open');}
-  else{panel.classList.remove('open');}
-}
-
-function npQuick(q){
-  document.getElementById('np-in').value=q;
-  document.getElementById('npChips').style.display='none';
-  npSend();
-}
-
-async function npSend(){
-  const inp=document.getElementById('np-in');
-  const msgs=document.getElementById('np-msgs');
-  const btn=document.getElementById('np-sb');
-  const text=inp.value.trim();
-  if(!text)return;
-  inp.value='';
-  btn.disabled=true;
-  npHistory.push({role:'user',content:text});
-
-  // User bubble
-  const ub=document.createElement('div');
-  ub.className='np-m np-user';ub.textContent=text;
-  msgs.appendChild(ub);
-
-  // Typing bubble
-  const tb=document.createElement('div');
-  tb.className='np-m np-bot';
-  tb.innerHTML='<div class="np-dots"><span></span><span></span><span></span></div>';
-  msgs.appendChild(tb);
-  msgs.scrollTop=msgs.scrollHeight;
-
-  if(NP_KEY==='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'){
-    setTimeout(()=>{
-      tb.textContent='Please add your OpenAI API key in the index.html file (search for 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) to activate the AI chat.';
-      btn.disabled=false;msgs.scrollTop=msgs.scrollHeight;
-    },800);
-    return;
-  }
-
-  try{
-    const r=await fetch('https://api.openai.com/v1/chat/completions',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':`Bearer ${NP_KEY}`},
-      body:JSON.stringify({model:'gpt-4o-mini',messages:[{role:'system',content:NP_SYSTEM},...npHistory],max_tokens:140})
-    });
-    const d=await r.json();
-    const reply=d.choices?.[0]?.message?.content||'Sorry, something went wrong.';
-    npHistory.push({role:'assistant',content:reply});
-    tb.textContent=reply;
-  }catch(e){tb.textContent='Error: '+e.message;}
-  btn.disabled=false;
-  msgs.scrollTop=msgs.scrollHeight;
 }
 </script>
 </body>
