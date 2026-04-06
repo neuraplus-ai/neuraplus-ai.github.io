@@ -213,6 +213,346 @@ var obs=new IntersectionObserver(function(e){e.forEach(function(en,i){if(en.isIn
 document.querySelectorAll('.fade').forEach(function(el){obs.observe(el);});
 function filt(cat,btn){document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.querySelectorAll('.bc').forEach(function(c){var d=c.dataset.cat||'';c.style.display=(cat==='all'||d.indexOf(cat)>-1)?'block':'none';});}
 function doSub(b){var e=document.getElementById('nemail').value;if(!e){alert('Please enter your email!');return;}b.textContent='✓ Subscribed!';b.style.background='#34d399';b.style.pointerEvents='none';}
+<style>
+#np-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,rgb(124,58,237),rgb(0,229,255));display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:rgba(0,229,255,0.4) 0px 4px 24px;transition:transform 0.2s;}
+#np-btn:hover{transform:scale(1.1);}
+#np-btn svg{width:26px;height:26px;fill:white;}
+#np-btn .np-dot{position:absolute;top:-2px;right:-2px;width:14px;height:14px;background:#00e5ff;border-radius:50%;border:2px solid #050810;animation:np-pulse 2s infinite;}
+@keyframes np-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+#np-win{display:flex;position:fixed;bottom:5rem;right:1.5rem;z-index:9998;width:370px;background:rgb(12,17,32);border:1px solid rgb(30,45,69);border-radius:18px;overflow:hidden;box-shadow:rgba(0,0,0,0.6) 0px 20px 60px;flex-direction:column;}
+#np-win.np-hidden{display:none;}
+@keyframes npb{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+ 
+/* Header */
+#np-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:rgb(13,17,48);border-bottom:1px solid rgba(0,229,255,0.15);flex-shrink:0;}
+#np-head-av{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:#fff;flex-shrink:0;}
+#np-head-info strong{display:block;font-size:13px;font-weight:600;color:#e2e8f0;font-family:'Syne',sans-serif;}
+#np-head-info span{font-size:11px;color:#00e5ff;display:flex;align-items:center;gap:5px;}
+#np-head-info span::before{content:'';width:7px;height:7px;background:#00e5ff;border-radius:50%;display:inline-block;animation:np-pulse 2s infinite;}
+#np-close-btn{margin-left:auto;background:none;border:none;color:#64748b;font-size:18px;cursor:pointer;line-height:1;padding:4px;}
+#np-close-btn:hover{color:#e2e8f0;}
+ 
+/* Powered badge */
+#np-badge{padding:5px 16px;background:rgba(0,229,255,0.04);border-bottom:1px solid rgba(0,229,255,0.08);font-family:'Space Mono',monospace;font-size:.6rem;color:#4a5568;letter-spacing:.05em;flex-shrink:0;}
+#np-badge b{color:rgba(0,229,255,.6);font-weight:400;}
+ 
+/* Quick chips */
+#np-chips{padding:10px 12px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid rgba(0,229,255,0.08);flex-shrink:0;}
+.np-chip{background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.22);color:#00e5ff;font-size:11px;padding:4px 11px;border-radius:20px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;white-space:nowrap;}
+.np-chip:hover{background:rgba(0,229,255,.18);}
+ 
+/* Messages */
+#np-msgs{flex:1;padding:14px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;max-height:320px;min-height:200px;}
+#np-msgs::-webkit-scrollbar{width:3px;}
+#np-msgs::-webkit-scrollbar-thumb{background:rgba(0,229,255,.18);border-radius:2px;}
+.np-msg-bot{max-width:88%;padding:10px 14px;border-radius:4px 14px 14px 14px;font-size:12.5px;line-height:1.6;background:rgb(13,17,48);border:1px solid rgba(0,229,255,.12);color:#e2e8f0;align-self:flex-start;font-family:'DM Sans',sans-serif;}
+.np-msg-user{max-width:88%;padding:10px 14px;border-radius:14px 4px 14px 14px;font-size:12.5px;line-height:1.55;background:linear-gradient(135deg,#7c3aed,#5b1fdf);color:#ede9ff;align-self:flex-end;font-family:'DM Sans',sans-serif;}
+.np-typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:#00e5ff;margin:0 2px;animation:npb 1.1s infinite;opacity:.7;}
+.np-typing span:nth-child(2){animation-delay:.18s;}
+.np-typing span:nth-child(3){animation-delay:.36s;}
+.np-link{color:#00e5ff;text-decoration:underline;cursor:pointer;}
+ 
+/* Input */
+#np-input-row{padding:10px 12px;border-top:1px solid rgba(0,229,255,.12);display:flex;gap:8px;align-items:center;background:rgb(13,17,48);flex-shrink:0;}
+#np-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(0,229,255,.18);border-radius:10px;padding:8px 12px;color:#e2e8f0;font-size:12.5px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;}
+#np-input::placeholder{color:#334155;}
+#np-input:focus{border-color:rgba(0,229,255,.5);}
+#np-send-btn{background:#00e5ff;color:#040810;border:none;border-radius:10px;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0;transition:opacity .2s;}
+#np-send-btn:hover{opacity:.85;}
+ 
+@media(max-width:480px){#np-win{width:calc(100vw - 24px);right:12px;bottom:5rem;}}
+</style>
+ 
+<!-- FAB Button -->
+<div id="np-btn" onclick="npToggle()" title="Chat with NeuraPulse AI">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C6.48 2 2 6.02 2 11c0 2.67 1.19 5.07 3.08 6.74L4 22l4.51-1.93C9.61 20.65 10.78 21 12 21c5.52 0 10-4.02 10-9S17.52 2 12 2zm1 13H7v-2h6v2zm4-4H7V9h10v2z"/>
+  </svg>
+  <span class="np-dot"></span>
+</div>
+ 
+<!-- Chat Window -->
+<div id="np-win" class="np-hidden">
+  <div id="np-head">
+    <div id="np-head-av">N<sup style="font-size:8px">+</sup></div>
+    <div id="np-head-info">
+      <strong>NeuraPulse AI</strong>
+      <span>Always On &middot; AI Expert</span>
+    </div>
+    <button id="np-close-btn" onclick="npToggle()">&#x2715;</button>
+  </div>
+  <div id="np-badge">Powered by <b>NeuraPulse Intelligence</b> &middot; Instant replies</div>
+  <div id="np-chips">
+    <span class="np-chip" onclick="npAsk('What is AI automation?')">AI Automation?</span>
+    <span class="np-chip" onclick="npAsk('Best AI tools 2026?')">Best AI tools?</span>
+    <span class="np-chip" onclick="npAsk('How to start with AI?')">Start with AI?</span>
+    <span class="np-chip" onclick="npAsk('What is an LLM?')">What is LLM?</span>
+  </div>
+  <div id="np-msgs">
+    <div class="np-msg-bot">Hey! &#x1F44B; I'm the <strong>NeuraPulse AI</strong> assistant. Ask me anything about AI automation, tools, LLMs, or our blog articles. I'm here to help!</div>
+  </div>
+  <div id="np-input-row">
+    <input id="np-input" type="text" placeholder="Ask anything about AI..." onkeydown="if(event.key==='Enter')npSend()">
+    <button id="np-send-btn" onclick="npSend()">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="#040810"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+ 
+<script type="text/javascript" id="np-chatbot-script">
+(function(){
+ 
+// ── KNOWLEDGE BASE ──────────────────────────────────────────────
+// All answers are pre-written — NO API KEY NEEDED
+var KB = [
+ 
+  // AI AUTOMATION
+  {
+    keys:['what is ai automation','ai automation meaning','define ai automation','ai automation kya hai','automation kya hota'],
+    answer:'<strong>AI Automation</strong> means using artificial intelligence to perform tasks automatically — without human involvement. It combines AI (decision-making, learning) with automation (repeating tasks).<br><br>Examples: auto-replying emails, scheduling social posts, generating content, routing customer tickets.<br><br>&#x1F4DA; Read: <a class="np-link" onclick="location.href=\'blog/top-ai-automation-tools.html\'">Top AI Automation Tools 2026</a>'
+  },
+  {
+    keys:['best ai automation tools','top ai automation','ai automation tools 2026','best automation tools'],
+    answer:'&#x2728; <strong>Top AI Automation Tools in 2026:</strong><br><br>1. <b>Make (formerly Integromat)</b> — visual workflow builder<br>2. <b>Zapier</b> — connect 5,000+ apps with AI<br>3. <b>n8n</b> — open-source, self-hosted<br>4. <b>Notion AI</b> — docs + automation<br>5. <b>ChatGPT API</b> — custom AI workflows<br>6. <b>Bardeen</b> — browser automation<br><br>&#x1F4DA; Full guide: <a class="np-link" onclick="location.href=\'blog/best-ai-automation-tools-2026.html\'">Best AI Automation Tools 2026</a>'
+  },
+  {
+    keys:['how to use ai automation','how to start ai automation','ai automation for beginners','ai automation kaise kare','start ai automation'],
+    answer:'&#x1F680; <strong>How to Start with AI Automation:</strong><br><br><b>Step 1</b> — Pick 1 repetitive task (email replies, social posts, data entry)<br><b>Step 2</b> — Choose a tool: Zapier (easiest) or Make (powerful)<br><b>Step 3</b> — Connect your apps (Gmail + Sheets + Slack)<br><b>Step 4</b> — Add AI step (ChatGPT or Groq for smart responses)<br><b>Step 5</b> — Test, then turn on!<br><br>&#x1F4DA; Guide: <a class="np-link" onclick="location.href=\'blog/ai-automation-beginners-step-by-step.html\'">AI Automation for Beginners</a>'
+  },
+  {
+    keys:['ai automation for business','business automation ai','automate my business','ai for small business','business mein ai'],
+    answer:'&#x1F3E2; <strong>AI Automation for Business:</strong><br><br>&#x2022; <b>Customer Service</b> — AI chatbots handle 80% of queries<br>&#x2022; <b>Marketing</b> — auto-generate emails, social posts, ads<br>&#x2022; <b>Operations</b> — automate invoicing, scheduling, reports<br>&#x2022; <b>Sales</b> — AI lead scoring + follow-up sequences<br>&#x2022; <b>Content</b> — blog drafts, product descriptions at scale<br><br>Cost: starts FREE with Zapier + ChatGPT free tier.<br><br>&#x1F4DA; Read: <a class="np-link" onclick="location.href=\'blog/how-to-use-ai-automation-business.html\'">How to Use AI Automation for Business</a>'
+  },
+  {
+    keys:['ai workflow automation','workflow automation','zapier vs make','n8n vs zapier','zapier make n8n'],
+    answer:'&#x1F504; <strong>Zapier vs Make vs n8n:</strong><br><br>&#x2022; <b>Zapier</b> — Easiest to use, 5000+ app integrations, best for beginners. Free plan: 100 tasks/month<br>&#x2022; <b>Make</b> — Visual drag-drop builder, complex logic, cheaper. Free: 1000 ops/month<br>&#x2022; <b>n8n</b> — Open source, self-host, unlimited free use, needs technical setup<br><br><b>Verdict:</b> Beginners → Zapier. Power users → Make. Developers → n8n<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/top-ai-automation-tools.html\'">Full comparison →</a>'
+  },
+  {
+    keys:['ai marketing automation','marketing automation','ai for marketing','automate marketing'],
+    answer:'&#x1F4E3; <strong>AI Marketing Automation in 2026:</strong><br><br>&#x2022; <b>Email</b> — Mailchimp AI, ActiveCampaign<br>&#x2022; <b>Social Media</b> — Buffer AI, Hootsuite<br>&#x2022; <b>Ad Copy</b> — Jasper, Copy.ai<br>&#x2022; <b>SEO Content</b> — SurferSEO + ChatGPT<br>&#x2022; <b>Analytics</b> — AI dashboards auto-report<br><br>Result: run full marketing stack with 1-2 people.<br><br>&#x1F4DA; Deep dive: <a class="np-link" onclick="location.href=\'blog/marketing-automation-ai.html\'">Marketing Automation with AI</a>'
+  },
+  {
+    keys:['ai agents for seo','seo ai agents','ai for seo','seo automation ai'],
+    answer:'&#x1F50D; <strong>AI Agents for SEO:</strong><br><br>AI SEO agents can now autonomously:<br>&#x2022; Research keywords from competitor analysis<br>&#x2022; Write content briefs + full articles<br>&#x2022; Build internal links automatically<br>&#x2022; Run technical audits (broken links, speed)<br>&#x2022; Track rankings and suggest improvements<br><br><b>Tools:</b> SurferSEO, Semrush AI, Ahrefs AI, RankMath AI<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/ai-agents-for-seo.html\'">AI Agents for SEO →</a>'
+  },
+  {
+    keys:['generative ai','generative ai content','content creation ai','ai content generation'],
+    answer:'&#x270D;&#xFE0F; <strong>Generative AI for Content:</strong><br><br><b>Text:</b> ChatGPT, Claude, Gemini<br><b>Images:</b> Midjourney, DALL-E 3, Stable Diffusion<br><b>Video:</b> Sora, Runway, Pika<br><b>Audio:</b> ElevenLabs, Suno<br><b>Code:</b> GitHub Copilot, Cursor<br><br>A single person can now produce content at agency scale using generative AI workflows.<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/generative-ai-content.html\'">Generative AI Content Guide →</a>'
+  },
+ 
+  // LLMs & AI BASICS
+  {
+    keys:['what is llm','what is large language model','llm kya hai','llm meaning'],
+    answer:'&#x1F9E0; <strong>LLM (Large Language Model)</strong> is an AI trained on billions of text documents to understand and generate human language.<br><br><b>Examples:</b> GPT-4o (OpenAI), Claude (Anthropic), Gemini (Google), Llama (Meta)<br><br><b>How it works:</b> You send text → LLM predicts the best response token by token → You get a reply<br><br>LLMs power ChatGPT, Copilot, Claude and most AI tools you use today.<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/how-ai-works.html\'">How AI Works →</a>'
+  },
+  {
+    keys:['how does ai work','how ai works','ai kaise kaam karta hai','explain ai','what is ai'],
+    answer:'&#x1F916; <strong>How AI Works (Simply):</strong><br><br><b>1. Data</b> — AI learns from millions/billions of examples<br><b>2. Training</b> — It adjusts millions of parameters to reduce errors<br><b>3. Neural Network</b> — Layers of math mimic how brains process info<br><b>4. Inference</b> — When you ask a question, it predicts the best answer<br><br>Modern AI = pattern recognition at massive scale.<br><br>&#x1F4DA; Full explainer: <a class="np-link" onclick="location.href=\'blog/how-ai-works.html\'">How AI Works Step by Step</a>'
+  },
+  {
+    keys:['what is chatgpt','chatgpt kya hai','how to use chatgpt','chatgpt explain'],
+    answer:'&#x1F4AC; <strong>ChatGPT</strong> is an AI chatbot made by OpenAI, powered by the GPT-4o language model.<br><br>&#x2022; You type a message → it replies intelligently<br>&#x2022; Can write essays, code, emails, summaries<br>&#x2022; Free version available at chat.openai.com<br>&#x2022; GPT-4o (paid) is much more powerful<br><br>It is currently the most popular AI tool in the world with 200M+ users.'
+  },
+  {
+    keys:['what is claude ai','claude anthropic','claude vs chatgpt'],
+    answer:'&#x1F916; <strong>Claude</strong> is an AI assistant made by Anthropic (founded by ex-OpenAI researchers).<br><br>&#x2022; Known for being very safe and helpful<br>&#x2022; Excellent at long documents and coding<br>&#x2022; Claude 3.5 Sonnet is currently one of the best models available<br>&#x2022; Available at claude.ai<br><br><b>vs ChatGPT:</b> Claude tends to be more nuanced and less likely to refuse reasonable requests.'
+  },
+  {
+    keys:['what is transformer','transformer model','attention mechanism','how transformers work'],
+    answer:'&#x26A1; <strong>Transformers</strong> are the architecture that powers all modern AI (ChatGPT, Claude, Gemini).<br><br>Key innovation: <b>Self-Attention</b> — the model looks at every word in relation to every other word simultaneously, not one at a time like older models.<br><br>This allows understanding long context and complex relationships in text.<br><br>Introduced in the 2017 paper "Attention Is All You Need" by Google.<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/attention-mechanism.html\'">Attention Mechanism Deep Dive →</a>'
+  },
+  {
+    keys:['what is agi','agi kya hai','agi by 2027','when will agi happen'],
+    answer:'&#x1F30C; <strong>AGI (Artificial General Intelligence)</strong> means an AI that can perform any intellectual task a human can — not just specific tasks.<br><br>&#x2022; Current AI = narrow (expert at specific things)<br>&#x2022; AGI = general (can do everything a human can)<br><br>OpenAI, Google DeepMind, and Anthropic all claim AGI could arrive 2026-2028.<br><br>Most researchers are skeptical of exact timelines — we\'re making progress but key problems remain unsolved.<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/agi-2027.html\'">AGI by 2027 — The Evidence →</a>'
+  },
+ 
+  // AI TOOLS
+  {
+    keys:['best ai tools','ai tools 2026','top ai tools','best ai tools for beginners'],
+    answer:'&#x1F527; <strong>Best AI Tools in 2026:</strong><br><br><b>Writing:</b> ChatGPT, Claude, Jasper<br><b>Images:</b> Midjourney, DALL-E 3<br><b>Coding:</b> GitHub Copilot, Cursor<br><b>Presentations:</b> Gamma, Beautiful.ai<br><b>Video:</b> Runway, HeyGen<br><b>Productivity:</b> Notion AI, Otter.ai<br><b>SEO:</b> SurferSEO, MarketMuse<br><b>Automation:</b> Zapier, Make, n8n<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/ai-tools-blogging-seo.html\'">AI Tools for Blogging & SEO →</a>'
+  },
+  {
+    keys:['ai tools for writers','writing ai tools','ai for writing','ai writer'],
+    answer:'&#x270F;&#xFE0F; <strong>Best AI Writing Tools 2026:</strong><br><br>1. <b>ChatGPT</b> — versatile, great for drafts<br>2. <b>Claude</b> — best for long-form, nuanced writing<br>3. <b>Jasper</b> — marketing copy specialist<br>4. <b>Copy.ai</b> — sales + ad copy<br>5. <b>Grammarly AI</b> — editing + tone improvement<br>6. <b>Hemingway</b> — readability scorer<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/best-ai-tools-writers.html\'">Best AI Tools for Writers →</a>'
+  },
+  {
+    keys:['free ai tools','free ai','best free ai'],
+    answer:'&#x1F7E2; <strong>Best FREE AI Tools in 2026:</strong><br><br>&#x2022; <b>ChatGPT</b> (free tier) — gpt-4o-mini<br>&#x2022; <b>Claude.ai</b> (free tier) — Claude 3.5 Haiku<br>&#x2022; <b>Gemini</b> — Google\'s free AI<br>&#x2022; <b>Groq</b> — fastest free LLM API<br>&#x2022; <b>Perplexity</b> — free AI search<br>&#x2022; <b>Canva AI</b> — free image + design AI<br>&#x2022; <b>Zapier free</b> — 100 automation tasks/month<br>&#x2022; <b>n8n</b> — free self-hosted automation<br><br>You can build a complete AI workflow for ₹0 / $0!'
+  },
+  {
+    keys:['ai for seo','seo tools ai','best seo ai tools','ai keyword research'],
+    answer:'&#x1F50D; <strong>AI SEO Tools 2026:</strong><br><br>1. <b>SurferSEO</b> — content optimization + NLP<br>2. <b>Semrush AI</b> — keyword research + audit<br>3. <b>Ahrefs AI</b> — backlink + rank tracking<br>4. <b>MarketMuse</b> — topic authority mapping<br>5. <b>RankMath AI</b> — WordPress SEO plugin<br>6. <b>ChatGPT</b> — keyword clusters, meta descriptions<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/ai-tools-blogging-seo.html\'">AI Tools for Blogging & SEO →</a>'
+  },
+  {
+    keys:['ai for email','email automation','best ai email','email writing ai'],
+    answer:'&#x1F4E7; <strong>AI Email Tools 2026:</strong><br><br>&#x2022; <b>Superhuman</b> — AI email triage + replies<br>&#x2022; <b>Lavender</b> — cold email optimization<br>&#x2022; <b>Mailchimp AI</b> — automated campaigns<br>&#x2022; <b>ActiveCampaign</b> — full marketing automation<br>&#x2022; <b>HubSpot AI</b> — CRM + email sequences<br>&#x2022; <b>ChatGPT</b> — draft any email in seconds<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/best-ai-tool-email-writing.html\'">Best AI Email Tools →</a>'
+  },
+ 
+  // NEURAPLUS SPECIFIC
+  {
+    keys:['what is neuraplus','what is neurapulse','about neuraplus','about this site','about neurapulse'],
+    answer:'&#x1F9E0; <strong>NeuraPulse</strong> is a premium AI research blog covering:<br><br>&#x2022; AI Automation tools & workflows<br>&#x2022; LLMs and how they work<br>&#x2022; AI tools for business, writing, SEO<br>&#x2022; AI ethics, robotics, and research<br>&#x2022; Practical guides for beginners to experts<br><br>Founded by <b>Prashant Lalwani</b> in 2024. We have 34+ expert articles with zero hype — just clarity.<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'about.html\'">About NeuraPulse →</a>'
+  },
+  {
+    keys:['blog articles','all blogs','blog list','show all articles','see articles'],
+    answer:'&#x1F4DA; <strong>NeuraPulse has 34 articles</strong> covering:<br><br>&#x2022; AI Automation (9 guides)<br>&#x2022; AI Tools (12 reviews)<br>&#x2022; LLMs & Research (6 deep dives)<br>&#x2022; AI Ethics, Robotics, AGI<br>&#x2022; Career AI, Design, Finance<br><br>Browse everything on our blog page!<br><br><a class="np-link" onclick="location.href=\'blog.html\'" style="background:rgba(0,229,255,0.1);padding:6px 14px;border-radius:20px;border:1px solid rgba(0,229,255,0.3);display:inline-block;margin-top:4px;">&#x1F4D6; View All 34 Articles →</a>'
+  },
+  {
+    keys:['contact','newsletter','subscribe','email subscribe'],
+    answer:'&#x1F4EC; Want to stay updated on the latest AI insights?<br><br>&#x2022; <b>Newsletter</b> — Weekly AI updates every Tuesday<br>&#x2022; <b>4,200+ readers</b> already subscribed<br>&#x2022; 100% free, no spam<br><br><a class="np-link" onclick="location.href=\'contact.html\'" style="background:rgba(0,229,255,0.1);padding:6px 14px;border-radius:20px;border:1px solid rgba(0,229,255,0.3);display:inline-block;margin-top:4px;">&#x1F4E7; Subscribe Free →</a>'
+  },
+ 
+  // TRENDING TOPICS
+  {
+    keys:['what is groq','groq ai','groq llm','groq api','groq speed'],
+    answer:'&#x26A1; <strong>Groq</strong> is a company that built a special chip (LPU — Language Processing Unit) that runs AI models <b>10x faster</b> than GPUs.<br><br>&#x2022; Runs Llama 3.3, Mixtral, Gemma models<br>&#x2022; Free API tier: 14,400 requests/day<br>&#x2022; Speed: 800+ tokens/second (vs 30-50 on ChatGPT)<br>&#x2022; Best for: real-time apps, chatbots, fast AI workflows<br><br>Get a free key at <b>console.groq.com/keys</b>'
+  },
+  {
+    keys:['sam altman','openai news','openai 2026','gpt 5','gpt-5'],
+    answer:'&#x1F4F0; <strong>OpenAI & Sam Altman in 2026:</strong><br><br>&#x2022; GPT-4o is the current flagship (multimodal)<br>&#x2022; OpenAI o3 reasoning model launched<br>&#x2022; Sora video AI released to the public<br>&#x2022; Sam Altman returned as CEO after the Nov 2023 drama<br>&#x2022; OpenAI valued at $157 billion<br>&#x2022; AGI predicted "within a few years" per Sam Altman<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/sam-altman-interview-2026.html\'">Sam Altman 2026 Interview →</a>'
+  },
+  {
+    keys:['ai alignment','alignment problem','ai safety','ai risk'],
+    answer:'&#x26A0;&#xFE0F; <strong>The AI Alignment Problem:</strong><br><br>How do we make sure AI systems do what <i>we actually want</i> — not just what we literally told them?<br><br><b>Key challenges:</b><br>&#x2022; Reward hacking (AI games the metric, not the goal)<br>&#x2022; Instrumental convergence (AI seeks power to achieve goals)<br>&#x2022; Value learning (hard to specify human values mathematically)<br><br>Anthropic, DeepMind, and OpenAI all have dedicated safety teams working on this.<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/alignment-problem.html\'">The Alignment Problem →</a>'
+  },
+  {
+    keys:['ai in india','ai india','best ai tools india','ai trading india'],
+    answer:'&#x1F1EE;&#x1F1F3; <strong>AI in India 2026:</strong><br><br>&#x2022; India is the #2 fastest-growing AI market<br>&#x2022; 100,000+ AI jobs open currently<br>&#x2022; IndiaAI Mission: ₹10,000 Cr government investment<br>&#x2022; Top AI companies in India: TCS, Infosys, Wipro AI, Sarvam AI<br>&#x2022; Best AI tools available: ChatGPT, Claude, Gemini — all work in India<br><br>&#x1F4DA; <a class="np-link" onclick="location.href=\'blog/best-all-in-one-ai-tools-small-businesses-india.html\'">Best AI Tools for Indian Businesses →</a>'
+  },
+  {
+    keys:['what is prompt engineering','prompt engineering','how to write prompts','better prompts'],
+    answer:'&#x1F4DD; <strong>Prompt Engineering</strong> is the skill of writing clear, specific instructions for AI models to get the best results.<br><br><b>Key techniques:</b><br>&#x2022; <b>Be specific</b> — "Write a 500-word blog intro about..." beats "write about AI"<br>&#x2022; <b>Give role</b> — "You are an expert SEO writer..."<br>&#x2022; <b>Set format</b> — "Respond in bullet points"<br>&#x2022; <b>Chain of thought</b> — "Think step by step..."<br>&#x2022; <b>Examples</b> — Show what good output looks like<br><br>Good prompts = 10x better AI outputs.'
+  },
+ 
+  // FALLBACK
+  {
+    keys:['hello','hi','hey','namaste','hii','helo','sup'],
+    answer:'Hey there! &#x1F44B; Welcome to <strong>NeuraPulse</strong>!<br><br>I can help you with:<br>&#x2022; AI automation tools & workflows<br>&#x2022; How to use AI for your business<br>&#x2022; Explaining LLMs, ChatGPT, Claude<br>&#x2022; Best AI tools for writing, SEO, marketing<br>&#x2022; Any topic from our 34 articles<br><br>What would you like to know? &#x1F916;'
+  },
+  {
+    keys:['thank','thanks','thankyou','thank you','great','awesome','good bot','nice'],
+    answer:'You\'re welcome! &#x1F60A; Always happy to help.<br><br>If you found this useful, check out our full blog for deep-dive articles on every AI topic.<br><br><a class="np-link" onclick="location.href=\'blog.html\'" style="background:rgba(0,229,255,0.1);padding:6px 14px;border-radius:20px;border:1px solid rgba(0,229,255,0.3);display:inline-block;margin-top:4px;">&#x1F4D6; Browse All Articles →</a>'
+  },
+];
+ 
+// ── CHAT LOGIC ──────────────────────────────────────────────────
+var npOpen = false;
+var npChipsHidden = false;
+ 
+function npToggle(){
+  npOpen = !npOpen;
+  var win = document.getElementById('np-win');
+  if(npOpen){
+    win.classList.remove('np-hidden');
+    setTimeout(function(){ document.getElementById('np-input').focus(); }, 300);
+  } else {
+    win.classList.add('np-hidden');
+  }
+}
+ 
+function npAsk(q){
+  document.getElementById('np-input').value = q;
+  if(!npChipsHidden){
+    document.getElementById('np-chips').style.display = 'none';
+    npChipsHidden = true;
+  }
+  npSend();
+}
+ 
+function npSend(){
+  var inp = document.getElementById('np-input');
+  var q = inp.value.trim();
+  if(!q) return;
+  inp.value = '';
+  if(!npChipsHidden){
+    document.getElementById('np-chips').style.display = 'none';
+    npChipsHidden = true;
+  }
+ 
+  // Add user message
+  npAddMsg(q, 'user');
+ 
+  // Show typing
+  var tid = npTyping();
+ 
+  // Find answer after short delay (natural feel)
+  setTimeout(function(){
+    removeTyping(tid);
+    var ans = npFind(q.toLowerCase());
+    npAddMsg(ans, 'bot');
+  }, 700 + Math.random() * 400);
+}
+ 
+function npFind(q){
+  // Score each KB entry by keyword matches
+  var best = null, bestScore = 0;
+  for(var i = 0; i < KB.length; i++){
+    var score = 0;
+    var keys = KB[i].keys;
+    for(var j = 0; j < keys.length; j++){
+      if(q.indexOf(keys[j]) !== -1){
+        score += keys[j].split(' ').length; // longer match = higher score
+      }
+    }
+    // Also partial word match
+    var words = q.split(' ');
+    for(var w = 0; w < words.length; w++){
+      var word = words[w];
+      if(word.length < 3) continue;
+      for(var j = 0; j < keys.length; j++){
+        if(keys[j].indexOf(word) !== -1 && score === 0){
+          score += 0.5;
+        }
+      }
+    }
+    if(score > bestScore){
+      bestScore = score;
+      best = KB[i];
+    }
+  }
+  if(best && bestScore > 0) return best.answer;
+ 
+  // Smart fallback based on keywords
+  if(q.indexOf('how') !== -1 || q.indexOf('kaise') !== -1){
+    return '&#x1F914; That\'s a great question! Here\'s a tip: check our <a class="np-link" onclick="location.href=\'blog.html\'">blog page</a> where we have 34 detailed articles covering all AI topics. You might find exactly what you\'re looking for there!<br><br>Or try rephrasing your question — I know about: AI automation, LLMs, AI tools, ChatGPT, Claude, SEO, marketing automation, and more.';
+  }
+  if(q.indexOf('what') !== -1 || q.indexOf('kya') !== -1){
+    return '&#x1F9E0; Good question! I may not have a specific answer for that, but check our <a class="np-link" onclick="location.href=\'blog.html\'">blog with 34 articles</a> — we cover AI automation, tools, LLMs, ethics, robotics and more.<br><br>Try asking me about: <b>AI automation</b>, <b>best AI tools</b>, <b>ChatGPT</b>, <b>LLMs</b>, or <b>AI for business</b>.';
+  }
+  return '&#x1F916; I\'m NeuraPulse AI and I know a lot about AI! I may not have that specific answer, but here\'s what I <i>can</i> help with:<br><br>&#x2022; AI automation tools & workflows<br>&#x2022; How to use AI for business<br>&#x2022; LLMs, ChatGPT, Claude explained<br>&#x2022; Best AI tools for writing/SEO/marketing<br>&#x2022; AI agents, generative AI, automation guides<br><br>Try one of the quick buttons above, or ask about any AI topic! &#x1F4DA;';
+}
+ 
+function npAddMsg(text, type){
+  var msgs = document.getElementById('np-msgs');
+  var div = document.createElement('div');
+  div.className = type === 'user' ? 'np-msg-user' : 'np-msg-bot';
+  if(type === 'user'){
+    div.textContent = text;
+  } else {
+    div.innerHTML = text;
+  }
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+ 
+function npTyping(){
+  var msgs = document.getElementById('np-msgs');
+  var div = document.createElement('div');
+  div.className = 'np-msg-bot np-typing';
+  div.id = 'np-typing-' + Date.now();
+  div.innerHTML = '<span></span><span></span><span></span>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div.id;
+}
+ 
+function removeTyping(id){
+  var el = document.getElementById(id);
+  if(el) el.remove();
+}
+ 
+})();
+</script>
 </script>
 </body>
 </html>
