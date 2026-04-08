@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Anthropic Claude API tutorial step by step — how to get your API key, install the SDK, make your first API call, handle responses, and build real applications with the Claude API.">
+<meta name="keywords" content="anthropic claude api tutorial step by step, claude api tutorial, claude api python, how to use claude api, anthropic api guide 2026">
+<meta name="author" content="Prashant Lalwani"><meta name="robots" content="index, follow">
+<meta property="og:title" content="Anthropic Claude API Tutorial Step by Step — NeuraPulse">
+<meta property="og:url" content="https://neuraplus-ai.github.io/blog/anthropic-claude-api-tutorial.html">
+<link rel="canonical" href="https://neuraplus-ai.github.io/blog/anthropic-claude-api-tutorial.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>Anthropic Claude API Tutorial Step by Step (2026 Beginner Guide) — NeuraPulse</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Anthropic Claude API Tutorial Step by Step","author":{"@type":"Person","name":"Prashant Lalwani"},"publisher":{"@type":"Organization","name":"NeuraPulse"},"datePublished":"2026-04-18"}</script>
+<!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JNSQJZJDN1');</script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:#1e2d45;--accent:#00e5ff;--accent2:#7c3aed;--accent3:#f59e0b;--text:#e2e8f0;--text-dim:#64748b;--text-muted:#334155;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(5,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
+.ld{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pd 2s ease-in-out infinite;}@keyframes pd{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.nav-links{display:flex;gap:2rem;list-style:none;}.nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s;}.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+.nav-cta{font-family:'Space Mono',monospace;font-size:0.72rem;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.5rem 1.2rem;border-radius:4px;text-decoration:none;}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}.hbg span{display:block;width:22px;height:2px;background:var(--text-dim);border-radius:2px;}
+/* ARTICLE */
+.art-hero{padding:8rem 3rem 3rem;max-width:860px;margin:0 auto;}
+.art-tag{font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
+.art-tag::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.art-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:-0.03em;line-height:1.15;margin-bottom:1.5rem;}
+.art-meta{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;}
+.art-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.7rem;color:white;flex-shrink:0;}
+.art-info{display:flex;flex-direction:column;gap:2px;}
+.art-author{font-weight:600;font-size:0.9rem;}
+.art-date{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);}
+.art-badge{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:100px;border:1px solid var(--border);color:var(--text-dim);}
+/* HERO IMAGE */
+.art-img{width:100%;max-width:860px;margin:0 auto 3rem;padding:0 3rem;display:block;}
+.art-img svg,.art-img img{width:100%;height:auto;border-radius:12px;display:block;}
+/* CONTENT */
+.art-body{max-width:860px;margin:0 auto;padding:0 3rem 5rem;}
+.art-body p{margin-bottom:1.5rem;color:var(--text-dim);font-size:1.05rem;line-height:1.8;}
+.art-body h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.6rem;letter-spacing:-0.02em;margin:2.5rem 0 1rem;color:var(--text);}
+.art-body h3{font-family:'Syne',sans-serif;font-weight:600;font-size:1.15rem;margin:2rem 0 0.75rem;color:var(--text);}
+.art-body ul,.art-body ol{margin:0 0 1.5rem 1.5rem;color:var(--text-dim);font-size:1.05rem;line-height:1.8;}
+.art-body li{margin-bottom:0.5rem;}
+.art-body strong{color:var(--text);font-weight:600;}
+.art-body a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,229,255,0.3);transition:border-color 0.2s;}.art-body a:hover{border-color:var(--accent);}
+/* CALLOUT BOX */
+.callout{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:1.25rem 1.5rem;margin:2rem 0;}
+.callout.purple{border-left-color:var(--accent2);}
+.callout.amber{border-left-color:var(--accent3);}
+.callout p{margin:0;color:var(--text-dim);font-size:0.95rem;}
+.callout strong{color:var(--text);}
+/* CODE BLOCK */
+.code-block{background:#060b18;border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin:1.5rem 0;overflow-x:auto;}
+.code-block pre{font-family:'Space Mono',monospace;font-size:0.82rem;line-height:1.7;color:#94a3b8;margin:0;}
+.code-block .kw{color:#00e5ff;}.code-block .str{color:#34d399;}.code-block .cm{color:#334155;font-style:italic;}
+/* TOOL TABLE */
+.tool-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.9rem;}
+.tool-table th{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);padding:0.75rem 1rem;border-bottom:2px solid var(--border);text-align:left;}
+.tool-table td{padding:0.85rem 1rem;border-bottom:1px solid var(--border);color:var(--text-dim);vertical-align:top;}
+.tool-table tr:hover td{background:var(--surface2);}
+.tool-table .tool-name{color:var(--text);font-weight:600;}
+.badge-free{display:inline-block;font-family:'Space Mono',monospace;font-size:0.6rem;padding:0.2rem 0.6rem;border-radius:3px;background:rgba(52,211,153,0.1);color:#34d399;border:1px solid rgba(52,211,153,0.3);}
+.badge-paid{display:inline-block;font-family:'Space Mono',monospace;font-size:0.6rem;padding:0.2rem 0.6rem;border-radius:3px;background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.3);}
+/* RELATED POSTS */
+.related{border-top:1px solid var(--border);padding-top:3rem;margin-top:1rem;}
+.related-label{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;}
+.related-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;display:block;}
+.related-card:hover{border-color:var(--accent);transform:translateY(-3px);}
+.related-card span{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:0.5rem;}
+.related-card h4{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;line-height:1.3;color:var(--text);}
+footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.flogo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--text);}
+.flinks{display:flex;gap:2rem;list-style:none;}.flinks a{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;}.flinks a:hover{color:var(--accent);}
+.fcopy{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-muted);}
+.fade{opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s;}.fade.vis{opacity:1;transform:translateY(0);}
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(5,8,16,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}.hbg{display:flex;}.art-hero,.art-img,.art-body{padding-left:1.5rem;padding-right:1.5rem;}.related-grid{grid-template-columns:1fr;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<nav>
+  <a href="../index.html" class="logo"><span class="ld"></span>NeuraPulse</a>
+  <ul class="nav-links" id="nl">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <a href="../contact.html" class="nav-cta">Subscribe</a>
+  <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+</nav>
+<main>
+<div class="art-hero fade">
+  <div class="art-tag">Claude API · Tutorial</div>
+  <h1>Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide)</h1>
+  <div class="art-meta">
+    <div class="art-av">PL</div>
+    <div class="art-info"><span class="art-author">Prashant Lalwani</span><span class="art-date">April 18, 2026 · 16 min read</span></div>
+    <span class="art-badge">API</span><span class="art-badge">Python</span>
+  </div>
+</div>
+<div class="art-img fade"><svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <defs><linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#050810"/><stop offset="100%" stop-color="#060b18"/></linearGradient></defs>
+  <rect width="900" height="420" fill="url(#bg4)"/>
+  <rect x="50" y="35" width="580" height="350" rx="14" fill="rgba(12,17,32,0.95)" stroke="rgba(30,45,69,0.8)" stroke-width="1.5"/>
+  <rect x="50" y="35" width="580" height="38" rx="14" fill="rgba(17,24,39,0.9)"/>
+  <circle cx="80" cy="54" r="6" fill="rgba(244,114,182,0.6)"/><circle cx="100" cy="54" r="6" fill="rgba(245,158,11,0.6)"/><circle cx="120" cy="54" r="6" fill="rgba(52,211,153,0.6)"/>
+  <text x="340" y="59" font-family="Space Mono,monospace" font-size="10" fill="#4a5568" text-anchor="middle">claude_api_example.py</text>
+  <text x="80" y="98" font-family="Space Mono,monospace" font-size="11" fill="#334155">1</text><text x="100" y="98" font-family="Space Mono,monospace" font-size="11" fill="#00e5ff">import </text><text x="146" y="98" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">anthropic</text>
+  <text x="80" y="118" font-family="Space Mono,monospace" font-size="11" fill="#334155">2</text>
+  <text x="80" y="138" font-family="Space Mono,monospace" font-size="11" fill="#334155">3</text><text x="100" y="138" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">client = anthropic.</text><text x="248" y="138" font-family="Space Mono,monospace" font-size="11" fill="#34d399">Anthropic</text><text x="320" y="138" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">(</text>
+  <text x="80" y="158" font-family="Space Mono,monospace" font-size="11" fill="#334155">4</text><text x="100" y="158" font-family="Space Mono,monospace" font-size="11" fill="#64748b">    api_key=</text><text x="186" y="158" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"your-api-key"</text>
+  <text x="80" y="178" font-family="Space Mono,monospace" font-size="11" fill="#334155">5</text><text x="100" y="178" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">)</text>
+  <text x="80" y="198" font-family="Space Mono,monospace" font-size="11" fill="#334155">6</text>
+  <text x="80" y="218" font-family="Space Mono,monospace" font-size="11" fill="#334155">7</text><text x="100" y="218" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">message = client.messages.</text><text x="298" y="218" font-family="Space Mono,monospace" font-size="11" fill="#34d399">create</text><text x="354" y="218" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">(</text>
+  <text x="80" y="238" font-family="Space Mono,monospace" font-size="11" fill="#334155">8</text><text x="100" y="238" font-family="Space Mono,monospace" font-size="11" fill="#64748b">    model=</text><text x="162" y="238" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"claude-sonnet-4-20250514"</text>
+  <text x="80" y="258" font-family="Space Mono,monospace" font-size="11" fill="#334155">9</text><text x="100" y="258" font-family="Space Mono,monospace" font-size="11" fill="#64748b">    max_tokens=</text><text x="198" y="258" font-family="Space Mono,monospace" font-size="11" fill="#a78bfa">1024</text>
+  <text x="75" y="278" font-family="Space Mono,monospace" font-size="11" fill="#334155">10</text><text x="100" y="278" font-family="Space Mono,monospace" font-size="11" fill="#64748b">    messages=[</text>
+  <text x="75" y="298" font-family="Space Mono,monospace" font-size="11" fill="#334155">11</text><text x="100" y="298" font-family="Space Mono,monospace" font-size="11" fill="#64748b">        {{</text><text x="144" y="298" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"role"</text><text x="196" y="298" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">: </text><text x="208" y="298" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"user"</text><text x="256" y="298" font-family="Space Mono,monospace" font-size="11" fill="#64748b">, </text><text x="270" y="298" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"content"</text><text x="334" y="298" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">: </text><text x="346" y="298" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"Hello"</text><text x="396" y="298" font-family="Space Mono,monospace" font-size="11" fill="#64748b">}}</text>
+  <text x="75" y="318" font-family="Space Mono,monospace" font-size="11" fill="#334155">12</text><text x="100" y="318" font-family="Space Mono,monospace" font-size="11" fill="#64748b">    ]</text>
+  <text x="75" y="338" font-family="Space Mono,monospace" font-size="11" fill="#334155">13</text><text x="100" y="338" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">)</text>
+  <text x="75" y="358" font-family="Space Mono,monospace" font-size="11" fill="#334155">14</text><text x="100" y="358" font-family="Space Mono,monospace" font-size="11" fill="#00e5ff">print</text><text x="140" y="358" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">(message.content)</text>
+  <rect x="680" y="60" width="190" height="80" rx="10" fill="rgba(0,229,255,0.08)" stroke="rgba(0,229,255,0.3)" stroke-width="1.5"/>
+  <text x="775" y="88" font-family="Space Mono,monospace" font-size="10" fill="#00e5ff" text-anchor="middle">API KEY</text>
+  <text x="775" y="108" font-family="Space Mono,monospace" font-size="9" fill="#64748b" text-anchor="middle">sk-ant-api03-...</text>
+  <text x="775" y="128" font-family="DM Sans,sans-serif" font-size="11" fill="#34d399" text-anchor="middle">console.anthropic.com</text>
+  <rect x="680" y="160" width="190" height="80" rx="10" fill="rgba(124,58,237,0.08)" stroke="rgba(124,58,237,0.3)" stroke-width="1.5"/>
+  <text x="775" y="188" font-family="Space Mono,monospace" font-size="10" fill="#a78bfa" text-anchor="middle">MODEL</text>
+  <text x="775" y="208" font-family="Space Mono,monospace" font-size="9" fill="#64748b" text-anchor="middle">claude-sonnet-4</text>
+  <text x="775" y="228" font-family="DM Sans,sans-serif" font-size="11" fill="#34d399" text-anchor="middle">Recommended</text>
+  <rect x="680" y="260" width="190" height="80" rx="10" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+  <text x="775" y="288" font-family="Space Mono,monospace" font-size="10" fill="#34d399" text-anchor="middle">RESPONSE</text>
+  <text x="775" y="308" font-family="Space Mono,monospace" font-size="9" fill="#64748b" text-anchor="middle">message.content</text>
+  <text x="775" y="328" font-family="DM Sans,sans-serif" font-size="11" fill="#34d399" text-anchor="middle">✓ Working!</text>
+  <text x="775" y="395" font-family="Space Mono,monospace" font-size="11" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="2">CLAUDE API TUTORIAL</text>
+</svg></div>
+<div class="art-body fade">
+
+<p>The Anthropic Claude API lets you build powerful AI-powered applications — chatbots, writing assistants, data processors, and more. This step-by-step tutorial takes you from zero to your first working Claude API call in under 20 minutes.</p>
+
+<div class="callout">
+  <p><strong>Prerequisites:</strong> Basic Python knowledge (variables, functions, importing libraries). No prior API experience needed — this guide explains everything from scratch. You'll need a credit card to activate the API (pay-per-use, not a subscription).</p>
+</div>
+
+<h2>Step 1: Get Your Claude API Key</h2>
+<ol>
+  <li>Go to <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a></li>
+  <li>Create an account or sign in</li>
+  <li>Click <strong>API Keys</strong> in the left menu</li>
+  <li>Click <strong>Create Key</strong> — give it a name like "my-first-key"</li>
+  <li>Copy the key immediately — it starts with <code>sk-ant-api03-</code></li>
+  <li>Add billing at <strong>Settings → Billing</strong> — you only pay for what you use</li>
+</ol>
+<div class="callout amber">
+  <p><strong>Security Warning:</strong> Never put your API key directly in code you'll share or commit to GitHub. Use environment variables (shown below). A leaked key will be used by others and billed to your account.</p>
+</div>
+
+<h2>Step 2: Set Up Your Environment</h2>
+<div class="code-block"><pre><span class="cm"># Install the Anthropic Python SDK</span>
+pip install anthropic
+
+<span class="cm"># Set your API key as an environment variable (recommended)</span>
+<span class="cm"># On Mac/Linux:</span>
+export ANTHROPIC_API_KEY=<span class="str">"sk-ant-api03-your-key-here"</span>
+
+<span class="cm"># On Windows (Command Prompt):</span>
+set ANTHROPIC_API_KEY=<span class="str">sk-ant-api03-your-key-here</span></pre></div>
+
+<h2>Step 3: Make Your First API Call</h2>
+<p>Here is the simplest possible Claude API call in Python:</p>
+<div class="code-block"><pre><span class="kw">import</span> anthropic
+
+<span class="cm"># Create the client (reads API key from environment variable)</span>
+client = anthropic.Anthropic()
+
+<span class="cm"># Send a message to Claude</span>
+message = client.messages.create(
+    model=<span class="str">"claude-sonnet-4-20250514"</span>,  <span class="cm"># Best model for most tasks</span>
+    max_tokens=<span class="str">1024</span>,
+    messages=[
+        {<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="str">"Hello! What can you help me with?"</span>}
+    ]
+)
+
+<span class="cm"># Print Claude's response</span>
+print(message.content[0].text)</pre></div>
+
+<p>Run this and you'll see Claude's response printed in your terminal. That's it — you've made your first Claude API call!</p>
+
+<h2>Step 4: Understanding the Response Object</h2>
+<p>The API returns a message object with several useful properties:</p>
+<div class="code-block"><pre><span class="cm"># Full response object properties</span>
+print(message.id)           <span class="cm"># Unique message ID</span>
+print(message.model)        <span class="cm"># Model used</span>
+print(message.stop_reason)  <span class="cm"># Why generation stopped</span>
+print(message.usage)        <span class="cm"># Input/output token counts</span>
+
+<span class="cm"># The actual text response</span>
+text = message.content[0].text
+print(text)</pre></div>
+
+<h2>Step 5: Using System Prompts</h2>
+<p>System prompts let you define Claude's role and behaviour for your application — this is how you build specialised AI assistants:</p>
+<div class="code-block"><pre>message = client.messages.create(
+    model=<span class="str">"claude-sonnet-4-20250514"</span>,
+    max_tokens=<span class="str">1024</span>,
+    system=<span class="str">"""You are a helpful customer service agent for TechShop. 
+You only answer questions about our products and services.
+Always be polite, professional, and concise."""</span>,
+    messages=[
+        {<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="str">"What's your return policy?"</span>}
+    ]
+)</pre></div>
+
+<h2>Step 6: Build a Multi-Turn Conversation</h2>
+<p>For chatbots, you need to send the conversation history with each request:</p>
+<div class="code-block"><pre><span class="kw">import</span> anthropic
+
+client = anthropic.Anthropic()
+conversation_history = []
+
+<span class="kw">def</span> chat(user_message):
+    <span class="cm"># Add user message to history</span>
+    conversation_history.append({
+        <span class="str">"role"</span>: <span class="str">"user"</span>, 
+        <span class="str">"content"</span>: user_message
+    })
+    
+    <span class="cm"># Send full history to Claude</span>
+    response = client.messages.create(
+        model=<span class="str">"claude-sonnet-4-20250514"</span>,
+        max_tokens=<span class="str">1024</span>,
+        messages=conversation_history
+    )
+    
+    reply = response.content[<span class="str">0</span>].text
+    
+    <span class="cm"># Add Claude's reply to history</span>
+    conversation_history.append({
+        <span class="str">"role"</span>: <span class="str">"assistant"</span>, 
+        <span class="str">"content"</span>: reply
+    })
+    
+    <span class="kw">return</span> reply
+
+<span class="cm"># Run a simple conversation loop</span>
+<span class="kw">while</span> True:
+    user_input = input(<span class="str">"You: "</span>)
+    <span class="kw">if</span> user_input.lower() == <span class="str">"quit"</span>:
+        <span class="kw">break</span>
+    print(f<span class="str">"Claude: {chat(user_input)}"</span>)</pre></div>
+
+<h2>Step 7: API Pricing (So You Don't Get a Surprise Bill)</h2>
+<table class="tool-table">
+  <thead><tr><th>Model</th><th>Input (per 1M tokens)</th><th>Output (per 1M tokens)</th><th>Best For</th></tr></thead>
+  <tbody>
+    <tr><td class="tool-name">claude-haiku-3-5</td><td>$0.80</td><td>$4.00</td><td>High-volume, simple tasks</td></tr>
+    <tr><td class="tool-name">claude-sonnet-4</td><td>$3.00</td><td>$15.00</td><td>Most applications ✓ Recommended</td></tr>
+    <tr><td class="tool-name">claude-opus-4</td><td>$15.00</td><td>$75.00</td><td>Complex reasoning tasks</td></tr>
+  </tbody>
+</table>
+<p>A typical API call with a 500-word prompt and 500-word response uses roughly 500 + 500 = 1,000 tokens. At Sonnet rates, that's about $0.003 — less than a fraction of a cent per call.</p>
+
+<h2>Common Errors and How to Fix Them</h2>
+<ul>
+  <li><strong>AuthenticationError</strong> — Your API key is wrong or not set. Check the environment variable.</li>
+  <li><strong>RateLimitError</strong> — You're making too many requests. Add retry logic with exponential backoff.</li>
+  <li><strong>InvalidRequestError</strong> — Check your message format. The messages array must alternate user/assistant roles.</li>
+  <li><strong>OverloadedError</strong> — Anthropic's servers are busy. Retry after a few seconds.</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+<h3>How much does the Claude API cost?</h3>
+<p>You pay per token (roughly per word). Claude Sonnet costs $3 per million input tokens and $15 per million output tokens. Most test calls cost fractions of a cent. Set a monthly billing limit in the Anthropic console to avoid unexpected charges.</p>
+<h3>Which Claude model should I use?</h3>
+<p>Start with <code>claude-sonnet-4-20250514</code> — it's the best balance of capability and cost for most applications. Use Haiku for high-volume simple tasks where cost matters. Use Opus only for complex tasks that genuinely need it.</p>
+<h3>Can I use the Claude API for free?</h3>
+<p>The API itself is pay-per-use with no free tier (unlike claude.ai which has a free web interface). You need to add billing, but costs are very low for development and testing.</p>
+
+<div class="related">
+  <div class="related-label">Related Articles</div>
+  <div class="related-grid">
+    <a href="best-prompts-for-anthropic-claude-ai.html" class="related-card"><span>Prompts</span><h4>Best Prompts for Anthropic Claude AI</h4></a>
+    <a href="is-anthropic-claude-good-for-coding-beginners.html" class="related-card"><span>Coding</span><h4>Is Claude Good for Coding Beginners?</h4></a>
+    <a href="how-to-use-anthropic-claude-for-blogging.html" class="related-card"><span>Claude AI</span><h4>How to Use Claude for Blogging</h4></a>
+  </div>
+</div>
+</div></main>
+<footer>
+  <span class="flogo">NeuraPulse<span style="color:var(--accent)">.</span></span>
+  <ul class="flinks">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <p class="fcopy">© 2026 NeuraPulse · Prashant Lalwani</p>
+</footer><div id="np-btn" onclick="npOpen()" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 24px rgba(0,229,255,0.4);transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"><svg width="26" height="26" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="white"/><circle cx="8" cy="12" r="1.4" fill="#7c3aed"/><circle cx="12" cy="12" r="1.4" fill="#7c3aed"/><circle cx="16" cy="12" r="1.4" fill="#7c3aed"/></svg></div>
+<div id="np-win" style="display:none;position:fixed;bottom:5.5rem;right:1.5rem;z-index:9998;width:370px;background:#0c1120;border:1px solid #1e2d45;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.6);flex-direction:column;">
+  <div style="background:linear-gradient(135deg,#111827,#1a0d3d);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e2d45;"><div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🤖</div><div><div style="font-family:Syne,sans-serif;font-weight:700;color:#e2e8f0;font-size:0.95rem;">NeuraPulse AI</div><div style="font-family:Space Mono,monospace;font-size:0.6rem;color:#00e5ff;letter-spacing:0.1em;">● ONLINE</div></div></div><button onclick="npClose()" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:1.3rem;line-height:1;">✕</button></div>
+  <div id="np-msgs" style="height:300px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;"><div style="background:#111827;border:1px solid #1e2d45;border-radius:12px 12px 12px 4px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#94a3b8;line-height:1.6;">👋 Hi! Ask me anything about Claude AI, prompts, or any topic from our blog!</div></div>
+  <div style="padding:0.8rem 1rem;border-top:1px solid #1e2d45;display:flex;gap:0.6rem;background:#050810;"><input id="np-inp" type="text" placeholder="Ask about Claude AI..." onkeydown="if(event.key==='Enter')npSend()" style="flex:1;background:#111827;border:1px solid #1e2d45;border-radius:10px;padding:0.65rem 1rem;color:#e2e8f0;font-family:DM Sans,sans-serif;font-size:0.875rem;outline:none;" onfocus="this.style.borderColor='#00e5ff'" onblur="this.style.borderColor='#1e2d45'"><button onclick="npSend()" style="width:42px;height:42px;background:linear-gradient(135deg,#7c3aed,#00e5ff);border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4 20-7z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+</div>
+<style>@keyframes npb{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}</style>
+<script>
+function npOpen(){var w=document.getElementById("np-win");w.style.display="flex";document.getElementById("np-inp").focus();}
+function npClose(){document.getElementById("np-win").style.display="none";}
+function npMsg(t,bot){var m=document.getElementById("np-msgs");var d=document.createElement("div");d.innerHTML=t;d.style.cssText=bot?"background:#111827;border:1px solid #1e2d45;border-radius:12px 12px 12px 4px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#94a3b8;line-height:1.6;":"background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(0,229,255,0.1));border:1px solid rgba(0,229,255,0.2);border-radius:12px 12px 4px 12px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#e2e8f0;line-height:1.6;align-self:flex-end;margin-left:auto;";m.appendChild(d);m.scrollTop=m.scrollHeight;}
+function npTyping(){var m=document.getElementById("np-msgs");var d=document.createElement("div");d.id="np-typ";d.style.cssText="background:#111827;border:1px solid #1e2d45;border-radius:12px;padding:0.75rem 1rem;display:flex;gap:5px;align-items:center;width:60px;";for(var i=0;i<3;i++){var s=document.createElement("span");s.style.cssText="width:7px;height:7px;border-radius:50%;background:#00e5ff;animation:npb 1s "+(i*0.2)+"s infinite;display:block;";d.appendChild(s);}m.appendChild(d);m.scrollTop=m.scrollHeight;}
+function npRmTyp(){var t=document.getElementById("np-typ");if(t)t.remove();}
+async function npSend(){var inp=document.getElementById("np-inp");var msg=inp.value.trim();if(!msg)return;npMsg(msg,false);inp.value="";npTyping();try{var r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:400,system:"You are NeuraPulse AI, assistant for neuraplus-ai.github.io — an AI blog by Prashant Lalwani. Answer helpfully and concisely in 2-3 sentences.",messages:[{role:"user",content:msg}]})});var data=await r.json();npRmTyp();var reply=data.content&&data.content[0]?data.content[0].text:"Connection issue. Please try again!";npMsg(reply,true);}catch(e){npRmTyp();npMsg("Connection issue. Browse our <a href='../blog.html' style='color:#00e5ff'>articles</a>!",true);}}
+</script><script>
+document.getElementById('hbg').addEventListener('click',function(){document.getElementById('nl').classList.toggle('open');});
+var obs=new IntersectionObserver(function(e){e.forEach(function(en,i){if(en.isIntersecting){setTimeout(function(){en.target.classList.add('vis');},60*i);obs.unobserve(en.target);}});},{threshold:0.05});
+document.querySelectorAll('.fade').forEach(function(el){obs.observe(el);});
+</script></body></html>
