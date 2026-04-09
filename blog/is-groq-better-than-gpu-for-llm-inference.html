@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="An honest analysis of whether Groq LPU is better than GPU for LLM inference — covering speed, cost, model support, batch processing, flexibility, and when each is the right choice.">
+<meta name="keywords" content="is groq better than gpu for llm inference, groq ai, groq lpu, groq vs gpu, groq inference speed, neuraplus groq">
+<meta name="author" content="Prashant Lalwani"><meta name="robots" content="index, follow">
+<meta property="og:title" content="Is Groq Better Than GPU for LLM Inference? The Complete 2026 Analysis — NeuraPulse">
+<meta property="og:description" content="An honest analysis of whether Groq LPU is better than GPU for LLM inference — covering speed, cost, model support, batch processing, flexibility, and when each is the right choice.">
+<meta property="og:url" content="https://neuraplus-ai.github.io/blog/is-groq-better-than-gpu-for-llm-inference.html">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://neuraplus-ai.github.io/blog/is-groq-better-than-gpu-for-llm-inference.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>Is Groq Better Than GPU for LLM Inference? The Complete 2026 Analysis — NeuraPulse</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Is Groq Better Than GPU for LLM Inference? The Complete 2026 Analysis","author":{"@type":"Person","name":"Prashant Lalwani"},"publisher":{"@type":"Organization","name":"NeuraPulse","url":"https://neuraplus-ai.github.io"},"datePublished":"2026-04-19","description":"An honest analysis of whether Groq LPU is better than GPU for LLM inference — covering speed, cost, model support, batch processing, flexibility, and when each is the right choice."}</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JNSQJZJDN1');</script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>:root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:#1e2d45;--accent:#00e5ff;--accent2:#7c3aed;--accent3:#f59e0b;--text:#e2e8f0;--text-dim:#64748b;--text-muted:#334155;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(5,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
+.ld{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pd 2s ease-in-out infinite;}@keyframes pd{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.nav-links{display:flex;gap:2rem;list-style:none;}.nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s;}.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+.nav-cta{font-family:'Space Mono',monospace;font-size:0.72rem;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.5rem 1.2rem;border-radius:4px;text-decoration:none;}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}.hbg span{display:block;width:22px;height:2px;background:var(--text-dim);border-radius:2px;}
+.art-hero{padding:8rem 3rem 2.5rem;max-width:860px;margin:0 auto;}
+.art-tag{font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
+.art-tag::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.art-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.9rem,4vw,3rem);letter-spacing:-0.03em;line-height:1.15;margin-bottom:1.5rem;}
+.art-meta{display:flex;align-items:center;gap:1rem;margin-bottom:0;flex-wrap:wrap;}
+.art-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.7rem;color:white;flex-shrink:0;}
+.art-author{font-weight:600;font-size:0.9rem;}.art-date{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);}
+.art-badge{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:100px;border:1px solid var(--border);color:var(--text-dim);}
+.art-img{width:100%;max-width:860px;margin:2rem auto;padding:0 3rem;}
+.art-img svg{width:100%;height:auto;border-radius:14px;display:block;}
+.art-body{max-width:860px;margin:0 auto;padding:0 3rem 5rem;}
+.art-body p{margin-bottom:1.5rem;color:var(--text-dim);font-size:1.05rem;line-height:1.8;}
+.art-body h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.55rem;letter-spacing:-0.02em;margin:2.5rem 0 1rem;color:var(--text);}
+.art-body h3{font-family:'Syne',sans-serif;font-weight:600;font-size:1.1rem;margin:2rem 0 0.75rem;color:var(--text);}
+.art-body ul,.art-body ol{margin:0 0 1.5rem 1.5rem;color:var(--text-dim);font-size:1.05rem;line-height:1.8;}
+.art-body li{margin-bottom:0.5rem;}
+.art-body strong{color:var(--text);font-weight:600;}
+.art-body em{color:var(--accent);font-style:normal;}
+.art-body a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,229,255,0.3);}.art-body a:hover{border-color:var(--accent);}
+.callout{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:1.25rem 1.5rem;margin:2rem 0;}
+.callout.purple{border-left-color:var(--accent2);}
+.callout.amber{border-left-color:var(--accent3);}
+.callout p{margin:0;color:var(--text-dim);font-size:0.95rem;}
+.code-block{background:#060b18;border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin:1.5rem 0;overflow-x:auto;}
+.code-block pre{font-family:'Space Mono',monospace;font-size:0.8rem;line-height:1.75;color:#94a3b8;margin:0;white-space:pre;}
+.tool-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.9rem;}
+.tool-table th{font-family:'Space Mono',monospace;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);padding:0.75rem 1rem;border-bottom:2px solid var(--border);text-align:left;}
+.tool-table td{padding:0.85rem 1rem;border-bottom:1px solid var(--border);color:var(--text-dim);vertical-align:top;}
+.tool-table tr:hover td{background:var(--surface2);}
+.tool-table strong{color:var(--text);}
+.related{border-top:1px solid var(--border);padding-top:3rem;margin-top:1rem;}
+.rel-label{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;}
+.rel-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.rel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+.rel-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;display:block;}
+.rel-card:hover{border-color:var(--accent);transform:translateY(-3px);}
+.rel-card span{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:0.5rem;}
+.rel-card h4{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;line-height:1.3;color:var(--text);}
+footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.flogo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--text);}
+.flinks{display:flex;gap:2rem;list-style:none;}.flinks a{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;}.flinks a:hover{color:var(--accent);}
+.fcopy{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-muted);}
+.fade{opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s;}.fade.vis{opacity:1;transform:translateY(0);}
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(5,8,16,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}.hbg{display:flex;}.art-hero,.art-img,.art-body{padding-left:1.5rem;padding-right:1.5rem;}.rel-grid{grid-template-columns:1fr;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}}</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<nav>
+  <a href="../index.html" class="logo"><span class="ld"></span>NeuraPulse</a>
+  <ul class="nav-links" id="nl"><li><a href="../index.html">Home</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li></ul>
+  <a href="../contact.html" class="nav-cta">Subscribe</a>
+  <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+</nav>
+<main>
+<div class="art-hero fade">
+  <div class="art-tag">Groq AI · LPU Performance</div>
+  <h1>Is Groq Better Than GPU for LLM Inference? The Complete 2026 Analysis</h1>
+  <div class="art-meta">
+    <div class="art-av">PL</div>
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <span class="art-author">Prashant Lalwani</span>
+      <span class="art-date">2026-04-19 · 14 min read</span>
+    </div>
+    <span class="art-badge">Groq AI</span>
+    <span class="art-badge">Groq AI</span>
+  </div>
+</div>
+
+<div class="art-img fade">
+  <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <defs><linearGradient id="sbg6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#050810"/><stop offset="100%" stop-color="#0c1120"/></linearGradient><linearGradient id="gbar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00e5ff"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
+  <rect width="900" height="420" fill="url(#sbg6)"/>
+  <text x="60" y="65" font-family="Syne,sans-serif" font-size="14" fill="#64748b" font-weight="700">TOKENS PER SECOND — LLM INFERENCE BENCHMARK</text>
+  <!-- Bars -->
+  <text x="60" y="115" font-family="Space Mono,monospace" font-size="10" fill="#00e5ff">Groq LPU</text>
+  <rect x="200" y="100" width="600" height="28" rx="5" fill="url(#gbar)"/>
+  <text x="815" y="119" font-family="Space Mono,monospace" font-size="11" fill="#00e5ff">800</text>
+  <text x="60" y="165" font-family="Space Mono,monospace" font-size="10" fill="#64748b">H100 GPU</text>
+  <rect x="200" y="150" width="150" height="28" rx="5" fill="rgba(100,116,139,0.35)"/>
+  <text x="365" y="169" font-family="Space Mono,monospace" font-size="11" fill="#64748b">200</text>
+  <text x="60" y="215" font-family="Space Mono,monospace" font-size="10" fill="#64748b">A100 GPU</text>
+  <rect x="200" y="200" width="60" height="28" rx="5" fill="rgba(100,116,139,0.3)"/>
+  <text x="275" y="219" font-family="Space Mono,monospace" font-size="11" fill="#64748b">80</text>
+  <text x="60" y="265" font-family="Space Mono,monospace" font-size="10" fill="#64748b">RTX 4090</text>
+  <rect x="200" y="250" width="90" height="28" rx="5" fill="rgba(100,116,139,0.25)"/>
+  <text x="305" y="269" font-family="Space Mono,monospace" font-size="11" fill="#64748b">120</text>
+  <text x="60" y="315" font-family="Space Mono,monospace" font-size="10" fill="#64748b">CPU (i9)</text>
+  <rect x="200" y="300" width="4" height="28" rx="2" fill="rgba(100,116,139,0.3)"/>
+  <text x="220" y="319" font-family="Space Mono,monospace" font-size="11" fill="#334155">2–5</text>
+  <!-- Summary box -->
+  <rect x="60" y="355" width="780" height="45" rx="10" fill="rgba(0,229,255,0.04)" stroke="rgba(0,229,255,0.15)" stroke-width="1"/>
+  <text x="90" y="377" font-family="Syne,sans-serif" font-size="13" fill="#00e5ff" font-weight="700">Groq LPU: 4–400x faster than alternatives for LLM inference</text>
+  <text x="90" y="393" font-family="DM Sans,sans-serif" font-size="11" fill="#64748b">Model: Llama 3.1 70B · Measured: tokens per second · Source: GroqCloud benchmarks</text>
+  <text x="450" y="412" font-family="Space Mono,monospace" font-size="0" fill="transparent">space</text>
+</svg>
+</div>
+
+<div class="art-body fade">
+
+<p>For real-time LLM inference, Groq is definitively faster than any GPU solution available today. But "better" depends on your workload. Here is an honest, complete analysis.</p>
+
+<div class="callout">
+  <p><strong>Quick Access:</strong> Get a free Groq API key at <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com/keys</a> — no credit card needed. Starts with <code>gsk_...</code>. 14,400 free requests per day.</p>
+</div>
+
+<h2>Where Groq Is Clearly Better Than GPU</h2>
+<p><ul><li><strong>Real-time inference speed:</strong> 750+ tok/s vs 40–200 tok/s — no contest</li><li><strong>Time to first token:</strong> 50–150ms vs 200ms–2s</li><li><strong>Latency consistency:</strong> Groq's deterministic execution gives <em>predictable</em> latency; GPUs vary</li><li><strong>Cost per token at equivalent quality:</strong> Groq Llama 70B is 4–15x cheaper than GPU-hosted GPT-4o</li><li><strong>Simplicity:</strong> Groq's API is clean, well-documented, no infrastructure management</li></ul></p>
+<h2>Where GPU Still Wins Over Groq</h2>
+<p><ul><li><strong>Model flexibility:</strong> GPUs run virtually any model architecture; Groq supports only specific models</li><li><strong>Training:</strong> Groq LPU is not designed for training — GPUs (especially H100s) are still essential</li><li><strong>Fine-tuning:</strong> Custom model fine-tuning requires GPU infrastructure</li><li><strong>Multimodal models:</strong> GPT-4o vision, image generation — GPU-native workloads</li><li><strong>Batch throughput:</strong> For very large batch jobs (not real-time), GPU clusters can match or exceed LPU throughput</li></ul></p>
+<h2>Speed Benchmark: Groq vs Top GPUs</h2>
+<p><table class="tool-table"><thead><tr><th>Hardware</th><th>Model</th><th>Tokens/sec</th><th>Cost/1M tokens</th></tr></thead><tbody><tr><td><strong>Groq LPU</strong></td><td>Llama 3.1 70B</td><td><strong>780</strong></td><td><strong>$0.79</strong></td></tr><tr><td>NVIDIA H100 (cloud)</td><td>Llama 3.1 70B</td><td>150</td><td>~$2.00</td></tr><tr><td>NVIDIA A100 (cloud)</td><td>Llama 3.1 70B</td><td>70</td><td>~$1.50</td></tr><tr><td>NVIDIA RTX 4090 (local)</td><td>Llama 3.1 8B</td><td>120</td><td>Hardware cost</td></tr></tbody></table></p>
+<h2>The Right Mental Model</h2>
+<p>Think of Groq vs GPU like this: a specialised sports car vs a general-purpose vehicle.
+
+<p>If your workload is <strong>real-time text generation</strong> (chatbots, autocomplete, agents, voice AI), Groq is the sports car — dramatically better at the specific task.
+
+If your workload is <strong>training, fine-tuning, image generation, or multimodal</strong> tasks, you need a GPU — the general-purpose vehicle that can handle everything.</p></p>
+<h2>Our Recommendation for 2026</h2>
+<p>For most <strong>inference-heavy applications</strong>:
+<ol><li>Use <strong>Groq</strong> for your production inference API — faster, cheaper, simpler</li><li>Use <strong>GPU cloud</strong> (AWS/GCP/Azure) for any training or fine-tuning you need</li><li>Keep a <strong>GPU fallback</strong> (OpenAI or Anthropic API) for model types Groq does not support</li></ol>
+<p>This hybrid approach gives you Groq's speed advantage for 90% of inference while keeping GPU flexibility for specialised tasks.</p></p>
+
+
+<h2>Tools Referenced in This Article</h2>
+<ul>
+<li><strong>Groq LPU</strong></li>
+<li><strong>NVIDIA H100</strong></li>
+<li><strong>NVIDIA A100</strong></li>
+<li><strong>GroqCloud</strong></li>
+<li><strong>AWS EC2</strong></li>
+</ul>
+
+<div class="callout purple">
+  <p><strong>Related Reading:</strong> Explore all our Groq AI articles on <a href="../blog.html">the NeuraPulse blog</a> — covering LPU architecture, benchmarks, use cases, and developer guides.</p>
+</div>
+
+<div class="related">
+  <div class="rel-label">Read Next — Groq AI Series</div>
+  <div class="rel-grid">
+<a href="groq-ai-vs-google-tpu-comparison.html" class="rel-card">
+      <span>Groq AI</span>
+      <h4>Groq AI vs Google TPU Comparison</h4>
+    </a>
+<a href="groq-ai-vs-cpu-performance-difference.html" class="rel-card">
+      <span>Groq AI</span>
+      <h4>Groq AI vs CPU Performance Difference</h4>
+    </a>
+<a href="benefits-of-groq-lpu-architecture.html" class="rel-card">
+      <span>Groq AI</span>
+      <h4>Benefits of Groq LPU Architecture</h4>
+    </a>
+<a href="how-groq-reduces-ai-response-time.html" class="rel-card">
+      <span>Groq AI</span>
+      <h4>How Groq Reduces AI Response Time</h4>
+    </a>
+
+  </div>
+</div>
+
+</div>
+</main>
+<footer>
+  <span class="flogo">NeuraPulse<span style="color:var(--accent)">.</span></span>
+  <ul class="flinks"><li><a href="../index.html">Home</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li></ul>
+  <p class="fcopy">© 2026 NeuraPulse · Prashant Lalwani</p>
+</footer>
+<div id="np-btn" onclick="npOpen()" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 24px rgba(0,229,255,0.4);transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"><svg width="26" height="26" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="white"/><circle cx="8" cy="12" r="1.4" fill="#7c3aed"/><circle cx="12" cy="12" r="1.4" fill="#7c3aed"/><circle cx="16" cy="12" r="1.4" fill="#7c3aed"/></svg></div>
+<div id="np-win" style="display:none;position:fixed;bottom:5.5rem;right:1.5rem;z-index:9998;width:370px;background:#0c1120;border:1px solid #1e2d45;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.6);flex-direction:column;">
+  <div style="background:linear-gradient(135deg,#111827,#1a0d3d);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e2d45;"><div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🤖</div><div><div style="font-family:Syne,sans-serif;font-weight:700;color:#e2e8f0;font-size:0.95rem;">NeuraPulse AI</div><div style="font-family:Space Mono,monospace;font-size:0.6rem;color:#00e5ff;letter-spacing:0.1em;">● ONLINE</div></div></div><button onclick="npClose()" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:1.3rem;line-height:1;">✕</button></div>
+  <div id="np-msgs" style="height:280px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;"><div style="background:#111827;border:1px solid #1e2d45;border-radius:12px 12px 12px 4px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#94a3b8;line-height:1.6;">👋 Ask me anything about Groq AI, LPU architecture, speed benchmarks, or any topic from this blog!</div></div>
+  <div style="padding:0.8rem 1rem;border-top:1px solid #1e2d45;display:flex;gap:0.6rem;background:#050810;"><input id="np-inp" type="text" placeholder="Ask about Groq AI..." onkeydown="if(event.key==='Enter')npSend()" style="flex:1;background:#111827;border:1px solid #1e2d45;border-radius:10px;padding:0.65rem 1rem;color:#e2e8f0;font-family:DM Sans,sans-serif;font-size:0.875rem;outline:none;" onfocus="this.style.borderColor='#00e5ff'" onblur="this.style.borderColor='#1e2d45'"><button onclick="npSend()" style="width:42px;height:42px;background:linear-gradient(135deg,#7c3aed,#00e5ff);border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4 20-7z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+</div>
+<style>@keyframes npb{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}</style>
+<script>
+function npOpen(){var w=document.getElementById("np-win");w.style.display="flex";document.getElementById("np-inp").focus();}
+function npClose(){document.getElementById("np-win").style.display="none";}
+function npMsg(t,bot){var m=document.getElementById("np-msgs");var d=document.createElement("div");d.innerHTML=t;d.style.cssText=bot?"background:#111827;border:1px solid #1e2d45;border-radius:12px 12px 12px 4px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#94a3b8;line-height:1.6;":"background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(0,229,255,0.1));border:1px solid rgba(0,229,255,0.2);border-radius:12px 12px 4px 12px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#e2e8f0;line-height:1.6;align-self:flex-end;margin-left:auto;";m.appendChild(d);m.scrollTop=m.scrollHeight;}
+function npTyping(){var m=document.getElementById("np-msgs");var d=document.createElement("div");d.id="np-typ";d.style.cssText="background:#111827;border:1px solid #1e2d45;border-radius:12px;padding:0.75rem 1rem;display:flex;gap:5px;align-items:center;width:60px;";for(var i=0;i<3;i++){var s=document.createElement("span");s.style.cssText="width:7px;height:7px;border-radius:50%;background:#00e5ff;animation:npb 1s "+(i*0.2)+"s infinite;display:block;";d.appendChild(s);}m.appendChild(d);m.scrollTop=m.scrollHeight;}
+function npRmTyp(){var t=document.getElementById("np-typ");if(t)t.remove();}
+async function npSend(){var inp=document.getElementById("np-inp");var msg=inp.value.trim();if(!msg)return;npMsg(msg,false);inp.value="";npTyping();try{var r=await fetch("https://api.groq.com/openai/v1/chat/completions",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer YOUR_GROQ_KEY_HERE"},body:JSON.stringify({model:"llama-3.1-70b-versatile",messages:[{role:"system",content:"You are NeuraPulse AI, an expert on Groq AI technology, LPU architecture, and AI infrastructure. Answer helpfully in 2-3 sentences."},{role:"user",content:msg}],max_tokens:200})});var d=await r.json();npRmTyp();var reply=d.choices&&d.choices[0]?d.choices[0].message.content:"Connection issue. Please try again!";npMsg(reply,true);}catch(e){npRmTyp();npMsg("Browse our <a href='../blog.html' style='color:#00e5ff'>Groq AI articles</a>!",true);}}
+</script>
+<script>document.getElementById('hbg').addEventListener('click',function(){document.getElementById('nl').classList.toggle('open');});
+var obs=new IntersectionObserver(function(e){e.forEach(function(en,i){if(en.isIntersecting){setTimeout(function(){en.target.classList.add('vis');},60*i);obs.unobserve(en.target);}});},{threshold:0.05});
+document.querySelectorAll('.fade').forEach(function(el){obs.observe(el);});</script>
+</body>
+</html>

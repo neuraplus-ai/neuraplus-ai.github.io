@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="What is the Groq chip and how does it work? Complete explanation of the LPU architecture, SRAM design, deterministic dataflow, and why it delivers 800+ tokens per second.">
+<meta name="keywords" content="what is groq chip how it works, groq LPU architecture explained, groq language processing unit, groq chip technology, NeuraPulse, Groq AI">
+<meta name="author" content="Prashant Lalwani"><meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What Is the Groq Chip and How It Works: LPU Architecture Explained — NeuraPulse">
+<meta property="og:description" content="What is the Groq chip and how does it work? Complete explanation of the LPU architecture, SRAM design, deterministic dataflow, and why it delivers 800+ tokens per second.">
+<meta property="og:url" content="https://neuraplus-ai.github.io/blog/what-is-groq-chip-how-it-works.html">
+<link rel="canonical" href="https://neuraplus-ai.github.io/blog/what-is-groq-chip-how-it-works.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>What Is the Groq Chip and How It Works: LPU Architecture Explained — NeuraPulse</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"What Is the Groq Chip and How It Works: LPU Architecture Explained","author":{"@type":"Person","name":"Prashant Lalwani"},"publisher":{"@type":"Organization","name":"NeuraPulse"},"datePublished":"2026-04-09","url":"https://neuraplus-ai.github.io/blog/what-is-groq-chip-how-it-works.html"}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JNSQJZJDN1');</script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>:root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:#1e2d45;--accent:#00e5ff;--accent2:#7c3aed;--accent3:#f59e0b;--text:#e2e8f0;--text-dim:#64748b;--text-muted:#334155;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
+.pb{position:fixed;top:68px;left:0;height:3px;background:var(--accent);z-index:99;transition:width 0.1s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(5,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}.ld{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pd 2s ease-in-out infinite;}@keyframes pd{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.nav-links{display:flex;gap:2rem;list-style:none;}.nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s;}.nav-links a:hover{color:var(--accent);}
+.nav-cta{font-family:'Space Mono',monospace;font-size:0.72rem;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.5rem 1.2rem;border-radius:4px;text-decoration:none;transition:box-shadow 0.2s;}.nav-cta:hover{box-shadow:0 0 20px rgba(0,229,255,0.4);}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}.hbg span{display:block;width:22px;height:2px;background:var(--text-dim);border-radius:2px;}
+.layout{display:grid;grid-template-columns:1fr 300px;gap:3rem;max-width:1200px;margin:0 auto;padding:7rem 2rem 5rem;}
+.bc-nav{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:2rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;}.bc-nav a{color:var(--text-dim);text-decoration:none;}.bc-nav a:hover{color:var(--accent);}
+.acat{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:3px;display:inline-block;margin-bottom:1.5rem;}
+.c1{color:var(--accent);background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.2);}
+.c2{color:#a78bfa;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.2);}
+.c3{color:var(--accent3);background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);}
+.c4{color:#34d399;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);}
+.hero-img{width:100%;border-radius:14px;overflow:hidden;margin-bottom:2.5rem;border:1px solid var(--border);}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.04em;line-height:1.1;margin-bottom:1.5rem;}
+.meta{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;color:white;flex-shrink:0;}
+.mi{flex:1;}.mn{font-size:0.95rem;font-weight:500;display:block;}.md{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);display:block;}
+.tgs{display:flex;gap:0.5rem;flex-wrap:wrap;}.tg{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);border:1px solid var(--border);padding:0.2rem 0.6rem;border-radius:3px;}
+.cnt h2{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;letter-spacing:-0.03em;margin:3rem 0 1rem;}
+.cnt h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin:2rem 0 0.75rem;color:var(--accent);}
+.cnt p{color:var(--text-dim);margin-bottom:1.5rem;font-size:1.05rem;line-height:1.8;}.cnt strong{color:var(--text);}
+.cnt ul,.cnt ol{color:var(--text-dim);margin:1rem 0 1.5rem 1.5rem;font-size:1.05rem;}.cnt li{margin-bottom:0.75rem;line-height:1.8;}
+.cnt a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,229,255,0.3);}.cnt a:hover{border-bottom-color:var(--accent);}
+.cnt-img{width:100%;border-radius:10px;overflow:hidden;margin:2rem 0;border:1px solid var(--border);}
+.cnt-img figcaption{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);text-align:center;padding:0.75rem;background:var(--surface);border-top:1px solid var(--border);}
+.callout{background:var(--surface);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:1.5rem 2rem;margin:2rem 0;}.callout p{color:var(--text);margin:0;}
+.callout.warn{border-left-color:var(--accent3);}.callout.prp{border-left-color:var(--accent2);}.callout.grn{border-left-color:#34d399;}
+.spec-table{width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.9rem;}
+.spec-table th{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:var(--surface);padding:0.9rem 1rem;text-align:left;border-bottom:2px solid var(--border);}
+.spec-table td{padding:0.85rem 1rem;border-bottom:1px solid var(--border);color:var(--text-dim);}
+.spec-table tr:hover td{background:var(--surface);}
+.spec-table td:first-child{color:var(--text);font-weight:500;}
+.win{color:#34d399;font-weight:600;}
+.code-blk{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin:2rem 0;font-family:'Space Mono',monospace;font-size:0.85rem;color:#a78bfa;overflow-x:auto;line-height:1.8;white-space:pre;}
+.code-blk .co{color:#64748b;}
+.code-blk .kw{color:#a78bfa;}
+.code-blk .fn{color:#34d399;}
+.code-blk .st{color:#f59e0b;}
+.code-blk .cm{color:#475569;}
+.ilb{background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.2);border-radius:12px;padding:1.5rem 2rem;margin:2.5rem 0;}
+.ilb-lbl{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:block;}
+.ilb h4{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;color:var(--text);}
+.ilb p{font-size:0.9rem;color:var(--text-dim);margin-bottom:0.75rem;}
+.ilb a{color:var(--accent);font-size:0.875rem;text-decoration:none;display:inline-block;border:none!important;}
+.stat-box{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0;}
+.stat-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem;text-align:center;}
+.stat-n{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--accent);display:block;}
+.stat-l{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);}
+.faq-wrap{margin:3rem 0;}
+.faq-item{border:1px solid var(--border);border-radius:8px;margin-bottom:0.75rem;overflow:hidden;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.5rem;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;color:var(--text);background:var(--surface);user-select:none;transition:background 0.2s;}
+.faq-q:hover{background:var(--surface2);}
+.faq-ic{font-size:1.3rem;color:var(--accent);transition:transform 0.3s;flex-shrink:0;margin-left:1rem;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;}
+.faq-a.open{max-height:500px;padding:1.2rem 1.5rem;border-top:1px solid var(--border);}
+.faq-a p{color:var(--text-dim);font-size:0.95rem;margin:0;line-height:1.7;}
+.shr-box{margin:3rem 0;padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center;}
+.shr-box h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem;}
+.shr-btns{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;}
+.sbtn{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.6rem 1.4rem;border-radius:4px;text-decoration:none;border:1px solid var(--border);color:var(--text-dim);transition:all 0.2s;cursor:pointer;background:none;}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);}
+.rp{margin:3rem 0;}.rp h2{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.rc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;display:block;}
+.rc:hover{border-color:var(--accent);transform:translateY(-2px);}
+.rc .rcat{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;display:block;}
+.rc h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;line-height:1.3;}
+.sb{position:sticky;top:90px;height:fit-content;}
+.sbc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
+.sbt{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:block;}
+.toc{list-style:none;}.toc li{margin-bottom:0.5rem;}.toc a{font-size:0.85rem;color:var(--text-dim);text-decoration:none;transition:color 0.2s;display:block;padding:0.25rem 0;border-bottom:1px solid var(--border);}.toc a:hover{color:var(--accent);}
+.rmini{display:flex;flex-direction:column;gap:0.6rem;}.rmc{text-decoration:none;color:inherit;padding:0.65rem 0.75rem;border:1px solid var(--border);border-radius:8px;transition:border-color 0.2s;display:block;}.rmc:hover{border-color:var(--accent);}
+.rmc .cat{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.2rem;display:block;}
+.rmc h4{font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;line-height:1.3;}
+.nl-sb{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(0,229,255,0.05));border:1px solid rgba(0,229,255,0.2);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
+.nl-sb h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.5rem;}.nl-sb p{font-size:0.8rem;color:var(--text-dim);margin-bottom:1rem;}
+.nl-sb input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0.7rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.85rem;outline:none;margin-bottom:0.75rem;transition:border-color 0.2s;}.nl-sb input:focus{border-color:var(--accent);}
+.nl-sb button{width:100%;font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.7rem;border-radius:4px;border:none;cursor:pointer;}
+footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.flogo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--text);}
+.flinks{display:flex;gap:2rem;list-style:none;}.flinks a{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;}.flinks a:hover{color:var(--accent);}
+.fcopy{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-muted);}
+@media(max-width:1000px){.layout{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;}.sb{display:none;}.stat-box{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(5,8,16,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}.hbg{display:flex;}.rg{grid-template-columns:1fr;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}}</style>
+</head>
+<body>
+<div class="pb" id="pb"></div>
+<nav>
+  <a href="../index.html" class="logo"><span class="ld"></span>NeuraPulse</a>
+  <ul class="nav-links" id="nl">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <a href="../contact.html" class="nav-cta">Subscribe</a>
+  <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+</nav>
+<main>
+<div class="layout">
+<article>
+  <div class="bc-nav">
+    <a href="../index.html">Home</a> ›
+    <a href="../blog.html">Blog</a> ›
+    <span>Groq AI</span>
+  </div>
+  <span class="acat c1">Groq AI</span>
+  <h1>What Is the Groq Chip and How It Works: LPU Architecture Explained</h1>
+  <div class="meta">
+    <div class="av">PL</div>
+    <div class="mi">
+      <span class="mn">Prashant Lalwani</span>
+      <span class="md">2026-04-09 · NeuraPulse · neuraplus-ai.github.io</span>
+    </div>
+    <div class="tgs">
+      <span class="tg">14 min read</span>
+      <span class="tg">Groq Chip</span>
+      <span class="tg">LPU Architecture</span>
+    </div>
+  </div>
+  <figure class="hero-img"><svg viewBox="0 0 860 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;background:#050810;">
+  <defs>
+    <linearGradient id="chipgrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(0,229,255,0.2)"/><stop offset="100%" stop-color="rgba(124,58,237,0.2)"/></linearGradient>
+    <filter id="glow2"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="860" height="400" fill="#050810"/>
+
+  <!-- Left: LPU chip diagram -->
+  <text x="30" y="40" font-family="Syne,sans-serif" font-size="16" fill="#e2e8f0" font-weight="800">What Is a Groq LPU Chip?</text>
+  <text x="30" y="60" font-family="Space Mono,monospace" font-size="10" fill="#64748b" letter-spacing="2">LANGUAGE PROCESSING UNIT — ARCHITECTURE OVERVIEW</text>
+
+  <!-- Main chip body -->
+  <rect x="40" y="85" width="340" height="280" rx="16" fill="url(#chipgrad)" stroke="rgba(0,229,255,0.4)" stroke-width="2"/>
+  <!-- Chip grid internal -->
+  <rect x="65" y="110" width="290" height="230" rx="8" fill="rgba(5,8,16,0.6)" stroke="rgba(0,229,255,0.2)" stroke-width="1"/>
+
+  <!-- TSP cores grid -->
+  <text x="210" y="132" font-family="Space Mono,monospace" font-size="9" fill="#00e5ff" text-anchor="middle" letter-spacing="2">TENSOR STREAMING PROCESSORS</text>
+  <!-- Core cells -->
+  <rect x="78" y="140" width="40" height="30" rx="5" fill="rgba(0,229,255,0.15)" stroke="rgba(0,229,255,0.4)" stroke-width="1"/>
+  <text x="98" y="159" font-family="Space Mono,monospace" font-size="7" fill="#00e5ff" text-anchor="middle">TSP</text>
+  <rect x="126" y="140" width="40" height="30" rx="5" fill="rgba(0,229,255,0.15)" stroke="rgba(0,229,255,0.4)" stroke-width="1"/>
+  <text x="146" y="159" font-family="Space Mono,monospace" font-size="7" fill="#00e5ff" text-anchor="middle">TSP</text>
+  <rect x="174" y="140" width="40" height="30" rx="5" fill="rgba(0,229,255,0.15)" stroke="rgba(0,229,255,0.4)" stroke-width="1"/>
+  <text x="194" y="159" font-family="Space Mono,monospace" font-size="7" fill="#00e5ff" text-anchor="middle">TSP</text>
+  <rect x="222" y="140" width="40" height="30" rx="5" fill="rgba(0,229,255,0.15)" stroke="rgba(0,229,255,0.4)" stroke-width="1"/>
+  <text x="242" y="159" font-family="Space Mono,monospace" font-size="7" fill="#00e5ff" text-anchor="middle">TSP</text>
+  <rect x="270" y="140" width="40" height="30" rx="5" fill="rgba(0,229,255,0.15)" stroke="rgba(0,229,255,0.4)" stroke-width="1"/>
+  <text x="290" y="159" font-family="Space Mono,monospace" font-size="7" fill="#00e5ff" text-anchor="middle">TSP</text>
+  <rect x="78" y="178" width="40" height="30" rx="5" fill="rgba(0,229,255,0.12)" stroke="rgba(0,229,255,0.35)" stroke-width="1"/>
+  <text x="98" y="197" font-family="Space Mono,monospace" font-size="7" fill="#00e5ff" text-anchor="middle">TSP</text>
+  <rect x="126" y="178" width="40" height="30" rx="5" fill="rgba(0,229,255,0.12)" stroke="rgba(0,229,255,0.35)" stroke-width="1"/>
+  <text x="146" y="197" font-family="Space Mono,monospace" font-size="7" fill="#00e5ff" text-anchor="middle">TSP</text>
+  <rect x="174" y="178" width="40" height="30" rx="5" fill="rgba(0,229,255,0.12)" stroke="rgba(0,229,255,0.35)" stroke-width="1"/>
+  <text x="194" y="197" font-family="Space Mono,monospace" font-size="7" fill="#00e5ff" text-anchor="middle">TSP</text>
+  <rect x="222" y="178" width="40" height="30" rx="5" fill="rgba(0,229,255,0.12)" stroke="rgba(0,229,255,0.35)" stroke-width="1"/>
+  <text x="242" y="197" font-family="Space Mono,monospace" font-size="7" fill="#00e5ff" text-anchor="middle">TSP</text>
+  <rect x="270" y="178" width="40" height="30" rx="5" fill="rgba(0,229,255,0.12)" stroke="rgba(0,229,255,0.35)" stroke-width="1"/>
+  <text x="290" y="197" font-family="Space Mono,monospace" font-size="7" fill="#00e5ff" text-anchor="middle">TSP</text>
+
+  <!-- SRAM memory bar -->
+  <text x="210" y="228" font-family="Space Mono,monospace" font-size="9" fill="#a78bfa" text-anchor="middle" letter-spacing="1">ON-CHIP SRAM — 230MB TOTAL</text>
+  <rect x="78" y="233" width="232" height="22" rx="5" fill="rgba(124,58,237,0.25)" stroke="rgba(124,58,237,0.5)" stroke-width="1.5"/>
+  <text x="194" y="249" font-family="Space Mono,monospace" font-size="8" fill="#a78bfa" text-anchor="middle">SRAM MEMORY FABRIC</text>
+
+  <!-- Interconnect -->
+  <text x="210" y="278" font-family="Space Mono,monospace" font-size="9" fill="#34d399" text-anchor="middle" letter-spacing="1">DETERMINISTIC DATAFLOW ENGINE</text>
+  <rect x="78" y="283" width="232" height="22" rx="5" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1.5"/>
+  <text x="194" y="299" font-family="Space Mono,monospace" font-size="8" fill="#34d399" text-anchor="middle">COMPILER SCHEDULED EXECUTION</text>
+
+  <!-- I/O -->
+  <rect x="78" y="318" width="105" height="22" rx="5" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)" stroke-width="1"/>
+  <text x="130" y="334" font-family="Space Mono,monospace" font-size="8" fill="#f59e0b" text-anchor="middle">PCIe 5.0 I/O</text>
+  <rect x="207" y="318" width="103" height="22" rx="5" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)" stroke-width="1"/>
+  <text x="258" y="334" font-family="Space Mono,monospace" font-size="8" fill="#f59e0b" text-anchor="middle">CHIP-CHIP LINK</text>
+
+  <!-- Chip label -->
+  <text x="210" y="360" font-family="Syne,sans-serif" font-size="13" fill="#e2e8f0" text-anchor="middle" font-weight="700">GROQ GroqChip™ (LPU-1)</text>
+
+  <!-- Right: Key stats -->
+  <rect x="420" y="85" width="200" height="280" rx="14" fill="rgba(12,17,32,0.95)" stroke="rgba(0,229,255,0.25)" stroke-width="1.5"/>
+  <text x="520" y="115" font-family="Syne,sans-serif" font-size="13" fill="#00e5ff" text-anchor="middle" font-weight="800">LPU KEY SPECS</text>
+  <line x1="435" y1="125" x2="605" y2="125" stroke="#1e2d45" stroke-width="1"/>
+  <text x="435" y="148" font-family="Space Mono,monospace" font-size="9" fill="#64748b">Architecture</text>
+  <text x="605" y="148" font-family="Syne,sans-serif" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="600">TSP</text>
+  <line x1="435" y1="158" x2="605" y2="158" stroke="#1e2d45" stroke-width="1"/>
+  <text x="435" y="178" font-family="Space Mono,monospace" font-size="9" fill="#64748b">Process</text>
+  <text x="605" y="178" font-family="Syne,sans-serif" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="600">TSMC 14nm</text>
+  <line x1="435" y1="188" x2="605" y2="188" stroke="#1e2d45" stroke-width="1"/>
+  <text x="435" y="208" font-family="Space Mono,monospace" font-size="9" fill="#64748b">On-chip SRAM</text>
+  <text x="605" y="208" font-family="Syne,sans-serif" font-size="10" fill="#00e5ff" text-anchor="end" font-weight="600">230 MB</text>
+  <line x1="435" y1="218" x2="605" y2="218" stroke="#1e2d45" stroke-width="1"/>
+  <text x="435" y="238" font-family="Space Mono,monospace" font-size="9" fill="#64748b">Bandwidth</text>
+  <text x="605" y="238" font-family="Syne,sans-serif" font-size="10" fill="#00e5ff" text-anchor="end" font-weight="600">80 TB/s</text>
+  <line x1="435" y1="248" x2="605" y2="248" stroke="#1e2d45" stroke-width="1"/>
+  <text x="435" y="268" font-family="Space Mono,monospace" font-size="9" fill="#64748b">LLaMA-3 70B</text>
+  <text x="605" y="268" font-family="Syne,sans-serif" font-size="10" fill="#34d399" text-anchor="end" font-weight="600">800 tok/s</text>
+  <line x1="435" y1="278" x2="605" y2="278" stroke="#1e2d45" stroke-width="1"/>
+  <text x="435" y="298" font-family="Space Mono,monospace" font-size="9" fill="#64748b">Latency</text>
+  <text x="605" y="298" font-family="Syne,sans-serif" font-size="10" fill="#34d399" text-anchor="end" font-weight="600">Deterministic</text>
+  <line x1="435" y1="308" x2="605" y2="308" stroke="#1e2d45" stroke-width="1"/>
+  <text x="435" y="328" font-family="Space Mono,monospace" font-size="9" fill="#64748b">Chips/system</text>
+  <text x="605" y="328" font-family="Syne,sans-serif" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="600">up to 576</text>
+  <line x1="435" y1="338" x2="605" y2="338" stroke="#1e2d45" stroke-width="1"/>
+  <text x="435" y="355" font-family="Space Mono,monospace" font-size="9" fill="#64748b">DRAM</text>
+  <text x="605" y="355" font-family="Syne,sans-serif" font-size="10" fill="#f59e0b" text-anchor="end" font-weight="600">None (SRAM only)</text>
+
+  <!-- Groq logo area -->
+  <rect x="645" y="85" width="190" height="280" rx="14" fill="rgba(12,17,32,0.95)" stroke="rgba(124,58,237,0.3)" stroke-width="1.5"/>
+  <text x="740" y="145" font-family="Syne,sans-serif" font-size="36" fill="#00e5ff" text-anchor="middle" font-weight="800">G</text>
+  <circle cx="740" cy="130" r="45" fill="none" stroke="rgba(0,229,255,0.2)" stroke-width="1.5"/>
+  <text x="740" y="190" font-family="Syne,sans-serif" font-size="14" fill="#e2e8f0" text-anchor="middle" font-weight="800">GROQ</text>
+  <text x="740" y="210" font-family="Space Mono,monospace" font-size="8" fill="#64748b" text-anchor="middle" letter-spacing="2">LPU TECHNOLOGY</text>
+  <rect x="665" y="225" width="150" height="35" rx="8" fill="rgba(0,229,255,0.08)" stroke="rgba(0,229,255,0.25)" stroke-width="1"/>
+  <text x="740" y="240" font-family="Space Mono,monospace" font-size="8" fill="#00e5ff" text-anchor="middle">NO DRAM BOTTLENECK</text>
+  <text x="740" y="254" font-family="Space Mono,monospace" font-size="8" fill="#64748b" text-anchor="middle">SRAM = Zero wait</text>
+  <rect x="665" y="270" width="150" height="35" rx="8" fill="rgba(124,58,237,0.08)" stroke="rgba(124,58,237,0.25)" stroke-width="1"/>
+  <text x="740" y="285" font-family="Space Mono,monospace" font-size="8" fill="#a78bfa" text-anchor="middle">COMPILER-FIRST</text>
+  <text x="740" y="299" font-family="Space Mono,monospace" font-size="8" fill="#64748b" text-anchor="middle">Deterministic flow</text>
+  <rect x="665" y="315" width="150" height="35" rx="8" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.25)" stroke-width="1"/>
+  <text x="740" y="330" font-family="Space Mono,monospace" font-size="8" fill="#34d399" text-anchor="middle">SINGLE FUNCTION</text>
+  <text x="740" y="344" font-family="Space Mono,monospace" font-size="8" fill="#64748b" text-anchor="middle">Inference only = fast</text>
+</svg></figure>
+  <div class="cnt"><p>In the race to accelerate artificial intelligence, most companies are competing on the same track — building bigger, faster GPUs. Groq took a different road entirely. <strong>The Groq chip is not a GPU</strong> — it is an entirely new class of processor called a Language Processing Unit (LPU), designed from first principles for one specific task: running large language models as fast as physically possible.</p>
+
+<div class="callout prp"><p>🔬 <strong>The Core Insight:</strong> GPUs are general-purpose parallel processors repurposed for AI. Groq's LPU is a single-purpose inference accelerator with a radically different memory architecture, execution model, and design philosophy — optimized exclusively to eliminate the bottlenecks that slow GPU-based AI inference.</p></div>
+
+<div class="stat-box">
+  <div class="stat-item"><span class="stat-n">230MB</span><span class="stat-l">On-chip SRAM per chip</span></div>
+  <div class="stat-item"><span class="stat-n">80TB/s</span><span class="stat-l">Memory bandwidth</span></div>
+  <div class="stat-item"><span class="stat-n">576</span><span class="stat-l">Max chips per GroqRack</span></div>
+</div>
+
+<h2 id="what">What Is Groq?</h2>
+<p>Groq is an AI chip company founded in 2016 by Jonathan Ross — the engineer who created Google's first TPU (Tensor Processing Unit). The company's flagship product is the GroqChip, powered by the LPU (Language Processing Unit) architecture. Groq makes this hardware available through a cloud API — meaning anyone can access its extraordinary speed without purchasing hardware. At its fastest, Groq processes Llama-3 70B at 800 tokens/second — roughly 14x faster than an A100 GPU. To understand why these speeds matter in practice, see our <a href="groq-ai-inference-speed-vs-gpu.html">Groq inference speed vs GPU comparison</a>.</p>
+
+<h2 id="lpu">What Is an LPU (Language Processing Unit)?</h2>
+<p>An LPU is a processor architecture specifically designed to run autoregressive language model inference — the sequential token-by-token generation process that underlies GPT, Llama, Mistral, and all modern LLMs. Unlike a GPU that handles many different computational tasks (graphics, training, inference, scientific computing), an LPU does one thing: generate text as fast as possible.</p>
+<p>The key hardware insight: autoregressive LLM inference is <em>memory-bandwidth bound</em>, not compute-bound. The bottleneck is not how fast you can do matrix multiplications — it is how fast you can move model weights between memory and compute. The LPU eliminates this bottleneck by putting all memory on-chip.</p>
+
+<h2 id="arch">LPU Architecture Deep Dive</h2>
+<h3>Tensor Streaming Processors (TSPs)</h3>
+<p>The LPU contains an array of Tensor Streaming Processors — specialized compute units optimized for the matrix multiply operations that dominate LLM inference. Unlike GPU's CUDA cores, TSPs have a fixed, deterministic data flow path — each TSP knows exactly what data it will receive and when, with no runtime scheduling overhead.</p>
+
+<h3>The SRAM Memory Fabric</h3>
+<p>Each Groq chip contains 230MB of on-chip SRAM — organized as a distributed memory fabric directly connected to the TSP array. This is the critical differentiator. Instead of external DRAM (like GPU's HBM3 or GDDR6), the LPU stores model weights and activations in SRAM right next to the compute units. No memory bus. No DRAM latency. No bandwidth bottleneck. For small to medium models, the entire model fits in SRAM simultaneously.</p>
+
+<figure class="cnt-img">
+<svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;background:#0c1120;">
+  <text x="380" y="28" font-family="Space Mono,monospace" font-size="10" fill="#64748b" text-anchor="middle" letter-spacing="2">GPU vs LPU MEMORY ARCHITECTURE</text>
+  <!-- GPU side -->
+  <text x="190" y="55" font-family="Syne,sans-serif" font-size="12" fill="#a78bfa" text-anchor="middle" font-weight="700">GPU Architecture</text>
+  <rect x="40" y="68" width="120" height="40" rx="6" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.4)" stroke-width="1.5"/>
+  <text x="100" y="93" font-family="Space Mono,monospace" font-size="9" fill="#a78bfa" text-anchor="middle">CUDA Cores</text>
+  <rect x="180" y="68" width="120" height="40" rx="6" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
+  <text x="240" y="88" font-family="Space Mono,monospace" font-size="9" fill="#f59e0b" text-anchor="middle">HBM3 DRAM</text>
+  <text x="240" y="102" font-family="Space Mono,monospace" font-size="8" fill="#64748b" text-anchor="middle">80GB off-chip</text>
+  <!-- Arrow GPU -->
+  <line x1="160" y1="88" x2="180" y2="88" stroke="#f59e0b" stroke-width="2"/>
+  <text x="170" y="84" font-family="Space Mono,monospace" font-size="7" fill="#f59e0b" text-anchor="middle">3TB/s</text>
+  <text x="190" y="140" font-family="Space Mono,monospace" font-size="9" fill="#f59e0b" text-anchor="middle">⚠ Memory bottleneck</text>
+  <text x="190" y="158" font-family="Space Mono,monospace" font-size="9" fill="#64748b" text-anchor="middle">Wait for weights from DRAM</text>
+  <text x="190" y="176" font-family="Space Mono,monospace" font-size="9" fill="#64748b" text-anchor="middle">→ 55-90 tok/s</text>
+
+  <!-- LPU side -->
+  <text x="570" y="55" font-family="Syne,sans-serif" font-size="12" fill="#00e5ff" text-anchor="middle" font-weight="700">LPU Architecture</text>
+  <rect x="420" y="68" width="120" height="40" rx="6" fill="rgba(0,229,255,0.15)" stroke="rgba(0,229,255,0.4)" stroke-width="1.5"/>
+  <text x="480" y="93" font-family="Space Mono,monospace" font-size="9" fill="#00e5ff" text-anchor="middle">TSP Cores</text>
+  <rect x="560" y="68" width="120" height="40" rx="6" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1.5"/>
+  <text x="620" y="88" font-family="Space Mono,monospace" font-size="9" fill="#34d399" text-anchor="middle">SRAM On-Chip</text>
+  <text x="620" y="102" font-family="Space Mono,monospace" font-size="8" fill="#64748b" text-anchor="middle">230MB same die</text>
+  <line x1="540" y1="88" x2="560" y2="88" stroke="#34d399" stroke-width="2"/>
+  <text x="550" y="84" font-family="Space Mono,monospace" font-size="7" fill="#34d399" text-anchor="middle">80TB/s</text>
+  <text x="570" y="140" font-family="Space Mono,monospace" font-size="9" fill="#34d399" text-anchor="middle">✓ No bottleneck</text>
+  <text x="570" y="158" font-family="Space Mono,monospace" font-size="9" fill="#64748b" text-anchor="middle">Weights always on-chip</text>
+  <text x="570" y="176" font-family="Space Mono,monospace" font-size="9" fill="#34d399" text-anchor="middle">→ 800 tok/s</text>
+</svg>
+<figcaption>GPU DRAM bottleneck vs Groq LPU on-chip SRAM advantage — the core architectural difference</figcaption>
+</figure>
+
+<h2 id="sram">The SRAM Advantage — Why It Matters</h2>
+<p>SRAM (Static Random Access Memory) is the same type of memory used in CPU caches — fast, low-latency, but expensive and power-hungry per bit compared to DRAM. GPUs use DRAM because it's cheap and dense — you can fit 80GB on an H100 for reasonable cost. The trade-off: DRAM is 24x slower bandwidth than what Groq achieves with SRAM.</p>
+<p>For LLM inference, this trade-off is catastrophic. Every forward pass requires loading all the model's weights from DRAM into compute units. At 55 billion parameters (FP16), Llama-3 70B = ~140GB of weights. On an A100 with 2TB/s bandwidth, loading these weights takes ~70ms per forward pass — directly limiting tokens per second. On Groq's SRAM fabric at 80TB/s, the same operation takes microseconds.</p>
+
+<h2 id="compiler">Compiler-Scheduled Execution — The Other Half</h2>
+<p>The SRAM architecture explains much of Groq's speed, but the compiler-scheduled execution model explains its <em>consistency</em>. GPUs use runtime dynamic scheduling — every clock cycle, the hardware decides which compute unit gets which data. This flexibility is powerful but expensive in cycles and energy.</p>
+<p>Groq's compiler resolves all scheduling decisions at compile time. When you deploy a model on Groq, the Groq compiler (MLIR-based GroqFlow) analyzes the entire computational graph and creates a deterministic schedule — every TSP knows exactly what operation it will perform at every clock cycle, in what order, for every token generation step. Zero runtime decision overhead. Deterministic, predictable, consistent latency every time.</p>
+
+<h2 id="vs">LPU vs GPU: Design Philosophy</h2>
+<table class="spec-table">
+<tr><th>Design Aspect</th><th>GPU (H100)</th><th>Groq LPU</th></tr>
+<tr><td>Primary purpose</td><td>General-purpose parallel compute</td><td class="win">LLM inference only</td></tr>
+<tr><td>Memory type</td><td>80GB HBM3 DRAM (off-chip)</td><td class="win">230MB SRAM (on-chip)</td></tr>
+<tr><td>Memory bandwidth</td><td>3.35 TB/s</td><td class="win">~80 TB/s</td></tr>
+<tr><td>Scheduling</td><td>Runtime dynamic</td><td class="win">Compiler static</td></tr>
+<tr><td>Model training</td><td class="win">Full support</td><td>Not supported</td></tr>
+<tr><td>Model variety</td><td class="win">Any PyTorch model</td><td>Groq-compiled only</td></tr>
+<tr><td>Inference speed</td><td>55–90 tok/s (70B)</td><td class="win">800 tok/s (70B)</td></tr>
+<tr><td>Latency consistency</td><td>Variable</td><td class="win">Deterministic</td></tr>
+</table>
+
+<div class="ilb"><span class="ilb-lbl">📖 Related Reading</span><h4>Groq vs Nvidia for AI Inference 2026</h4><p>Now that you understand the architecture, see the complete competitive comparison — use cases, costs, and which platform wins for different workloads.</p><a href="groq-vs-nvidia-ai-inference-2026.html">Read Full Comparison →</a></div>
+
+<h2>Frequently Asked Questions</h2>
+<div class="faq-wrap">
+<div class="faq-item"><div class="faq-q" onclick="tFaq(this)"><span>Q: What does LPU stand for?</span><span class="faq-ic">+</span></div><div class="faq-a"><p>LPU stands for Language Processing Unit — a term coined by Groq to describe their purpose-built AI inference processor. Unlike a CPU (Central Processing Unit) or GPU (Graphics Processing Unit), an LPU is designed exclusively to run large language model inference at maximum speed. The name reflects the processor's singular focus on language model workloads.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="tFaq(this)"><span>Q: How many parameters can Groq's LPU handle?</span><span class="faq-ic">+</span></div><div class="faq-a"><p>A single Groq chip has 230MB SRAM — too small for most production LLMs alone. Groq systems use multiple chips connected by high-bandwidth chip-to-chip links. The GroqRack supports up to 576 chips, providing enough combined SRAM capacity for very large models. Public Groq API currently supports models up to 70B parameters (Llama-3 70B, Mixtral 8x7B).</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="tFaq(this)"><span>Q: Can Groq train AI models?</span><span class="faq-ic">+</span></div><div class="faq-a"><p>No — Groq's LPU is an inference-only processor. Model training requires a fundamentally different computational pattern (backpropagation, gradient accumulation, optimizer states) that the LPU's deterministic compiler-scheduled architecture is not designed for. Training still requires GPUs (Nvidia A100/H100) or specialized training TPUs. Groq's value is in deploying trained models at maximum inference speed.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="tFaq(this)"><span>Q: Who founded Groq?</span><span class="faq-ic">+</span></div><div class="faq-a"><p>Groq was founded in 2016 by Jonathan Ross, who was previously at Google where he led the team that created the first Google TPU (Tensor Processing Unit). Ross left Google to build a chip architecture specifically for LLM inference, predicting that the memory bandwidth problem would become the dominant bottleneck for AI as models scaled. The company is headquartered in Mountain View, California.</p></div></div>
+</div></div>
+  <div class="shr-box">
+    <h3>Found this useful? Share it! 🚀</h3>
+    <div class="shr-btns">
+      <a class="sbtn" href="https://twitter.com/intent/tweet?text=What Is the Groq Chip and How It Works: LPU Architecture Explained&url=https://neuraplus-ai.github.io/blog/what-is-groq-chip-how-it-works.html&via=NeuraPulseAI" target="_blank" rel="nofollow">Twitter/X</a>
+      <a class="sbtn" href="https://www.linkedin.com/shareArticle?mini=true&url=https://neuraplus-ai.github.io/blog/what-is-groq-chip-how-it-works.html" target="_blank" rel="nofollow">LinkedIn</a>
+      <a class="sbtn" href="https://wa.me/?text=Read+on+NeuraPulse:+https://neuraplus-ai.github.io/blog/what-is-groq-chip-how-it-works.html" target="_blank" rel="nofollow">WhatsApp</a>
+      <button class="sbtn" onclick="navigator.clipboard.writeText(location.href);this.textContent='Copied!'">Copy Link</button>
+    </div>
+  </div>
+  <div class="rp">
+    <h2>More Groq AI Articles</h2>
+    <div class="rg"><a href="groq-ai-inference-speed-vs-gpu.html" class="rc"><span class="rcat">Groq AI</span><h3>Groq AI Inference Speed vs GPU: The Complete 2026 Breakdown</h3></a>
+<a href="groq-vs-nvidia-ai-inference-2026.html" class="rc"><span class="rcat">Groq AI</span><h3>Groq vs Nvidia for AI Inference 2026: Complete Comparison</h3></a>
+<a href="groq-lpu-performance-benchmarks.html" class="rc"><span class="rcat">Groq AI</span><h3>Groq LPU Performance Benchmarks Explained: 2026 Complete Guide</h3></a>
+</div>
+  </div>
+</article>
+<aside class="sb">
+  <div class="nl-sb">
+    <h3>Weekly AI Insights</h3>
+    <p>Join 4,200+ readers. Every Tuesday. Free.</p>
+    <input type="email" placeholder="your@email.com">
+    <button onclick="nlSub(this)">Subscribe Free →</button>
+  </div>
+  <div class="sbc">
+    <span class="sbt">Table of Contents</span>
+    <ul class="toc"><li><a href="#what">What Is Groq?</a></li>
+<li><a href="#lpu">What Is an LPU?</a></li>
+<li><a href="#arch">LPU Architecture Deep Dive</a></li>
+<li><a href="#sram">The SRAM Advantage</a></li>
+<li><a href="#compiler">Compiler-Scheduled Execution</a></li>
+<li><a href="#vs">LPU vs GPU Design Philosophy</a></li>
+<li><a href="#faq">FAQs</a></li></ul>
+  </div>
+  <div class="sbc">
+    <span class="sbt">All Groq & AI Articles</span>
+    <div class="rmini"><a href="groq-ai-inference-speed-vs-gpu.html" class="rmc"><span class="cat">Groq AI</span><h4>Groq AI Inference Speed vs GPU: The Complete ...</h4></a>
+<a href="groq-vs-nvidia-ai-inference-2026.html" class="rmc"><span class="cat">Groq AI</span><h4>Groq vs Nvidia for AI Inference 2026: Complet...</h4></a>
+<a href="groq-lpu-performance-benchmarks.html" class="rmc"><span class="cat">Groq AI</span><h4>Groq LPU Performance Benchmarks Explained: 20...</h4></a>
+<a href="how-to-use-groq-api-fast-ai-apps.html" class="rmc"><span class="cat">Groq AI</span><h4>How to Use Groq API for Fast AI Apps: Complet...</h4></a>
+<a href="top-ai-automation-tools.html" class="rmc"><span class="cat">AI Automation</span><h4>Top AI Automation Tools 2026</h4></a>
+<a href="how-ai-works.html" class="rmc"><span class="cat">AI Basics</span><h4>How AI Works: Complete Beginner Guide</h4></a>
+<a href="ai-agents-for-seo.html" class="rmc"><span class="cat">SEO AI</span><h4>AI Agents for SEO 2026</h4></a>
+<a href="best-ai-tools-blogging-seo.html" class="rmc"><span class="cat">AI SEO</span><h4>Best AI Tools for Blogging & SEO</h4></a>
+<a href="attention-mechanism.html" class="rmc"><span class="cat">LLM</span><h4>The Attention Mechanism Explained</h4></a>
+<a href="future-of-ai-2026.html" class="rmc"><span class="cat">AI Future</span><h4>The Future of AI in 2026</h4></a>
+<a href="how-to-rank-website-using-ai-seo-tools.html" class="rmc"><span class="cat">AI SEO</span><h4>How to Rank with AI SEO Tools</h4></a>
+<a href="ai-content-vs-human-content-seo.html" class="rmc"><span class="cat">AI SEO</span><h4>AI Content vs Human Content SEO</h4></a>
+<a href="best-ai-platforms-advertising-2027.html" class="rmc"><span class="cat">AI Advertising</span><h4>Best AI Advertising Platforms 2027</h4></a>
+<a href="marketing-automation-ai.html" class="rmc"><span class="cat">AI Marketing</span><h4>Marketing Automation with AI</h4></a>
+</div>
+  </div>
+</aside>
+</div>
+</main>
+<footer>
+  <span class="flogo">NeuraPulse<span style="color:var(--accent)">.</span></span>
+  <ul class="flinks">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <p class="fcopy">© 2026 NeuraPulse · Prashant Lalwani</p>
+</footer>
+<div id="np-btn" onclick="npOpen()" title="Ask NeuraPulse AI" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 24px rgba(0,229,255,0.4);transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"><svg width="26" height="26" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="white"/><circle cx="8" cy="12" r="1.4" fill="#7c3aed"/><circle cx="12" cy="12" r="1.4" fill="#7c3aed"/><circle cx="16" cy="12" r="1.4" fill="#7c3aed"/></svg></div>
+<div id="np-win" style="display:none;position:fixed;bottom:5.5rem;right:1.5rem;z-index:9998;width:370px;background:#0c1120;border:1px solid #1e2d45;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.6);flex-direction:column;">
+<div style="background:linear-gradient(135deg,#111827,#1a0d3d);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e2d45;"><div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🤖</div><div><div style="font-family:Syne,sans-serif;font-weight:700;color:#e2e8f0;font-size:0.95rem;">NeuraPulse AI</div><div style="font-family:Space Mono,monospace;font-size:0.6rem;color:#00e5ff;letter-spacing:0.1em;">● ONLINE</div></div></div><button onclick="npClose()" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:1.3rem;line-height:1;">✕</button></div>
+<div id="np-msgs" style="height:340px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;scrollbar-width:thin;"><div style="background:#111827;border:1px solid #1e2d45;border-radius:12px 12px 12px 4px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#94a3b8;line-height:1.6;">👋 Hi! I am NeuraPulse AI. Ask me anything about Groq AI, LPU chips, inference speed, AI tools, or any topic from our blog!</div></div>
+<div style="padding:0.8rem 1rem;border-top:1px solid #1e2d45;display:flex;gap:0.6rem;background:#050810;"><input id="np-inp" type="text" placeholder="Ask about Groq AI..." onkeydown="if(event.key==='Enter')npSend()" style="flex:1;background:#111827;border:1px solid #1e2d45;border-radius:10px;padding:0.65rem 1rem;color:#e2e8f0;font-family:DM Sans,sans-serif;font-size:0.875rem;outline:none;" onfocus="this.style.borderColor='#00e5ff'" onblur="this.style.borderColor='#1e2d45'"><button onclick="npSend()" style="width:42px;height:42px;background:linear-gradient(135deg,#7c3aed,#00e5ff);border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4 20-7z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+</div>
+<style>@keyframes npb{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}</style>
+<script>
+function npOpen(){var w=document.getElementById("np-win");w.style.display="flex";document.getElementById("np-inp").focus();}
+function npClose(){document.getElementById("np-win").style.display="none";}
+function npMsg(t,bot){var m=document.getElementById("np-msgs");var d=document.createElement("div");d.innerHTML=t;d.style.cssText=bot?"background:#111827;border:1px solid #1e2d45;border-radius:12px 12px 12px 4px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#94a3b8;line-height:1.6;":"background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(0,229,255,0.1));border:1px solid rgba(0,229,255,0.2);border-radius:12px 12px 4px 12px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#e2e8f0;line-height:1.6;align-self:flex-end;margin-left:auto;";m.appendChild(d);m.scrollTop=m.scrollHeight;}
+function npTyping(){var m=document.getElementById("np-msgs");var d=document.createElement("div");d.id="np-typ";d.style.cssText="background:#111827;border:1px solid #1e2d45;border-radius:12px;padding:0.75rem 1rem;display:flex;gap:5px;align-items:center;width:60px;";for(var i=0;i<3;i++){var s=document.createElement("span");s.style.cssText="width:7px;height:7px;border-radius:50%;background:#00e5ff;animation:npb 1s "+(i*0.2)+"s infinite;display:block;";d.appendChild(s);}m.appendChild(d);m.scrollTop=m.scrollHeight;}
+function npRmTyp(){var t=document.getElementById("np-typ");if(t)t.remove();}
+async function npSend(){var inp=document.getElementById("np-inp");var msg=inp.value.trim();if(!msg)return;npMsg(msg,false);inp.value="";npTyping();
+try{var r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:500,system:"You are NeuraPulse AI, the helpful assistant for neuraplus-ai.github.io — an expert AI blog by Prashant Lalwani. You specialize in Groq AI, LPU chips, AI inference, Groq vs Nvidia, Groq API, AI tools, automation, and the future of AI hardware. Answer questions helpfully and concisely in 2-4 sentences. Be friendly and knowledgeable.",messages:[{role:"user",content:msg}]})});
+var data=await r.json();npRmTyp();
+var reply=data.content&&data.content[0]?data.content[0].text:"I had a connection issue. Please try again!";
+npMsg(reply,true);}catch(e){npRmTyp();npMsg("Connection issue. Explore our <a href=\"blog.html\" style=\"color:#00e5ff\">blog articles</a>!",true);}}
+</script>
+<script>
+document.getElementById('hbg').addEventListener('click',function(){document.getElementById('nl').classList.toggle('open');});
+window.addEventListener('scroll',function(){var h=document.documentElement;var pb=document.getElementById('pb');if(pb)pb.style.width=((h.scrollTop/(h.scrollHeight-h.clientHeight))*100)+'%';});
+function tFaq(el){var a=el.nextElementSibling;var ic=el.querySelector('.faq-ic');a.classList.toggle('open');ic.style.transform=a.classList.contains('open')?'rotate(45deg)':'rotate(0deg)';}
+function nlSub(b){var i=b.previousElementSibling;if(!i||!i.value){alert('Please enter your email!');return;}b.textContent='Subscribed!';b.style.background='#34d399';b.style.color='#050810';b.style.pointerEvents='none';}
+</script>
+</body>
+</html>
