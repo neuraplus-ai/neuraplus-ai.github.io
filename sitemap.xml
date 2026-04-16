@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+ <!-- ===== Ollama Local AI Series ===== -->
+ <url><loc>https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+ <url><loc>https://neuraplus-ai.github.io/blog/how-to-run-ollama-locally-llama-models-free-tutorial.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+ <url><loc>https://neuraplus-ai.github.io/blog/ollama-vs-openai-api-comparison-local-ai-2026.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+ <url><loc>https://neuraplus-ai.github.io/blog/best-ollama-models-for-coding-chatgpt-alternatives.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+ <url><loc>https://neuraplus-ai.github.io/blog/ollama-installation-windows-mac-linux-full-guide.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+ <url><loc>https://neuraplus-ai.github.io/blog/how-to-use-ollama-for-offline-ai-chatbot-development.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+ <url><loc>https://neuraplus-ai.github.io/blog/ollama-api-usage-examples-developers-tutorial.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+ <url><loc>https://neuraplus-ai.github.io/blog/ollama-docker-setup-local-llm-deployment.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+ <url><loc>https://neuraplus-ai.github.io/blog/ollama-use-cases-business-automation-ai-agents.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+ <url><loc>https://neuraplus-ai.github.io/blog/run-llama3-ollama-locally-performance-guide.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
  <!-- ===== QWIN AI AUTOMATION ===== -->
 <url><loc>https://neuraplus-ai.github.io/blog/claude-ai-robot-automation-2026.html</loc><lastmod>2026-04-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 <url><loc>https://neuraplus-ai.github.io/blog/claude-ai-autonomous-robots-future-automation-2026.html</loc><lastmod>2026-04-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
