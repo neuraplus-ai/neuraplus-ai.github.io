@@ -192,7 +192,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;mar
     <p>We tracked three enterprise deployments over 90-day periods, measuring latency, throughput, error rates, and business impact. Each case reveals different production challenges and optimization opportunities.</p>
 
     <h3>Case Study 1: Customer Support AI Platform</h3>
-    <p>A SaaS support platform replaced GPU-based LLM inference with Groq's LPU for tier-1 customer queries. Before migration, average response time hovered around 380ms with 15% timeout rates during peak hours. Post-migration, P50 TTFT dropped to 88ms with <2% error rates. Customer satisfaction (CSAT) increased from 7.2/10 to 8.4/10, largely attributed to faster response times rather than accuracy improvements. As noted in our <a href="groq-ai-benchmarks-for-llm.html">Groq AI benchmarks for LLM</a> analysis, sub-100ms TTFT directly correlates with higher conversation completion rates.</p>
+    <p>A SaaS support platform replaced GPU-based LLM inference with Groq's LPU for tier-1 customer queries. Before migration, average response time hovered around 380ms with 15% timeout rates during peak hours. Post-migration, P50 TTFT dropped to 88ms with <2% error rates. Customer satisfaction (CSAT) increased from 7.2/10 to 8.4/10, largely attributed to faster response times rather than accuracy improvements. As noted in our <a href="groq-ai-benchmarks-llm.html">Groq AI benchmarks for LLM</a> analysis, sub-100ms TTFT directly correlates with higher conversation completion rates.</p>
 
     <h3>Case Study 2: Real-Time Voice Translation Service</h3>
     <p>A travel tech company required end-to-end speech-to-speech translation under 400ms. By combining Groq Whisper STT (~85ms), Llama 3.1 8B on Groq LPU (~95ms TTFT), and ElevenLabs streaming TTS (~140ms), they achieved 320ms total pipeline latency with 99.2% uptime over 90 days. The deterministic execution eliminated the jitter that previously caused audio buffer underruns in production.</p>
@@ -388,7 +388,7 @@ token_counter = meter.create_counter(<span class="string">"groq.tokens_generated
 
     <div class="ilb"><span class="ilb-lbl">🔗 Complete Groq Series</span><h4>Master AI Production Engineering</h4>
     <p>This guide concludes our comprehensive Groq series. From hardware architecture to production deployment, you now have the complete playbook for deploying real-time AI in 2026.</p>
-    <a href="groq-ai-benchmarks-for-llm.html">Read: Groq AI Benchmarks for LLM →</a></div>
+    <a href="groq-ai-benchmarks-llm.html">Read: Groq AI Benchmarks for LLM →</a></div>
 
     <div class="shr-box">
       <h3>Found this production guide useful? Share it! 🚀</h3>
@@ -407,7 +407,7 @@ token_counter = meter.create_counter(<span class="string">"groq.tokens_generated
         <a href="how-groq-chip-works-step-by-step.html" class="rc"><span class="rcat">Hardware</span><h3>How Groq Chip Works Step by Step</h3></a>
         <a href="groq-ai-architecture-deep-dive.html" class="rc"><span class="rcat">Architecture</span><h3>Groq AI Architecture Deep Dive</h3></a>
         <a href="groq-inference-engine-explained.html" class="rc"><span class="rcat">Engine</span><h3>Groq Inference Engine Explained</h3></a>
-        <a href="groq-ai-benchmarks-for-llm.html" class="rc"><span class="rcat">Benchmarks</span><h3>Groq AI Benchmarks for LLM</h3></a>
+        <a href="groq-ai-benchmarks-llm.html" class="rc"><span class="rcat">Benchmarks</span><h3>Groq AI Benchmarks for LLM</h3></a>
         <a href="groq-ai-coding-assistant-speed-test.html" class="rc"><span class="rcat">Developer</span><h3>Groq AI Coding Assistant Speed Test</h3></a>
         <a href="groq-ai-vs-anthropic-claude-speed.html" class="rc"><span class="rcat">Comparison</span><h3>Groq AI vs Claude Speed</h3></a>
         <a href="groq-ai-vs-gemini-latency.html" class="rc"><span class="rcat">Comparison</span><h3>Groq AI vs Gemini Latency</h3></a>
@@ -440,7 +440,7 @@ token_counter = meter.create_counter(<span class="string">"groq.tokens_generated
       <a href="how-groq-chip-works-step-by-step.html" class="rmc"><span class="cat">Hardware</span><h4>How Groq Chip Works Step by Step</h4></a>
       <a href="groq-ai-architecture-deep-dive.html" class="rmc"><span class="cat">Architecture</span><h4>Groq AI Architecture Deep Dive</h4></a>
       <a href="groq-inference-engine-explained.html" class="rmc"><span class="cat">Engine</span><h4>Groq Inference Engine Explained</h4></a>
-      <a href="groq-ai-benchmarks-for-llm.html" class="rmc"><span class="cat">Benchmarks</span><h4>Groq AI Benchmarks for LLM</h4></a>
+      <a href="groq-ai-benchmarks-llm.html" class="rmc"><span class="cat">Benchmarks</span><h4>Groq AI Benchmarks for LLM</h4></a>
       <a href="groq-ai-coding-assistant-speed-test.html" class="rmc"><span class="cat">Coding</span><h4>Groq AI Coding Assistant Speed Test</h4></a>
       <a href="groq-ai-vs-anthropic-claude-speed.html" class="rmc"><span class="cat">Comparison</span><h4>Groq AI vs Anthropic Claude Speed</h4></a>
       <a href="groq-ai-vs-gemini-latency.html" class="rmc"><span class="cat">Comparison</span><h4>Groq AI vs Gemini Latency</h4></a>
