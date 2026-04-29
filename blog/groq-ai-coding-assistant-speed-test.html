@@ -198,7 +198,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;mar
     <h2 id="methodology">Speed Test Methodology</h2>
     <p>We deployed a custom VS Code extension that logged exact timestamps for 5,000 completion requests across three languages. The testing framework measured not just raw API speed but end-to-end latency from keystroke to visible ghost text — the metric that actually matters for developer experience.</p>
     
-    <p>Our methodology aligns with findings from <a href="groq-ai-benchmarks-for-llm.html">Groq AI benchmarks for LLM</a> where we tested various prompt lengths and temperatures. For code completion specifically, we used deterministic sampling (temperature=0.0) to ensure reproducible suggestions for the same context, which is critical for measuring true latency without quality variance.</p>
+    <p>Our methodology aligns with findings from <a href="groq-ai-benchmarks-llm.html">Groq AI benchmarks for LLM</a> where we tested various prompt lengths and temperatures. For code completion specifically, we used deterministic sampling (temperature=0.0) to ensure reproducible suggestions for the same context, which is critical for measuring true latency without quality variance.</p>
 
     <p>The test environment included developers with varying experience levels (junior to staff engineer) to capture how expertise affects acceptance patterns. Senior developers showed 15-20% higher rejection rates for obvious completions but 30% higher acceptance for complex refactoring suggestions — suggesting that speed matters most when the cognitive load is highest.</p>
     
@@ -297,7 +297,7 @@ editor.onDidChangeCursorPosition(() => {<br>
 
     <div class="ilb"><span class="ilb-lbl">🔗 Continue Learning</span><h4>Related Groq Guides</h4>
     <p>Explore our complete Groq series for architecture details, benchmarks, and production deployment patterns.</p>
-    <a href="groq-ai-benchmarks-for-llm.html">Read: Groq AI Benchmarks for LLM →</a></div>
+    <a href="groq-ai-benchmarks-llm.html">Read: Groq AI Benchmarks for LLM →</a></div>
 
     <div class="shr-box">
       <h3>Found this useful? Share it! 🚀</h3>
@@ -344,7 +344,7 @@ editor.onDidChangeCursorPosition(() => {<br>
       <a href="how-groq-chip-works-step-by-step.html" class="rmc"><span class="cat">Hardware</span><h4>How Groq Chip Works Step by Step</h4></a>
       <a href="groq-ai-architecture-deep-dive.html" class="rmc"><span class="cat">Architecture</span><h4>Groq AI Architecture Deep Dive</h4></a>
       <a href="groq-inference-engine-explained.html" class="rmc"><span class="cat">Engine</span><h4>Groq Inference Engine Explained</h4></a>
-      <a href="groq-ai-benchmarks-for-llm.html" class="rmc"><span class="cat">Benchmarks</span><h4>Groq AI Benchmarks for LLM</h4></a>
+      <a href="groq-ai-benchmarks-llm.html" class="rmc"><span class="cat">Benchmarks</span><h4>Groq AI Benchmarks for LLM</h4></a>
       <a href="groq-ai-vs-anthropic-claude-speed.html" class="rmc"><span class="cat">Comparison</span><h4>Groq AI vs Anthropic Claude Speed</h4></a>
       <a href="groq-ai-vs-gemini-latency.html" class="rmc"><span class="cat">Comparison</span><h4>Groq AI vs Gemini Latency</h4></a>
       <a href="groq-ai-real-world-performance.html" class="rmc"><span class="cat">Performance</span><h4>Groq AI Real World Performance</h4></a>
