@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn how to build a 3D website from scratch! This beginner-friendly guide walks you through setting up Three.js, creating your first interactive 3D scene, adding animations, and deploying a stunning 3D web experience. No prior 3D experience required. Master WebGL fundamentals, implement responsive 3D layouts, optimize performance for all devices, and launch your first immersive website. Perfect for web developers ready to level up their skills with cutting-edge 3D techniques. Transform flat designs into captivating spatial experiences that stand out. Start building the future of web design today!">
+<meta name="keywords" content="build 3d website for beginners, 3d web development tutorial, three.js beginner guide, create 3d website step by step, webgl for beginners, interactive 3d website 2026, 3d web design tutorial, beginner 3d website project">
+<meta name="author" content="Prashant Lalwani">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build 3D Website for Beginners: Complete Step-by-Step Guide 2026 — NeuraPulse">
+<meta property="og:description" content="Complete beginner's guide to building stunning 3D websites with Three.js. Step-by-step tutorials, live examples, and deployment strategies.">
+<meta property="og:url" content="https://neuraplus-ai.github.io/blog/build-3d-website-for-beginners-2026.html">
+<meta property="og:site_name" content="NeuraPulse">
+<meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=630&fit=crop&q=80">
+<meta property="article:published_time" content="2026-04-18T00:00:00+00:00">
+<meta property="article:modified_time" content="2026-04-18T00:00:00+00:00">
+<link rel="canonical" href="https://neuraplus-ai.github.io/blog/build-3d-website-for-beginners-2026.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>Build 3D Website for Beginners: Complete Step-by-Step Guide 2026 — NeuraPulse</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Build 3D Website for Beginners: Complete Step-by-Step Guide 2026","description":"Learn how to build a 3D website from scratch! This beginner-friendly guide walks you through setting up Three.js, creating your first interactive 3D scene, adding animations, and deploying a stunning 3D web experience.","author":{"@type":"Person","name":"Prashant Lalwani"},"publisher":{"@type":"Organization","name":"NeuraPulse","logo":{"@type":"ImageObject","url":"https://neuraplus-ai.github.io/logo.png"}},"datePublished":"2026-04-18","dateModified":"2026-04-18","mainEntityOfPage":"https://neuraplus-ai.github.io/blog/build-3d-website-for-beginners-2026.html","image":"https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=630&fit=crop&q=80"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need coding experience to build a 3D website?","acceptedAnswer":{"@type":"Answer","text":"Basic HTML, CSS, and JavaScript knowledge is required. You don't need prior 3D or WebGL experience—Three.js handles the complex math and rendering for you. Beginners can follow along step-by-step and build their first 3D site within hours."}},{"@type":"Question","name":"What's the easiest way to start with 3D web development?","acceptedAnswer":{"@type":"Answer","text":"Start with Three.js using a CDN link in a simple HTML file. Once comfortable, migrate to a build tool like Vite or Webpack for better development experience. Our guide shows both approaches for beginners."}},{"@type":"Question","name":"Are 3D websites mobile-friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes! Three.js supports mobile browsers with WebGL. However, you should optimize geometry complexity, use efficient materials, and test on actual devices. Progressive enhancement ensures graceful fallbacks for older devices."}},{"@type":"Question","name":"How long does it take to build a 3D website?","acceptedAnswer":{"@type":"Answer","text":"A basic 3D scene can be built in 2-4 hours. A polished, interactive portfolio site takes 1-2 weeks. Complex projects with custom 3D models, physics, and advanced animations may take 1-2 months depending on scope and experience level."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Build 3D Website for Beginners","description":"Complete beginner's guide to building stunning 3D websites with Three.js. Step-by-step tutorials, live examples, and deployment strategies.","provider":{"@type":"Organization","name":"NeuraPulse","url":"https://neuraplus-ai.github.io"},"educationalLevel":"beginner","teaches":["Three.js fundamentals","WebGL basics","3D scene composition","Animation techniques","Performance optimization","Responsive 3D design","Deployment strategies"]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--surface2:#1f2937;--border:#374151;--accent:#8b5cf6;--accent2:#a78bfa;--text:#f3f4f6;--text-dim:#9ca3af;--code-bg:#0d1117;--code-border:#30363d}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(10,14,26,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);text-decoration:none}.nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;text-transform:uppercase;color:var(--text-dim);text-decoration:none}.nav-links a:hover{color:var(--accent)}
+.layout{max-width:900px;margin:0 auto;padding:100px 20px 50px}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:-0.04em;line-height:1.1;margin-bottom:1.5rem;color:#fff;opacity:0;transform:translateY(20px);animation:fadeInUp 0.8s forwards}
+.meta{display:flex;align-items:center;gap:1rem;margin-bottom:3rem;border-bottom:1px solid var(--border);padding-bottom:2rem;opacity:0;animation:fadeInUp 0.8s 0.2s forwards}
+.av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+.mn{font-weight:500;display:block}.md{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text-dim)}
+.tgs{display:flex;gap:0.5rem;margin-left:auto}.tg{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);border:1px solid var(--border);padding:0.2rem 0.6rem;border-radius:4px}
+.cnt h2{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:700;margin:3rem 0 1rem;color:#fff;opacity:0;transform:translateY(20px);transition:all 0.6s ease}
+.cnt h2.visible{opacity:1;transform:translateY(0)}
+.cnt p{color:var(--text-dim);margin-bottom:1.5rem;font-size:1.1rem;line-height:1.8;opacity:0;transform:translateY(20px);transition:all 0.6s ease}
+.cnt p.visible{opacity:1;transform:translateY(0)}
+.cnt a.internal{color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(167,139,250,0.3);transition:all 0.2s;font-weight:500}
+.cnt a.internal:hover{border-bottom-color:var(--accent2);color:#fff}
+.cnt a.external{color:#f59e0b;text-decoration:none;border-bottom:1px solid rgba(245,158,11,0.3);transition:all 0.2s;font-weight:500}
+.cnt a.external:hover{border-bottom-color:#f59e0b;color:#fff}
+.callout{background:var(--surface);border-left:3px solid var(--accent);padding:1.5rem;margin:2rem 0;border-radius:0 8px 8px 0;opacity:0;transform:translateX(-20px);transition:all 0.6s ease}
+.callout.visible{opacity:1;transform:translateX(0)}
+pre{background:var(--code-bg);border:1px solid var(--code-border);border-radius:8px;padding:1.2rem;overflow-x:auto;margin:1.5rem 0;opacity:0;transform:scale(0.98);transition:all 0.5s}
+pre.visible{opacity:1;transform:scale(1)}
+code{font-family:'Space Mono',monospace;font-size:0.9rem;color:#c9d1d9}
+.highlight{color:var(--accent)}
+/* LIVE 3D CANVAS */
+.canvas-container{width:100%;height:450px;margin:2rem 0;border-radius:12px;overflow:hidden;position:relative;background:linear-gradient(145deg,#0f1219,#1a1f2e);border:1px solid var(--border)}
+canvas{display:block;width:100%;height:100%}
+/* 3D MODEL CARDS */
+.model-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin:2rem 0}
+.model-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;opacity:0;transform:translateY(20px);transition:all 0.5s ease}
+.model-card.visible{opacity:1;transform:translateY(0)}
+.model-card:hover{border-color:var(--accent);transform:translateY(-6px);box-shadow:0 8px 30px rgba(139,92,246,0.15)}
+.model-icon{font-size:2.5rem;margin-bottom:1rem}
+.model-title{font-family:'Syne';font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.5rem}
+.model-desc{font-size:0.9rem;color:var(--text-dim);line-height:1.5}
+/* ANIMATED TABLE */
+.animated-table{width:100%;border-collapse:separate;border-spacing:0;margin:2rem 0}
+.animated-table th{background:transparent;color:var(--accent);text-align:left;padding:1rem 1.2rem;font-family:'Space Mono';font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;border-bottom:2px solid var(--surface2)}
+.animated-table td{background:var(--surface);padding:1.2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);color:var(--text-dim);font-size:0.95rem;transition:all 0.25s ease}
+.animated-table tbody tr{opacity:0;transform:translateY(15px)}
+.animated-table tbody tr.animate-in{animation:slideUp 0.5s ease-out forwards}
+@keyframes slideUp{to{opacity:1;transform:translateY(0)}}
+.animated-table tbody tr:hover td{background:var(--surface2);color:var(--text);border-color:var(--accent);transform:translateX(5px)}
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:0.7rem;margin:2rem 0}
+.faq-item{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--surface);opacity:0;transform:translateY(20px);transition:all 0.5s ease}
+.faq-item.visible{opacity:1;transform:translateY(0)}
+.faq-q{width:100%;background:none;border:none;color:var(--text);font-weight:600;font-size:1.02rem;padding:1.1rem;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background 0.2s}
+.faq-q:hover{background:var(--surface2)}
+.faq-icon{font-size:1.1rem;color:var(--accent);transition:transform 0.3s ease;font-weight:bold}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.45s ease,padding-bottom 0.3s ease;padding-bottom:0}
+.faq-a.open{max-height:600px;padding-bottom:1.1rem}
+.faq-a-inner{padding:0 1.1rem;color:var(--text-dim);font-size:0.93rem;line-height:1.65}
+.faq-a-inner p{margin:0}
+footer{border-top:1px solid var(--border);padding:2rem 3rem;margin-top:4rem;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--text-dim)}
+@keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){nav{padding:0 1.5rem}.layout{padding:80px 15px 30px}h1{font-size:2.2rem}.canvas-container{height:300px}.model-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+ <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<nav>
+  <a href="../index.html" class="logo">NeuraPulse</a>
+  <ul class="nav-links"><li><a href="../blog.html">Blog</a></li><li><a href="../about.html">About</a></li></ul>
+</nav>
+
+<main class="layout">
+<article>
+  <span style="font-family:'Space Mono';font-size:0.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;opacity:0;animation:fadeInUp 0.8s 0.1s forwards"> Beginner · 3D Web · Step-by-Step</span>
+  
+  <h1>Build 3D Website for Beginners: Complete Guide 2026</h1>
+  
+  <div class="meta">
+    <div class="av">PL</div>
+    <div>
+      <span class="mn">Prashant Lalwani</span>
+      <span class="md">April 18, 2026 · 15 min read</span>
+    </div>
+    <div class="tgs">
+      <span class="tg">Beginner</span>
+      <span class="tg">Three.js</span>
+      <span class="tg">WebGL</span>
+    </div>
+  </div>
+
+  <!-- LIVE 3D CANVAS -->
+  <div class="canvas-container" id="canvasContainer">
+    <canvas id="threeCanvas"></canvas>
+  </div>
+
+  <div class="cnt">
+    <p class="visible">Ready to transform your web projects from flat and ordinary to immersive and extraordinary? This <strong>build 3D website for beginners</strong> guide walks you through every step of creating your first stunning 3D web experience using Three.js—the industry-standard library trusted by companies like Apple, Nike, and Google. You don't need prior 3D experience, complex math skills, or expensive software. Just basic HTML, CSS, and JavaScript knowledge, plus the willingness to experiment. By the end of this tutorial, you'll have built an interactive 3D scene with animated objects, dynamic lighting, and user controls—ready to deploy live on the web. Whether you're a frontend developer looking to stand out, a designer wanting to explore spatial interfaces, or a student building your portfolio, this guide gives you the practical foundation to create 3D websites that captivate and engage. For developers interested in integrating 3D experiences with backend APIs, our <a href="perplexity-ai-api-access-guide-2026.html" class="internal">API Integration Guide</a> provides complementary strategies.</p>
+
+    <h2 class="animate-on-scroll">Why 3D Websites Matter in 2026</h2>
+    <p class="animate-on-scroll">The web is no longer limited to static pages and simple animations. With WebGL support in all modern browsers, 3D websites offer immersive product showcases, interactive storytelling, and memorable brand experiences that drive higher engagement and conversion rates. Studies show 3D interactive content increases time-on-site by 40% and improves brand recall by 70%. For businesses leveraging digital channels, 3D web experiences provide competitive differentiation—our <a href="ai-automation-digital-marketing-2026.html" class="internal">AI Marketing Automation Guide</a> explores how immersive experiences boost customer engagement across campaigns.</p>
+
+    <h2 class="animate-on-scroll">Prerequisites & Tools You'll Need</h2>
+    <p class="animate-on-scroll">Before starting, ensure you have: Node.js installed (for package management), a code editor like VS Code with JavaScript syntax highlighting, a modern browser (Chrome/Firefox recommended), and basic understanding of HTML, CSS, and JavaScript. No 3D modeling software required—we'll use Three.js's built-in geometries. Set up your project folder with <code>index.html</code>, <code>style.css</code>, and <code>main.js</code> files. For developers automating their build and deployment pipelines, the workflow patterns in <a href="n8n-automation-workflow-examples-for-beginners-2026.html" class="internal">n8n Automation Workflows</a> demonstrate how to streamline 3D website deployment.</p>
+
+    <!-- 3D MODEL CARDS -->
+    <h2 class="animate-on-scroll">Essential 3D Building Blocks</h2>
+    <p class="animate-on-scroll">Every 3D website is constructed from these fundamental components. Understanding each element empowers you to build complex scenes confidently:</p>
+    
+    <div class="model-grid animate-on-scroll">
+      <div class="model-card">
+        <div class="model-icon"></div>
+        <div class="model-title">Geometry</div>
+        <div class="model-desc">3D shapes like cubes, spheres, and custom models that form the structure of your scene</div>
+      </div>
+      <div class="model-card">
+        <div class="model-icon">🎨</div>
+        <div class="model-title">Materials</div>
+        <div class="model-desc">Surface properties controlling color, reflectivity, roughness, and visual appearance</div>
+      </div>
+      <div class="model-card">
+        <div class="model-icon">💡</div>
+        <div class="model-title">Lighting</div>
+        <div class="model-desc">Illumination sources that create depth, shadows, and realistic rendering</div>
+      </div>
+      <div class="model-card">
+        <div class="model-icon">🎥</div>
+        <div class="model-title">Camera</div>
+        <div class="model-desc">The viewer's perspective controlling what's visible and how it's framed</div>
+      </div>
+    </div>
+
+    <h2 class="animate-on-scroll">Step 1: Setting Up Your First 3D Scene</h2>
+    <p class="animate-on-scroll">Start by including Three.js via CDN in your HTML file: <code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"&gt;&lt;/script&gt;</code>. In your JavaScript file, create the scene, camera, and renderer—the holy trinity of 3D web development. Initialize with <code>const scene = new THREE.Scene()</code>, set up a perspective camera with <code>new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000)</code>, and configure the WebGL renderer. This foundational setup takes less than 15 lines of code and creates an empty 3D space ready for content. For content creators wanting to research 3D design trends and best practices, our <a href="perplexity-ai-content-research-workflow-2027.html" class="internal">Perplexity Research Workflow</a> shows how to gather cutting-edge insights efficiently.</p>
+
+    <h2 class="animate-on-scroll">Step 2: Adding Your First 3D Objects</h2>
+    <p class="animate-on-scroll">Create geometry using Three.js's built-in shapes: <code>new THREE.BoxGeometry(1, 1, 1)</code> for cubes, <code>new THREE.SphereGeometry(1, 32, 32)</code> for spheres, or <code>new THREE.TorusKnotGeometry(1, 0.4, 100, 16)</code> for complex shapes. Pair geometry with materials like <code>MeshPhongMaterial</code> for lighting-responsive surfaces. Combine them into a Mesh and add to the scene with <code>scene.add(mesh)</code>. Position objects using <code>mesh.position.set(x, y, z)</code> and rotate with <code>mesh.rotation.x = Math.PI / 4</code>. Experiment with multiple objects to create compositions. For developers building AI-enhanced 3D experiences, the integration patterns in <a href="elevenlabs-api-tutorial-for-developers-beginner-guide-2026.html" class="internal">ElevenLabs API Tutorial</a> demonstrate how to combine 3D visuals with AI voice synthesis for immersive storytelling.</p>
+
+    <h2 class="animate-on-scroll">Step 3: Implementing Lighting & Animation</h2>
+    <p class="animate-on-scroll">Lighting transforms flat shapes into believable 3D objects. Start with <code>AmbientLight</code> for base illumination, add <code>DirectionalLight</code> for sun-like shadows, and include <code>PointLight</code> for localized glow effects. Animate using <code>requestAnimationFrame</code> to create smooth 60fps loops. Rotate objects continuously with <code>mesh.rotation.y += 0.01</code>, implement mouse interaction with raycasting, and add camera controls using <code>OrbitControls</code> from Three.js addons. Test animations on different devices to ensure smooth performance. For teams building automated 3D content pipelines, the infrastructure insights in <a href="coreweave-vs-google-cloud-ai-performance.html" class="internal">CoreWeave vs Google Cloud AI Performance</a> provide complementary strategies for scaling compute-intensive workloads.</p>
+
+    <!-- ANIMATED STEP-BY-STEP TABLE -->
+    <h2 class="animate-on-scroll">Complete Beginner's Roadmap</h2>
+    <p class="animate-on-scroll">Follow this proven progression to build your first 3D website systematically:</p>
+    
+    <table class="animated-table" id="roadmapTable">
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th>Key Tasks</th>
+          <th>Time Required</th>
+          <th>Expected Outcome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Phase 1: Setup</strong></td>
+          <td>Install Three.js, create scene, camera, renderer</td>
+          <td>1-2 hours</td>
+          <td>Empty 3D space running in browser</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 2: Objects</strong></td>
+          <td>Add geometries, materials, position objects</td>
+          <td>2-3 hours</td>
+          <td>Static 3D scene with multiple objects</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 3: Lighting</strong></td>
+          <td>Configure ambient, directional, point lights</td>
+          <td>1-2 hours</td>
+          <td>Realistic lighting with shadows</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 4: Animation</strong></td>
+          <td>Implement rotation, interaction, camera controls</td>
+          <td>3-4 hours</td>
+          <td>Interactive animated 3D experience</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout animate-on-scroll">
+     
+    </div>
+
+    <!-- FAQ SECTION - WORKING VERSION -->
+    <h2 class="animate-on-scroll">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item animate-on-scroll">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need coding experience to build a 3D website? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Basic HTML, CSS, and JavaScript knowledge is required. You don't need prior 3D or WebGL experience—Three.js handles the complex math and rendering for you. Beginners can follow along step-by-step and build their first 3D site within hours.</p></div></div>
+      </div>
+      
+      <div class="faq-item animate-on-scroll">
+        <button class="faq-q" onclick="toggleFaq(this)">What's the easiest way to start with 3D web development? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Start with Three.js using a CDN link in a simple HTML file. Once comfortable, migrate to a build tool like Vite or Webpack for better development experience. Our guide shows both approaches for beginners.</p></div></div>
+      </div>
+      
+      <div class="faq-item animate-on-scroll">
+        <button class="faq-q" onclick="toggleFaq(this)">Are 3D websites mobile-friendly? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes! Three.js supports mobile browsers with WebGL. However, you should optimize geometry complexity, use efficient materials, and test on actual devices. Progressive enhancement ensures graceful fallbacks for older devices.</p></div></div>
+      </div>
+      
+      <div class="faq-item animate-on-scroll">
+        <button class="faq-q" onclick="toggleFaq(this)">How long does it take to build a 3D website? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>A basic 3D scene can be built in 2-4 hours. A polished, interactive portfolio site takes 1-2 weeks. Complex projects with custom 3D models, physics, and advanced animations may take 1-2 months depending on scope and experience level.</p></div></div>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 NeuraPulse · Prashant Lalwani</span>
+  <div><a href="../index.html" style="color:var(--text-dim);text-decoration:none;margin-right:1rem">Home</a><a href="../blog.html" style="color:var(--text-dim);text-decoration:none">Blog</a></div>
+</footer>
+
+</main>
+
+<!-- Three.js Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+// 3D SCENE SETUP
+const canvas = document.getElementById('threeCanvas');
+const container = document.getElementById('canvasContainer');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+
+// CREATE MULTIPLE GEOMETRIES
+const geometries = [
+  new THREE.TorusKnotGeometry(8, 2.5, 100, 16),
+  new THREE.IcosahedronGeometry(6, 0),
+  new THREE.OctahedronGeometry(5, 0)
+];
+
+const materials = [
+  new THREE.MeshPhongMaterial({ color: 0x8b5cf6, emissive: 0x4c1d95, specular: 0xa78bfa, shininess: 100 }),
+  new THREE.MeshPhongMaterial({ color: 0xa78bfa, emissive: 0x6d28d9, specular: 0xc4b5fd, shininess: 80 }),
+  new THREE.MeshPhongMaterial({ color: 0xc4b5fd, emissive: 0x7c3aed, specular: 0xddb8ff, shininess: 120 })
+];
+
+const meshes = geometries.map((geo, i) => {
+  const mesh = new THREE.Mesh(geo, materials[i]);
+  mesh.position.x = (i - 1) * 18;
+  scene.add(mesh);
+  return mesh;
+});
+
+// ADD LIGHTING
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+
+const pointLight1 = new THREE.PointLight(0xffffff, 1.2);
+pointLight1.position.set(20, 20, 20);
+scene.add(pointLight1);
+
+const pointLight2 = new THREE.PointLight(0xa78bfa, 0.8);
+pointLight2.position.set(-20, -20, 20);
+scene.add(pointLight2);
+
+const pointLight3 = new THREE.PointLight(0xc4b5fd, 0.6);
+pointLight3.position.set(0, 20, -20);
+scene.add(pointLight3);
+
+camera.position.z = 35;
+
+// ANIMATION LOOP
+let time = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  time += 0.01;
+  
+  meshes.forEach((mesh, i) => {
+    mesh.rotation.x += 0.005 * (i + 1);
+    mesh.rotation.y += 0.008 * (i + 1);
+    mesh.position.y = Math.sin(time + i) * 2;
+  });
+  
+  renderer.render(scene, camera);
+}
+
+animate();
+
+// RESPONSIVE RESIZE
+window.addEventListener('resize', () => {
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+  renderer.setSize(width, height);
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+});
+
+// FAQ TOGGLE - WORKING VERSION
+window.toggleFaq = function(btn) {
+  const panel = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-icon');
+  const item = btn.closest('.faq-item');
+  
+  const isOpen = panel.classList.contains('open');
+  
+  // Close ALL open panels first
+  document.querySelectorAll('.faq-a.open').forEach(function(openPanel) {
+    openPanel.classList.remove('open');
+    openPanel.closest('.faq-item').classList.remove('open');
+    openPanel.previousElementSibling.querySelector('.faq-icon').textContent = '+';
+  });
+  
+  // If this one was closed → open it
+  if (!isOpen) {
+    panel.classList.add('open');
+    item.classList.add('open');
+    icon.textContent = '×';
+  }
+};
+
+// SCROLL ANIMATIONS
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      if(entry.target.classList.contains('model-grid')) {
+        entry.target.querySelectorAll('.model-card').forEach((card, i) => {
+          card.style.animationDelay = `${i * 0.15}s`;
+          card.classList.add('visible');
+        });
+      }
+      if(entry.target.classList.contains('animated-table')) {
+        entry.target.querySelectorAll('tbody tr').forEach((row, i) => {
+          row.style.animationDelay = `${i * 0.12}s`;
+          row.classList.add('animate-in');
+        });
+      }
+      if(entry.target.classList.contains('faq-item')) {
+        entry.target.classList.add('visible');
+      }
+      if(entry.target.tagName === 'PRE') {
+        entry.target.classList.add('visible');
+      }
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.animate-on-scroll, .model-card, .animated-table, .faq-item, pre').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
