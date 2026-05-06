@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How Three.js Globe with Flight Paths Works — WebGL Animation Tutorial 2026</title>
-<meta name="description" content="Complete guide to building a Three.js globe with cursor interaction and WebGL flight path animations. Interactive 3D globe tutorial with live demo, 8 in-depth paragraphs, and FAQ.">
+<meta name="description" content="Complete guide to building a Three.js globe with cursor interaction and WebGL flight path animations. .">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=Sora:wght@300;400;500;600&family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* ─── TOKENS ─────────────────────────────────────────── */
 :root{
-  --ink:#0a0a0f;
-  --paper:#f7f4ef;
-  --paper2:#ede9e0;
-  --accent:#1a6bff;
-  --accent2:#ff3d6b;
-  --gold:#c89b3c;
-  --dim:#5a5870;
-  --border:rgba(10,10,15,.1);
+  --ink:#e2e8f0;
+  --paper:#050810;
+  --paper2:#0c1120;
+  --accent:#00e5ff;
+  --accent2:#7c3aed;
+  --gold:#00e5ff;
+  --dim:#64748b;
+  --border:rgba(30,45,69,.8);
   --radius:6px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -30,94 +37,101 @@ body{background:var(--paper);color:var(--ink);font-family:'Sora',sans-serif;line
 #progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:999;transition:width .1s linear;width:0%;}
 
 /* ─── NAV ─────────────────────────────────────────────── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(247,244,239,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
-.nav-brand{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--ink);text-decoration:none;}
-.nav-brand span{color:var(--accent);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+
+/* Logo matching NeuraPulse exactly */
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pdot 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes pdot{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.logo span{color:var(--ink);}
+
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s;}
-.nav-links a:hover{color:var(--accent);}
+.nav-links a{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+.nav-cta{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--accent);padding:.5rem 1.2rem;border-radius:4px;text-decoration:none;transition:box-shadow .2s;}
+.nav-cta:hover{box-shadow:0 0 20px rgba(0,229,255,.4);}
 
 /* ─── HERO ─────────────────────────────────────────────── */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:0;padding-top:60px;overflow:hidden;}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:0;padding-top:68px;overflow:hidden;}
 .hero-left{display:flex;flex-direction:column;justify-content:center;padding:5rem 3rem 5rem 4rem;position:relative;z-index:2;}
-.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;}
 .hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--accent);}
-.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4.5vw,3.8rem);font-weight:900;line-height:1.08;letter-spacing:-.03em;margin-bottom:1.5rem;}
+.hero-h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,4.5vw,3.8rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:1.5rem;}
 .hero-h1 em{color:var(--accent);font-style:italic;}
 .hero-sub{font-size:.975rem;color:var(--dim);max-width:420px;line-height:1.85;margin-bottom:2.5rem;}
-.hero-meta{display:flex;gap:2rem;flex-wrap:wrap;}
-.meta-chip{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;padding:.35rem .9rem;border:1px solid var(--border);border-radius:100px;color:var(--dim);}
-.meta-chip.accent{border-color:var(--accent);color:var(--accent);background:rgba(26,107,255,.06);}
+.hero-meta{display:flex;gap:1rem;flex-wrap:wrap;}
+.meta-chip{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;padding:.35rem .9rem;border:1px solid var(--border);border-radius:100px;color:var(--dim);}
+.meta-chip.accent{border-color:var(--accent);color:var(--accent);background:rgba(0,229,255,.06);}
 
 /* ─── LIVE GLOBE CANVAS ──────────────────────────────── */
-.hero-right{position:relative;background:var(--ink);overflow:hidden;}
+.hero-right{position:relative;background:#020816;overflow:hidden;}
 #globeCanvas{width:100%;height:100%;display:block;}
 .globe-overlay{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to right,var(--paper) 0%,transparent 18%);}
-.globe-label{position:absolute;bottom:2rem;right:2rem;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.globe-label{position:absolute;bottom:2rem;right:2rem;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);}
 
 /* ─── ARTICLE WRAPPER ────────────────────────────────── */
 .article-wrap{max-width:760px;margin:0 auto;padding:5rem 2rem 2rem;}
 
 /* ─── TOC ─────────────────────────────────────────────── */
 .toc{background:var(--paper2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.75rem 2rem;margin:3rem 0;}
-.toc-title{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.toc-title{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
 .toc ol{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem;}
 .toc li a{font-size:.9rem;color:var(--dim);text-decoration:none;transition:color .2s;}
 .toc li a:hover{color:var(--accent);}
 
 /* ─── BODY TEXT ──────────────────────────────────────── */
-.art-body h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin:3.5rem 0 1rem;color:var(--ink);position:relative;padding-left:1.25rem;}
+.art-body h2{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin:3.5rem 0 1rem;color:var(--ink);position:relative;padding-left:1.25rem;}
 .art-body h2::before{content:'';position:absolute;left:0;top:.2em;height:70%;width:3px;background:var(--accent);border-radius:2px;}
-.art-body h3{font-family:'Sora',sans-serif;font-weight:600;font-size:1.1rem;margin:2.5rem 0 .75rem;color:var(--ink);}
-.art-body p{margin-bottom:1.6rem;color:#2d2b3a;font-size:1.02rem;line-height:1.88;}
-.art-body a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(26,107,255,.3);transition:border-color .2s;}
+.art-body h3{font-family:'Syne',sans-serif;font-weight:600;font-size:1.1rem;margin:2.5rem 0 .75rem;color:var(--ink);}
+.art-body p{margin-bottom:1.6rem;color:#94a3b8;font-size:1.02rem;line-height:1.88;}
+.art-body a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3);transition:border-color .2s;}
 .art-body a:hover{border-color:var(--accent);}
 .art-body strong{color:var(--ink);font-weight:600;}
-.art-body code{font-family:'DM Mono',monospace;font-size:.82rem;background:var(--paper2);padding:.18rem .55rem;border-radius:4px;border:1px solid var(--border);}
-.art-body pre{background:var(--ink);border-radius:8px;padding:1.5rem;margin:1.75rem 0;overflow-x:auto;}
+.art-body code{font-family:'DM Mono',monospace;font-size:.82rem;background:#111827;padding:.18rem .55rem;border-radius:4px;border:1px solid var(--border);color:#00e5ff;}
+.art-body pre{background:#0a0f1e;border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin:1.75rem 0;overflow-x:auto;}
 .art-body pre code{background:none;border:none;color:#a9ffd8;font-size:.82rem;line-height:1.7;padding:0;}
 
 /* ─── CALLOUT ─────────────────────────────────────────── */
-.callout{background:linear-gradient(135deg,rgba(26,107,255,.07),rgba(255,61,107,.04));border:1px solid rgba(26,107,255,.18);border-radius:10px;padding:1.4rem 1.75rem;margin:2.25rem 0;}
+.callout{background:linear-gradient(135deg,rgba(0,229,255,.07),rgba(124,58,237,.04));border:1px solid rgba(0,229,255,.18);border-radius:10px;padding:1.4rem 1.75rem;margin:2.25rem 0;}
 .callout p{margin:0;font-size:.95rem;color:var(--dim);}
 .callout strong{color:var(--accent);}
-.callout.gold{background:rgba(200,155,60,.07);border-color:rgba(200,155,60,.25);}
+.callout.gold{background:rgba(0,229,255,.07);border-color:rgba(0,229,255,.25);}
 .callout.gold strong{color:var(--gold);}
 
 /* ─── INLINE DEMO SECTION ────────────────────────────── */
-.demo-section{margin:3.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 40px rgba(10,10,15,.12);}
-.demo-header{background:var(--ink);padding:1rem 1.5rem;display:flex;align-items:center;gap:.75rem;}
+.demo-section{margin:3.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 40px rgba(0,229,255,.08);}
+.demo-header{background:#0a0f1e;padding:1rem 1.5rem;display:flex;align-items:center;gap:.75rem;border-bottom:1px solid var(--border);}
 .demo-dot{width:12px;height:12px;border-radius:50%;}
-.demo-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;color:rgba(255,255,255,.4);margin-left:auto;}
+.demo-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.15em;color:rgba(255,255,255,.4);margin-left:auto;}
 #miniGlobeCanvas{width:100%;height:380px;display:block;background:#020816;}
 
 /* ─── ANIMATED DATA TABLE ────────────────────────────── */
 .tbl-wrap{overflow-x:auto;margin:2rem 0;border-radius:8px;border:1px solid var(--border);animation:tbl-pulse 5s ease-in-out infinite;}
-@keyframes tbl-pulse{0%,100%{box-shadow:0 0 0 rgba(26,107,255,0);}50%{box-shadow:0 0 18px rgba(26,107,255,.1);}}
+@keyframes tbl-pulse{0%,100%{box-shadow:0 0 0 rgba(0,229,255,0);}50%{box-shadow:0 0 18px rgba(0,229,255,.1);}}
 table.tbl{width:100%;border-collapse:collapse;min-width:500px;}
-table.tbl thead{background:linear-gradient(90deg,rgba(26,107,255,.08),rgba(255,61,107,.04));}
-table.tbl th{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding:.85rem 1.1rem;text-align:left;border-bottom:2px solid var(--border);}
+table.tbl thead{background:linear-gradient(90deg,rgba(0,229,255,.08),rgba(124,58,237,.04));}
+table.tbl th{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding:.85rem 1.1rem;text-align:left;border-bottom:2px solid var(--border);}
 table.tbl td{padding:.85rem 1.1rem;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--dim);transition:background .2s;}
 table.tbl tr:last-child td{border-bottom:none;}
-table.tbl tr:hover td{background:rgba(26,107,255,.04);}
+table.tbl tr:hover td{background:rgba(0,229,255,.04);}
 .hi{color:var(--accent);font-weight:600;}
 
 /* ─── RELATED POSTS ──────────────────────────────────── */
 .related{margin:4rem 0;padding:3rem 0;border-top:1px solid var(--border);}
-.related-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:2rem;}
+.related-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:2rem;}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
-.rel-card{border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;text-decoration:none;color:inherit;transition:border-color .22s,transform .22s,box-shadow .22s;display:block;background:#fff;}
-.rel-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 28px rgba(26,107,255,.1);}
-.rel-card .tag{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block;}
-.rel-card h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;line-height:1.3;color:var(--ink);}
+.rel-card{border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;text-decoration:none;color:inherit;transition:border-color .22s,transform .22s,box-shadow .22s;display:block;background:var(--paper2);}
+.rel-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,229,255,.1);}
+.rel-card .tag{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block;}
+.rel-card h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;line-height:1.3;color:var(--ink);}
 
 /* ─── FAQ ─────────────────────────────────────────────── */
 .faq{margin:4rem 0;}
-.faq-title{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;margin-bottom:2rem;}
+.faq-title{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:700;margin-bottom:2rem;}
 .faq-item{border:1px solid var(--border);border-radius:8px;margin-bottom:.75rem;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
-.faq-item.open{border-color:var(--accent);box-shadow:0 4px 20px rgba(26,107,255,.08);}
-.faq-q{width:100%;background:#fff;border:none;padding:1.15rem 1.5rem;text-align:left;font-family:'Sora',sans-serif;font-weight:600;font-size:.97rem;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
-.faq-q:hover{background:var(--paper2);}
+.faq-item.open{border-color:var(--accent);box-shadow:0 4px 20px rgba(0,229,255,.08);}
+.faq-q{width:100%;background:var(--paper2);border:none;padding:1.15rem 1.5rem;text-align:left;font-family:'Sora',sans-serif;font-weight:600;font-size:.97rem;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+.faq-q:hover{background:#111827;}
 .faq-icon{font-size:1.2rem;color:var(--accent);transition:transform .35s cubic-bezier(.34,1.56,.64,1);flex-shrink:0;font-family:'DM Mono',monospace;line-height:1;}
 .faq-q.open .faq-icon{transform:rotate(45deg);}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .42s ease,padding .3s;}
@@ -125,13 +139,13 @@ table.tbl tr:hover td{background:rgba(26,107,255,.04);}
 .faq-a p{margin:0;color:var(--dim);font-size:.95rem;line-height:1.78;}
 
 /* ─── FOOTER ──────────────────────────────────────────── */
-footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 4rem 2rem;margin-top:4rem;}
-.footer-inner{max-width:760px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;}
-.footer-brand{font-family:'Playfair Display',serif;font-size:1.4rem;color:#fff;}
+footer{background:#0c1120;border-top:1px solid var(--border);padding:2rem 3rem;margin-top:4rem;}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem;}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--ink);}
 .footer-brand span{color:var(--accent);}
-.footer-copy{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.08em;}
-.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
-.footer-links a{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}
+.footer-copy{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:var(--dim);}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap;list-style:none;}
+.footer-links a{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s;}
 .footer-links a:hover{color:var(--accent);}
 
 /* ─── FADE REVEAL ─────────────────────────────────────── */
@@ -147,23 +161,31 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 4rem 2rem;m
   .related-grid{grid-template-columns:1fr;}
   nav{padding:0 1.5rem;}
   .nav-links{display:none;}
+  .nav-cta{display:none;}
   footer{padding:2.5rem 1.5rem;}
 }
 </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <div id="progress"></div>
 
-<!-- NAV -->
+<!-- NAV — matches NeuraPulse exactly -->
 <nav>
-  <a href="#" class="nav-brand">Neura<span>Pulse</span></a>
+  <a href="index.html" class="logo">
+    <span class="logo-dot"></span>NeuraPulse
+  </a>
   <ul class="nav-links">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Blog</a></li>
-    <li><a href="#">Tools</a></li>
-    <li><a href="#">About</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
+  <a href="contact.html" class="nav-cta">Subscribe</a>
 </nav>
 
 <!-- ══ HERO ══════════════════════════════════════════════ -->
@@ -219,7 +241,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 4rem 2rem;m
     <!-- §2 -->
     <h2 id="s2" class="reveal">2. WebGL Scene Setup — Renderer, Camera, and Lighting</h2>
     <p class="reveal">Every Three.js application begins with three objects: a <code>WebGLRenderer</code>, a <code>PerspectiveCamera</code>, and a <code>Scene</code>. The renderer creates a <code>&lt;canvas&gt;</code> element and communicates with the GPU. The camera defines the viewpoint — for a globe you want a perspective camera with a field of view between 45° and 60° so the sphere feels three-dimensional rather than flat. The scene is the container that holds every object, light, and helper in your 3D world.</p>
-    <p class="reveal">Lighting for a globe typically uses two lights: a dim <code>AmbientLight</code> to prevent the night side from going completely black, and a <code>DirectionalLight</code> positioned to simulate the Sun. Setting the directional light at <code>position(5, 3, 5)</code> gives a convincing north-hemisphere illumination. This is the foundational setup that every globe visualisation — from flight trackers to climate data maps — builds on. The <code>renderer.setPixelRatio(window.devicePixelRatio)</code> call is critical for sharp rendering on retina displays; skipping it makes text and coastlines look blurry on high-DPI screens. For a complete scene configuration walkthrough including shadow maps, see our <a href="elevenlabs-text-to-speech-tutorial-for-beginners.html">WebGL rendering fundamentals guide</a>.</p>
+    <p class="reveal">Lighting for a globe typically uses two lights: a dim <code>AmbientLight</code> to prevent the night side from going completely black, and a <code>DirectionalLight</code> positioned to simulate the Sun. Setting the directional light at <code>position(5, 3, 5)</code> gives a convincing north-hemisphere illumination. This is the foundational setup that every globe visualisation — from flight trackers to climate data maps — builds on. The <code>renderer.setPixelRatio(window.devicePixelRatio)</code> call is critical for sharp rendering on retina displays; skipping it makes text and coastlines look blurry on high-DPI screens.</p>
 
     <pre><code>// Minimal Three.js scene setup
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -239,12 +261,12 @@ scene.add(sun);</code></pre>
     <!-- §3 -->
     <h2 id="s3" class="reveal">3. Building the 3D Sphere with Earth Texture</h2>
     <p class="reveal">The globe itself is a <code>SphereGeometry(1, 64, 64)</code> — radius 1 unit, 64 width segments, 64 height segments. Higher segment counts produce smoother silhouettes but increase vertex count. For a typical globe at standard browser window sizes, 64×64 is the sweet spot. The material is a <code>MeshPhongMaterial</code> with your Earth texture map applied — this material responds to the directional light and creates the shaded day/night appearance. For a lightweight build without loading external texture files, you can generate a procedural dotted-grid globe using a canvas texture, which is what the demo on this page uses.</p>
-    <p class="reveal">A second, slightly larger transparent sphere with a <code>MeshPhongMaterial</code> set to <code>transparent: true</code> and low opacity creates the atmospheric glow effect — the soft blue halo visible on real globe visualisations. This atmosphere sphere is scaled to <code>1.02</code> and uses a blue tint with additive blending. The combination of the textured sphere, the atmosphere sphere, and the directional light gives you the core visual of any professional globe without requiring external assets beyond a single JPEG texture. This same lightweight approach is described in our guide to <a href="best-elevenlabs-ai-voice-settings-for-realistic-audio-2027.html">building lightweight media-rich web apps</a> — principle of progressive asset loading applies here too.</p>
+    <p class="reveal">A second, slightly larger transparent sphere with a <code>MeshPhongMaterial</code> set to <code>transparent: true</code> and low opacity creates the atmospheric glow effect — the soft blue halo visible on real globe visualisations. This atmosphere sphere is scaled to <code>1.02</code> and uses a blue tint with additive blending. The combination of the textured sphere, the atmosphere sphere, and the directional light gives you the core visual of any professional globe without requiring external assets beyond a single JPEG texture.</p>
 
     <!-- §4 -->
     <h2 id="s4" class="reveal">4. Cursor Interaction and Drag-to-Rotate Controls</h2>
     <p class="reveal">Cursor interaction is what transforms a static globe render into an engaging interactive experience. The standard implementation tracks three things: whether the mouse button is pressed (<code>isPointerDown</code>), the previous mouse position (<code>prevX, prevY</code>), and a rotation velocity (<code>rotVelX, rotVelY</code>) for momentum. On <code>pointermove</code>, the delta between the current and previous mouse position maps directly to rotation angles applied to the globe mesh's <code>rotation.x</code> and <code>rotation.y</code> properties. The delta is multiplied by a sensitivity constant (typically <code>0.005</code>) to make the rotation feel natural.</p>
-    <p class="reveal">The momentum effect — where the globe continues spinning after you release the mouse — is implemented with a damping multiplier. Every animation frame, if <code>isPointerDown</code> is false, the velocity values are multiplied by <code>0.94</code> (the damping coefficient) and then added to the globe's rotation. This exponential decay naturally brings the rotation to rest, mimicking real physical inertia. For touch devices, the same logic applies to <code>touchstart</code>, <code>touchmove</code>, and <code>touchend</code> events using <code>event.touches[0].clientX/Y</code> as input. This pattern is also used in our <a href="openclaw-ai-workflow-automation-examples.html">interactive dashboard examples</a> for mouse-driven data exploration.</p>
+    <p class="reveal">The momentum effect — where the globe continues spinning after you release the mouse — is implemented with a damping multiplier. Every animation frame, if <code>isPointerDown</code> is false, the velocity values are multiplied by <code>0.94</code> (the damping coefficient) and then added to the globe's rotation. This exponential decay naturally brings the rotation to rest, mimicking real physical inertia.</p>
 
     <div class="callout reveal">
       <p><strong>Performance tip:</strong> Throttle pointermove events with <code>requestAnimationFrame</code> — do not apply rotation inside the event handler directly. Instead, store the delta and apply it in the render loop. This prevents rotation calculation from blocking the GPU render cycle.</p>
@@ -253,7 +275,7 @@ scene.add(sun);</code></pre>
     <!-- §5 -->
     <h2 id="s5" class="reveal">5. Converting Lat/Long Coordinates to 3D Points</h2>
     <p class="reveal">Latitude and longitude are spherical coordinates — they describe positions on a sphere in degrees. Three.js works in Cartesian (x,y,z) coordinates. Converting between the two requires a simple trigonometric formula that converts degrees to radians, then computes the 3D position on the surface of a unit sphere. The <code>y</code> axis in Three.js points up, which corresponds to the north pole. The formula is: <code>x = R * cos(lat) * sin(lon)</code>, <code>y = R * sin(lat)</code>, <code>z = R * cos(lat) * cos(lon)</code> — where R is the sphere radius and angles are in radians.</p>
-    <p class="reveal">For flight path visualisations, this conversion is applied to both the departure and arrival airports. The two resulting 3D points become the start and end of each flight arc. A key detail: longitude in geographic systems runs from -180° to +180° with 0° at Greenwich, but the Three.js sphere's default orientation places 0° longitude at a different position. A rotation offset of the globe mesh (typically <code>Math.PI / 2</code> around Y) is needed to align the texture's prime meridian with the geographic convention. Getting this alignment right is what separates a polished globe from one where cities appear in the wrong ocean.</p>
+    <p class="reveal">For flight path visualisations, this conversion is applied to both the departure and arrival airports. The two resulting 3D points become the start and end of each flight arc. A key detail: longitude in geographic systems runs from -180° to +180° with 0° at Greenwich, but the Three.js sphere's default orientation places 0° longitude at a different position. A rotation offset of the globe mesh (typically <code>Math.PI / 2</code> around Y) is needed to align the texture's prime meridian with the geographic convention.</p>
 
     <!-- DATA TABLE -->
     <div class="tbl-wrap reveal">
@@ -275,7 +297,7 @@ scene.add(sun);</code></pre>
     <!-- §6 -->
     <h2 id="s6" class="reveal">6. Drawing Animated Flight Arc Paths with CatmullRom Curves</h2>
     <p class="reveal">A flat straight line between two points on a sphere looks wrong — real flight paths follow great circle routes that arc upward away from the globe surface. In Three.js, this is achieved with <code>THREE.CatmullRomCurve3</code>. You generate intermediate points along the arc by interpolating between the start and end 3D positions, and at each step, pushing the midpoint outward away from the sphere centre by a height factor (typically <code>0.3</code> to <code>0.6</code> radius units). This creates the elegant arcing flight path geometry you see on aviation dashboards.</p>
-    <p class="reveal">The animation of the arc — where a glowing dot travels along the path — is implemented using the curve's <code>getPoint(t)</code> method where <code>t</code> runs from 0 to 1 over time. Each frame, a small sphere (the "aircraft" indicator) is repositioned to <code>curve.getPoint(t % 1)</code>. For a trailing glow effect, you maintain a buffer of the last N positions and draw a <code>LineSegments</code> geometry with vertex opacity decreasing from front to back — this creates the comet-tail trail effect. Multiple flight arcs each with their own time offset (<code>t + arcIndex * 0.2</code>) produces the layered animated globe seen in professional data visualisations. This is the same technique behind the globe you can interact with on this page.</p>
+    <p class="reveal">The animation of the arc — where a glowing dot travels along the path — is implemented using the curve's <code>getPoint(t)</code> method where <code>t</code> runs from 0 to 1 over time. Each frame, a small sphere (the "aircraft" indicator) is repositioned to <code>curve.getPoint(t % 1)</code>. Multiple flight arcs each with their own time offset produces the layered animated globe seen in professional data visualisations.</p>
 
     <!-- INLINE DEMO -->
     <div id="demo-section" class="demo-section reveal">
@@ -283,7 +305,7 @@ scene.add(sun);</code></pre>
         <div class="demo-dot" style="background:#ff5f57"></div>
         <div class="demo-dot" style="background:#febc2e"></div>
         <div class="demo-dot" style="background:#28c840"></div>
-        <div class="demo-label">LIVE · Three.js r128 · Drag to Rotate · Scroll to Zoom</div>
+        <div class="demo-label"></div>
       </div>
       <canvas id="miniGlobeCanvas"></canvas>
     </div>
@@ -291,12 +313,12 @@ scene.add(sun);</code></pre>
     <!-- §7 -->
     <h2 id="s7" class="reveal">7. Adding Particle Trail Effects on Flight Paths</h2>
     <p class="reveal">Particle trails give flight path animations a cinematic quality that differentiates them from basic line animations. The implementation uses Three.js <code>Points</code> geometry — a collection of vertices that render as individual sized dots rather than connected lines. Each particle is assigned a position along the flight arc, an initial opacity, and a speed. Every frame, particles move forward along the arc, their opacity decreasing from 1.0 to 0.0 as they age, then reset to the start of the arc when they reach the end. With 20–50 particles per arc, each with a slight random offset in spawn timing, you get a convincing trailing glow effect.</p>
-    <p class="reveal">The shader for the particles uses a <code>PointsMaterial</code> with <code>blending: THREE.AdditiveBlending</code> — this causes overlapping particles to add their colours together rather than overwrite each other, producing bright bloom-like hotspots at high particle density points (near cities and in the middle of arcs where multiple flight paths converge). Combining additive blending with a radial gradient circle texture (a white centre fading to transparent) makes each particle look like a glowing orb rather than a hard dot. This effect is visible in the interactive demos on this page and in tools like <a href="how-to-create-faceless-youtube-videos-with-elevenlabs-2027.html">AI-powered data visualization products</a> built on WebGL.</p>
+    <p class="reveal">The shader for the particles uses a <code>PointsMaterial</code> with <code>blending: THREE.AdditiveBlending</code> — this causes overlapping particles to add their colours together rather than overwrite each other, producing bright bloom-like hotspots at high particle density points. Combining additive blending with a radial gradient circle texture makes each particle look like a glowing orb rather than a hard dot.</p>
 
     <!-- §8 -->
     <h2 id="s8" class="reveal">8. Performance Optimisation and Mobile Considerations</h2>
     <p class="reveal">A Three.js globe can easily drop below 30fps on mid-range mobile devices if not carefully optimised. The primary optimisation levers are: geometry complexity (sphere segments), the number of active flight arcs, texture resolution, and shadow map usage. For mobile, reduce sphere segments from 64 to 32, limit concurrent animated arcs to 4–6, use a 1024×512 texture instead of 2048×1024, and disable shadow maps entirely — shadows on a globe visualisation add minimal visual value but double GPU load.</p>
-    <p class="reveal">The <code>renderer.setPixelRatio(Math.min(devicePixelRatio, 2))</code> call is the single most impactful mobile optimisation — it caps the pixel ratio at 2× even on 3× or 4× screens, halving the number of pixels rendered on high-DPI phones while remaining visually crisp. Combining this with <code>renderer.powerPreference: "high-performance"</code> in the renderer constructor tells the browser to use the discrete GPU on devices with dual-GPU setups (common on recent MacBooks and some Android flagships). Use the browser's <code>Performance</code> API to measure frame times in production and add adaptive quality scaling — if frames consistently take over 20ms, automatically reduce arc count or sphere resolution. These same performance principles apply whether you are building a globe, a <a href="best-elevenlabs-ai-voice-settings-for-realistic-audio-2027.html">real-time audio visualiser</a>, or any other WebGL application.</p>
+    <p class="reveal">The <code>renderer.setPixelRatio(Math.min(devicePixelRatio, 2))</code> call is the single most impactful mobile optimisation — it caps the pixel ratio at 2× even on 3× or 4× screens, halving the number of pixels rendered on high-DPI phones while remaining visually crisp. Combining this with <code>renderer.powerPreference: "high-performance"</code> in the renderer constructor tells the browser to use the discrete GPU on devices with dual-GPU setups.</p>
 
     <div class="callout gold reveal">
       <p><strong>Complete code summary:</strong> The full working globe — renderer setup, Earth sphere, atmosphere, lat/lon conversion, CatmullRom arc generation, animated aircraft dots, particle trails, drag rotation with momentum, and scroll zoom — fits in approximately 180 lines of JavaScript. No build system, no bundler, no dependencies beyond Three.js r128 from CDN.</p>
@@ -344,54 +366,50 @@ scene.add(sun);</code></pre>
 
     <div class="faq-item">
       <button class="faq-q">Can I add real-time flight data to this globe from a live API?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Yes. The OpenSky Network provides a free REST API returning live aircraft positions globally. AviationStack and FlightAware offer more detailed data with paid tiers. Poll the API every 5–10 seconds, convert the returned lat/lon/altitude to 3D positions using the coordinate conversion formula described in section 5, and update your particle positions accordingly. For WebSocket-based real-time updates without polling, ADS-B Exchange provides a free stream. The globe architecture described here handles dynamic arc updates natively — simply update the CatmullRomCurve3 control points each time new data arrives.</p></div>
+      <div class="faq-a"><p>Yes. The OpenSky Network provides a free REST API returning live aircraft positions globally. AviationStack and FlightAware offer more detailed data with paid tiers. Poll the API every 5–10 seconds, convert the returned lat/lon/altitude to 3D positions using the coordinate conversion formula described in section 5, and update your particle positions accordingly. For WebSocket-based real-time updates without polling, ADS-B Exchange provides a free stream.</p></div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q">How do I make the globe work on iOS Safari where WebGL support is limited?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>iOS Safari has supported WebGL 1.0 since iOS 8 and WebGL 2.0 since iOS 15. The main iOS-specific issues are: memory limits (keep total texture memory under 256MB), the lack of floating-point texture support in some configurations (use half-float as fallback), and the requirement for a user gesture before audio context creation (relevant only if your globe has sound effects). For the visual globe described here, standard Three.js code works on iOS 13+ without modification. Test on actual devices — the iOS simulator does not accurately represent GPU performance.</p></div>
+      <div class="faq-a"><p>iOS Safari has supported WebGL 1.0 since iOS 8 and WebGL 2.0 since iOS 15. The main iOS-specific issues are: memory limits (keep total texture memory under 256MB), the lack of floating-point texture support in some configurations (use half-float as fallback), and the requirement for a user gesture before audio context creation (relevant only if your globe has sound effects). For the visual globe described here, standard Three.js code works on iOS 13+ without modification.</p></div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q">What is the difference between OrbitControls and custom drag rotation for a globe?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Three.js's built-in OrbitControls (from the examples/jsm/controls/ directory) provides orbit, pan, and zoom in one component. For a globe specifically, OrbitControls has a quirk: it orbits the camera around a target point rather than rotating the globe object itself. This means the camera moves while the globe stays still, which produces slightly different visual behaviour than rotating the globe directly. Custom drag rotation — rotating the globe mesh directly — gives you more precise control over the feel, allows you to add momentum/inertia easily, and avoids gimbal lock issues at the poles that OrbitControls can exhibit. For most globe visualisations, custom drag rotation produces a more polished result.</p></div>
+      <div class="faq-a"><p>Three.js's built-in OrbitControls provides orbit, pan, and zoom in one component. For a globe specifically, OrbitControls orbits the camera around a target point rather than rotating the globe object itself. Custom drag rotation — rotating the globe mesh directly — gives you more precise control over the feel, allows you to add momentum/inertia easily, and avoids gimbal lock issues at the poles that OrbitControls can exhibit.</p></div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q">How do I add country borders or city labels to my Three.js globe?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Country borders use GeoJSON data (Natural Earth provides free high-quality files) converted to 3D line segments using the lat/lon-to-3D conversion. The d3-geo library's path generator combined with Three.js LineSegments is the standard approach. City labels require CSS2DRenderer or CSS3DRenderer (both part of Three.js examples) which overlay HTML elements on top of the WebGL canvas and project their positions using the camera's view matrix. This lets you use standard HTML and CSS for label styling while keeping them correctly positioned relative to the 3D globe even as it rotates.</p></div>
+      <div class="faq-a"><p>Country borders use GeoJSON data (Natural Earth provides free high-quality files) converted to 3D line segments using the lat/lon-to-3D conversion. The d3-geo library's path generator combined with Three.js LineSegments is the standard approach. City labels require CSS2DRenderer or CSS3DRenderer which overlay HTML elements on top of the WebGL canvas and project their positions using the camera's view matrix.</p></div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q">Is Three.js still the best choice in 2026 or should I use React Three Fiber or Babylon.js?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>For React applications, React Three Fiber (R3F) is now the standard — it provides a declarative component model for Three.js scenes that integrates naturally with React state management. For vanilla JS or non-React frameworks, Three.js directly is still the correct choice. Babylon.js is a full game engine with a larger API surface; it is more appropriate when you need physics simulation, skeletal animation, or game-specific features. For globe visualisations specifically, the Three.js ecosystem (with React Three Fiber for React projects) has the most community examples, tutorials, and library support in 2026.</p></div>
+      <div class="faq-a"><p>For React applications, React Three Fiber (R3F) is now the standard — it provides a declarative component model for Three.js scenes that integrates naturally with React state management. For vanilla JS or non-React frameworks, Three.js directly is still the correct choice. Babylon.js is a full game engine more appropriate when you need physics simulation or skeletal animation. For globe visualisations specifically, the Three.js ecosystem has the most community examples, tutorials, and library support in 2026.</p></div>
     </div>
 
   </div>
 
 </div><!-- /article-wrap -->
 
-<!-- FOOTER -->
+<!-- FOOTER — matches NeuraPulse exactly -->
 <footer>
   <div class="footer-inner">
-    <div>
-      <div class="footer-brand">Neura<span>Pulse</span></div>
-      <div class="footer-copy" style="margin-top:.5rem;">© 2026 NeuraPulse · All rights reserved</div>
-    </div>
-    <div class="footer-links">
-      <a href="#">Home</a>
-      <a href="#">Blog</a>
-      <a href="#">Tools</a>
-      <a href="#">Privacy</a>
-      <a href="#">Contact</a>
-    </div>
+    <span class="footer-brand">NeuraPulse<span>.</span></span>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 NeuraPulse. All rights reserved.</p>
   </div>
 </footer>
 
 <!-- ═══ THREE.JS GLOBE SCRIPTS ═══════════════════════════ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// ── SHARED HELPERS ─────────────────────────────────────
 function latLonTo3D(lat, lon, r) {
   const phi = (90 - lat) * (Math.PI / 180);
   const theta = (lon + 180) * (Math.PI / 180);
@@ -414,14 +432,13 @@ function buildArcPoints(from, to, height, segments) {
   return pts;
 }
 
-// ── GLOBE FACTORY ──────────────────────────────────────
 function createGlobe(canvas, cfg = {}) {
   const {
     autoRotate = true,
     rotSpeed = 0.0015,
-    arcColor = 0x00aaff,
+    arcColor = 0x00e5ff,
     dotColor = 0xffffff,
-    atmosColor = 0x1a6bff,
+    atmosColor = 0x00e5ff,
     routes = []
   } = cfg;
 
@@ -433,17 +450,14 @@ function createGlobe(canvas, cfg = {}) {
   renderer.setSize(W(), H());
 
   const scene = new THREE.Scene();
-
   const camera = new THREE.PerspectiveCamera(50, W() / H(), 0.1, 100);
   camera.position.z = 2.8;
 
-  // Lights
   scene.add(new THREE.AmbientLight(0xffffff, 0.35));
   const sun = new THREE.DirectionalLight(0xffffff, 1.1);
   sun.position.set(5, 3, 5);
   scene.add(sun);
 
-  // Procedural dot-grid texture
   function makeDotTexture(size = 1024) {
     const c = document.createElement('canvas');
     c.width = size; c.height = size / 2;
@@ -457,7 +471,6 @@ function createGlobe(canvas, cfg = {}) {
         const y = (r / rows) * c.height;
         const lat = 90 - (r / rows) * 180;
         const lon = (cl / cols) * 360 - 180;
-        // crude land mask using bounding boxes
         const isLand = (
           (lon > -170 && lon < -60 && lat > 15 && lat < 75) ||
           (lon > -85 && lon < -35 && lat > -55 && lat < 15) ||
@@ -470,7 +483,7 @@ function createGlobe(canvas, cfg = {}) {
         );
         ctx.beginPath();
         ctx.arc(x, y, isLand ? 2.2 : 1.1, 0, Math.PI * 2);
-        ctx.fillStyle = isLand ? 'rgba(80,160,255,0.85)' : 'rgba(30,70,140,0.35)';
+        ctx.fillStyle = isLand ? 'rgba(0,229,255,0.85)' : 'rgba(0,100,160,0.25)';
         ctx.fill();
       }
     }
@@ -478,14 +491,11 @@ function createGlobe(canvas, cfg = {}) {
   }
 
   const tex = makeDotTexture();
-
-  // Globe sphere
   const globeGeo = new THREE.SphereGeometry(1, 48, 48);
   const globeMat = new THREE.MeshPhongMaterial({ map: tex, transparent: false });
   const globe = new THREE.Mesh(globeGeo, globeMat);
   scene.add(globe);
 
-  // Atmosphere
   const atmosGeo = new THREE.SphereGeometry(1.03, 32, 32);
   const atmosMat = new THREE.MeshPhongMaterial({
     color: atmosColor, transparent: true, opacity: 0.08,
@@ -493,15 +503,12 @@ function createGlobe(canvas, cfg = {}) {
   });
   scene.add(new THREE.Mesh(atmosGeo, atmosMat));
 
-  // Flight arcs + travelling dots
   const arcObjects = [];
   routes.forEach(([la1, lo1, la2, lo2], i) => {
     const from = latLonTo3D(la1, lo1, 1);
     const to   = latLonTo3D(la2, lo2, 1);
     const pts  = buildArcPoints(from, to, 0.35, 60);
     const curve = new THREE.CatmullRomCurve3(pts);
-
-    // Static arc line
     const linePts = curve.getPoints(80);
     const lineGeo = new THREE.BufferGeometry().setFromPoints(linePts);
     const lineMat = new THREE.LineBasicMaterial({
@@ -509,16 +516,12 @@ function createGlobe(canvas, cfg = {}) {
       blending: THREE.AdditiveBlending, depthWrite: false
     });
     globe.add(new THREE.Line(lineGeo, lineMat));
-
-    // Travelling dot
     const dotGeo = new THREE.SphereGeometry(0.016, 8, 8);
     const dotMat = new THREE.MeshBasicMaterial({
       color: dotColor, blending: THREE.AdditiveBlending, depthWrite: false
     });
     const dot = new THREE.Mesh(dotGeo, dotMat);
     globe.add(dot);
-
-    // Glow ring around dot
     const ringGeo = new THREE.SphereGeometry(0.028, 8, 8);
     const ringMat = new THREE.MeshBasicMaterial({
       color: arcColor, transparent: true, opacity: 0.35,
@@ -526,28 +529,24 @@ function createGlobe(canvas, cfg = {}) {
     });
     const ring = new THREE.Mesh(ringGeo, ringMat);
     globe.add(ring);
-
     arcObjects.push({ curve, dot, ring, t: i * (1 / routes.length), speed: 0.0015 + Math.random() * 0.001 });
   });
 
-  // City markers
   function addCity(lat, lon) {
     const pos = latLonTo3D(lat, lon, 1.01);
     const g = new THREE.SphereGeometry(0.012, 6, 6);
-    const m = new THREE.MeshBasicMaterial({ color: 0xffdd88, blending: THREE.AdditiveBlending });
+    const m = new THREE.MeshBasicMaterial({ color: 0x00e5ff, blending: THREE.AdditiveBlending });
     const mesh = new THREE.Mesh(g, m);
     mesh.position.copy(pos);
     globe.add(mesh);
   }
 
-  // Drag interaction
   let isDragging = false, prevX = 0, prevY = 0, velX = 0, velY = 0;
   canvas.addEventListener('pointerdown', e => { isDragging = true; prevX = e.clientX; prevY = e.clientY; velX = velY = 0; canvas.setPointerCapture(e.pointerId); });
   canvas.addEventListener('pointermove', e => { if (!isDragging) return; const dx = e.clientX - prevX; const dy = e.clientY - prevY; velX = dx * 0.005; velY = dy * 0.005; globe.rotation.y += velX; globe.rotation.x += velY; prevX = e.clientX; prevY = e.clientY; });
   canvas.addEventListener('pointerup', () => { isDragging = false; });
   canvas.addEventListener('wheel', e => { camera.position.z = Math.max(1.5, Math.min(6, camera.position.z + e.deltaY * 0.003)); }, { passive: true });
 
-  // Resize
   const ro = new ResizeObserver(() => {
     renderer.setSize(W(), H());
     camera.aspect = W() / H();
@@ -555,7 +554,6 @@ function createGlobe(canvas, cfg = {}) {
   });
   ro.observe(canvas);
 
-  // Animate
   function animate() {
     requestAnimationFrame(animate);
     if (!isDragging) {
@@ -578,23 +576,21 @@ function createGlobe(canvas, cfg = {}) {
   return { addCity };
 }
 
-// ── HERO GLOBE ─────────────────────────────────────────
 const heroRoutes = [
-  [25.25, 55.36, 40.64, -73.78],   // Dubai → New York
-  [51.48, -0.45, 1.36, 103.99],    // London → Singapore
-  [-33.95, 151.18, 35.68, 139.77], // Sydney → Tokyo
-  [40.64, -73.78, 51.48, -0.45],   // New York → London
-  [35.68, 139.77, 25.25, 55.36],   // Tokyo → Dubai
-  [19.09, 72.87, 51.48, -0.45],    // Mumbai → London
+  [25.25, 55.36, 40.64, -73.78],
+  [51.48, -0.45, 1.36, 103.99],
+  [-33.95, 151.18, 35.68, 139.77],
+  [40.64, -73.78, 51.48, -0.45],
+  [35.68, 139.77, 25.25, 55.36],
+  [19.09, 72.87, 51.48, -0.45],
 ];
 
 const { addCity: heroAddCity } = createGlobe(
   document.getElementById('globeCanvas'),
-  { routes: heroRoutes, arcColor: 0x1a6bff, atmosColor: 0x1a6bff, rotSpeed: 0.0018 }
+  { routes: heroRoutes, arcColor: 0x00e5ff, atmosColor: 0x00e5ff, rotSpeed: 0.0018 }
 );
 [[25.25,55.36],[40.64,-73.78],[51.48,-0.45],[1.36,103.99],[-33.95,151.18],[35.68,139.77],[19.09,72.87]].forEach(([a,b]) => heroAddCity(a,b));
 
-// ── MINI GLOBE ─────────────────────────────────────────
 const miniRoutes = [
   [25.25, 55.36, 51.48, -0.45],
   [51.48, -0.45, 40.64, -73.78],
@@ -607,11 +603,10 @@ const miniRoutes = [
 
 const { addCity: miniAddCity } = createGlobe(
   document.getElementById('miniGlobeCanvas'),
-  { routes: miniRoutes, arcColor: 0xff3d6b, atmosColor: 0xff3d6b, rotSpeed: 0.001, autoRotate: true }
+  { routes: miniRoutes, arcColor: 0x7c3aed, atmosColor: 0x7c3aed, rotSpeed: 0.001, autoRotate: true }
 );
 [[25.25,55.36],[51.48,-0.45],[40.64,-73.78],[-23.43,-46.47],[-33.95,151.18],[35.68,139.77],[1.36,103.99],[22.31,114.17]].forEach(([a,b]) => miniAddCity(a,b));
 
-// ── PROGRESS BAR ───────────────────────────────────────
 const prog = document.getElementById('progress');
 window.addEventListener('scroll', () => {
   const s = document.documentElement;
@@ -619,13 +614,11 @@ window.addEventListener('scroll', () => {
   prog.style.width = pct + '%';
 });
 
-// ── REVEAL ─────────────────────────────────────────────
 const io = new IntersectionObserver(entries => {
   entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('vis'), i * 55); io.unobserve(e.target); }});
 }, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// ── FAQ ────────────────────────────────────────────────
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
     const ans = btn.nextElementSibling;
