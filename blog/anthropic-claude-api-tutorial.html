@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Anthropic Claude API tutorial step by step — how to get your API key, install the SDK, make your first API call, handle responses, and build real applications wit...">
-<meta name="keywords" content="anthropic claude api tutorial step by step, claude api tutorial, claude api python, how to use claude api, anthropic api guide 2026">
-<meta name="author" content="Prashant Lalwani"><meta name="robots" content="index, follow">
-<meta property="og:title" content="Anthropic Claude API Tutorial Step by Step (2026 Beginner Guid...">
-<meta property="og:url" content="https://neuraplus-ai.github.io/blog/anthropic-claude-api-tutorial.html">
-<link rel="canonical" href="https://neuraplus-ai.github.io/blog/anthropic-claude-api-tutorial.html">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<title>Anthropic Claude API Tutorial Step by Step (2026 Beginner Guid...</title>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Anthropic Claude API Tutorial Step by Step","author":{"@type":"Person","name":"Prashant Lalwani"},"publisher":{"@type":"Organization","name":"NeuraPulse"},"datePublished":"2026-04-18"}</script>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Read 'Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide)' on the NeuraPlusAI blog." name="description"/>
+<meta content="AI blog, artificial intelligence, NeuraPlusAI" name="keywords"/>
+<meta content="Prashant Lalwani" name="author"/><meta content="index, follow" name="robots"/>
+<meta content="Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide) – NeuraPlusAI Blog" property="og:title"/>
+<meta content="https://neuraplus-ai.github.io/blog/anthropic-claude-api-tutorial.html" property="og:url"/>
+<link href="https://neuraplus-ai.github.io/blog/anthropic-claude-api-tutorial.html" rel="canonical"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<title>Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide) – NeuraPlusAI Blog</title>
+
 <!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JNSQJZJDN1');</script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:#1e2d45;--accent:#00e5ff;--accent2:#7c3aed;--accent3:#f59e0b;--text:#e2e8f0;--text-dim:#64748b;--text-muted:#334155;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
@@ -83,97 +83,111 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;mar
 .fade{opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s;}.fade.vis{opacity:1;transform:translateY(0);}
 @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(5,8,16,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}.hbg{display:flex;}.art-hero,.art-img,.art-body{padding-left:1.5rem;padding-right:1.5rem;}.related-grid{grid-template-columns:1fr;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}}
 </style>
-  <link rel="stylesheet" href="/popup.css">
-  <meta property="og:description" content="Anthropic Claude API tutorial step by step — how to get your API key, install the SDK, make your first API call, handle responses, and build real applications wit...">
-  <meta property="og:image" content="https://neuraplus-ai.github.io/og-default.jpg">
-  <meta property="og:type" content="article">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Anthropic Claude API Tutorial Step by Step (2026 Beginner Guid...">
-  <meta name="twitter:description" content="Anthropic Claude API tutorial step by step — how to get your API key, install the SDK, make your first API call, handle responses, and build real applications wit...">
-  <meta name="twitter:image" content="https://neuraplus-ai.github.io/og-default.jpg">
-</head>
+<link href="/popup.css" rel="stylesheet"/>
+<meta content="Read 'Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide)' on the NeuraPlusAI blog." property="og:description"/>
+<meta content="https://neuraplus-ai.github.io/favicon.svg" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide) – NeuraPlusAI Blog" name="twitter:title"/>
+<meta content="Read 'Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide)' on the NeuraPlusAI blog." name="twitter:description"/>
+<meta content="https://neuraplus-ai.github.io/favicon.svg" name="twitter:image"/>
+<meta content="NeuraPlusAI" property="og:site_name"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="@neuraplus_ai" name="twitter:site"/><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide) \u2013 NeuraPlusAI Blog",
+  "description": "Read 'Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide)' on the NeuraPlusAI blog.",
+  "url": "https://neuraplus-ai.github.io/blog/anthropic-claude-api-tutorial.html",
+  "headline": "Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide) \u2013 NeuraPlusAI Blog",
+  "author": {
+    "@type": "Organization",
+    "name": "NeuraPlusAI"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "NeuraPlusAI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://neuraplus-ai.github.io/favicon.svg"
+    }
+  }
+}</script></head>
 <body>
-   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <nav>
-  <a href="../index.html" class="logo"><span class="ld"></span>NeuraPulse</a>
-  <ul class="nav-links" id="nl">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="../blog.html">Blog</a></li>
-    <li><a href="../about.html">About</a></li>
-    <li><a href="../contact.html">Contact</a></li>
-  </ul>
-  <a href="../contact.html" class="nav-cta">Subscribe</a>
-  <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+<a class="logo" href="../index.html"><span class="ld"></span>NeuraPulse</a>
+<ul class="nav-links" id="nl">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../blog.html">Blog</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../contact.html">Contact</a></li>
+</ul>
+<a class="nav-cta" href="../contact.html">Subscribe</a>
+<button class="hbg" id="hbg"><span></span><span></span><span></span></button>
 </nav>
 <main>
 <div class="art-hero fade">
-  <div class="art-tag">Claude API · Tutorial</div>
-  <h1>Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide)</h1>
-  <div class="art-meta">
-    <div class="art-av">PL</div>
-    <div class="art-info"><span class="art-author">Prashant Lalwani</span><span class="art-date">April 18, 2026 · 16 min read</span></div>
-    <span class="art-badge">API</span><span class="art-badge">Python</span>
-  </div>
+<div class="art-tag">Claude API · Tutorial</div>
+<h1>Anthropic Claude API Tutorial Step by Step (Complete 2026 Guide)</h1>
+<div class="art-meta">
+<div class="art-av">PL</div>
+<div class="art-info"><span class="art-author">Prashant Lalwani</span><span class="art-date">April 18, 2026 · 16 min read</span></div>
+<span class="art-badge">API</span><span class="art-badge">Python</span>
 </div>
-<div class="art-img fade"><svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-  <defs><linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#050810"/><stop offset="100%" stop-color="#060b18"/></linearGradient></defs>
-  <rect width="900" height="420" fill="url(#bg4)"/>
-  <rect x="50" y="35" width="580" height="350" rx="14" fill="rgba(12,17,32,0.95)" stroke="rgba(30,45,69,0.8)" stroke-width="1.5"/>
-  <rect x="50" y="35" width="580" height="38" rx="14" fill="rgba(17,24,39,0.9)"/>
-  <circle cx="80" cy="54" r="6" fill="rgba(244,114,182,0.6)"/><circle cx="100" cy="54" r="6" fill="rgba(245,158,11,0.6)"/><circle cx="120" cy="54" r="6" fill="rgba(52,211,153,0.6)"/>
-  <text x="340" y="59" font-family="Space Mono,monospace" font-size="10" fill="#4a5568" text-anchor="middle">claude_api_example.py</text>
-  <text x="80" y="98" font-family="Space Mono,monospace" font-size="11" fill="#334155">1</text><text x="100" y="98" font-family="Space Mono,monospace" font-size="11" fill="#00e5ff">import </text><text x="146" y="98" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">anthropic</text>
-  <text x="80" y="118" font-family="Space Mono,monospace" font-size="11" fill="#334155">2</text>
-  <text x="80" y="138" font-family="Space Mono,monospace" font-size="11" fill="#334155">3</text><text x="100" y="138" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">client = anthropic.</text><text x="248" y="138" font-family="Space Mono,monospace" font-size="11" fill="#34d399">Anthropic</text><text x="320" y="138" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">(</text>
-  <text x="80" y="158" font-family="Space Mono,monospace" font-size="11" fill="#334155">4</text><text x="100" y="158" font-family="Space Mono,monospace" font-size="11" fill="#64748b">    api_key=</text><text x="186" y="158" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"your-api-key"</text>
-  <text x="80" y="178" font-family="Space Mono,monospace" font-size="11" fill="#334155">5</text><text x="100" y="178" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">)</text>
-  <text x="80" y="198" font-family="Space Mono,monospace" font-size="11" fill="#334155">6</text>
-  <text x="80" y="218" font-family="Space Mono,monospace" font-size="11" fill="#334155">7</text><text x="100" y="218" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">message = client.messages.</text><text x="298" y="218" font-family="Space Mono,monospace" font-size="11" fill="#34d399">create</text><text x="354" y="218" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">(</text>
-  <text x="80" y="238" font-family="Space Mono,monospace" font-size="11" fill="#334155">8</text><text x="100" y="238" font-family="Space Mono,monospace" font-size="11" fill="#64748b">    model=</text><text x="162" y="238" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"claude-sonnet-4-20250514"</text>
-  <text x="80" y="258" font-family="Space Mono,monospace" font-size="11" fill="#334155">9</text><text x="100" y="258" font-family="Space Mono,monospace" font-size="11" fill="#64748b">    max_tokens=</text><text x="198" y="258" font-family="Space Mono,monospace" font-size="11" fill="#a78bfa">1024</text>
-  <text x="75" y="278" font-family="Space Mono,monospace" font-size="11" fill="#334155">10</text><text x="100" y="278" font-family="Space Mono,monospace" font-size="11" fill="#64748b">    messages=[</text>
-  <text x="75" y="298" font-family="Space Mono,monospace" font-size="11" fill="#334155">11</text><text x="100" y="298" font-family="Space Mono,monospace" font-size="11" fill="#64748b">        {{</text><text x="144" y="298" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"role"</text><text x="196" y="298" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">: </text><text x="208" y="298" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"user"</text><text x="256" y="298" font-family="Space Mono,monospace" font-size="11" fill="#64748b">, </text><text x="270" y="298" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"content"</text><text x="334" y="298" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">: </text><text x="346" y="298" font-family="Space Mono,monospace" font-size="11" fill="#34d399">"Hello"</text><text x="396" y="298" font-family="Space Mono,monospace" font-size="11" fill="#64748b">}}</text>
-  <text x="75" y="318" font-family="Space Mono,monospace" font-size="11" fill="#334155">12</text><text x="100" y="318" font-family="Space Mono,monospace" font-size="11" fill="#64748b">    ]</text>
-  <text x="75" y="338" font-family="Space Mono,monospace" font-size="11" fill="#334155">13</text><text x="100" y="338" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">)</text>
-  <text x="75" y="358" font-family="Space Mono,monospace" font-size="11" fill="#334155">14</text><text x="100" y="358" font-family="Space Mono,monospace" font-size="11" fill="#00e5ff">print</text><text x="140" y="358" font-family="Space Mono,monospace" font-size="11" fill="#e2e8f0">(message.content)</text>
-  <rect x="680" y="60" width="190" height="80" rx="10" fill="rgba(0,229,255,0.08)" stroke="rgba(0,229,255,0.3)" stroke-width="1.5"/>
-  <text x="775" y="88" font-family="Space Mono,monospace" font-size="10" fill="#00e5ff" text-anchor="middle">API KEY</text>
-  <text x="775" y="108" font-family="Space Mono,monospace" font-size="9" fill="#64748b" text-anchor="middle">sk-ant-api03-...</text>
-  <text x="775" y="128" font-family="DM Sans,sans-serif" font-size="11" fill="#34d399" text-anchor="middle">console.anthropic.com</text>
-  <rect x="680" y="160" width="190" height="80" rx="10" fill="rgba(124,58,237,0.08)" stroke="rgba(124,58,237,0.3)" stroke-width="1.5"/>
-  <text x="775" y="188" font-family="Space Mono,monospace" font-size="10" fill="#a78bfa" text-anchor="middle">MODEL</text>
-  <text x="775" y="208" font-family="Space Mono,monospace" font-size="9" fill="#64748b" text-anchor="middle">claude-sonnet-4</text>
-  <text x="775" y="228" font-family="DM Sans,sans-serif" font-size="11" fill="#34d399" text-anchor="middle">Recommended</text>
-  <rect x="680" y="260" width="190" height="80" rx="10" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
-  <text x="775" y="288" font-family="Space Mono,monospace" font-size="10" fill="#34d399" text-anchor="middle">RESPONSE</text>
-  <text x="775" y="308" font-family="Space Mono,monospace" font-size="9" fill="#64748b" text-anchor="middle">message.content</text>
-  <text x="775" y="328" font-family="DM Sans,sans-serif" font-size="11" fill="#34d399" text-anchor="middle">✓ Working!</text>
-  <text x="775" y="395" font-family="Space Mono,monospace" font-size="11" fill="rgba(100,116,139,0.7)" text-anchor="middle" letter-spacing="2">CLAUDE API TUTORIAL</text>
+</div>
+<div class="art-img fade"><svg height="100%" viewbox="0 0 900 420" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs><lineargradient id="bg4" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#050810"></stop><stop offset="100%" stop-color="#060b18"></stop></lineargradient></defs>
+<rect fill="url(#bg4)" height="420" width="900"></rect>
+<rect fill="rgba(12,17,32,0.95)" height="350" rx="14" stroke="rgba(30,45,69,0.8)" stroke-width="1.5" width="580" x="50" y="35"></rect>
+<rect fill="rgba(17,24,39,0.9)" height="38" rx="14" width="580" x="50" y="35"></rect>
+<circle cx="80" cy="54" fill="rgba(244,114,182,0.6)" r="6"></circle><circle cx="100" cy="54" fill="rgba(245,158,11,0.6)" r="6"></circle><circle cx="120" cy="54" fill="rgba(52,211,153,0.6)" r="6"></circle>
+<text fill="#4a5568" font-family="Space Mono,monospace" font-size="10" text-anchor="middle" x="340" y="59">claude_api_example.py</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="80" y="98">1</text><text fill="#00e5ff" font-family="Space Mono,monospace" font-size="11" x="100" y="98">import </text><text fill="#e2e8f0" font-family="Space Mono,monospace" font-size="11" x="146" y="98">anthropic</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="80" y="118">2</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="80" y="138">3</text><text fill="#e2e8f0" font-family="Space Mono,monospace" font-size="11" x="100" y="138">client = anthropic.</text><text fill="#34d399" font-family="Space Mono,monospace" font-size="11" x="248" y="138">Anthropic</text><text fill="#e2e8f0" font-family="Space Mono,monospace" font-size="11" x="320" y="138">(</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="80" y="158">4</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="11" x="100" y="158">    api_key=</text><text fill="#34d399" font-family="Space Mono,monospace" font-size="11" x="186" y="158">"your-api-key"</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="80" y="178">5</text><text fill="#e2e8f0" font-family="Space Mono,monospace" font-size="11" x="100" y="178">)</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="80" y="198">6</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="80" y="218">7</text><text fill="#e2e8f0" font-family="Space Mono,monospace" font-size="11" x="100" y="218">message = client.messages.</text><text fill="#34d399" font-family="Space Mono,monospace" font-size="11" x="298" y="218">create</text><text fill="#e2e8f0" font-family="Space Mono,monospace" font-size="11" x="354" y="218">(</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="80" y="238">8</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="11" x="100" y="238">    model=</text><text fill="#34d399" font-family="Space Mono,monospace" font-size="11" x="162" y="238">"claude-sonnet-4-20250514"</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="80" y="258">9</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="11" x="100" y="258">    max_tokens=</text><text fill="#a78bfa" font-family="Space Mono,monospace" font-size="11" x="198" y="258">1024</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="75" y="278">10</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="11" x="100" y="278">    messages=[</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="75" y="298">11</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="11" x="100" y="298">        {{</text><text fill="#34d399" font-family="Space Mono,monospace" font-size="11" x="144" y="298">"role"</text><text fill="#e2e8f0" font-family="Space Mono,monospace" font-size="11" x="196" y="298">: </text><text fill="#34d399" font-family="Space Mono,monospace" font-size="11" x="208" y="298">"user"</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="11" x="256" y="298">, </text><text fill="#34d399" font-family="Space Mono,monospace" font-size="11" x="270" y="298">"content"</text><text fill="#e2e8f0" font-family="Space Mono,monospace" font-size="11" x="334" y="298">: </text><text fill="#34d399" font-family="Space Mono,monospace" font-size="11" x="346" y="298">"Hello"</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="11" x="396" y="298">}}</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="75" y="318">12</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="11" x="100" y="318">    ]</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="75" y="338">13</text><text fill="#e2e8f0" font-family="Space Mono,monospace" font-size="11" x="100" y="338">)</text>
+<text fill="#334155" font-family="Space Mono,monospace" font-size="11" x="75" y="358">14</text><text fill="#00e5ff" font-family="Space Mono,monospace" font-size="11" x="100" y="358">print</text><text fill="#e2e8f0" font-family="Space Mono,monospace" font-size="11" x="140" y="358">(message.content)</text>
+<rect fill="rgba(0,229,255,0.08)" height="80" rx="10" stroke="rgba(0,229,255,0.3)" stroke-width="1.5" width="190" x="680" y="60"></rect>
+<text fill="#00e5ff" font-family="Space Mono,monospace" font-size="10" text-anchor="middle" x="775" y="88">API KEY</text>
+<text fill="#64748b" font-family="Space Mono,monospace" font-size="9" text-anchor="middle" x="775" y="108">sk-ant-api03-...</text>
+<text fill="#34d399" font-family="DM Sans,sans-serif" font-size="11" text-anchor="middle" x="775" y="128">console.anthropic.com</text>
+<rect fill="rgba(124,58,237,0.08)" height="80" rx="10" stroke="rgba(124,58,237,0.3)" stroke-width="1.5" width="190" x="680" y="160"></rect>
+<text fill="#a78bfa" font-family="Space Mono,monospace" font-size="10" text-anchor="middle" x="775" y="188">MODEL</text>
+<text fill="#64748b" font-family="Space Mono,monospace" font-size="9" text-anchor="middle" x="775" y="208">claude-sonnet-4</text>
+<text fill="#34d399" font-family="DM Sans,sans-serif" font-size="11" text-anchor="middle" x="775" y="228">Recommended</text>
+<rect fill="rgba(52,211,153,0.08)" height="80" rx="10" stroke="rgba(52,211,153,0.3)" stroke-width="1.5" width="190" x="680" y="260"></rect>
+<text fill="#34d399" font-family="Space Mono,monospace" font-size="10" text-anchor="middle" x="775" y="288">RESPONSE</text>
+<text fill="#64748b" font-family="Space Mono,monospace" font-size="9" text-anchor="middle" x="775" y="308">message.content</text>
+<text fill="#34d399" font-family="DM Sans,sans-serif" font-size="11" text-anchor="middle" x="775" y="328">✓ Working!</text>
+<text fill="rgba(100,116,139,0.7)" font-family="Space Mono,monospace" font-size="11" letter-spacing="2" text-anchor="middle" x="775" y="395">CLAUDE API TUTORIAL</text>
 </svg></div>
 <div class="art-body fade">
-
 <p>The Anthropic Claude API lets you build powerful AI-powered applications — chatbots, writing assistants, data processors, and more. This step-by-step tutorial takes you from zero to your first working Claude API call in under 20 minutes.</p>
-
 <div class="callout">
-  <p><strong>Prerequisites:</strong> Basic Python knowledge (variables, functions, importing libraries). No prior API experience needed — this guide explains everything from scratch. You'll need a credit card to activate the API (pay-per-use, not a subscription).</p>
+<p><strong>Prerequisites:</strong> Basic Python knowledge (variables, functions, importing libraries). No prior API experience needed — this guide explains everything from scratch. You'll need a credit card to activate the API (pay-per-use, not a subscription).</p>
 </div>
-
 <h2>Step 1: Get Your Claude API Key</h2>
 <ol>
-  <li>Go to <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a></li>
-  <li>Create an account or sign in</li>
-  <li>Click <strong>API Keys</strong> in the left menu</li>
-  <li>Click <strong>Create Key</strong> — give it a name like "my-first-key"</li>
-  <li>Copy the key immediately — it starts with <code>sk-ant-api03-</code></li>
-  <li>Add billing at <strong>Settings → Billing</strong> — you only pay for what you use</li>
+<li>Go to <a href="https://console.anthropic.com" rel="noopener" target="_blank">console.anthropic.com</a></li>
+<li>Create an account or sign in</li>
+<li>Click <strong>API Keys</strong> in the left menu</li>
+<li>Click <strong>Create Key</strong> — give it a name like "my-first-key"</li>
+<li>Copy the key immediately — it starts with <code>sk-ant-api03-</code></li>
+<li>Add billing at <strong>Settings → Billing</strong> — you only pay for what you use</li>
 </ol>
 <div class="callout amber">
-  <p><strong>Security Warning:</strong> Never put your API key directly in code you'll share or commit to GitHub. Use environment variables (shown below). A leaked key will be used by others and billed to your account.</p>
+<p><strong>Security Warning:</strong> Never put your API key directly in code you'll share or commit to GitHub. Use environment variables (shown below). A leaked key will be used by others and billed to your account.</p>
 </div>
-
 <h2>Step 2: Set Up Your Environment</h2>
 <div class="code-block"><pre><span class="cm"># Install the Anthropic Python SDK</span>
 pip install anthropic
@@ -184,7 +198,6 @@ export ANTHROPIC_API_KEY=<span class="str">"sk-ant-api03-your-key-here"</span>
 
 <span class="cm"># On Windows (Command Prompt):</span>
 set ANTHROPIC_API_KEY=<span class="str">sk-ant-api03-your-key-here</span></pre></div>
-
 <h2>Step 3: Make Your First API Call</h2>
 <p>Here is the simplest possible Claude API call in Python:</p>
 <div class="code-block"><pre><span class="kw">import</span> anthropic
@@ -203,9 +216,7 @@ message = client.messages.create(
 
 <span class="cm"># Print Claude's response</span>
 print(message.content[0].text)</pre></div>
-
 <p>Run this and you'll see Claude's response printed in your terminal. That's it — you've made your first Claude API call!</p>
-
 <h2>Step 4: Understanding the Response Object</h2>
 <p>The API returns a message object with several useful properties:</p>
 <div class="code-block"><pre><span class="cm"># Full response object properties</span>
@@ -217,7 +228,6 @@ print(message.usage)        <span class="cm"># Input/output token counts</span>
 <span class="cm"># The actual text response</span>
 text = message.content[0].text
 print(text)</pre></div>
-
 <h2>Step 5: Using System Prompts</h2>
 <p>System prompts let you define Claude's role and behaviour for your application — this is how you build specialised AI assistants:</p>
 <div class="code-block"><pre>message = client.messages.create(
@@ -230,7 +240,6 @@ Always be polite, professional, and concise."""</span>,
         {<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="str">"What's your return policy?"</span>}
     ]
 )</pre></div>
-
 <h2>Step 6: Build a Multi-Turn Conversation</h2>
 <p>For chatbots, you need to send the conversation history with each request:</p>
 <div class="code-block"><pre><span class="kw">import</span> anthropic
@@ -268,26 +277,23 @@ conversation_history = []
     <span class="kw">if</span> user_input.lower() == <span class="str">"quit"</span>:
         <span class="kw">break</span>
     print(f<span class="str">"Claude: {chat(user_input)}"</span>)</pre></div>
-
 <h2>Step 7: API Pricing (So You Don't Get a Surprise Bill)</h2>
 <table class="tool-table">
-  <thead><tr><th>Model</th><th>Input (per 1M tokens)</th><th>Output (per 1M tokens)</th><th>Best For</th></tr></thead>
-  <tbody>
-    <tr><td class="tool-name">claude-haiku-3-5</td><td>$0.80</td><td>$4.00</td><td>High-volume, simple tasks</td></tr>
-    <tr><td class="tool-name">claude-sonnet-4</td><td>$3.00</td><td>$15.00</td><td>Most applications ✓ Recommended</td></tr>
-    <tr><td class="tool-name">claude-opus-4</td><td>$15.00</td><td>$75.00</td><td>Complex reasoning tasks</td></tr>
-  </tbody>
+<thead><tr><th>Model</th><th>Input (per 1M tokens)</th><th>Output (per 1M tokens)</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td class="tool-name">claude-haiku-3-5</td><td>$0.80</td><td>$4.00</td><td>High-volume, simple tasks</td></tr>
+<tr><td class="tool-name">claude-sonnet-4</td><td>$3.00</td><td>$15.00</td><td>Most applications ✓ Recommended</td></tr>
+<tr><td class="tool-name">claude-opus-4</td><td>$15.00</td><td>$75.00</td><td>Complex reasoning tasks</td></tr>
+</tbody>
 </table>
 <p>A typical API call with a 500-word prompt and 500-word response uses roughly 500 + 500 = 1,000 tokens. At Sonnet rates, that's about $0.003 — less than a fraction of a cent per call.</p>
-
 <h2>Common Errors and How to Fix Them</h2>
 <ul>
-  <li><strong>AuthenticationError</strong> — Your API key is wrong or not set. Check the environment variable.</li>
-  <li><strong>RateLimitError</strong> — You're making too many requests. Add retry logic with exponential backoff.</li>
-  <li><strong>InvalidRequestError</strong> — Check your message format. The messages array must alternate user/assistant roles.</li>
-  <li><strong>OverloadedError</strong> — Anthropic's servers are busy. Retry after a few seconds.</li>
+<li><strong>AuthenticationError</strong> — Your API key is wrong or not set. Check the environment variable.</li>
+<li><strong>RateLimitError</strong> — You're making too many requests. Add retry logic with exponential backoff.</li>
+<li><strong>InvalidRequestError</strong> — Check your message format. The messages array must alternate user/assistant roles.</li>
+<li><strong>OverloadedError</strong> — Anthropic's servers are busy. Retry after a few seconds.</li>
 </ul>
-
 <h2>Frequently Asked Questions</h2>
 <h3>How much does the Claude API cost?</h3>
 <p>You pay per token (roughly per word). Claude Sonnet costs $3 per million input tokens and $15 per million output tokens. Most test calls cost fractions of a cent. Set a monthly billing limit in the Anthropic console to avoid unexpected charges.</p>
@@ -295,30 +301,29 @@ conversation_history = []
 <p>Start with <code>claude-sonnet-4-20250514</code> — it's the best balance of capability and cost for most applications. Use Haiku for high-volume simple tasks where cost matters. Use Opus only for complex tasks that genuinely need it.</p>
 <h3>Can I use the Claude API for free?</h3>
 <p>The API itself is pay-per-use with no free tier (unlike claude.ai which has a free web interface). You need to add billing, but costs are very low for development and testing.</p>
-
 <div class="related">
-  <div class="related-label">Related Articles</div>
-  <div class="related-grid">
-    <a href="best-prompts-for-anthropic-claude-ai.html" class="related-card"><span>Prompts</span><h4>Best Prompts for Anthropic Claude AI</h4></a>
-    <a href="is-anthropic-claude-good-for-coding-beginners.html" class="related-card"><span>Coding</span><h4>Is Claude Good for Coding Beginners?</h4></a>
-    <a href="how-to-use-anthropic-claude-for-blogging.html" class="related-card"><span>Claude AI</span><h4>How to Use Claude for Blogging</h4></a>
-  </div>
+<div class="related-label">Related Articles</div>
+<div class="related-grid">
+<a class="related-card" href="best-prompts-for-anthropic-claude-ai.html"><span>Prompts</span><h4>Best Prompts for Anthropic Claude AI</h4></a>
+<a class="related-card" href="is-anthropic-claude-good-for-coding-beginners.html"><span>Coding</span><h4>Is Claude Good for Coding Beginners?</h4></a>
+<a class="related-card" href="how-to-use-anthropic-claude-for-blogging.html"><span>Claude AI</span><h4>How to Use Claude for Blogging</h4></a>
+</div>
 </div>
 </div></main>
 <footer>
-  <span class="flogo">NeuraPulse<span style="color:var(--accent)">.</span></span>
-  <ul class="flinks">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="../blog.html">Blog</a></li>
-    <li><a href="../about.html">About</a></li>
-    <li><a href="../contact.html">Contact</a></li>
-  </ul>
-  <p class="fcopy">© 2026 NeuraPulse · Prashant Lalwani</p>
-</footer><div id="np-btn" onclick="npOpen()" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 24px rgba(0,229,255,0.4);transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"><svg width="26" height="26" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="white"/><circle cx="8" cy="12" r="1.4" fill="#7c3aed"/><circle cx="12" cy="12" r="1.4" fill="#7c3aed"/><circle cx="16" cy="12" r="1.4" fill="#7c3aed"/></svg></div>
+<span class="flogo">NeuraPulse<span style="color:var(--accent)">.</span></span>
+<ul class="flinks">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../blog.html">Blog</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../contact.html">Contact</a></li>
+</ul>
+<p class="fcopy">© 2026 NeuraPulse · Prashant Lalwani</p>
+</footer><div id="np-btn" onclick="npOpen()" onmouseout="this.style.transform='scale(1)'" onmouseover="this.style.transform='scale(1.1)'" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 24px rgba(0,229,255,0.4);transition:transform 0.2s;"><svg fill="none" height="26" viewbox="0 0 24 24" width="26"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="white" fill-rule="evenodd"></path><circle cx="8" cy="12" fill="#7c3aed" r="1.4"></circle><circle cx="12" cy="12" fill="#7c3aed" r="1.4"></circle><circle cx="16" cy="12" fill="#7c3aed" r="1.4"></circle></svg></div>
 <div id="np-win" style="display:none;position:fixed;bottom:5.5rem;right:1.5rem;z-index:9998;width:370px;background:#0c1120;border:1px solid #1e2d45;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.6);flex-direction:column;">
-  <div style="background:linear-gradient(135deg,#111827,#1a0d3d);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e2d45;"><div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🤖</div><div><div style="font-family:Syne,sans-serif;font-weight:700;color:#e2e8f0;font-size:0.95rem;">NeuraPulse AI</div><div style="font-family:Space Mono,monospace;font-size:0.6rem;color:#00e5ff;letter-spacing:0.1em;">● ONLINE</div></div></div><button onclick="npClose()" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:1.3rem;line-height:1;">✕</button></div>
-  <div id="np-msgs" style="height:300px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;"><div style="background:#111827;border:1px solid #1e2d45;border-radius:12px 12px 12px 4px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#94a3b8;line-height:1.6;">👋 Hi! Ask me anything about Claude AI, prompts, or any topic from our blog!</div></div>
-  <div style="padding:0.8rem 1rem;border-top:1px solid #1e2d45;display:flex;gap:0.6rem;background:#050810;"><input id="np-inp" type="text" placeholder="Ask about Claude AI..." onkeydown="if(event.key==='Enter')npSend()" style="flex:1;background:#111827;border:1px solid #1e2d45;border-radius:10px;padding:0.65rem 1rem;color:#e2e8f0;font-family:DM Sans,sans-serif;font-size:0.875rem;outline:none;" onfocus="this.style.borderColor='#00e5ff'" onblur="this.style.borderColor='#1e2d45'"><button onclick="npSend()" style="width:42px;height:42px;background:linear-gradient(135deg,#7c3aed,#00e5ff);border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4 20-7z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+<div style="background:linear-gradient(135deg,#111827,#1a0d3d);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e2d45;"><div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#00e5ff);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🤖</div><div><div style="font-family:Syne,sans-serif;font-weight:700;color:#e2e8f0;font-size:0.95rem;">NeuraPulse AI</div><div style="font-family:Space Mono,monospace;font-size:0.6rem;color:#00e5ff;letter-spacing:0.1em;">● ONLINE</div></div></div><button onclick="npClose()" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:1.3rem;line-height:1;">✕</button></div>
+<div id="np-msgs" style="height:300px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;"><div style="background:#111827;border:1px solid #1e2d45;border-radius:12px 12px 12px 4px;padding:0.9rem 1rem;max-width:88%;font-size:0.875rem;color:#94a3b8;line-height:1.6;">👋 Hi! Ask me anything about Claude AI, prompts, or any topic from our blog!</div></div>
+<div style="padding:0.8rem 1rem;border-top:1px solid #1e2d45;display:flex;gap:0.6rem;background:#050810;"><input id="np-inp" onblur="this.style.borderColor='#1e2d45'" onfocus="this.style.borderColor='#00e5ff'" onkeydown="if(event.key==='Enter')npSend()" placeholder="Ask about Claude AI..." style="flex:1;background:#111827;border:1px solid #1e2d45;border-radius:10px;padding:0.65rem 1rem;color:#e2e8f0;font-family:DM Sans,sans-serif;font-size:0.875rem;outline:none;" type="text"/><button onclick="npSend()" style="width:42px;height:42px;background:linear-gradient(135deg,#7c3aed,#00e5ff);border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg fill="none" height="18" viewbox="0 0 24 24" width="18"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4 20-7z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button></div>
 </div>
 <style>@keyframes npb{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}</style>
 <script>
@@ -332,5 +337,5 @@ async function npSend(){var inp=document.getElementById("np-inp");var msg=inp.va
 document.getElementById('hbg').addEventListener('click',function(){document.getElementById('nl').classList.toggle('open');});
 var obs=new IntersectionObserver(function(e){e.forEach(function(en,i){if(en.isIntersecting){setTimeout(function(){en.target.classList.add('vis');},60*i);obs.unobserve(en.target);}});},{threshold:0.05});
 document.querySelectorAll('.fade').forEach(function(el){obs.observe(el);});
-</script>  <script src="/popup.js"></script>
+</script> <script src="/popup.js"></script>
 </body></html>
