@@ -1,0 +1,49 @@
+name: Auto SEO Optimizer
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  seo-optimize:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install beautifulsoup4 lxml
+
+      - name: Run SEO optimizer
+        run: python seo_optimizer.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # ✅ KEY FIX: configure git to not use rebase on pull
+          git config pull.rebase false
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "✅ No changes to commit."
+          else
+            git commit -m "chore: auto SEO - titles, meta, schema, OG tags [skip ci]"
+            git pull origin main --no-rebase
+            git push origin main
+          fi
