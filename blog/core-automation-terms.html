@@ -113,7 +113,7 @@ function tFaq(el){const a=el.nextElementSibling;const ic=el.querySelector('.faq-
 function nlSub(b){const i=b.previousElementSibling;if(!i||!i.value){alert('Please enter your email!');return;}b.textContent='✓ Subscribed!';b.style.background='#34d399';b.style.color='#050810';b.style.pointerEvents='none';}
 </script><script src=/popup.js></script><script>
 document.addEventListener('DOMContentLoaded', async function() {
-  const HF_TOKEN = 'hf_paste_your_token_here'; // Paste from notepad
+  const _TOKEN = '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'; // Paste from notepad
   const titleEl = document.querySelector('h1');
   const excerptEl = document.querySelector('article p'); // Adjust if needed
   const title = titleEl ? titleEl.textContent.trim() : 'NeuraPulse';
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   try {
     const res = await fetch('https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0', {
       method: 'POST',
-      headers: { 'Authorization': `Bearer ${HF_TOKEN}`, 'Content-Type': 'application/json' },
+      headers: { 'Authorization': `Bearer ${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}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ inputs: prompt })
     });
     const blob = await res.blob();
