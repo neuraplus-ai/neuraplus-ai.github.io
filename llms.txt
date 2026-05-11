@@ -1,0 +1,19 @@
+# NeuraPulse
+> Expert AI blog by Prashant Lalwani. Covers Gemini AI advertising, ChatGPT ads, AI automation, AI tools, LLMs, and the future of AI. No hype. Just clarity.
+
+## Pages
+- Home: https://neuraplus-ai.github.io/
+- Blog: https://neuraplus-ai.github.io/blog.html
+- About: https://neuraplus-ai.github.io/about.html
+- Contact: https://neuraplus-ai.github.io/contact.html
+- Privacy: https://neuraplus-ai.github.io/privacy-policy.html
+
+## Topics
+- Gemini AI Advertising & ChatGPT Ads
+- AI Automation (n8n, Zapier, Make)
+- AI Tools (Groq, ElevenLabs, DeepL, Ollama, Perplexity)
+- LLMs, Context Windows, Transformers
+- Future of AI & AGI
+
+## Sitemap
+https://neuraplus-ai.github.io/sitemap.xml
