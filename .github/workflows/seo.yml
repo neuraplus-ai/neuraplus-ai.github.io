@@ -25,7 +25,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install beautifulsoup4 lxml
+        run: pip install beautifulsoup4 lxml htmlmin
 
       - name: Run SEO optimizer
         run: python seo_optimizer.py
@@ -34,16 +34,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # ✅ KEY FIX: configure git to not use rebase on pull
           git config pull.rebase false
-
           git add -A
-
           if git diff --cached --quiet; then
             echo "✅ No changes to commit."
           else
-            git commit -m "chore: auto SEO - titles, meta, schema, OG tags [skip ci]"
+            git commit -m "chore: auto SEO + sitemap + robots + speed [skip ci]"
             git pull origin main --no-rebase
             git push origin main
           fi
