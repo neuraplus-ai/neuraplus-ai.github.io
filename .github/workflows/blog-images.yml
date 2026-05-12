@@ -1,11 +1,6 @@
-name: 🖼️ Blog Image Generator v4
+name: Blog Image Generator v5
 
 on:
-  push:
-    branches: [main, master]
-    paths:
-      - "blog/**.html"
-
   workflow_dispatch:
     inputs:
       mode:
@@ -14,49 +9,25 @@ on:
         default: "remaining"
         type: choice
         options:
-          - remaining      # only posts that still have no image (safe to re-run)
-          - all            # redo everything from scratch
+          - remaining
+          - all
 
 permissions:
   contents: write
 
 jobs:
-  generate-images:
-    name: Generate Images (Batch)
+  generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 355    # ← GitHub max allowed (was 30, that's why it cancelled)
-
+    timeout-minutes: 355
     steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 🐍 Setup Python
-        uses: actions/setup-python@v5.4.0
+      - uses: actions/setup-python@v5.4.0
         with:
           python-version: "3.11"
-
-      - name: 🎨 Generate blog images
+      - name: Generate images
         env:
           RUN_MODE: ${{ github.event.inputs.mode || 'remaining' }}
         run: python generate_blog_images.py
-
-      - name: 💾 Commit and push
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git add assets/images/blog/ blog/ 2>/dev/null || true
-
-          if git diff --staged --quiet; then
-            echo "✅ Nothing to commit"
-            exit 0
-          fi
-
-          git commit -m "🖼️ Add SEO blog images [skip ci]"
-          git fetch origin
-          git rebase origin/main || git rebase origin/master
-          git push origin HEAD:main || git push origin HEAD:master
-          echo "✅ Pushed!"
