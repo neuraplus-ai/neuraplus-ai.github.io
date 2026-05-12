@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 
+# Sitemaps for NeuraPlusAI
 Sitemap: https://neuraplus-ai.github.io/sitemap.xml
 Sitemap: https://neuraplus-ai.github.io/image-sitemap.xml
