@@ -1,6 +1,11 @@
-name: Blog Image Generator v5
+name: 🖼️ Branded Blog Image Generator
 
 on:
+  push:
+    branches: [main, master]
+    paths:
+      - "blog/**.html"
+
   workflow_dispatch:
     inputs:
       mode:
@@ -19,15 +24,21 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     timeout-minutes: 355
+
     steps:
       - uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: actions/setup-python@v5.4.0
         with:
           python-version: "3.11"
-      - name: Generate images
+
+      - name: Install dependencies
+        run: pip install Pillow requests --break-system-packages
+
+      - name: Generate branded images
         env:
           RUN_MODE: ${{ github.event.inputs.mode || 'remaining' }}
         run: python generate_blog_images.py
