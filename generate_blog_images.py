@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """
-Auto Blog Image Generator
-=========================
-- Scans ALL markdown posts (_posts/ folder)
-- Generates SEO-optimized images via Pollinations.ai (FREE, no API key)
-- Skips posts that already have images
-- Injects: Hero image (top of post) + OG/meta image in frontmatter
-- Works for Jekyll, Hugo, and plain Markdown GitHub blogs
+Fixed Blog Image Generator
+===========================
+- Only scans _posts/*.md (NOT README.md or other files)
+- Reads actual post content to build a specific, relevant prompt
+- Skips any file that is not a dated blog post (YYYY-MM-DD-title.md)
 """
 
 import os
@@ -18,261 +16,301 @@ import urllib.parse
 from pathlib import Path
 import hashlib
 
-# ── Config ─────────────────────────────────────────────────────────────────
-POSTS_DIR = "_posts"          # where your .md blog posts live
-IMAGES_DIR = "assets/images/blog"  # where generated images will be saved
-IMAGE_WIDTH = 1200
-IMAGE_HEIGHT = 630            # standard OG image size (rankable / shareable)
-DELAY_BETWEEN = 3             # seconds between API calls (be nice to free API)
-# ───────────────────────────────────────────────────────────────────────────
+# ── Config ──────────────────────────────────────────────────────────────────
+POSTS_DIR  = "_posts"
+IMAGES_DIR = "assets/images/blog"
+IMAGE_WIDTH  = 1200
+IMAGE_HEIGHT = 630
+DELAY_BETWEEN = 4   # seconds between API calls
+# ────────────────────────────────────────────────────────────────────────────
+
+
+def is_valid_blog_post(filepath: Path) -> bool:
+    """
+    Only process real blog posts.
+    Valid: _posts/2024-01-15-my-post.md
+    Invalid: README.md, index.md, about.md, etc.
+    """
+    name = filepath.name
+
+    # Must be inside _posts/ folder
+    if "_posts" not in str(filepath):
+        return False
+
+    # Must NOT be README, index, about, etc.
+    skip_names = ["readme", "index", "about", "contact", "404", "home"]
+    if any(name.lower().startswith(s) for s in skip_names):
+        print(f"   ⏭️  Skipping non-post file: {name}")
+        return False
+
+    # Optionally: must match YYYY-MM-DD-*.md pattern
+    # (common Jekyll convention — remove this check if your posts don't use dates)
+    # date_pattern = re.match(r"^\d{4}-\d{2}-\d{2}-.+\.mdx?$", name)
+    # if not date_pattern:
+    #     print(f"   ⏭️  Skipping (not a dated post): {name}")
+    #     return False
+
+    return True
 
 
 def extract_frontmatter(content: str) -> tuple[dict, str]:
-    """Parse YAML frontmatter from markdown file."""
     meta = {}
     body = content
     if content.startswith("---"):
         parts = content.split("---", 2)
         if len(parts) >= 3:
-            fm_raw = parts[1].strip()
-            body = parts[2].strip()
-            for line in fm_raw.splitlines():
+            for line in parts[1].strip().splitlines():
                 if ":" in line:
-                    key, _, val = line.partition(":")
-                    meta[key.strip()] = val.strip().strip('"').strip("'")
+                    k, _, v = line.partition(":")
+                    meta[k.strip()] = v.strip().strip('"').strip("'")
+            body = parts[2].strip()
     return meta, body
 
 
 def rebuild_frontmatter(meta: dict, body: str) -> str:
-    """Rebuild markdown file with updated frontmatter."""
     lines = []
     for k, v in meta.items():
-        # Quote values that contain colons or special chars
         if any(c in str(v) for c in [":", "#", "[", "]", "{", "}"]):
             lines.append(f'{k}: "{v}"')
         else:
             lines.append(f"{k}: {v}")
-    fm = "\n".join(lines)
-    return f"---\n{fm}\n---\n\n{body}"
+    return f"---\n" + "\n".join(lines) + f"\n---\n\n{body}"
 
 
-def get_post_title(meta: dict, filename: str) -> str:
-    """Get title from frontmatter or derive from filename."""
+def get_title(meta: dict, filepath: Path) -> str:
     if "title" in meta:
         return meta["title"]
-    # derive from filename: 2024-01-15-my-great-post.md → My Great Post
-    name = Path(filename).stem
-    name = re.sub(r"^\d{4}-\d{2}-\d{2}-", "", name)  # strip date prefix
+    name = filepath.stem
+    name = re.sub(r"^\d{4}-\d{2}-\d{2}-", "", name)
     return name.replace("-", " ").replace("_", " ").title()
 
 
-def get_post_tags(meta: dict) -> str:
-    """Extract tags/categories for image context."""
-    for key in ["tags", "categories", "category", "keywords"]:
-        if key in meta:
-            val = meta[key]
-            # Handle list format: [tag1, tag2]
-            val = val.strip("[]").replace(",", " ").strip()
-            if val:
-                return val[:60]
-    return ""
+def extract_content_keywords(body: str) -> str:
+    """
+    Read the actual post body and pull out meaningful topic words.
+    Strips markdown syntax, code blocks, links, etc.
+    """
+    # Remove code blocks
+    body = re.sub(r"```[\s\S]*?```", " ", body)
+    body = re.sub(r"`[^`]+`", " ", body)
+    # Remove markdown links/images
+    body = re.sub(r"!\[.*?\]\(.*?\)", " ", body)
+    body = re.sub(r"\[([^\]]+)\]\([^\)]+\)", r"\1", body)
+    # Remove HTML tags
+    body = re.sub(r"<[^>]+>", " ", body)
+    # Remove markdown headings/bold/italic symbols
+    body = re.sub(r"[#*_~>|]", " ", body)
+    # Remove URLs
+    body = re.sub(r"https?://\S+", " ", body)
+    # Collapse whitespace
+    body = re.sub(r"\s+", " ", body).strip()
+
+    # Take first 600 chars of clean content (the real topic is usually at the top)
+    return body[:600]
 
 
-def build_image_prompt(title: str, tags: str, body_snippet: str) -> str:
-    """Build a rich SEO-friendly image generation prompt."""
-    # Extract key topic from body
-    topic_hint = ""
-    if body_snippet:
-        # grab first meaningful sentence
-        sentences = re.split(r"[.!?]", body_snippet[:300])
-        for s in sentences:
-            s = s.strip()
-            s = re.sub(r"[#*`\[\]()]", "", s)
-            if len(s) > 20:
-                topic_hint = s[:80]
-                break
+def build_specific_prompt(title: str, tags: str, content_snippet: str) -> str:
+    """
+    Build a SPECIFIC, content-relevant image prompt.
+    The prompt describes what the post is ABOUT, not generic concepts.
+    """
 
-    prompt_parts = [
-        f"professional blog header image for article titled: {title}",
-        f"topic: {topic_hint}" if topic_hint else "",
-        f"keywords: {tags}" if tags else "",
-        "style: modern clean editorial photography or illustration",
-        "wide banner 1200x630 landscape",
-        "vibrant colors high quality sharp",
-        "no text no watermark no logo",
+    # Detect topic category from title + content
+    text = (title + " " + tags + " " + content_snippet).lower()
+
+    # Map topics to visual styles
+    style_map = [
+        (["python", "javascript", "code", "programming", "developer", "software", "api", "function"],
+         "clean desk with laptop showing code editor, dark theme screen, programming setup, developer workspace"),
+
+        (["ai", "artificial intelligence", "machine learning", "neural", "deep learning", "gpt", "llm"],
+         "abstract neural network visualization, glowing connections, futuristic AI concept, blue and purple tones"),
+
+        (["seo", "google", "search engine", "ranking", "keyword", "traffic", "blog"],
+         "search bar with magnifying glass, website analytics dashboard, digital marketing concept"),
+
+        (["health", "fitness", "workout", "exercise", "nutrition", "diet", "yoga", "meditation"],
+         "healthy lifestyle concept, natural light, clean modern wellness photography"),
+
+        (["finance", "money", "invest", "stock", "crypto", "bitcoin", "budget", "saving"],
+         "financial charts and graphs, modern fintech concept, business money concept"),
+
+        (["travel", "trip", "destination", "explore", "adventure", "vacation", "country"],
+         "beautiful travel destination landscape, wanderlust photography, scenic view"),
+
+        (["design", "ui", "ux", "figma", "photoshop", "creative", "graphic", "web design"],
+         "modern UI design mockup on screen, clean web interface, creative design workspace"),
+
+        (["startup", "business", "entrepreneur", "marketing", "growth", "strategy"],
+         "modern business concept, professional workspace, growth strategy visualization"),
+
+        (["tutorial", "guide", "learn", "how to", "step by step", "beginner", "course"],
+         "clean educational concept, learning and knowledge, open book with digital elements"),
+
+        (["security", "hack", "cybersecurity", "privacy", "vpn", "encrypt"],
+         "cybersecurity concept, digital lock and shield, secure network visualization"),
     ]
-    prompt = ", ".join(p for p in prompt_parts if p)
-    return prompt[:500]  # API limit
+
+    visual_style = "professional editorial blog header image, modern clean design"
+    for keywords, style in style_map:
+        if any(kw in text for kw in keywords):
+            visual_style = style
+            break
+
+    # Build final prompt
+    prompt = (
+        f"{visual_style}, "
+        f"related to: {title}, "
+        f"wide banner format 1200x630 pixels, "
+        f"high quality professional photography or digital illustration, "
+        f"vibrant colors, sharp focus, "
+        f"no text overlay, no watermark, no logo, no people holding documents"
+    )
+    return prompt[:500]
 
 
-def image_already_exists(meta: dict, img_path: str) -> bool:
-    """Check if post already has an image assigned."""
-    has_meta = any(k in meta for k in ["image", "featured_image", "og_image", "cover"])
+def image_already_done(meta: dict, img_path: str) -> bool:
+    has_meta = any(k in meta for k in ["image", "featured_image", "og_image"])
     file_exists = Path(img_path).exists()
     return has_meta and file_exists
 
 
 def download_image(prompt: str, save_path: str) -> bool:
-    """Download image from Pollinations.ai (100% free, no API key)."""
     encoded = urllib.parse.quote(prompt)
-    # Use seed based on prompt for reproducibility
     seed = int(hashlib.md5(prompt.encode()).hexdigest()[:8], 16) % 99999
     url = (
         f"https://image.pollinations.ai/prompt/{encoded}"
-        f"?width={IMAGE_WIDTH}&height={IMAGE_HEIGHT}&seed={seed}&nologo=true"
+        f"?width={IMAGE_WIDTH}&height={IMAGE_HEIGHT}&seed={seed}&nologo=true&enhance=true"
     )
-    print(f"   🎨 Generating: {url[:80]}...")
+    print(f"   🎨 Prompt: {prompt[:100]}...")
+    print(f"   🌐 Fetching image...")
     try:
         Path(save_path).parent.mkdir(parents=True, exist_ok=True)
-        headers = {"User-Agent": "BlogImageBot/1.0"}
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=60) as resp:
+        req = urllib.request.Request(url, headers={"User-Agent": "BlogImageBot/2.0"})
+        with urllib.request.urlopen(req, timeout=90) as resp:
             data = resp.read()
         if len(data) < 5000:
-            print(f"   ⚠️  Image too small ({len(data)} bytes), skipping")
+            print(f"   ⚠️  Image too small ({len(data)} bytes), likely failed")
             return False
         with open(save_path, "wb") as f:
             f.write(data)
-        print(f"   ✅ Saved ({len(data)//1024}KB) → {save_path}")
+        print(f"   ✅ Saved ({len(data)//1024} KB) → {save_path}")
         return True
     except Exception as e:
-        print(f"   ❌ Failed: {e}")
+        print(f"   ❌ Download failed: {e}")
         return False
 
 
-def inject_image_into_post(filepath: str, img_web_path: str, title: str) -> bool:
-    """
-    Inject image into post:
-    1. Add to frontmatter (image / og:image / featured_image)
-    2. Add as first visible element in post body (hero image)
-    """
+def inject_into_post(filepath: str, img_web_path: str, title: str):
     with open(filepath, "r", encoding="utf-8") as f:
         content = f.read()
-
     meta, body = extract_frontmatter(content)
 
-    # ── 1. Update frontmatter ──────────────────────────────────────────────
-    meta["image"] = img_web_path          # Jekyll/Hugo featured image
-    meta["featured_image"] = img_web_path  # some themes use this
-    meta["og_image"] = img_web_path        # Open Graph (Facebook/Twitter)
-    meta["twitter_image"] = img_web_path   # Twitter card
-    meta["image_alt"] = title              # SEO alt text
+    # Update all SEO meta fields
+    meta["image"]          = img_web_path
+    meta["featured_image"] = img_web_path
+    meta["og_image"]       = img_web_path
+    meta["twitter_image"]  = img_web_path
+    meta["image_alt"]      = title
 
-    # ── 2. Inject hero image at TOP of body (if not already there) ─────────
-    hero_tag = f'![{title}]({img_web_path}){{: .blog-hero-image}}'
-    hero_html = (
-        f'\n<img src="{img_web_path}" alt="{title}" '
-        f'class="blog-hero-image seo-image" '
-        f'style="width:100%;max-width:1200px;height:auto;margin:0 auto 2rem;display:block;" />\n'
+    # Inject hero image at top of body (only once)
+    hero = (
+        f'\n<img src="{img_web_path}" '
+        f'alt="{title}" '
+        f'class="blog-hero-image" '
+        f'style="width:100%;max-width:1200px;height:auto;border-radius:8px;margin:0 auto 2rem;display:block;" />\n'
     )
-
-    # Check if image already injected in body
     if img_web_path not in body:
-        # Insert after any existing H1 heading, otherwise at very top
-        h1_match = re.match(r"(#\s+.+\n)", body)
-        if h1_match:
-            insert_at = h1_match.end()
-            body = body[:insert_at] + "\n" + hero_html + body[insert_at:]
+        h1 = re.match(r"(#\s+.+\n)", body)
+        if h1:
+            body = body[:h1.end()] + hero + body[h1.end():]
         else:
-            body = hero_html + "\n" + body
+            body = hero + body
 
-    new_content = rebuild_frontmatter(meta, body)
     with open(filepath, "w", encoding="utf-8") as f:
-        f.write(new_content)
-
-    return True
+        f.write(rebuild_frontmatter(meta, body))
 
 
-def process_posts(posts_dir: str, images_dir: str, retroactive: bool = True):
-    """Main: scan and process all posts."""
-    posts_path = Path(posts_dir)
+def process_all_posts():
+    posts_path = Path(POSTS_DIR)
+
+    # Try alternate folder names if _posts doesn't exist
     if not posts_path.exists():
-        # Try common alternatives
-        for alt in ["content/posts", "src/posts", "blog", "content"]:
+        for alt in ["content/posts", "posts", "blog"]:
             if Path(alt).exists():
                 posts_path = Path(alt)
-                print(f"📁 Found posts in: {alt}")
                 break
         else:
-            print(f"❌ Posts directory not found. Tried: {posts_dir}, content/posts, blog")
+            print(f"❌ No posts folder found.")
             sys.exit(1)
 
-    md_files = sorted(posts_path.rglob("*.md")) + sorted(posts_path.rglob("*.mdx"))
+    all_md = list(posts_path.rglob("*.md")) + list(posts_path.rglob("*.mdx"))
+    # Filter to only valid blog posts
+    md_files = [f for f in all_md if is_valid_blog_post(f)]
 
     if not md_files:
-        print("⚠️  No markdown files found.")
+        print("⚠️  No valid blog posts found in", posts_path)
         return
 
-    print(f"\n🔍 Found {len(md_files)} post(s) in {posts_path}\n")
+    run_mode = os.environ.get("RUN_MODE", "all")
+    new_file  = os.environ.get("NEW_FILE", "")
 
-    processed = 0
-    skipped = 0
-    failed = 0
+    print(f"🔍 Found {len(all_md)} markdown files → {len(md_files)} valid blog posts")
+    print(f"🎯 Mode: {run_mode}\n")
 
-    for filepath in md_files:
+    ok = skip = fail = 0
+
+    for filepath in sorted(md_files):
         print(f"📄 {filepath.name}")
 
         with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
 
         meta, body = extract_frontmatter(content)
-        title = get_post_title(meta, filepath.name)
-        tags = get_post_tags(meta)
+        title   = get_title(meta, filepath)
+        tags    = meta.get("tags", meta.get("categories", meta.get("keywords", "")))
+        snippet = extract_content_keywords(body)
 
-        # Derive image filename from post filename
-        img_filename = filepath.stem + ".jpg"
-        img_local_path = str(Path(images_dir) / img_filename)
-        img_web_path = f"/{images_dir}/{img_filename}"
+        img_file    = filepath.stem + ".jpg"
+        img_local   = str(Path(IMAGES_DIR) / img_file)
+        img_web     = f"/{IMAGES_DIR}/{img_file}"
 
-        # ── Skip if already has image ──────────────────────────────────────
-        if image_already_exists(meta, img_local_path):
+        # Skip if already has image
+        if image_already_done(meta, img_local):
             print(f"   ⏭️  Already has image, skipping\n")
-            skipped += 1
+            skip += 1
             continue
 
-        # ── Skip new-only mode ────────────────────────────────────────────
-        # In GitHub Actions: RETROACTIVE env var controls this
-        is_new_file = os.environ.get("NEW_FILE", "") == filepath.name
-        run_mode = os.environ.get("RUN_MODE", "all")  # "all" or "new_only"
-
-        if run_mode == "new_only" and not is_new_file and not retroactive:
-            print(f"   ⏭️  Skipping (new_only mode)\n")
-            skipped += 1
+        # In new_only mode, skip posts that aren't the new file
+        if run_mode == "new_only" and new_file and filepath.name not in new_file:
+            print(f"   ⏭️  Not the new post, skipping\n")
+            skip += 1
             continue
 
-        # ── Generate image ─────────────────────────────────────────────────
-        prompt = build_image_prompt(title, tags, body)
-        print(f"   📝 Title: {title}")
-        print(f"   🏷️  Tags:  {tags or '(none)'}")
+        print(f"   📝 Title  : {title}")
+        print(f"   🏷️  Tags   : {tags or '(none)'}")
 
-        success = download_image(prompt, img_local_path)
+        prompt = build_specific_prompt(title, str(tags), snippet)
+        success = download_image(prompt, img_local)
 
         if success:
-            inject_image_into_post(str(filepath), img_web_path, title)
+            inject_into_post(str(filepath), img_web, title)
             print(f"   🖼️  Injected into post\n")
-            processed += 1
+            ok += 1
         else:
-            failed += 1
+            fail += 1
             print()
 
         time.sleep(DELAY_BETWEEN)
 
     print("=" * 50)
-    print(f"✅ Processed : {processed}")
-    print(f"⏭️  Skipped   : {skipped} (already had images)")
-    print(f"❌ Failed    : {failed}")
+    print(f"✅ Done      : {ok}")
+    print(f"⏭️  Skipped   : {skip}")
+    print(f"❌ Failed    : {fail}")
     print("=" * 50)
 
 
 if __name__ == "__main__":
-    # Check if we should only process new posts or ALL (retroactive)
-    run_mode = os.environ.get("RUN_MODE", "all")
-    retroactive = run_mode != "new_only"
-
-    print("🚀 Blog Auto Image Generator")
-    print(f"   Mode: {'ALL posts (retroactive)' if retroactive else 'NEW posts only'}")
-    print(f"   Posts dir  : {POSTS_DIR}")
-    print(f"   Images dir : {IMAGES_DIR}")
+    print("🚀 Blog Image Generator v2 (Content-Aware)")
     print()
-
-    process_posts(POSTS_DIR, IMAGES_DIR, retroactive)
+    process_all_posts()
