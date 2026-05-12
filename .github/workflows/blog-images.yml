@@ -4,8 +4,8 @@ on:
   push:
     branches: [main, master]
     paths:
-      - "_posts/**.md"       # ONLY triggers on real blog posts
-      - "_posts/**.mdx"      # NOT on README, index, or other files
+      - "_posts/**.md"
+      - "_posts/**.mdx"
 
   workflow_dispatch:
     inputs:
@@ -15,8 +15,8 @@ on:
         default: "all"
         type: choice
         options:
-          - all        # retroactively add images to ALL posts missing one
-          - new_only   # only the post added in latest push
+          - all
+          - new_only
 
 permissions:
   contents: write
@@ -31,12 +31,11 @@ jobs:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0          # ← full history needed for pull/rebase
 
       - name: 🔍 Detect new blog posts
         id: detect
         run: |
-          # Only detect actual post files (inside _posts/)
           NEW_POSTS=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- '_posts/*.md' '_posts/*.mdx' 2>/dev/null | grep -v -i readme | grep -v -i index || echo "")
           echo "new_posts=$NEW_POSTS" >> $GITHUB_OUTPUT
 
@@ -47,8 +46,6 @@ jobs:
           else
             echo "run_mode=all" >> $GITHUB_OUTPUT
           fi
-
-          echo "📋 New posts: $NEW_POSTS"
 
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
@@ -61,15 +58,21 @@ jobs:
           NEW_FILE: ${{ steps.detect.outputs.new_posts }}
         run: python generate_blog_images.py
 
-      - name: 💾 Commit images back to repo
+      - name: 💾 Commit and push images
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add assets/images/blog/ _posts/ 2>/dev/null || true
+
           if git diff --staged --quiet; then
             echo "✅ Nothing new to commit"
-          else
-            git commit -m "🖼️ Add content-relevant SEO images [skip ci]"
-            git push
-            echo "✅ Images pushed!"
+            exit 0
           fi
+
+          git commit -m "🖼️ Add content-relevant SEO images [skip ci]"
+
+          # ── Pull remote changes first, then push ──────────────────────────
+          git pull --rebase origin $(git rev-parse --abbrev-ref HEAD)
+          git push
+          echo "✅ Images pushed!"
