@@ -1,0 +1,141 @@
+# ══════════════════════════════════════════════════════════════════════
+#  NeuraPlusAI — Auto Logo Watermark Workflow
+#  File: .github/workflows/auto-logo.yml
+#
+#  WHAT THIS DOES:
+#    • Runs automatically every time you push ANY file to main
+#    • Detects new/changed images in images/, blog/images/, assets/
+#    • Adds the NeuraPlusAI logo badge to every image
+#    • Commits the watermarked images back to the repo
+#    • Skips images that already have the logo (using state file)
+#
+#  FUTURE IMAGES:
+#    Just push a new image to the repo → logo is added automatically ✅
+#
+#  HOW TO INSTALL:
+#    1. Copy add_logo.py  →  root of your repo
+#    2. Copy this file    →  .github/workflows/auto-logo.yml
+#    3. git add . && git commit -m "Add auto logo workflow" && git push
+#    4. Done — every future image push gets logo automatically
+# ══════════════════════════════════════════════════════════════════════
+
+name: Auto Logo Watermark
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      # Only trigger when images are pushed — saves Actions minutes
+      - 'images/**'
+      - 'blog/images/**'
+      - 'assets/**'
+      - 'thumbnails/**'
+      # Also trigger when the script itself is updated
+      - 'add_logo.py'
+      # Also trigger manually via workflow_dispatch below
+
+  # Allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+    inputs:
+      force_all:
+        description: 'Force re-process ALL images (ignore state)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+jobs:
+  watermark:
+    name: Add NeuraPlusAI Logo to Images
+    runs-on: ubuntu-latest
+
+    # Prevent multiple runs overlapping
+    concurrency:
+      group: logo-watermark
+      cancel-in-progress: false
+
+    steps:
+
+      # ── 1. Checkout repo ───────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Need full history for proper git operations
+          fetch-depth: 0
+          # Use token so the commit-back step works
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── 2. Set up Python ───────────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # ── 3. Install dependencies ────────────────────────────────────────
+      - name: Install Pillow
+        run: |
+          pip install --upgrade pip
+          pip install Pillow==10.3.0
+
+      # ── 4. Force re-process if requested ──────────────────────────────
+      - name: Clear state (force mode)
+        if: github.event.inputs.force_all == 'true'
+        run: |
+          echo "🔄 Force mode — clearing logo state file"
+          rm -f .logo_state.json
+          echo "State cleared. All images will be re-processed."
+
+      # ── 5. Run logo script ─────────────────────────────────────────────
+      - name: Add logo to images
+        id: logo_run
+        run: |
+          echo "🖼  Running NeuraPlusAI logo watermark script..."
+          python add_logo.py 2>&1 | tee logo_output.txt
+
+          # Count processed images from output
+          PROCESSED=$(grep -c "✅" logo_output.txt || echo "0")
+          echo "processed_count=$PROCESSED" >> $GITHUB_OUTPUT
+          echo ""
+          echo "Images processed: $PROCESSED"
+
+      # ── 6. Commit watermarked images back ──────────────────────────────
+      - name: Commit logo-watermarked images
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "NeuraPlusAI Bot"
+
+          # Stage all changed image files + state file
+          git add -A images/ blog/images/ assets/ thumbnails/ .logo_state.json 2>/dev/null || true
+
+          # Only commit if there are actual changes
+          if git diff --staged --quiet; then
+            echo "✅ No changes to commit — all images already have logo"
+          else
+            COUNT=$(git diff --staged --name-only | grep -E '\.(png|jpg|jpeg|webp)$' | wc -l)
+            git commit -m "🖼 Auto: Add NeuraPlusAI logo to $COUNT image(s) [skip ci]"
+            echo "✅ Committed $COUNT watermarked image(s)"
+          fi
+
+      # ── 7. Push back to repo ───────────────────────────────────────────
+      - name: Push changes
+        run: |
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── 8. Summary ─────────────────────────────────────────────────────
+      - name: Job summary
+        run: |
+          echo "## 🖼 NeuraPlusAI Logo Watermark" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Run time | $(date -u '+%Y-%m-%d %H:%M UTC') |" >> $GITHUB_STEP_SUMMARY
+          echo "| Trigger | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | ${{ github.ref_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Force mode | ${{ github.event.inputs.force_all || 'false' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat logo_output.txt >> $GITHUB_STEP_SUMMARY
