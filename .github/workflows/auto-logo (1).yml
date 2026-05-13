@@ -1,0 +1,76 @@
+# File: .github/workflows/auto-logo.yml
+# Place this at: .github/workflows/auto-logo.yml  in your repo
+
+name: Add NeuraPlusAI Logo to Images
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      force_all:
+        description: 'Force re-process ALL images'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
+
+jobs:
+  watermark:
+    name: Add NeuraPlusAI Logo to Images
+    runs-on: ubuntu-latest
+    concurrency:
+      group: logo-watermark
+      cancel-in-progress: false
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          # ✅ NO cache: 'pip' here — that was causing the error
+
+      - name: Install Pillow
+        run: pip install Pillow==10.3.0
+
+      - name: Force re-process all images
+        if: github.event.inputs.force_all == 'true'
+        run: |
+          echo "Force mode — clearing state"
+          rm -f .logo_state.json
+
+      - name: Add logo to all images
+        run: python add_logo.py 2>&1 | tee logo_run.txt
+
+      - name: Commit watermarked images
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "NeuraPlusAI Bot"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes — all images already have logo ✅"
+          else
+            COUNT=$(git diff --staged --name-only | grep -cE '\.(png|jpg|jpeg|webp)$' || true)
+            git commit -m "🖼 Auto: NeuraPlusAI logo added to ${COUNT} image(s) [skip ci]"
+            echo "Committed ${COUNT} images"
+          fi
+
+      - name: Push changes
+        run: git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "## 🖼 NeuraPlusAI Logo Watermark" >> $GITHUB_STEP_SUMMARY
+          echo "**Run:** $(date -u '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          cat logo_run.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
