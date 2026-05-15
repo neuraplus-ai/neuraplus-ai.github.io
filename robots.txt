@@ -3,12 +3,10 @@
 
 User-agent: *
 Allow: /
-Disallow: /assets/css/
-Disallow: /assets/js/
-Disallow: /assets/images/
+Disallow: /blog-
 
 # Sitemaps
 Sitemap: https://neuraplus-ai.github.io/sitemap.xml
-
+Image Sitemap: https://neuraplus-ai.github.io/image-sitemap.xml
 # Crawl-delay for polite bots
 Crawl-delay: 1
