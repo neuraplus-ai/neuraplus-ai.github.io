@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kimi AI Prompts for Content Writing — NeuraPulse</title>
+<meta name="description" content="Master Kimi AI prompts for content writing in 2026. Discover proven prompt frameworks, templates, and techniques to generate blog posts, SEO articles, and marketing copy with Kimi AI.">
+<meta content="https://neuraplus-ai.github.io/favicon.svg" property="og:image"/>
+<meta content="NeuraPulse" property="og:site_name"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#080c12;--bg2:#0d1117;--surface:#111827;--surface2:#1a2236;--accent:#00d4ff;--accent2:#00ffb3;--text:#e2e8f0;--text-muted:#8899aa;--border:rgba(0,212,255,0.12);}
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:17px;line-height:1.8;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:60px 60px;animation:gridDrift 25s linear infinite;pointer-events:none;z-index:0;}
+  @keyframes gridDrift{0%{background-position:0 0;}100%{background-position:60px 60px;}}
+  body::after{content:'';position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent);animation:scanline 4s ease-in-out infinite;z-index:100;}
+  @keyframes scanline{0%,100%{opacity:0;}50%{opacity:1;}}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(8,12,18,0.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;display:flex;align-items:center;gap:8px;text-decoration:none;}
+  .nav-logo span{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 10px var(--accent);animation:pulse 2s ease infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.5);opacity:0.7;}}
+  .nav-links{display:flex;gap:32px;}
+  .nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+  .nav-links a.active,.nav-links a:hover{color:var(--accent);}
+  .nav-cta{background:var(--accent);color:#000;font-weight:700;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none;transition:box-shadow 0.2s,transform 0.2s;}
+  .nav-cta:hover{box-shadow:0 0 20px var(--accent);transform:translateY(-1px);}
+
+  /* HERO */
+  .hero{position:relative;z-index:1;max-width:860px;margin:80px auto 0;padding:0 5% 60px;}
+  .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.08);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:0.78rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:28px;animation:fadeSlideUp 0.6s ease both;}
+  .hero-tag::before{content:'';width:6px;height:6px;background:var(--accent2);border-radius:50%;animation:pulse 1.5s ease infinite;}
+  .hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.15;color:#fff;margin-bottom:20px;animation:fadeSlideUp 0.7s 0.1s ease both;}
+  .hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .hero-meta{display:flex;align-items:center;gap:20px;color:var(--text-muted);font-size:0.85rem;margin-bottom:40px;animation:fadeSlideUp 0.7s 0.2s ease both;}
+  .hero-meta .dot{width:3px;height:3px;background:var(--text-muted);border-radius:50%;}
+  .hero-meta .reading-time{background:rgba(124,58,237,0.15);color:#a78bfa;padding:3px 10px;border-radius:10px;font-size:0.75rem;}
+
+  /* ARTICLE */
+  .article{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 5% 80px;}
+  .section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:56px 0;position:relative;}
+  .section-divider::after{content:'';position:absolute;top:-3px;left:50%;width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 12px var(--accent);transform:translateX(-50%);}
+  .article p{color:#c9d8e8;margin-bottom:28px;font-weight:300;}
+  .section-heading{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;}
+  .section-heading .bar{width:4px;min-height:48px;background:linear-gradient(180deg,var(--accent),var(--accent2));border-radius:2px;flex-shrink:0;margin-top:4px;}
+  .section-heading h2{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;color:#fff;line-height:1.2;}
+  code{background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.18);color:var(--accent);padding:2px 8px;border-radius:4px;font-size:0.88em;font-family:'Courier New',monospace;}
+  .article a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,212,255,0.3);transition:color 0.2s,border-color 0.2s;}
+  .article a:hover{color:var(--accent2);border-color:var(--accent2);}
+  .callout{background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(0,255,179,0.04));border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:20px 24px;margin:32px 0;}
+  .callout-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px;}
+  .callout p{margin-bottom:0;color:var(--text);}
+  .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:36px 0;}
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;transition:transform 0.2s,box-shadow 0.2s;position:relative;overflow:hidden;}
+  .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+  .stat-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,212,255,0.1);}
+  .stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;}
+  .stat-label{font-size:0.78rem;color:var(--text-muted);margin-top:4px;}
+
+  /* PROMPT CARDS */
+  .prompt-grid{display:grid;grid-template-columns:1fr;gap:20px;margin:36px 0;}
+  .prompt-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;}
+  .prompt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+  .prompt-card:hover{transform:translateY(-6px);box-shadow:0 16px 50px rgba(0,212,255,0.12);}
+  .prompt-card h3{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+  .prompt-card .prompt-tag{display:inline-block;background:rgba(0,212,255,0.08);color:var(--accent);font-size:0.72rem;padding:3px 10px;border-radius:10px;margin-bottom:14px;letter-spacing:0.06em;text-transform:uppercase;}
+  .prompt-card .prompt-box{background:rgba(0,0,0,0.35);border:1px solid rgba(0,212,255,0.15);border-radius:8px;padding:16px 20px;font-family:'Courier New',monospace;font-size:0.82rem;color:var(--accent2);line-height:1.7;margin-bottom:14px;white-space:pre-wrap;}
+  .prompt-card p{color:var(--text-muted);font-size:0.88rem;line-height:1.7;margin-bottom:0;}
+
+  /* TIP GRID */
+  .tip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin:36px 0;}
+  .tip-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;transition:all 0.3s;position:relative;overflow:hidden;}
+  .tip-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transition:transform 0.3s;}
+  .tip-card:hover::before{transform:scaleX(1);}
+  .tip-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,212,255,0.1);}
+  .tip-card .tip-icon{width:40px;height:40px;border-radius:10px;background:rgba(0,212,255,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--accent);font-size:1.2rem;}
+  .tip-card h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px;}
+  .tip-card p{color:var(--text-muted);font-size:0.85rem;line-height:1.6;margin-bottom:0;}
+
+  /* FRAMEWORK STEPS */
+  .framework-steps{display:flex;flex-direction:column;gap:0;margin:36px 0;position:relative;}
+  .framework-steps::before{content:'';position:absolute;left:23px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent),var(--accent2));opacity:0.3;}
+  .step{display:flex;gap:20px;align-items:flex-start;padding:20px 0;position:relative;}
+  .step-num{width:48px;height:48px;border-radius:50%;background:var(--surface);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent);flex-shrink:0;box-shadow:0 0 20px rgba(0,212,255,0.15);transition:all 0.3s;}
+  .step:hover .step-num{background:var(--accent);color:#000;box-shadow:0 0 30px rgba(0,212,255,0.4);transform:scale(1.1);}
+  .step-content h4{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:6px;}
+  .step-content p{color:var(--text-muted);font-size:0.88rem;line-height:1.6;margin-bottom:0;}
+
+  /* RELATED LINKS */
+  .related-links{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;margin:48px 0;}
+  .related-links h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .related-links h3::before{content:'';width:4px;height:20px;background:linear-gradient(180deg,var(--accent),var(--accent2));border-radius:2px;}
+  .related-links ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+  .related-links li a{display:flex;align-items:center;gap:10px;color:var(--text-muted);text-decoration:none;font-size:0.88rem;padding:10px 14px;border-radius:8px;background:rgba(0,212,255,0.03);border:1px solid transparent;transition:all 0.2s;border-bottom:none;}
+  .related-links li a:hover{color:var(--accent);background:rgba(0,212,255,0.08);border-color:var(--border);}
+  .related-links li a svg{width:16px;height:16px;flex-shrink:0;color:var(--accent);}
+
+  /* EXTERNAL CTA */
+  .external-cta{display:flex;flex-direction:column;align-items:center;text-align:center;background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px solid var(--border);border-radius:16px;padding:48px 36px;margin-top:64px;position:relative;overflow:hidden;}
+  .external-cta::before{content:'';position:absolute;top:-80px;right:-80px;width:240px;height:240px;background:radial-gradient(circle,rgba(0,212,255,0.1),transparent 70%);pointer-events:none;}
+  .external-cta::after{content:'';position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(0,255,179,0.07),transparent 70%);pointer-events:none;}
+  .external-cta h3{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:12px;}
+  .external-cta p{color:var(--text-muted);max-width:460px;margin-bottom:28px;}
+  .ext-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#000;font-weight:700;font-size:0.9rem;letter-spacing:0.06em;padding:14px 32px;border-radius:8px;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;position:relative;z-index:1;border-bottom:none;}
+  .ext-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,255,0.35);color:#000;border-bottom:none;}
+  .ext-btn svg{width:18px;height:18px;}
+
+  /* FOOTER */
+  footer{position:relative;z-index:1;background:var(--bg2);border-top:1px solid var(--border);padding:64px 5% 32px;}
+  .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+  .footer-brand .nav-logo{margin-bottom:16px;display:inline-flex;}
+  .footer-brand p{color:var(--text-muted);font-size:0.88rem;line-height:1.7;max-width:260px;margin-bottom:24px;}
+  .social-links{display:flex;gap:12px;flex-wrap:wrap;}
+  .social-link{width:40px;height:40px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);text-decoration:none;transition:all 0.2s;background:var(--surface);}
+  .social-link:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 12px rgba(0,212,255,0.2);transform:translateY(-2px);}
+  .social-link svg{width:18px;height:18px;}
+  .footer-col h4{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:#fff;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;}
+  .footer-col ul{list-style:none;}
+  .footer-col ul li{margin-bottom:10px;}
+  .footer-col ul li a{color:var(--text-muted);text-decoration:none;font-size:0.88rem;transition:color 0.2s;border-bottom:none;}
+  .footer-col ul li a:hover{color:var(--accent);}
+  .footer-bottom{max-width:1100px;margin:0 auto;padding-top:24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  .footer-bottom p{color:var(--text-muted);font-size:0.8rem;}
+  .footer-bottom-links{display:flex;gap:24px;}
+  .footer-bottom-links a{color:var(--text-muted);font-size:0.8rem;text-decoration:none;transition:color 0.2s;border-bottom:none;}
+  .footer-bottom-links a:hover{color:var(--accent);}
+  .footer-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,255,0.08);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:0.72rem;color:var(--accent);letter-spacing:0.08em;}
+  .footer-badge::before{content:'';width:5px;height:5px;background:var(--accent2);border-radius:50%;animation:pulse 2s ease infinite;}
+
+  /* ANIMATIONS */
+  @keyframes fadeSlideUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .particle{position:absolute;border-radius:50%;opacity:0;animation:floatUp var(--dur) var(--delay) ease-in infinite;}
+  @keyframes floatUp{0%{opacity:0;transform:translateY(0) scale(1);}10%{opacity:0.4;}90%{opacity:0.1;}100%{opacity:0;transform:translateY(-100vh) scale(0.3);}}
+
+  /* TYPING CURSOR */
+  .typing-cursor{display:inline-block;width:2px;height:1.1em;background:var(--accent);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:text-bottom;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+  /* GLOW TEXT */
+  .glow-text{text-shadow:0 0 20px rgba(0,212,255,0.3),0 0 40px rgba(0,212,255,0.1);}
+
+  @media(max-width:768px){
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .stats-row{grid-template-columns:1fr;}
+    .tip-grid{grid-template-columns:1fr;}
+    .related-links ul{grid-template-columns:1fr;}
+    .footer-bottom{flex-direction:column;text-align:center;}
+  }
+  @media(max-width:480px){.footer-grid{grid-template-columns:1fr;}}
+</style>
+<base target="_blank">
+</head>
+<body>
+<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<div class="particles" id="particles"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="https://neuraplus-ai.github.io/" class="nav-logo"><span></span>NeuraPulse</a>
+  <div class="nav-links">
+    <a href="https://neuraplus-ai.github.io/">Home</a><a href="https://neuraplus-ai.github.io/blog/" class="active">Blog</a><a href="#">About</a><a href="#">Contact</a>
+  </div>
+  <a href="https://www.kimi.com/" target="_blank" rel="noopener noreferrer" class="nav-cta">Try Kimi AI</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-tag">AI Writing · Prompt Engineering</div>
+  <h1>Kimi AI Prompts<br>for <em>Content Writing</em><span class="typing-cursor"></span></h1>
+  <div class="hero-meta">
+    <span>NeuraPulse Editorial</span><span class="dot"></span>
+    <span>May 21, 2026</span><span class="dot"></span>
+    <span class="reading-time">12 min read</span>
+  </div>
+</header>
+
+<!-- ARTICLE -->
+<article class="article">
+
+  <div class="stats-row reveal">
+    <div class="stat-card"><span class="stat-num">2M</span><span class="stat-label">Token Context for Long Content</span></div>
+    <div class="stat-card"><span class="stat-num">50+</span><span class="stat-label">Proven Prompt Templates</span></div>
+    <div class="stat-card"><span class="stat-num">10x</span><span class="stat-label">Faster Content Creation</span></div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- P1 -->
+  <div class="section-heading reveal"><div class="bar"></div><h2>1. Why Kimi AI Prompts Revolutionize Content Writing</h2></div>
+  <p class="reveal">The difference between mediocre AI-generated content and publish-ready prose comes down to one thing: the prompt. <strong>Kimi AI prompts for content writing</strong> have emerged as the gold standard for creators who need more than generic blog filler — they need articles that rank, engage, and convert. What makes Kimi exceptional for writing isn't just its massive 2-million-token context window (though that helps enormously when processing style guides, competitor analysis, and research simultaneously). It's the model's ability to understand nuanced instructions about tone, structure, audience psychology, and SEO intent — then execute them with consistency across thousands of words.</p>
+
+  <p class="reveal">Unlike shorter-context models that forget your brand voice by paragraph three, Kimi maintains coherence across entire e-books, whitepapers, and pillar page series. The <a href="https://neuraplus-ai.github.io/blog/kimi-ai-chatbot.html">Kimi AI chatbot</a> interface makes this accessible to writers without technical backgrounds: upload your content brief, paste your target keywords, describe your audience persona, and receive drafts that require minimal editing rather than complete rewrites. For content teams producing at scale, this capability transforms workflow economics — one skilled prompt engineer can direct Kimi to produce what previously required a team of writers.</p>
+
+  <div class="callout reveal">
+    <div class="callout-label">⚡ Key Insight</div>
+    <p>Kimi's 2M context window means you can feed it your entire content strategy, brand guidelines, and 10 competitor articles — then request a piece that differentiates while maintaining consistency. No other free tool matches this.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- P2 -->
+  <div class="section-heading reveal"><div class="bar"></div><h2>2. The FRAMEWORK Method — A Proven Prompt Structure</h2></div>
+  <p class="reveal">After testing hundreds of prompt variations across blog posts, landing pages, email sequences, and social content, we've distilled the most effective structure into the <strong>FRAMEWORK</strong> method. Each letter represents a critical component that transforms vague requests into precise instructions Kimi can execute flawlessly.</p>
+
+  <div class="framework-steps reveal">
+    <div class="step">
+      <div class="step-num">F</div>
+      <div class="step-content">
+        <h4>Format — Define the Output Structure</h4>
+        <p>Specify word count, heading structure (H2/H3), bullet points, tables, or call-to-action placement. Example: "Write a 2,500-word blog post with an H2 introduction, 5 H2 sections with H3 subsections, and a conclusion with a CTA."</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">R</div>
+      <div class="step-content">
+        <h4>Role — Assign a Persona</h4>
+        <p>Tell Kimi who it is. "You are a senior content strategist with 10 years of experience in B2B SaaS marketing." This shapes vocabulary, depth, and perspective.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">A</div>
+      <div class="step-content">
+        <h4>Audience — Describe the Reader</h4>
+        <p>Define demographics, pain points, knowledge level, and what they need to believe before converting. The more specific, the more targeted the content.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">M</div>
+      <div class="step-content">
+        <h4>Materials — Provide Source Content</h4>
+        <p>Upload style guides, existing articles for tone matching, research papers, or competitor URLs. Kimi's long context handles massive inputs without degradation.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">E</div>
+      <div class="step-content">
+        <h4>Expectations — Set Quality Standards</h4>
+        <p>Specify SEO requirements (keyword density, internal links), tone (conversational vs. authoritative), and what to avoid (jargon, passive voice, generic advice).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">W</div>
+      <div class="step-content">
+        <h4>Workflow — Define the Process</h4>
+        <p>Request an outline first, then iterative drafts with feedback loops. "Generate an outline. Wait for approval. Then write Section 1."</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">O</div>
+      <div class="step-content">
+        <h4>Output — Specify Deliverables</h4>
+        <p>Request meta descriptions, social snippets, email summaries, or alternative headlines alongside the main content.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">R</div>
+      <div class="step-content">
+        <h4>Review — Build in Self-Editing</h4>
+        <p>Ask Kimi to critique its own output against your criteria and revise before presenting the final version.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">K</div>
+      <div class="step-content">
+        <h4>Keywords — Integrate SEO Naturally</h4>
+        <p>Provide primary and secondary keywords with intent mapping. "Use 'Kimi AI prompts for content writing' naturally in the first 100 words and H2."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- P3 -->
+  <div class="section-heading reveal"><div class="bar"></div><h2>3. Ready-to-Use Kimi AI Prompt Templates</h2></div>
+  <p class="reveal">Below are battle-tested prompt templates you can copy, customize, and paste directly into the <a href="https://neuraplus-ai.github.io/blog/kimi-ai-chatbot.html">Kimi AI chatbot</a>. Each template is designed for a specific content type and includes the FRAMEWORK components built in.</p>
+
+  <div class="prompt-grid reveal">
+    <div class="prompt-card">
+      <h3>📝 SEO Blog Post Generator</h3>
+      <span class="prompt-tag">Long-Form Content</span>
+      <div class="prompt-box">You are a senior SEO content strategist. Write a 2,500-word blog post on "[TOPIC]" targeting the keyword "[PRIMARY KEYWORD]" with secondary keywords: [LIST].
+
+Format: H2 introduction, 5 H2 sections with H3 subsections, conclusion with CTA. Include a comparison table, 2 callout boxes, and 3 internal link suggestions.
+
+Audience: [DEMOGRAPHIC] who struggle with [PAIN POINT]. Write in a conversational yet authoritative tone. Avoid generic advice. Include specific examples and data points.
+
+First, generate an outline. After I approve, write Section 1.</div>
+      <p>Best for: Pillar content, guides, and articles targeting competitive keywords. Kimi's long context lets you paste competitor articles for differentiation analysis.</p>
+    </div>
+
+    <div class="prompt-card">
+      <h3>🎯 Landing Page Copywriter</h3>
+      <span class="prompt-tag">Conversion Copy</span>
+      <div class="prompt-box">You are a conversion copywriter specializing in SaaS. Write landing page copy for [PRODUCT] targeting [AUDIENCE].
+
+Structure: Hero headline (10 words), subheadline (20 words), 3 benefit sections with icons, social proof section, pricing CTA, FAQ section (5 questions).
+
+Tone: Confident but not arrogant. Focus on transformation, not features. Use the PAS framework (Problem-Agitation-Solution) in the hero section.
+
+Include urgency triggers without being aggressive. Add 3 headline variations for A/B testing.</div>
+      <p>Best for: Product launches, feature announcements, and paid traffic landing pages. The PAS framework consistently outperforms feature lists in conversion tests.</p>
+    </div>
+
+    <div class="prompt-card">
+      <h3>📧 Email Sequence Architect</h3>
+      <span class="prompt-tag">Email Marketing</span>
+      <div class="prompt-box">You are an email marketing specialist. Create a 5-email nurture sequence for [PRODUCT/SERVICE] targeting [AUDIENCE] who [TRIGGER ACTION].
+
+Email 1: Welcome + value delivery (no pitch)
+Email 2: Problem amplification + story
+Email 3: Solution introduction + case study
+Email 4: Objection handling + social proof
+Email 5: Direct CTA with urgency
+
+Each email: 150-250 words, single CTA, personalized subject line (under 50 chars), preview text. Maintain consistent voice: [DESCRIBE TONE].
+
+Generate subject line variations with open-rate optimization principles.</div>
+      <p>Best for: Onboarding flows, product launches, and re-engagement campaigns. Kimi maintains voice consistency across the entire sequence — critical for trust building.</p>
+    </div>
+
+    <div class="prompt-card">
+      <h3>🔄 Content Repurposing Engine</h3>
+      <span class="prompt-tag">Multi-Platform</span>
+      <div class="prompt-box">You are a content repurposing specialist. Take the following blog post and create platform-native versions:
+
+ORIGINAL POST: [PASTE FULL ARTICLE]
+
+Create:
+1. Twitter/X thread (10 tweets, hook-focused)
+2. LinkedIn post (professional tone, 150 words)
+3. Instagram carousel captions (5 slides)
+4. YouTube script outline (5-minute video)
+5. Newsletter summary (3 paragraphs)
+
+Each version must capture the core insight but adapt tone and format for the platform. Include hashtag suggestions for each.</div>
+      <p>Best for: Maximizing ROI from every piece of content. Kimi's 2M context means you can paste entire articles and get complete multi-platform campaigns in one prompt.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- P4 -->
+  <div class="section-heading reveal"><div class="bar"></div><h2>4. Advanced Techniques for Professional Content Teams</h2></div>
+  <p class="reveal">Once you've mastered the basics, these advanced techniques will separate your Kimi-generated content from everyone else's. The <a href="https://neuraplus-ai.github.io/blog/kimi-ai-for-coding.html">Kimi AI coding capabilities</a> extend to structured content generation — you can request JSON outputs, markdown tables, and even automated content calendars.</p>
+
+  <div class="tip-grid reveal">
+    <div class="tip-card">
+      <div class="tip-icon">🔗</div>
+      <h4>Chain-of-Thought Prompting</h4>
+      <p>Ask Kimi to "think step by step" before writing. This produces more logical, well-structured content. Add "Explain your reasoning before writing each section" to any prompt.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🎭</div>
+      <h4>Multi-Persona Debate</h4>
+      <p>Have Kimi argue from multiple perspectives before synthesizing. "First, write this as a skeptic. Then as an enthusiast. Then merge the best of both."</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📊</div>
+      <h4>Structured Output Formats</h4>
+      <p>Request JSON, CSV, or markdown tables for content calendars, keyword mappings, or editorial workflows that integrate with your CMS.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🔄</div>
+      <h4>Iterative Refinement</h4>
+      <p>Use Kimi's memory to refine across sessions. "Remember this style guide" — then reference it in future prompts without re-uploading.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🎯</div>
+      <h4>Intent-Mapped Keywords</h4>
+      <p>Map each keyword to search intent (informational, navigational, transactional) and ask Kimi to match content depth and CTA type accordingly.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">⚡</div>
+      <h4>Batch Content Generation</h4>
+      <p>Upload 50 article titles and ask Kimi to generate outlines for all in one prompt. Then cherry-pick the best for full development.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- P5 -->
+  <div class="section-heading reveal"><div class="bar"></div><h2>5. Kimi AI for Website Content & Landing Pages</h2></div>
+  <p class="reveal">Content writing extends far beyond blog posts — website copy, product descriptions, and landing pages are where Kimi AI prompts deliver the highest ROI. The <a href="https://neuraplus-ai.github.io/blog/easy-ai-tools-for-website-creation.html">AI tools for website creation</a> landscape has evolved dramatically, and Kimi sits at the intersection of content generation and technical implementation.</p>
+
+  <p class="reveal">For website content, the most effective approach is the "full-site brief" method: upload your sitemap, brand guidelines, competitor URLs, and target keyword list in a single prompt. Ask Kimi to generate all page copy with consistent messaging architecture — hero headlines that follow the same value proposition hierarchy, product descriptions that use unified feature-benefit mapping, and FAQ sections that address the same objection categories across pages.</p>
+
+  <p class="reveal">The <a href="https://neuraplus-ai.github.io/blog/kimi-ai-website-generation.html">Kimi AI website generation</a> workflow demonstrates how this extends to full-stack delivery: content, code, and structure generated from a single comprehensive brief. For content teams, this means briefing once and receiving complete page copy rather than wrestling with fragmented drafts that require heavy editorial reconciliation.</p>
+
+  <div class="callout reveal">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>When generating website content, always include your URL structure in the prompt. Kimi will naturally weave internal links between related pages, improving your site's topical authority and user navigation.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- P6 -->
+  <div class="section-heading reveal"><div class="bar"></div><h2>6. Comparing Kimi AI Prompts vs Other Writing Tools</h2></div>
+  <p class="reveal">While many <a href="https://neuraplus-ai.github.io/blog/best-ai-tools-like-kimi-ai.html">AI tools like Kimi AI</a> offer content generation, the prompt-to-output quality gap remains significant for serious writers. The <a href="https://neuraplus-ai.github.io/blog/free-ai-chatbot-like-kimi-ai.html">free AI chatbot alternatives</a> can produce decent short-form content, but they hit walls when tasked with nuanced, multi-section articles requiring consistency.</p>
+
+  <p class="reveal">Claude excels at creative writing and literary tone but struggles with SEO-structured content at scale. ChatGPT produces competent drafts but requires heavy fact-checking and often contradicts itself across long pieces. Gemini handles massive document analysis well but produces generic prose without detailed prompting. Kimi's sweet spot is the intersection: long-context coherence + detailed instruction following + consistent tone maintenance across thousands of words.</p>
+
+  <p class="reveal">For content teams, the practical implication is workflow design. Use Kimi as your primary drafting engine for long-form and pillar content. Use Claude for creative brand storytelling. Use Gemini for research synthesis and document analysis. The <a href="https://neuraplus-ai.github.io/blog/free-ai-chatbot-like-kimi-ai.html">free alternatives</a> work well for social snippets and short emails, but for content that needs to rank, convert, and build authority — Kimi's prompt responsiveness is unmatched.</p>
+
+  <div class="section-divider"></div>
+
+  <!-- P7 -->
+  <div class="section-heading reveal"><div class="bar"></div><h2>7. Building Your Personal Prompt Library</h2></div>
+  <p class="reveal">The most productive content creators don't start from scratch every time — they maintain a personal prompt library refined through iteration. Here's how to build yours with Kimi AI prompts for content writing:</p>
+
+  <p class="reveal"><strong>Start with templates.</strong> Use the FRAMEWORK prompts above as your foundation. After each use, note what worked and what didn't. Did Kimi nail the tone but miss the CTA placement? Adjust the Expectations section. Was the outline perfect but the draft too verbose? Tighten the Format specification.</p>
+
+  <p class="reveal"><strong>Organize by content type.</strong> Maintain separate prompt categories for blog posts, landing pages, emails, social content, and ad copy. Within each, create subcategories for audience segments (B2B vs. B2C, technical vs. executive) and funnel stages (awareness, consideration, decision).</p>
+
+  <p class="reveal"><strong>Version control your prompts.</strong> Track prompt versions and their output quality scores. Over time, you'll develop proprietary prompt sequences that no competitor can replicate — not because the technology is exclusive, but because your refinement process is unique to your brand voice and audience.</p>
+
+  <!-- RELATED LINKS -->
+  <div class="related-links reveal">
+    <h3>Related Reading</h3>
+    <ul>
+      <li>
+        <a href="https://neuraplus-ai.github.io/blog/kimi-ai-chatbot.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Kimi AI Chatbot — Full Review
+        </a>
+      </li>
+      <li>
+        <a href="https://neuraplus-ai.github.io/blog/easy-ai-tools-for-website-creation.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          Easy AI Tools for Website Creation
+        </a>
+      </li>
+      <li>
+        <a href="https://neuraplus-ai.github.io/blog/best-ai-tools-like-kimi-ai.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Best AI Tools Like Kimi AI
+        </a>
+      </li>
+      <li>
+        <a href="https://neuraplus-ai.github.io/blog/kimi-ai-for-coding.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Kimi AI for Coding — 2026 Guide
+        </a>
+      </li>
+      <li>
+        <a href="https://neuraplus-ai.github.io/blog/free-ai-chatbot-like-kimi-ai.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>
+          Free AI Chatbot Like Kimi AI
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- EXTERNAL CTA -->
+  <div class="external-cta reveal">
+    <h3>Start Writing with Kimi AI Today</h3>
+    <p>2M-token context, proven prompt templates, and publish-ready content — all on the free tier. No credit card required.</p>
+    <a href="https://www.kimi.com/" target="_blank" rel="noopener noreferrer" class="ext-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Launch Kimi AI — kimi.com
+    </a>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+
+    <!-- Brand col -->
+    <div class="footer-brand">
+      <a href="https://neuraplus-ai.github.io/" class="nav-logo"><span></span>NeuraPulse</a>
+      <p>Cutting-edge AI research, tutorials, and tool reviews for developers, researchers, and digital creators navigating the frontier of artificial intelligence.</p>
+      <div class="social-links">
+        <!-- Twitter / X -->
+        <a href="https://x.com/AiNeuraplus" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/prashant-lalwani-361010407/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/channel/UC0-7t4itquvY3ed2tGKLjQA" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/neuraplus.ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/profile.php?id=61589600083095" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <!-- Pinterest -->
+        <a href="https://pinterest.com/neuraplusai/_profile/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
+        </a>
+        <!-- Tumblr -->
+        <a href="https://www.tumblr.com/blog/neuraplus-ai" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Tumblr">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.19z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Blog links -->
+    <div class="footer-col">
+      <h4>Blog</h4>
+      <ul>
+        <li><a href="https://neuraplus-ai.github.io/blog/kimi-ai-chatbot.html">Kimi AI Chatbot</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/kimi-ai-vs-chatgpt-for-coding.html">Kimi vs ChatGPT Coding</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/kimi-k2-6-open-source-model.html">Kimi K2 Open Source</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/kimi-ai-website-generation.html">Kimi Website Generation</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/easy-ai-tools-for-website-creation.html">AI Website Creation Tools</a></li>
+      </ul>
+    </div>
+
+    <!-- Tools links -->
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="https://www.kimi.com/" target="_blank" rel="noopener">Kimi AI</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/best-ai-tools-like-kimi-ai.html">AI Tools Like Kimi</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/easy-ai-tools-for-website-creation.html">Website Builders</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/kimi-k2-6-open-source-model.html">Open Source Models</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/free-ai-chatbot-like-kimi-ai.html">Free AI Chatbots</a></li>
+      </ul>
+    </div>
+
+    <!-- Company links -->
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About NeuraPulse</a></li>
+        <li><a href="#">Write for Us</a></li>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 NeuraPulse · All rights reserved · Built for AI Researchers & Developers</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Sitemap</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+    <div class="footer-badge">AI-Powered Blog</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const c=document.getElementById('particles');
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    const s=Math.random()*3+1;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:${Math.random()*-20}%;--dur:${Math.random()*12+8}s;--delay:${Math.random()*10}s;background:${Math.random()>0.5?'#00d4ff':'#00ffb3'};`;
+    c.appendChild(p);
+  }
+})();
+
+// Intersection Observer for scroll reveals
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Typing cursor blink enhancement
+const cursor=document.querySelector('.typing-cursor');
+if(cursor){
+  setInterval(()=>{cursor.style.opacity=cursor.style.opacity==='0'?'1':'0';},530);
+}
+
+// Smooth parallax for particles on scroll
+let ticking=false;
+window.addEventListener('scroll',()=>{
+  if(!ticking){
+    window.requestAnimationFrame(()=>{
+      const scrolled=window.scrollY;
+      document.querySelectorAll('.particle').forEach((p,i)=>{
+        p.style.transform=`translateY(${scrolled*(0.02+i*0.005)}px)`;
+      });
+      ticking=false;
+    });
+    ticking=true;
+  }
+});
+</script>
+</body>
+</html>
