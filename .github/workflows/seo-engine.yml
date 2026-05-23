@@ -1,0 +1,54 @@
+# ══════════════════════════════════════════════════════
+#  NeuraPulse — SEO Engine GitHub Actions Workflow
+#  Runs automatically on every push to main
+#  Also runs on a schedule (every Sunday 00:00 UTC)
+# ══════════════════════════════════════════════════════
+
+name: NeuraPulse SEO Engine
+
+on:
+  push:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * 0'      # Every Sunday midnight UTC
+  workflow_dispatch:           # Allow manual trigger from GitHub UI
+
+permissions:
+  contents: write              # Needed to commit generated files back
+
+jobs:
+  seo-engine:
+    runs-on: ubuntu-latest
+    name: Run All SEO Phases
+
+    steps:
+      # ── 1. Checkout repo ──
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ── 2. Setup Python ──
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # ── 3. Run SEO Engine ──
+      - name: Run NeuraPulse SEO Engine
+        run: python seo_engine.py
+
+      # ── 4. Commit all generated files back to repo ──
+      - name: Commit Generated Files
+        run: |
+          git config --local user.email "seo-bot@neuraplus.ai"
+          git config --local user.name "NeuraPulse SEO Bot"
+          git add -A
+          git diff --staged --quiet || git commit -m "🤖 SEO Engine: auto-update sitemap, schema, footer, llms.txt [skip ci]"
+
+      # ── 5. Push changes ──
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
