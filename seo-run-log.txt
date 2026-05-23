@@ -1,11 +1,11 @@
-[INFO] Found 272 HTML files to process
+[INFO] Found 273 HTML files to process
 [] =======================================================
 [PHASE] PHASE 1 — SITE AUDIT
 [] =======================================================
-[INFO] Total pages scanned : 272
-[INFO] HIGH severity issues: 8
+[INFO] Total pages scanned : 273
+[INFO] HIGH severity issues: 9
 [INFO] MED  severity issues: 2
-[INFO] LOW  severity issues: 226
+[INFO] LOW  severity issues: 227
 [INFO] Audit report saved → seo-audit-report.json
 [] =======================================================
 [PHASE] PHASE 2 — ENTITY & BRAND SYSTEM
@@ -16,7 +16,7 @@
 [PHASE] PHASE 3 — TECHNICAL SEO SYSTEM
 [] =======================================================
 [INFO] robots.txt generated — all AI crawlers allowed
-[INFO] sitemap.xml generated — 272 URLs
+[INFO] sitemap.xml generated — 273 URLs
 [INFO] sitemap.html generated — human-readable
 [INFO] rss.xml generated — top 50 pages
 [INFO] llms.txt generated — AI crawler instructions
@@ -26,16 +26,16 @@
 [] =======================================================
 [PHASE] PHASE 4 — SCHEMA & META INJECTION
 [] =======================================================
-[INFO] Schema/meta injected into 1 pages
+[INFO] Schema/meta injected into 2 pages
 [] =======================================================
 [PHASE] PHASE 5 — FOOTER INJECTION (ALL PAGES)
 [] =======================================================
-[INFO] Footer injected: 1 pages · Already had footer: 271
+[INFO] Footer injected: 2 pages · Already had footer: 271
 [] =======================================================
 [PHASE] PHASE 6 — NAV — ADD GUIDE LINK
 [] =======================================================
-[INFO] Guide nav added: 0 pages · Already present: 272
+[INFO] Guide nav added: 0 pages · Already present: 273
 [] =======================================================
 [PHASE] PHASE 7 — GEO/AEO AI VISIBILITY TAGS
 [] =======================================================
-[INFO] GEO/AEO tags injected: 1 pages
+[INFO] GEO/AEO tags injected: 2 pages

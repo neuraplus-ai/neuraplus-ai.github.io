@@ -1,9 +1,9 @@
 {
-  "generated": "2026-05-23T12:35:58Z",
-  "total_pages": 272,
-  "high": 8,
+  "generated": "2026-05-23T13:13:13Z",
+  "total_pages": 273,
+  "high": 9,
   "med": 2,
-  "low": 226,
+  "low": 227,
   "issues": [
     {
       "file": "about.html",
@@ -764,6 +764,16 @@
       "file": "blog/kimi-ai-prompts-for-content-writing.html",
       "issue": "Meta description too long",
       "severity": "LOW"
+    },
+    {
+      "file": "blog/kimi-ai-tools-for-web-designers.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/kimi-ai-tools-for-web-designers.html",
+      "issue": "Missing JSON-LD schema",
+      "severity": "HIGH"
     },
     {
       "file": "blog/kimi-ai-website-generation.html",
