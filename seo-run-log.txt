@@ -3,9 +3,9 @@
 [PHASE] PHASE 1 — SITE AUDIT
 [] =======================================================
 [INFO] Total pages scanned : 272
-[INFO] HIGH severity issues: 30
-[INFO] MED  severity issues: 22
-[INFO] LOW  severity issues: 227
+[INFO] HIGH severity issues: 8
+[INFO] MED  severity issues: 2
+[INFO] LOW  severity issues: 226
 [INFO] Audit report saved → seo-audit-report.json
 [] =======================================================
 [PHASE] PHASE 2 — ENTITY & BRAND SYSTEM
@@ -26,11 +26,11 @@
 [] =======================================================
 [PHASE] PHASE 4 — SCHEMA & META INJECTION
 [] =======================================================
-[INFO] Schema/meta injected into 21 pages
+[INFO] Schema/meta injected into 1 pages
 [] =======================================================
 [PHASE] PHASE 5 — FOOTER INJECTION (ALL PAGES)
 [] =======================================================
-[INFO] Footer injected: 272 pages · Already had footer: 0
+[INFO] Footer injected: 1 pages · Already had footer: 271
 [] =======================================================
 [PHASE] PHASE 6 — NAV — ADD GUIDE LINK
 [] =======================================================
@@ -38,4 +38,4 @@
 [] =======================================================
 [PHASE] PHASE 7 — GEO/AEO AI VISIBILITY TAGS
 [] =======================================================
-[INFO] GEO/AEO tags injected: 271 pages
+[INFO] GEO/AEO tags injected: 1 pages

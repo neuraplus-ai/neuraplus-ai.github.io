@@ -1,9 +1,9 @@
 {
-  "generated": "2026-05-23T12:35:02Z",
+  "generated": "2026-05-23T12:35:58Z",
   "total_pages": 272,
-  "high": 30,
-  "med": 22,
-  "low": 227,
+  "high": 8,
+  "med": 2,
+  "low": 226,
   "issues": [
     {
       "file": "about.html",
@@ -166,16 +166,6 @@
       "severity": "LOW"
     },
     {
-      "file": "blog/best-ai-tools-like-kimi-ai.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/best-ai-tools-like-kimi-ai.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
       "file": "blog/best-ai-tools-writers.html",
       "issue": "Title too long (72 chars)",
       "severity": "LOW"
@@ -194,16 +184,6 @@
       "file": "blog/best-free-ai-tools-like-chatgpt-for-students.html",
       "issue": "Title too long (68 chars)",
       "severity": "LOW"
-    },
-    {
-      "file": "blog/best-kimi-ai-alternatives-in-2026.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/best-kimi-ai-alternatives-in-2026.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
     },
     {
       "file": "blog/best-n8n-workflows-for-seo-and-marketing-automation.html",
@@ -376,16 +356,6 @@
       "severity": "LOW"
     },
     {
-      "file": "blog/easy-ai-tools-for-website-creation.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/easy-ai-tools-for-website-creation.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
       "file": "blog/elevenlabs-ai-voice-cloning-guide-free-and-easy-2026.html",
       "issue": "Title too long (72 chars)",
       "severity": "LOW"
@@ -419,26 +389,6 @@
       "file": "blog/free-ai-chatbot-like-kimi-ai.html",
       "issue": "Meta description too long",
       "severity": "LOW"
-    },
-    {
-      "file": "blog/free-ai-chatbot-like-kimi-ai.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/free-ai-chatbot-like-kimi-ai.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
-      "file": "blog/free-ai-tools-for-web-development.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/free-ai-tools-for-web-development.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
     },
     {
       "file": "blog/free-n8n-automation-ideas-for-small-businesses.html",
@@ -646,26 +596,6 @@
       "severity": "HIGH"
     },
     {
-      "file": "blog/how-to-build-a-website-with-kimi-ai.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/how-to-build-a-website-with-kimi-ai.html",
-      "issue": "Missing JSON-LD schema",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/how-to-build-a-website-with-kimi-ai.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
-      "file": "blog/how-to-build-a-website-with-kimi-ai.html",
-      "issue": "Missing og:image",
-      "severity": "MED"
-    },
-    {
       "file": "blog/how-to-build-ai-tools.html",
       "issue": "Title too long (79 chars)",
       "severity": "LOW"
@@ -786,26 +716,6 @@
       "severity": "LOW"
     },
     {
-      "file": "blog/how-to-use-kimi-ai-for-beginners.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/how-to-use-kimi-ai-for-beginners.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
-      "file": "blog/how-to-use-kimi-ai-for-free.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/how-to-use-kimi-ai-for-free.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
       "file": "blog/how-to-use-n8n-for-business-automation-step-by-step.html",
       "issue": "Title too long (70 chars)",
       "severity": "LOW"
@@ -851,64 +761,9 @@
       "severity": "LOW"
     },
     {
-      "file": "blog/kimi-ai-chatbot.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/kimi-ai-chatbot.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
-      "file": "blog/kimi-ai-for-coding.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/kimi-ai-for-coding.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
-      "file": "blog/kimi-ai-long-context-explained.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
       "file": "blog/kimi-ai-prompts-for-content-writing.html",
       "issue": "Meta description too long",
       "severity": "LOW"
-    },
-    {
-      "file": "blog/kimi-ai-prompts-for-content-writing.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/kimi-ai-prompts-for-content-writing.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
-      "file": "blog/kimi-ai-tutorial-step-by-step.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/kimi-ai-tutorial-step-by-step.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
-      "file": "blog/kimi-ai-vs-chatgpt-for-coding.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/kimi-ai-vs-chatgpt-for-coding.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
     },
     {
       "file": "blog/kimi-ai-website-generation.html",
@@ -921,44 +776,9 @@
       "severity": "LOW"
     },
     {
-      "file": "blog/kimi-ai-website-generation.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
       "file": "blog/kimi-ai-website-generator-free.html",
       "issue": "Missing meta description",
       "severity": "HIGH"
-    },
-    {
-      "file": "blog/kimi-ai-website-generator-free.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/kimi-ai-website-generator-free.html",
-      "issue": "Missing JSON-LD schema",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/kimi-ai-website-generator-free.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
-      "file": "blog/kimi-ai-website-generator-free.html",
-      "issue": "Missing og:image",
-      "severity": "MED"
-    },
-    {
-      "file": "blog/kimi-k2-6-benchmark.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "blog/kimi-k2-6-benchmark.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
     },
     {
       "file": "blog/kimi-k2-6-open-source-model.html",
@@ -969,11 +789,6 @@
       "file": "blog/kimi-k2-6-open-source-model.html",
       "issue": "Meta description too long",
       "severity": "LOW"
-    },
-    {
-      "file": "blog/kimi-k2-6-open-source-model.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
     },
     {
       "file": "blog/marketing-automation-ai.html",
@@ -1276,11 +1091,6 @@
       "severity": "LOW"
     },
     {
-      "file": "blog/what-is-generative-ai-complete-guide-2026.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
       "file": "blog/what-is-groq-chip-how-it-works.html",
       "issue": "Title too long (85 chars)",
       "severity": "LOW"
@@ -1366,38 +1176,13 @@
       "severity": "HIGH"
     },
     {
-      "file": "guide.html",
-      "issue": "Missing canonical tag",
-      "severity": "HIGH"
-    },
-    {
-      "file": "guide.html",
-      "issue": "Missing JSON-LD schema",
-      "severity": "HIGH"
-    },
-    {
-      "file": "guide.html",
-      "issue": "Missing og:title",
-      "severity": "MED"
-    },
-    {
-      "file": "guide.html",
-      "issue": "Missing og:image",
-      "severity": "MED"
-    },
-    {
       "file": "index.html",
       "issue": "Meta description too long",
       "severity": "LOW"
     },
     {
       "file": "sitemap.html",
-      "issue": "Meta description too long",
-      "severity": "LOW"
-    },
-    {
-      "file": "sitemap.html",
-      "issue": "Missing JSON-LD schema",
+      "issue": "Missing meta description",
       "severity": "HIGH"
     }
   ]
