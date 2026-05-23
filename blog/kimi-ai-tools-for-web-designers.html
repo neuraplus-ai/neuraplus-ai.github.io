@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kimi AI tools for web designers in 2026 — generate layouts, write CSS, create SVG graphics, and automate repetitive design tasks with a 2M token context window. Free to use.">
+<meta name="keywords" content="kimi ai tools web designers, kimi ai web design, ai tools for designers 2026, kimi ai css generator, kimi ai website design">
+<meta name="author" content="Prashant Lalwani">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kimi AI Tools for Web Designers: Complete 2026 Guide — NeuraPulse">
+<meta property="og:description" content="Kimi AI tools for web designers in 2026 — generate layouts, write CSS, create SVG graphics, and automate repetitive design tasks with a 2M token context window.">
+<meta property="og:url" content="https://neuraplus-ai.github.io/blog/kimi-ai-tools-for-web-designers.html">
+<meta property="og:image" content="https://neuraplus-ai.github.io/favicon.svg">
+<meta property="og:site_name" content="NeuraPulse">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kimi AI Tools for Web Designers: Complete 2026 Guide — NeuraPulse">
+<meta name="twitter:description" content="Kimi AI tools for web designers in 2026 — free 2M token context.">
+<meta name="twitter:image" content="https://neuraplus-ai.github.io/favicon.svg">
+<meta name="twitter:site" content="@neuraplus_ai">
+<link rel="canonical" href="https://neuraplus-ai.github.io/blog/kimi-ai-tools-for-web-designers.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Kimi AI Tools for Web Designers: Complete 2026 Guide — NeuraPulse</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+<!-- GTM -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JNSQJZJDN1');</script>
+
+<style>
+/* ═══════════════════════════════════════════
+   CSS VARIABLES
+═══════════════════════════════════════════ */
+:root{
+  --bg:       #050810;
+  --surface:  #0c1120;
+  --surface2: #111827;
+  --border:   #1e2d45;
+  --accent:   #00e5ff;
+  --accent2:  #7c3aed;
+  --text:     #e2e8f0;
+  --text-dim: #64748b;
+  --text-mid: #94a3b8;
+  --text-muted:#334155;
+}
+
+/* ═══════════════════════════════════════════
+   RESET + BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-size:16px;
+  line-height:1.8;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION — improved mobile
+═══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.5rem;height:64px;
+  background:rgba(5,8,16,0.97);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+
+/* LOGO */
+.logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;
+  color:var(--text);text-decoration:none;
+  display:flex;align-items:center;gap:.45rem;
+  flex-shrink:0;
+}
+.logo-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--accent);
+  animation:dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+
+/* DESKTOP NAV LINKS */
+.nav-links{
+  display:flex;gap:1.75rem;list-style:none;align-items:center;
+  position:absolute;left:50%;transform:translateX(-50%);
+}
+.nav-links a{
+  font-family:'Space Mono',monospace;font-size:.68rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-dim);text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:var(--accent);}
+
+/* NAV RIGHT */
+.nav-right{display:flex;align-items:center;gap:.75rem;}
+.nav-cta{
+  font-family:'Space Mono',monospace;font-size:.68rem;
+  text-transform:uppercase;letter-spacing:.06em;
+  color:var(--bg);background:var(--accent);
+  padding:.45rem 1rem;border-radius:4px;text-decoration:none;
+  transition:opacity .2s;white-space:nowrap;
+}
+.nav-cta:hover{opacity:.85;}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;background:none;border:none;padding:4px;
+  z-index:201;
+}
+.hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--text-dim);border-radius:2px;
+  transition:all .3s;
+}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* MOBILE DRAWER */
+.mobile-nav{
+  display:none;
+  position:fixed;top:64px;left:0;right:0;z-index:199;
+  background:rgba(5,8,16,.98);
+  border-bottom:1px solid var(--border);
+  padding:1.5rem;
+  flex-direction:column;gap:0;
+  animation:slideDown .2s ease;
+}
+.mobile-nav.open{display:flex;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+.mobile-nav a{
+  font-family:'Space Mono',monospace;font-size:.72rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-dim);text-decoration:none;
+  padding:.85rem 0;border-bottom:1px solid var(--border);
+  transition:color .2s;
+}
+.mobile-nav a:last-child{border-bottom:none;}
+.mobile-nav a:hover{color:var(--accent);}
+.mobile-cta{
+  margin-top:1rem;padding:.75rem;text-align:center;
+  background:var(--accent);color:var(--bg)!important;
+  border-radius:6px;font-weight:700!important;
+  border:none!important;
+}
+
+/* ═══════════════════════════════════════════
+   TICKER
+═══════════════════════════════════════════ */
+.ticker-wrap{
+  background:rgba(0,229,255,0.04);
+  border-bottom:1px solid var(--border);
+  padding:.5rem 0;overflow:hidden;
+  margin-top:64px;
+}
+.ticker{
+  display:flex;gap:4rem;
+  animation:tick 40s linear infinite;white-space:nowrap;
+}
+@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.ticker span{
+  font-family:'Space Mono',monospace;font-size:.6rem;
+  color:var(--text-dim);letter-spacing:.08em;
+}
+.ticker span b{color:var(--accent);}
+
+/* ═══════════════════════════════════════════
+   LAYOUT GRID
+═══════════════════════════════════════════ */
+.layout{
+  display:grid;
+  grid-template-columns:1fr 290px;
+  gap:2.5rem;
+  max-width:1160px;
+  margin:0 auto;
+  padding:2.5rem 1.5rem 4rem;
+}
+@media(max-width:960px){
+  .layout{grid-template-columns:1fr;gap:2rem;padding:1.75rem 1rem 3rem;}
+}
+
+/* ═══════════════════════════════════════════
+   ARTICLE
+═══════════════════════════════════════════ */
+article{min-width:0;}
+
+.breadcrumb{
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:1.25rem;
+  display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;
+}
+.breadcrumb a{color:var(--text-dim);text-decoration:none;}
+.breadcrumb a:hover{color:var(--accent);}
+.breadcrumb span{color:var(--text-muted);}
+
+.live-tag{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:#34d399;margin-bottom:.6rem;
+}
+.live-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#34d399;animation:dotPulse 1.5s ease-in-out infinite;
+}
+
+.cat-tag{
+  display:inline-block;
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.28rem .85rem;border-radius:3px;margin-bottom:.85rem;
+  color:var(--accent);
+  background:rgba(0,229,255,0.08);
+  border:1px solid rgba(0,229,255,0.22);
+}
+
+article h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.75rem,4.5vw,2.8rem);
+  font-weight:800;letter-spacing:-.03em;line-height:1.18;
+  margin-bottom:1.25rem;
+}
+article h1 em{font-style:normal;color:var(--accent);}
+
+/* STATS ROW */
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:.75rem;margin-bottom:1.75rem;
+}
+@media(max-width:500px){.stats-row{grid-template-columns:repeat(2,1fr);}}
+.stat-pill{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;padding:.7rem .9rem;text-align:center;
+}
+.stat-pill .sv{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:1.15rem;color:var(--accent);
+}
+.stat-pill .sl{
+  font-family:'Space Mono',monospace;font-size:.57rem;
+  color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-top:.15rem;
+}
+
+/* META ROW */
+.meta-row{
+  display:flex;align-items:center;gap:.85rem;
+  margin-bottom:2rem;flex-wrap:wrap;
+}
+.av{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;
+  color:white;flex-shrink:0;
+}
+.meta-info .author{font-weight:600;color:var(--text);font-size:.875rem;}
+.meta-info .pub{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text-dim);}
+.read-tag{
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  color:var(--text-dim);padding:.22rem .7rem;
+  border:1px solid var(--border);border-radius:3px;
+}
+
+/* ═══════════════════════════════════════════
+   ARTICLE BODY
+═══════════════════════════════════════════ */
+article h2{
+  font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;
+  letter-spacing:-.02em;margin:2.25rem 0 .85rem;color:var(--text);
+  padding-left:.75rem;border-left:3px solid var(--accent);
+}
+article h3{
+  font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;
+  margin:1.75rem 0 .65rem;color:var(--text);
+}
+article p{color:#cbd5e1;margin-bottom:1.15rem;font-size:.975rem;}
+article ul,article ol{color:#cbd5e1;padding-left:1.4rem;margin-bottom:1.15rem;}
+article li{margin-bottom:.45rem;font-size:.975rem;}
+article strong{color:var(--text);}
+article a{color:var(--accent);text-decoration:none;}
+article a:hover{text-decoration:underline;}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:1.25rem;margin:1.5rem 0;}
+.step{display:flex;gap:1rem;align-items:flex-start;}
+.step-num{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.85rem;color:white;
+}
+.step-body h4{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.95rem;margin-bottom:.3rem;color:var(--text);
+}
+.step-body p{color:#94a3b8;font-size:.9rem;margin:0;}
+
+/* TIP BOX */
+.tip-box{
+  background:rgba(0,229,255,0.04);
+  border:1px solid rgba(0,229,255,0.18);
+  border-radius:10px;padding:1.1rem 1.35rem;margin:1.75rem 0;
+}
+.tip-box .tip-label{
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.4rem;
+}
+.tip-box p{color:#94a3b8;margin:0;font-size:.9rem;}
+
+/* ═══════════════════════════════════════════
+   TABLE — SCROLL HINT + ANIMATION
+═══════════════════════════════════════════ */
+.table-outer{
+  position:relative;
+  margin:1.75rem 0;
+}
+
+/* scroll hint badge — shows on mobile */
+.scroll-hint{
+  display:none;
+  align-items:center;gap:.4rem;
+  font-family:'Space Mono',monospace;font-size:.6rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);
+  background:rgba(0,229,255,0.07);
+  border:1px solid rgba(0,229,255,0.18);
+  border-radius:4px;padding:.3rem .75rem;
+  margin-bottom:.6rem;
+  width:fit-content;
+}
+.scroll-hint svg{
+  animation:scrollArrow 1.2s ease-in-out infinite;
+}
+@keyframes scrollArrow{
+  0%,100%{transform:translateX(0);}
+  50%{transform:translateX(5px);}
+}
+@media(max-width:720px){.scroll-hint{display:flex;}}
+
+/* right fade on mobile to signal scroll */
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border-radius:10px;
+  border:1px solid var(--border);
+  position:relative;
+}
+.table-wrap::-webkit-scrollbar{height:4px;}
+.table-wrap::-webkit-scrollbar-track{background:var(--surface2);}
+.table-wrap::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
+
+/* fade mask on right edge — only on mobile */
+@media(max-width:720px){
+  .table-wrap::after{
+    content:'';
+    position:absolute;top:0;right:0;bottom:0;width:40px;
+    background:linear-gradient(to right,transparent,var(--bg));
+    pointer-events:none;border-radius:0 10px 10px 0;
+  }
+}
+
+.comp-table{
+  width:100%;min-width:560px;
+  border-collapse:collapse;font-size:.875rem;
+}
+.comp-table thead{
+  background:var(--surface2);
+  position:sticky;top:0;z-index:1;
+}
+.comp-table th{
+  font-family:'Space Mono',monospace;font-size:.6rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-dim);padding:.75rem 1rem;text-align:left;
+  border-bottom:1px solid var(--border);white-space:nowrap;
+}
+.comp-table td{
+  padding:.7rem 1rem;
+  border-bottom:1px solid rgba(30,45,69,.5);
+  color:#cbd5e1;vertical-align:top;
+  transition:background .15s;
+}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tbody tr:hover td{background:rgba(0,229,255,0.03);}
+.comp-table .win{color:#34d399;font-weight:600;}
+.comp-table .warn{color:#f59e0b;}
+
+/* row entrance animation */
+.comp-table tbody tr{
+  opacity:0;transform:translateX(-10px);
+  transition:opacity .4s ease, transform .4s ease;
+}
+.comp-table.animate tbody tr{opacity:1;transform:translateX(0);}
+.comp-table tbody tr:nth-child(1){transition-delay:.05s;}
+.comp-table tbody tr:nth-child(2){transition-delay:.1s;}
+.comp-table tbody tr:nth-child(3){transition-delay:.15s;}
+.comp-table tbody tr:nth-child(4){transition-delay:.2s;}
+.comp-table tbody tr:nth-child(5){transition-delay:.25s;}
+.comp-table tbody tr:nth-child(6){transition-delay:.3s;}
+
+/* ═══════════════════════════════════════════
+   INTERNAL LINK CARD
+═══════════════════════════════════════════ */
+.il-card{
+  display:block;text-decoration:none;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:1.1rem 1.35rem;margin:1.5rem 0;
+  transition:border-color .2s,transform .2s;
+}
+.il-card:hover{border-color:var(--accent);transform:translateX(3px);}
+.il-cat{
+  font-family:'Space Mono',monospace;font-size:.58rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.3rem;
+}
+.il-title{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.975rem;color:var(--text);margin-bottom:.2rem;
+}
+.il-desc{font-size:.85rem;color:var(--text-dim);}
+.il-arrow{
+  font-family:'Space Mono',monospace;font-size:.65rem;
+  color:var(--accent);margin-top:.45rem;display:inline-block;
+}
+
+/* ═══════════════════════════════════════════
+   SHARE BAR
+═══════════════════════════════════════════ */
+.share-bar{
+  border:1px solid var(--border);
+  border-radius:10px;padding:1.1rem 1.35rem;
+  margin:2rem 0;background:var(--surface);
+}
+.share-label{
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:.75rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.share-btns{display:flex;gap:.6rem;flex-wrap:wrap;}
+.share-btn{
+  font-family:'Space Mono',monospace;font-size:.65rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.5rem 1.1rem;border-radius:5px;cursor:pointer;
+  background:none;border:1px solid var(--border);
+  color:var(--text-dim);text-decoration:none;
+  transition:border-color .2s,color .2s,background .2s;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.share-btn:hover{border-color:var(--accent);color:var(--accent);}
+.share-btn.copy-btn:active{background:rgba(0,229,255,.1);}
+
+/* ═══════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════ */
+aside{
+  position:sticky;top:84px;
+  height:fit-content;
+  display:flex;flex-direction:column;gap:1.25rem;
+}
+@media(max-width:960px){aside{position:static;}}
+
+.sidebar-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:1.35rem;
+}
+.sidebar-box h4{
+  font-family:'Space Mono',monospace;font-size:.6rem;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:.9rem;
+  padding-bottom:.75rem;border-bottom:1px solid var(--border);
+}
+.nl-form{display:flex;flex-direction:column;gap:.65rem;}
+.nl-inp{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:6px;padding:.65rem .9rem;
+  color:var(--text);font-size:.875rem;outline:none;width:100%;
+  transition:border-color .2s;font-family:'DM Sans',sans-serif;
+}
+.nl-inp:focus{border-color:var(--accent);}
+.nl-inp::placeholder{color:var(--text-muted);}
+.nl-btn{
+  background:var(--accent);color:var(--bg);
+  font-family:'Space Mono',monospace;font-size:.65rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.7rem;border-radius:6px;border:none;cursor:pointer;
+  transition:opacity .2s;
+}
+.nl-btn:hover{opacity:.85;}
+.nl-sub-note{font-size:.75rem;color:var(--text-dim);line-height:1.5;}
+
+.rc-item{
+  display:block;text-decoration:none;
+  padding:.65rem 0;border-bottom:1px solid rgba(30,45,69,.6);
+}
+.rc-item:last-child{border-bottom:none;}
+.rc-cat{
+  font-family:'Space Mono',monospace;font-size:.57rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.2rem;
+}
+.rc-title{
+  font-size:.825rem;color:var(--text-dim);line-height:1.45;
+  transition:color .2s;
+}
+.rc-item:hover .rc-title{color:var(--text);}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{
+  border-top:1px solid var(--border);
+  padding:2.5rem 1.5rem 2rem;
+  max-width:1160px;margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:2rem;align-items:start;
+}
+@media(max-width:700px){
+  footer{grid-template-columns:1fr;text-align:center;}
+  .footer-right{align-items:center;}
+  .social-links{justify-content:center;}
+  .flinks{justify-content:center;}
+}
+
+.footer-brand{display:flex;flex-direction:column;gap:12px;}
+.flogo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--text);
+}
+.flogo span{color:var(--accent);}
+.fdesc{color:var(--text-dim);font-size:.825rem;line-height:1.6;max-width:300px;}
+
+.social-links{display:flex;gap:10px;flex-wrap:wrap;}
+.social-link{
+  width:38px;height:38px;border-radius:8px;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-dim);text-decoration:none;
+  background:var(--surface);
+  transition:all .22s;
+}
+.social-link:hover{
+  border-color:var(--accent);color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 0 12px rgba(0,229,255,.2);
+}
+.social-link.instagram:hover{border-color:#e1306c;color:#e1306c;}
+.social-link svg{width:17px;height:17px;}
+
+.footer-right{display:flex;flex-direction:column;gap:.85rem;align-items:flex-end;}
+
+.live-status{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(0,229,255,.06);
+  border:1px solid rgba(0,229,255,.15);
+  border-radius:20px;padding:5px 14px;
+  font-family:'Space Mono',monospace;font-size:.6rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
+}
+.status-dot{
+  width:6px;height:6px;background:var(--accent);
+  border-radius:50%;animation:dotPulse 2s ease infinite;
+}
+
+/* neural widget */
+.neural-widget{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:14px;width:220px;
+  position:relative;overflow:hidden;
+}
+.neural-widget::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+}
+.neural-title{
+  font-family:'Space Mono',monospace;font-size:.58rem;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:9px;
+}
+.neural-bars{display:flex;align-items:flex-end;gap:4px;height:36px;}
+.neural-bar{
+  width:7px;border-radius:4px 4px 0 0;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  animation:nBar 1.5s ease-in-out infinite;
+}
+.neural-bar:nth-child(1){height:60%;animation-delay:0s;}
+.neural-bar:nth-child(2){height:85%;animation-delay:.2s;}
+.neural-bar:nth-child(3){height:45%;animation-delay:.4s;}
+.neural-bar:nth-child(4){height:70%;animation-delay:.1s;}
+.neural-bar:nth-child(5){height:55%;animation-delay:.3s;}
+.neural-bar:nth-child(6){height:90%;animation-delay:.5s;}
+.neural-bar:nth-child(7){height:40%;animation-delay:.15s;}
+.neural-bar:nth-child(8){height:75%;animation-delay:.35s;}
+@keyframes nBar{0%,100%{opacity:.6;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.12);}}
+.neural-stats{
+  display:flex;justify-content:space-between;margin-top:9px;
+  font-family:'Space Mono',monospace;font-size:.57rem;color:var(--text-dim);
+}
+
+.flinks{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap;margin-top:.5rem;}
+.flinks a{
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-dim);text-decoration:none;
+  transition:color .2s;
+}
+.flinks a:hover{color:var(--accent);}
+.fcopy{
+  font-family:'Space Mono',monospace;font-size:.6rem;
+  color:var(--text-muted);margin-top:.25rem;
+}
+
+/* ═══════════════════════════════════════════
+   CHAT POPUP
+═══════════════════════════════════════════ */
+#np-btn{
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;
+  width:54px;height:54px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;border:none;
+  box-shadow:0 4px 22px rgba(0,229,255,.35);
+  transition:transform .2s;
+}
+#np-btn:hover{transform:scale(1.08);}
+
+#np-win{
+  display:none;position:fixed;
+  bottom:5.5rem;right:1.5rem;z-index:9998;
+  width:350px;max-width:calc(100vw - 2rem);
+  background:#0c1120;border:1px solid #1e2d45;
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
+  flex-direction:column;
+}
+#np-win.open{display:flex;}
+
+#np-wh{
+  background:linear-gradient(135deg,#111827,#1a0d3d);
+  padding:.9rem 1.1rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid #1e2d45;
+}
+.np-av2{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.np-nm{font-family:'Syne',sans-serif;font-weight:700;color:#e2e8f0;font-size:.9rem;}
+.np-st{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--accent);letter-spacing:.1em;}
+.np-cl{background:none;border:none;color:#64748b;cursor:pointer;font-size:1.2rem;line-height:1;}
+
+#np-msgs{
+  height:280px;overflow-y:auto;padding:.9rem;
+  display:flex;flex-direction:column;gap:.65rem;scrollbar-width:thin;
+}
+.np-bm{
+  background:#111827;border:1px solid #1e2d45;
+  border-radius:10px 10px 10px 3px;
+  padding:.8rem .9rem;max-width:86%;
+  font-size:.85rem;color:#94a3b8;line-height:1.6;
+}
+.np-um{
+  background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(0,229,255,.1));
+  border:1px solid rgba(0,229,255,.18);
+  border-radius:10px 10px 3px 10px;
+  padding:.8rem .9rem;max-width:86%;
+  font-size:.85rem;color:#e2e8f0;
+  align-self:flex-end;margin-left:auto;
+}
+#np-ft{
+  padding:.7rem .9rem;border-top:1px solid #1e2d45;
+  display:flex;gap:.5rem;background:var(--bg);
+}
+#np-inp{
+  flex:1;background:#111827;border:1px solid #1e2d45;
+  border-radius:8px;padding:.6rem .9rem;color:#e2e8f0;
+  font-size:.85rem;outline:none;transition:border-color .2s;
+}
+#np-inp:focus{border-color:var(--accent);}
+#np-snd{
+  width:40px;height:40px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  border:none;border-radius:8px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+
+@keyframes npBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+
+/* ═══════════════════════════════════════════
+   MOBILE TWEAKS
+═══════════════════════════════════════════ */
+@media(max-width:600px){
+  body{font-size:15px;}
+  article h2{font-size:1.3rem;}
+  .step{gap:.75rem;}
+  .step-num{width:32px;height:32px;font-size:.8rem;}
+  .stats-row{gap:.5rem;}
+  .stat-pill .sv{font-size:1rem;}
+}
+
+@media(min-width:961px){
+  .hamburger{display:none!important;}
+}
+@media(max-width:960px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .nav-cta{display:none;}
+}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav>
+  <a href="https://neuraplus-ai.github.io/index.html" class="logo" target="_self">
+    <span class="logo-dot"></span>NeuraPulse
+  </a>
+
+  <!-- Desktop links (centred) -->
+  <ul class="nav-links">
+    <li><a href="https://neuraplus-ai.github.io/index.html" target="_self">Home</a></li>
+    <li><a href="https://neuraplus-ai.github.io/blog.html" target="_self">Blog</a></li>
+    <li><a href="https://neuraplus-ai.github.io/guide.html">Guide</a></li>
+    <li><a href="https://neuraplus-ai.github.io/about.html" target="_self">About</a></li>
+    <li><a href="https://neuraplus-ai.github.io/contact.html" target="_self">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <!-- Desktop CTA -->
+    <a href="https://www.kimi.com/" class="nav-cta" target="_blank" rel="noopener">Try Kimi AI</a>
+    <!-- Hamburger (mobile only) -->
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="https://neuraplus-ai.github.io/index.html" target="_self">Home</a>
+  <a href="https://neuraplus-ai.github.io/blog.html" target="_self">Blog</a>
+  <a href="https://neuraplus-ai.github.io/guide.html">Guide</a>
+  <a href="https://neuraplus-ai.github.io/about.html" target="_self">About</a>
+  <a href="https://neuraplus-ai.github.io/contact.html" target="_self">Contact</a>
+  <a href="https://www.kimi.com/" class="mobile-cta" target="_blank" rel="noopener">Try Kimi AI →</a>
+</div>
+
+<!-- ═══════════════ TICKER ═══════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span><b>Live</b> 🚀 Kimi K2 now open source · 2M token context window available free · Kimi AI tops SWE-Bench coding benchmarks · New multimodal features rolling out ·</span>
+    <span><b>Live</b> 🚀 Kimi K2 now open source · 2M token context window available free · Kimi AI tops SWE-Bench coding benchmarks · New multimodal features rolling out ·</span>
+  </div>
+</div>
+
+<!-- ═══════════════ MAIN LAYOUT ═══════════════ -->
+<div class="layout">
+<article>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="https://neuraplus-ai.github.io/index.html" target="_self">Home</a>
+    <span>›</span>
+    <a href="https://neuraplus-ai.github.io/blog.html" target="_self">Blog</a>
+    <span>›</span>
+    <a href="https://neuraplus-ai.github.io/blog.html#ai-tools" target="_self">AI Tools</a>
+  </div>
+
+  <div class="live-tag"><span class="live-dot"></span>Live Article</div>
+  <span class="cat-tag">AI Tools · Web Design</span>
+
+  <h1>Kimi AI Tools for <em>Web Designers</em>: Complete 2026 Guide</h1>
+
+  <div class="stats-row">
+    <div class="stat-pill"><div class="sv">2M</div><div class="sl">Context Tokens</div></div>
+    <div class="stat-pill"><div class="sv">Free</div><div class="sl">No Credit Card</div></div>
+    <div class="stat-pill"><div class="sv">10+</div><div class="sl">Design Use Cases</div></div>
+    <div class="stat-pill"><div class="sv">5 min</div><div class="sl">To Get Started</div></div>
+  </div>
+
+  <div class="meta-row">
+    <div class="av">PL</div>
+    <div class="meta-info">
+      <div class="author">Prashant Lalwani</div>
+      <div class="pub">May 23, 2026 · NeuraPulse</div>
+    </div>
+    <span class="read-tag">11 min read</span>
+  </div>
+
+  <!-- ── ARTICLE CONTENT ── -->
+  <h2>1. Why Web Designers Should Use Kimi AI in 2026</h2>
+  <p>Web design has always been a craft at the intersection of creativity and technical execution — but in 2026, AI has made that intersection dramatically more productive. Kimi AI stands out as the most practical AI tool for web designers because it combines an extraordinary 2-million-token context window with multimodal understanding and a completely free entry tier that requires no credit card.</p>
+  <p>For a designer, this means you can paste your entire CSS codebase, all your HTML templates, and your design specifications into a single conversation and ask Kimi to reason across the whole system simultaneously — something no other free AI tool can match. Whether you are generating responsive layouts from scratch, debugging cross-browser CSS issues, writing SVG illustrations, or building component libraries, Kimi handles the full stack of design-adjacent coding tasks with the same conversational ease that makes it the go-to <a href="https://neuraplus-ai.github.io/blog/kimi-ai-chatbot.html">Kimi AI chatbot</a> for general users.</p>
+  <p>The practical advantage becomes clear the moment you try to use a competitor with a smaller context window on a real project. ChatGPT and Gemini regularly hit their limits when reviewing a full design system — you get truncation errors, lost context, and responses that ignore earlier instructions. Kimi never does this with normal-sized projects. This is what makes <a href="https://neuraplus-ai.github.io/blog/kimi-ai-website-generation.html">Kimi AI website generation</a> so powerful for building complete sites from prompts.</p>
+
+  <a href="https://neuraplus-ai.github.io/blog/best-prompts-for-anthropic-claude-ai.html" class="il-card">
+    <div class="il-cat">Related · Prompts</div>
+    <div class="il-title">Best Prompts for Anthropic Claude AI: 50+ Templates That Work in 2026</div>
+    <div class="il-desc">50+ copy-paste prompts for design, blogging, coding, and business. These also work well with Kimi AI — adapt them for your web design workflow.</div>
+    <div class="il-arrow">Read article →</div>
+  </a>
+
+  <h2>2. Kimi AI for Layout and HTML Generation</h2>
+  <p>The fastest way to use Kimi AI as a web designer is for initial layout generation. Rather than starting from a blank file or hunting for a CodePen template, you describe your design intent in plain language and Kimi produces complete, semantic HTML with modern CSS. The quality of the output scales directly with the quality of your prompt — specify your color palette, typography choices, target device breakpoints, and accessibility requirements upfront, and Kimi incorporates all of them into the first draft.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h4>Describe your layout requirements in detail</h4>
+        <p>Include grid structure, color tokens, font choices, responsive breakpoints, and any accessibility needs. The more specific, the better the first-draft output.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h4>Paste your existing CSS variables or design tokens</h4>
+        <p>Kimi will match your existing system rather than inventing new values, keeping the output consistent with your brand.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h4>Request specific component variations</h4>
+        <p>Ask for dark mode variants, hover states, focus rings, and mobile-first overrides in the same conversation without losing context.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h4>Iterate with inline feedback</h4>
+        <p>Paste the rendered output description back to Kimi and ask it to adjust spacing, typography scale, or interaction patterns.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>3. CSS Debugging and Optimization With Kimi AI</h2>
+  <p>CSS debugging is one of the most time-consuming parts of web design — a single z-index conflict or specificity war can consume hours. Kimi AI dramatically compresses this time because it can hold your entire stylesheet in context, understand the cascade, and identify the root cause of layout issues rather than just suggesting generic fixes.</p>
+  <p>For CSS optimization, Kimi excels at identifying redundant rules, consolidating media queries, converting px values to rem for accessibility, and modernizing legacy code to use CSS Grid or custom properties. It can also compare your current approach to modern alternatives and explain the trade-offs. Pair this with what you learn from <a href="https://neuraplus-ai.github.io/blog/best-ollama-models-for-coding-chatgpt-alternatives.html">best Ollama models for coding</a> if you want to run a fully local AI design assistant.</p>
+
+  <div class="tip-box">
+    <div class="tip-label">⚡ Designer Tip</div>
+    <p>When debugging CSS with Kimi, always include the full HTML structure alongside the stylesheet — Kimi needs the context of how elements are nested to accurately diagnose specificity and cascade issues.</p>
+  </div>
+
+  <h2>4. SVG Generation and Graphic Creation</h2>
+  <p>One of the most underused Kimi AI capabilities for designers is direct SVG generation. Unlike raster image tools that require a separate AI image service, Kimi can write SVG code for icons, illustrations, background patterns, data visualizations, and decorative elements directly in chat. The output is clean, semantic SVG that you can copy directly into your HTML, edit in Figma or Illustrator, or animate with CSS.</p>
+
+  <!-- TABLE WITH SCROLL HINT -->
+  <div class="table-outer">
+    <div class="scroll-hint" id="scrollHint">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Scroll to see full table
+    </div>
+    <div class="table-wrap" id="tableWrap">
+      <table class="comp-table" id="compTable">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Kimi AI</th>
+            <th>ChatGPT-4o</th>
+            <th>Gemini</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Full CSS layout from description</td>
+            <td class="win">✓ Excellent</td>
+            <td>✓ Good</td>
+            <td>✓ Good</td>
+          </tr>
+          <tr>
+            <td>Paste entire design system (10K+ lines)</td>
+            <td class="win">✓ 2M tokens</td>
+            <td class="warn">⚠ 128K limit</td>
+            <td>✓ 1M tokens</td>
+          </tr>
+          <tr>
+            <td>SVG icon generation</td>
+            <td class="win">✓ Native</td>
+            <td class="warn">⚠ Limited</td>
+            <td class="warn">⚠ Limited</td>
+          </tr>
+          <tr>
+            <td>Accessibility audit of HTML</td>
+            <td class="win">✓ Detailed</td>
+            <td>✓ Good</td>
+            <td>✓ Good</td>
+          </tr>
+          <tr>
+            <td>Free tier</td>
+            <td class="win">✓ Full access</td>
+            <td class="warn">⚠ GPT-3.5 only</td>
+            <td>✓ Gemini 1.5</td>
+          </tr>
+          <tr>
+            <td>Dark mode CSS generation</td>
+            <td class="win">✓ prefers-color-scheme</td>
+            <td>✓ Good</td>
+            <td>✓ Good</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2>5. Accessibility and Responsive Design Audits</h2>
+  <p>Accessibility compliance is increasingly non-optional for professional web designers — WCAG 2.2 requirements affect everything from color contrast ratios to keyboard navigation and screen reader compatibility. Kimi AI can perform detailed accessibility audits of your HTML and CSS, identifying WCAG violations, suggesting remediation strategies, and rewriting components to be fully accessible while preserving your visual design intent.</p>
+  <p>For responsive design, Kimi's approach is particularly useful at the breakpoint planning stage. Describe your content hierarchy and target devices, and ask Kimi to propose a breakpoint strategy with the reasoning behind each decision. This systematic approach pairs well with the broader <a href="https://neuraplus-ai.github.io/blog/kimi-ai-for-coding.html">Kimi AI for coding</a> workflow that developers on your team may already be using.</p>
+
+  <h2>6. Automating Repetitive Design Code Tasks</h2>
+  <p>Web designers spend a surprising proportion of their time on repetitive code tasks — generating variations of a component, writing utility classes, documenting design decisions, converting Figma measurements to CSS, and preparing handoff specifications. Kimi AI handles all of these with high accuracy. You can ask it to generate a complete spacing scale from a base unit, produce all button size variants from a single reference, or convert a Figma design token export to CSS custom properties.</p>
+  <p>The key workflow improvement is batching these tasks into Kimi conversations rather than handling them manually. Because Kimi remembers the full context of your conversation, you can define your design system parameters once and then generate multiple components that all follow the same rules without re-explaining your constraints each time. This is the same principle that makes <a href="https://neuraplus-ai.github.io/blog/how-to-use-kimi-ai-for-beginners.html">using Kimi AI as a beginner</a> so fast.</p>
+
+  <!-- SHARE BAR -->
+  <div class="share-bar">
+    <div class="share-label">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Found this useful? Share it 🚀
+    </div>
+    <div class="share-btns">
+      <a class="share-btn" href="https://twitter.com/intent/tweet?url=https://neuraplus-ai.github.io/blog/kimi-ai-tools-for-web-designers.html&text=Kimi+AI+Tools+for+Web+Designers+2026" target="_blank" rel="noopener">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Twitter
+      </a>
+      <a class="share-btn" href="https://www.linkedin.com/shareArticle?mini=true&url=https://neuraplus-ai.github.io/blog/kimi-ai-tools-for-web-designers.html" target="_blank" rel="noopener">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a class="share-btn" href="https://wa.me/?text=Kimi+AI+Tools+for+Web+Designers+2026+https://neuraplus-ai.github.io/blog/kimi-ai-tools-for-web-designers.html" target="_blank" rel="noopener">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <button class="share-btn copy-btn" id="copyBtn" onclick="copyLink()">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke="currentColor" stroke-width="2"/></svg>
+        Copy Link
+      </button>
+    </div>
+  </div>
+
+</article>
+
+<!-- ═══════════════ SIDEBAR ═══════════════ -->
+<aside>
+  <div class="sidebar-box">
+    <h4>Weekly AI Insights</h4>
+    <p class="nl-sub-note" style="margin-bottom:.85rem;">Join 4,200+ readers. Free every Tuesday.</p>
+    <div class="nl-form">
+      <input type="email" class="nl-inp" id="sl-email" placeholder="you@email.com">
+      <button class="nl-btn" onclick="doSub(this)">Subscribe Free →</button>
+    </div>
+  </div>
+
+  <div class="sidebar-box">
+    <h4>Related Articles</h4>
+    <a href="/blog/kimi-ai-website-generation.html" class="rc-item"><div class="rc-cat">AI Tools</div><div class="rc-title">Kimi AI Website Generation: Build Sites with Prompts</div></a>
+    <a href="/blog/kimi-ai-for-coding.html" class="rc-item"><div class="rc-cat">AI Coding</div><div class="rc-title">Kimi AI for Coding: Full Guide 2026</div></a>
+    <a href="/blog/best-prompts-for-anthropic-claude-ai.html" class="rc-item"><div class="rc-cat">Prompts</div><div class="rc-title">50+ Claude AI Prompts for Developers</div></a>
+    <a href="/blog/best-ollama-models-for-coding-chatgpt-alternatives.html" class="rc-item"><div class="rc-cat">Ollama</div><div class="rc-title">Best Ollama Models for Coding 2026</div></a>
+    <a href="/blog/best-kimi-ai-chatbot-for-websites.html" class="rc-item"><div class="rc-cat">AI Chatbot</div><div class="rc-title">Best Kimi AI Chatbot for Websites 2026</div></a>
+    <a href="/blog/kimi-ai-website-builder-vs-wordpress.html" class="rc-item"><div class="rc-cat">Comparison</div><div class="rc-title">Kimi AI Website Builder vs WordPress</div></a>
+  </div>
+
+  <div class="sidebar-box">
+    <h4>Kimi AI Series</h4>
+    <a href="/blog/how-to-use-kimi-ai-for-beginners.html" class="rc-item"><div class="rc-cat">Beginner</div><div class="rc-title">How to Use Kimi AI for Beginners</div></a>
+    <a href="/blog/kimi-ai-chatbot.html" class="rc-item"><div class="rc-cat">Overview</div><div class="rc-title">Kimi AI Chatbot: Full Review</div></a>
+    <a href="/blog/kimi-k2-6-open-source-model.html" class="rc-item"><div class="rc-cat">Model</div><div class="rc-title">Kimi K2.6 Open-Source Model Guide</div></a>
+    <a href="/blog/best-kimi-ai-alternatives-in-2026.html" class="rc-item"><div class="rc-cat">Alternatives</div><div class="rc-title">Best Kimi AI Alternatives 2026</div></a>
+  </div>
+</aside>
+
+</div><!-- /layout -->
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-brand">
+    <span class="flogo">NeuraPulse<span>.</span></span>
+    <p class="fdesc">Cutting-edge AI research, tutorials, and tool reviews for developers, researchers, and digital creators navigating the frontier of artificial intelligence.</p>
+    <div class="social-links">
+      <a aria-label="X / Twitter" class="social-link" href="https://x.com/AiNeuraplus" rel="noopener noreferrer" target="_blank">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a aria-label="Instagram" class="social-link instagram" href="https://www.instagram.com/neuraplus.ai/" rel="noopener noreferrer" target="_blank">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a aria-label="LinkedIn" class="social-link" href="https://www.linkedin.com/in/prashant-lalwani-361010407/" rel="noopener noreferrer" target="_blank">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a aria-label="YouTube" class="social-link" href="https://www.youtube.com/channel/UC0-7t4itquvY3ed2tGKLjQA" rel="noopener noreferrer" target="_blank">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a aria-label="Facebook" class="social-link" href="https://www.facebook.com/profile.php?id=61589600083095" rel="noopener noreferrer" target="_blank">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+    <ul class="flinks">
+      <li><a href="https://neuraplus-ai.github.io/index.html" target="_self">Home</a></li>
+      <li><a href="https://neuraplus-ai.github.io/blog.html" target="_self">Blog</a></li>
+      <li><a href="https://neuraplus-ai.github.io/guide.html">Guide</a></li>
+      <li><a href="https://neuraplus-ai.github.io/about.html" target="_self">About</a></li>
+      <li><a href="https://neuraplus-ai.github.io/contact.html" target="_self">Contact</a></li>
+    </ul>
+    <p class="fcopy">© 2026 NeuraPulse · Prashant Lalwani</p>
+  </div>
+
+  <div class="footer-right">
+    <div class="live-status">
+      <span class="status-dot"></span>
+      <span>System Online</span>
+    </div>
+    <div class="neural-widget">
+      <div class="neural-title">Neural Activity Monitor</div>
+      <div class="neural-bars">
+        <div class="neural-bar"></div><div class="neural-bar"></div>
+        <div class="neural-bar"></div><div class="neural-bar"></div>
+        <div class="neural-bar"></div><div class="neural-bar"></div>
+        <div class="neural-bar"></div><div class="neural-bar"></div>
+      </div>
+      <div class="neural-stats">
+        <span>AI Models: <span style="color:var(--accent)">Active</span></span>
+        <span>Latency: <span style="color:var(--accent)">12ms</span></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ CHAT POPUP ═══════════════ -->
+<button id="np-btn" onclick="npO()" aria-label="Chat with NeuraPulse AI">
+  <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="white"/><circle cx="8" cy="12" r="1.4" fill="#7c3aed"/><circle cx="12" cy="12" r="1.4" fill="#7c3aed"/><circle cx="16" cy="12" r="1.4" fill="#7c3aed"/></svg>
+</button>
+
+<div id="np-win">
+  <div id="np-wh">
+    <div style="display:flex;align-items:center;gap:.7rem;">
+      <div class="np-av2">🤖</div>
+      <div><div class="np-nm">NeuraPulse AI</div><div class="np-st">● ONLINE</div></div>
+    </div>
+    <button class="np-cl" onclick="npC()">✕</button>
+  </div>
+  <div id="np-msgs">
+    <div class="np-bm">👋 Hi! Ask me about Kimi AI tools for web design, CSS generation, or anything from our blog!</div>
+  </div>
+  <div id="np-ft">
+    <input id="np-inp" type="text" placeholder="Ask about Kimi AI..." autocomplete="off"/>
+    <button id="np-snd" onclick="npS()">
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+/* ── Hamburger ── */
+const hbg = document.getElementById('hamburger');
+const mNav = document.getElementById('mobileNav');
+hbg.addEventListener('click', function() {
+  const isOpen = mNav.classList.toggle('open');
+  hbg.classList.toggle('active', isOpen);
+  hbg.setAttribute('aria-expanded', isOpen);
+});
+// close on link click
+mNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mNav.classList.remove('open');
+    hbg.classList.remove('active');
+    hbg.setAttribute('aria-expanded', false);
+  });
+});
+
+/* ── Table animation on scroll ── */
+const compTable = document.getElementById('compTable');
+const tableWrap = document.getElementById('tableWrap');
+
+const tableObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      compTable.classList.add('animate');
+      tableObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+tableObserver.observe(compTable);
+
+/* ── Hide scroll hint after user scrolls the table ── */
+const scrollHint = document.getElementById('scrollHint');
+if (tableWrap && scrollHint) {
+  tableWrap.addEventListener('scroll', function() {
+    if (tableWrap.scrollLeft > 20) {
+      scrollHint.style.opacity = '0';
+      setTimeout(() => scrollHint.style.display = 'none', 300);
+    }
+  }, { passive: true });
+}
+
+/* ── Copy link ── */
+function copyLink() {
+  const btn = document.getElementById('copyBtn');
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    btn.innerHTML = '<svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Copied!';
+    btn.style.color = '#34d399';
+    btn.style.borderColor = '#34d399';
+    setTimeout(() => {
+      btn.innerHTML = '<svg width="13" height="13" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke="currentColor" stroke-width="2"/></svg> Copy Link';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 2000);
+  }).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  });
+}
+
+/* ── Newsletter subscribe ── */
+function doSub(b) {
+  const e = document.getElementById('sl-email');
+  if (!e.value || !e.value.includes('@')) { e.focus(); return; }
+  b.textContent = '✓ Subscribed!';
+  b.style.background = '#34d399';
+  e.value = '';
+}
+
+/* ── Chat popup ── */
+(function() {
+  const M = document.getElementById('np-msgs');
+  const I = document.getElementById('np-inp');
+  const W = document.getElementById('np-win');
+  function npO() { W.classList.add('open'); I && I.focus(); }
+  function npC() { W.classList.remove('open'); }
+  function add(h, isBot) {
+    const d = document.createElement('div');
+    d.className = isBot ? 'np-bm' : 'np-um';
+    d.innerHTML = h;
+    M.appendChild(d);
+    M.scrollTop = M.scrollHeight;
+  }
+  function typing() {
+    const d = document.createElement('div');
+    d.id = 'np-t'; d.className = 'np-bm';
+    d.style = 'display:flex;gap:5px;align-items:center;width:56px;';
+    for (let i = 0; i < 3; i++) {
+      const s = document.createElement('span');
+      s.style = `width:7px;height:7px;border-radius:50%;background:#00e5ff;animation:npBob 1s ${i*.2}s infinite;display:block;`;
+      d.appendChild(s);
+    }
+    M.appendChild(d); M.scrollTop = M.scrollHeight;
+  }
+  function rmT() { const t = document.getElementById('np-t'); if (t) t.remove(); }
+  async function npS() {
+    const msg = I.value.trim(); if (!msg) return;
+    add(msg, false); I.value = ''; typing();
+    try {
+      const r = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514', max_tokens: 500,
+          system: 'You are NeuraPulse AI, assistant for neuraplus-ai.github.io — an AI blog by Prashant Lalwani. Topics: Kimi AI, web design, AI tools, automation. Reply in 2-3 sentences. Be helpful and friendly.',
+          messages: [{ role: 'user', content: msg }]
+        })
+      });
+      const d = await r.json(); rmT();
+      add((d.content && d.content[0]) ? d.content[0].text : 'Connection issue. Try again!', true);
+    } catch(e) {
+      rmT();
+      add('See our <a href="https://neuraplus-ai.github.io/blog.html" style="color:#00e5ff">blog</a> for more!', true);
+    }
+  }
+  I && I.addEventListener('keydown', e => { if (e.key === 'Enter') npS(); });
+  window.npO = npO; window.npC = npC; window.npS = npS;
+})();
+</script>
+</body>
+</html>
