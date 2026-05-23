@@ -1,0 +1,45 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://neuraplus-ai.github.io/#organization",
+  "name": "NeuraPulse",
+  "url": "https://neuraplus-ai.github.io",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://neuraplus-ai.github.io/assets/logo.png",
+    "width": 200,
+    "height": 60
+  },
+  "description": "Expert AI guides, tools, and analysis \u2014 making artificial intelligence understandable and actionable for developers and creators worldwide.",
+  "foundingDate": "2025",
+  "founder": {
+    "@type": "Person",
+    "name": "Prashant Lalwani",
+    "url": "https://neuraplus-ai.github.io/about.html"
+  },
+  "sameAs": [
+    "https://twitter.com/neuraplus_ai",
+    "https://linkedin.com/in/prashant-lalwani",
+    "https://youtube.com/@neurapulse",
+    "https://github.com/neuraplus-ai",
+    "https://discord.gg/neurapulse"
+  ],
+  "knowsAbout": [
+    "Kimi AI",
+    "ChatGPT",
+    "Claude AI",
+    "Gemini AI",
+    "Groq AI",
+    "AI Advertising",
+    "AI Automation",
+    "Prompt Engineering",
+    "AI SEO",
+    "AI Tools",
+    "LLM",
+    "Perplexity AI",
+    "Ollama",
+    "n8n Automation",
+    "AI Coding",
+    "Free AI Tools"
+  ]
+}

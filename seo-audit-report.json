@@ -1,0 +1,1404 @@
+{
+  "generated": "2026-05-23T12:35:02Z",
+  "total_pages": 272,
+  "high": 30,
+  "med": 22,
+  "low": 227,
+  "issues": [
+    {
+      "file": "about.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/50-best-claude-prompts-for-developers.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/agi-2027.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ai-agents-for-seo.html",
+      "issue": "Title too long (74 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ai-automation-beginners-step-by-step.html",
+      "issue": "Title too long (66 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ai-chatbot-advertising-examples.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ai-content-vs-human-content-seo.html",
+      "issue": "Title too long (67 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ai-robotics.html",
+      "issue": "Title too long (90 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ai-tools-blogging-seo.html",
+      "issue": "Title too long (81 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ai-tools-for-beginners.html",
+      "issue": "Title too long (68 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ai-tools-keyword-research.html",
+      "issue": "Title too long (74 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ai-tools-productivity.html",
+      "issue": "Title too long (86 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ai-web-builder-for-beginners.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/alignment-problem.html",
+      "issue": "Title too long (83 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/anthropic-claude-api-tutorial.html",
+      "issue": "Title too long (83 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/anthropic-claude-pricing-free-vs-paid.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/anthropic-claude-seo-content-generation.html",
+      "issue": "Title too long (67 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/anthropic-claude-vs-chatgpt-content-writing.html",
+      "issue": "Title too long (85 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/attention-mechanism.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/automate-blog-writing-anthropic-claude.html",
+      "issue": "Title too long (69 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/benefits-of-groq-lpu-architecture.html",
+      "issue": "Title too long (86 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-automation-tools-2026.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-platforms-advertising-2027.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-search-tools-like-perplexity-ai.html",
+      "issue": "Title too long (87 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-search-tools-like-perplexity.html",
+      "issue": "Title too long (66 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-tool-email-writing.html",
+      "issue": "Title too long (77 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-tool-trading-india.html",
+      "issue": "Title too long (73 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-tool-translation.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-tool-website-design.html",
+      "issue": "Title too long (74 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-tool-writing-articles.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-tools-blogging-seo.html",
+      "issue": "Title too long (71 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-tools-interview.html",
+      "issue": "Title too long (66 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-tools-like-kimi-ai.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/best-ai-tools-like-kimi-ai.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/best-ai-tools-writers.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ai-translation-tool-deepl-vs-chatgpt.html",
+      "issue": "Title too long (77 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-all-in-one-ai-tools-small-businesses-india.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-free-ai-tools-like-chatgpt-for-students.html",
+      "issue": "Title too long (68 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-kimi-ai-alternatives-in-2026.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/best-kimi-ai-alternatives-in-2026.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/best-n8n-workflows-for-seo-and-marketing-automation.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-ollama-models-for-coding-chatgpt-alternatives.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-prompts-for-anthropic-claude-ai.html",
+      "issue": "Title too long (89 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-settings-for-elevenlabs-ai-voice-quality-improvement-2026.html",
+      "issue": "Title too long (81 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-strategy-gemini-ai-advertising.html",
+      "issue": "Title too long (66 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/best-zapier-integrations-for-small-business.html",
+      "issue": "Title too long (81 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/build-3d-website-for-beginners-2026.html",
+      "issue": "Title too long (70 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/business-operation-ai-automation.html",
+      "issue": "Title too long (69 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/chatgpt-ads-small-businesses-2027.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/chatgpt-affiliate-marketing-future.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/chatgpt-paid-promotions-businesses.html",
+      "issue": "Title too long (77 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/claude-ai-autonomous-robots-future-automation-2026.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/claude-ai-robot-automation-2026.html",
+      "issue": "Title too long (82 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/claude-ai-robot-automation-news-2026.html",
+      "issue": "Title too long (89 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/claude-ai-vs-gemini-which-is-better-2026.html",
+      "issue": "Title too long (80 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/claude-ai-vs-gemini-which-is-better-2026.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/context-windows.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/conversational-ai-marketing-strategy.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/core-automation-terms.html",
+      "issue": "Title too long (68 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/coreweave-ai-infrastructure-explained-beginners.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/coreweave-gpu-cloud-cost-vs-traditional-cloud.html",
+      "issue": "Title too long (85 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/coreweave-pricing-startups-developers.html",
+      "issue": "Title too long (80 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/coreweave-use-cases-real-world-ai-startups.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/coreweave-vs-aws-ai-workloads-2026.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/coreweave-vs-google-cloud-ai-performance.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/cost-of-advertising-gemini-ai.html",
+      "issue": "Title too long (80 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/deepl-api-pricing-and-features-for-developers.html",
+      "issue": "Title too long (85 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/deepl-for-website-translation-seo-benefits.html",
+      "issue": "Title too long (83 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/deepl-pro-vs-free-version-differences-2026.html",
+      "issue": "Title too long (73 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/deepl-supported-languages-list-and-limitations-2026.html",
+      "issue": "Title too long (73 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/deepl-translation-accuracy-for-legal-documents.html",
+      "issue": "Title too long (85 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/deepl-translator-vs-google-translate-accuracy-2026.html",
+      "issue": "Title too long (73 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/deepl-translator-vs-google-translate-accuracy-2026.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/diffusion-models.html",
+      "issue": "Title too long (86 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/easy-ai-tools-for-website-creation.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/easy-ai-tools-for-website-creation.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/elevenlabs-ai-voice-cloning-guide-free-and-easy-2026.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/elevenlabs-ai-voice-generator-free-how-to-use-step-by-step-2026.html",
+      "issue": "Title too long (83 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/elevenlabs-api-tutorial-for-developers-beginner-guide-2026.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/elevenlabs-pricing-plans-and-features-explained-2026.html",
+      "issue": "Title too long (71 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/elevenlabs-text-to-speech-tutorial-for-beginners-2026.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/elevenlabs-vs-other-ai-voice-generators-which-is-best-2026.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/free-ai-chatbot-like-kimi-ai.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/free-ai-chatbot-like-kimi-ai.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/free-ai-chatbot-like-kimi-ai.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/free-ai-tools-for-web-development.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/free-ai-tools-for-web-development.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/free-n8n-automation-ideas-for-small-businesses.html",
+      "issue": "Title too long (70 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/free-zapier-alternatives-for-workflow-automation.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/future-of-ads-with-gemini-ai.html",
+      "issue": "Title too long (77 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/future-of-ai-2026.html",
+      "issue": "Title too long (70 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/gemini-ai-ad-optimization-tips.html",
+      "issue": "Title too long (68 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/gemini-ai-ads-small-business.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/gemini-ai-marketing-tools-guide.html",
+      "issue": "Title too long (73 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/gemini-ai-vs-google-ads-comparison.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/generative-ai-content.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/generative-engine-optimization-geo-guide-2026.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/google-gravity-antigravity-trick-guide-2026.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/google-gravity-easter-egg-complete-guide-2026.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-architecture-deep-dive.html",
+      "issue": "Title too long (71 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-benchmarks-llm.html",
+      "issue": "Title too long (82 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-coding-assistant-speed-test.html",
+      "issue": "Title too long (81 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-explained-in-simple-terms.html",
+      "issue": "Title too long (94 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-for-chatbot-development.html",
+      "issue": "Title too long (85 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-for-startups-and-developers.html",
+      "issue": "Title too long (88 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-inference-speed-vs-gpu.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-real-time-inference-examples.html",
+      "issue": "Title too long (87 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-real-world-performance.html",
+      "issue": "Title too long (87 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-use-cases-in-2026.html",
+      "issue": "Title too long (88 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-vs-anthropic-claude-speed.html",
+      "issue": "Title too long (89 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-vs-cpu-performance-difference.html",
+      "issue": "Title too long (87 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-vs-gemini-latency.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-ai-vs-google-tpu-comparison.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-inference-engine-explained.html",
+      "issue": "Title too long (88 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-lpu-performance-benchmarks.html",
+      "issue": "Title too long (81 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/groq-vs-nvidia-ai-inference-2026.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-ai-works.html",
+      "issue": "Title too long (73 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-coreweave-solves-gpu-shortage.html",
+      "issue": "Title too long (81 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-gemini-ai-changes-digital-advertising.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-groq-chip-works-step-by-step.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-groq-reduces-ai-response-time.html",
+      "issue": "Title too long (82 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-perplexity-ai-gives-real-time-answers.html",
+      "issue": "Title too long (86 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-perplexity-ai-improves-productivity.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-perplexity-ai-summarizes-websites.html",
+      "issue": "Title too long (82 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-three.js-globe-with-flight-paths-works.html",
+      "issue": "Title too long (69 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-advertise-google-gemini-ai.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-automate-tasks-using-zapier-step-by-step.html",
+      "issue": "Title too long (87 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-build-a-website-with-kimi-ai.html",
+      "issue": "Missing meta description",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/how-to-build-a-website-with-kimi-ai.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/how-to-build-a-website-with-kimi-ai.html",
+      "issue": "Missing JSON-LD schema",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/how-to-build-a-website-with-kimi-ai.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/how-to-build-a-website-with-kimi-ai.html",
+      "issue": "Missing og:image",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/how-to-build-ai-tools.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-build-an-ai-tool.html",
+      "issue": "Title too long (84 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-connect-google-sheets-to-zapier.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-create-faceless-youtube-videos-with-elevenlabs-2027.html",
+      "issue": "Title too long (80 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-create-realistic-voice-using-elevenlabs-ai-tool-2026.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-deploy-ai-models-on-coreweave.html",
+      "issue": "Title too long (80 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-find-viral-content-ideas-from-reddit-for-blog.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-generate-backlinks-ai-automation.html",
+      "issue": "Title too long (135 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-get-best-results-from-perplexity-ai.html",
+      "issue": "Title too long (86 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-host-n8n-on-server-free-step-by-step-guide.html",
+      "issue": "Title too long (74 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-make-money-using-elevenlabs-ai-voice-tool-2026.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-post-on-reddit-without-spam-get-upvotes.html",
+      "issue": "Title too long (74 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-rank-website-using-ai-seo-tools.html",
+      "issue": "Title too long (70 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-run-ads-chatgpt.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-run-ollama-locally-llama-models-free-tutorial.html",
+      "issue": "Title too long (82 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-translate-pdf-files-using-deepl.html",
+      "issue": "Title too long (82 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-upgrade-perplexity-ai-pro.html",
+      "issue": "Title too long (87 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-ai-automation-business.html",
+      "issue": "Title too long (70 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-ai-for-google-ranking-fast.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-anthropic-claude-for-blogging.html",
+      "issue": "Title too long (80 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-coreweave-gpu-cloud-ai-training.html",
+      "issue": "Title too long (77 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-deepl-for-professional-documents.html",
+      "issue": "Title too long (83 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-elevenlabs-for-youtube-voiceover-automation-2026.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-groq-api-fast-ai-apps.html",
+      "issue": "Title too long (86 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-kimi-ai-for-beginners.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/how-to-use-kimi-ai-for-beginners.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/how-to-use-kimi-ai-for-free.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/how-to-use-kimi-ai-for-free.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/how-to-use-n8n-for-business-automation-step-by-step.html",
+      "issue": "Title too long (70 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-ollama-for-offline-ai-chatbot-development.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-perplexity-ai-for-research.html",
+      "issue": "Title too long (77 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-qwin-ai-business-process-automation.html",
+      "issue": "Title too long (93 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-use-zapier-without-coding-beginner-guide.html",
+      "issue": "Title too long (81 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/how-to-write-ai-prompts-for-beginners.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/is-anthropic-claude-good-for-coding-beginners.html",
+      "issue": "Title too long (84 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/is-deepl-better-than-google-translate-for-business.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/is-groq-better-than-gpu-for-llm-inference.html",
+      "issue": "Title too long (88 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/kimi-ai-chatbot.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-chatbot.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/kimi-ai-for-coding.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-for-coding.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/kimi-ai-long-context-explained.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/kimi-ai-prompts-for-content-writing.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/kimi-ai-prompts-for-content-writing.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-prompts-for-content-writing.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/kimi-ai-tutorial-step-by-step.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-tutorial-step-by-step.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/kimi-ai-vs-chatgpt-for-coding.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-vs-chatgpt-for-coding.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/kimi-ai-website-generation.html",
+      "issue": "Title too long (85 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/kimi-ai-website-generation.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/kimi-ai-website-generation.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-website-generator-free.html",
+      "issue": "Missing meta description",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-website-generator-free.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-website-generator-free.html",
+      "issue": "Missing JSON-LD schema",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-website-generator-free.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/kimi-ai-website-generator-free.html",
+      "issue": "Missing og:image",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/kimi-k2-6-benchmark.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-k2-6-benchmark.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/kimi-k2-6-open-source-model.html",
+      "issue": "Title too long (71 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/kimi-k2-6-open-source-model.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/kimi-k2-6-open-source-model.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/marketing-automation-ai.html",
+      "issue": "Title too long (68 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/moltbook-ai-social-network-openclaw-bots-conversation-explained-2026.html",
+      "issue": "Title too long (88 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/n8n-automation-for-instagram-posting-free-setup.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/n8n-automation-workflow-examples-beginners-2026.html",
+      "issue": "Title too long (70 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/n8n-automation-workflow-examples-for-beginners-2026.html",
+      "issue": "Title too long (70 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/n8n-lead-generation-automation-workflow-tutorial.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/n8n-vs-zapier-comparison-for-automation-tools-2026.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/n8n-webhook-automation-examples-with-real-use-cases.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ollama-docker-setup-local-llm-deployment.html",
+      "issue": "Title too long (68 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ollama-installation-windows-mac-linux-full-guide.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ollama-setup-guide-beginners-2026.html",
+      "issue": "Title too long (82 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ollama-use-cases-business-automation-ai-agents.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/ollama-vs-openai-api-comparison-local-ai-2026.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/openclaw-ai-agents-talking-on-moltbook-network-latest-news-2026.html",
+      "issue": "Title too long (83 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/openclaw-ai-coding-tool-full-tutorial-step-by-step.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/openclaw-ai-features-and-pricing-explained-2026.html",
+      "issue": "Title too long (66 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/openclaw-ai-for-developers-complete-guide-2026.html",
+      "issue": "Title too long (66 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/openclaw-ai-use-cases-in-real-world-projects-2026.html",
+      "issue": "Title too long (68 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/openclaw-ai-use-cases-in-real-world-projects.html",
+      "issue": "Title too long (68 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/openclaw-installation-guide-for-windows-and-mac.html",
+      "issue": "Title too long (71 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/openclaw-vs-chatgpt-for-coding-which-is-better.html",
+      "issue": "Title too long (67 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-advantages-and-disadvantages.html",
+      "issue": "Title too long (92 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-alternatives-free-and-paid.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-alternatives-free-paid.html",
+      "issue": "Title too long (73 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-daily-usage-guide.html",
+      "issue": "Title too long (83 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-enterprise-features.html",
+      "issue": "Title too long (87 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-explained-in-simple-terms.html",
+      "issue": "Title too long (89 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-features-benefits-2026.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-for-business-use.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-for-content-creators.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-for-fact-checking.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-for-fast-information-lookup.html",
+      "issue": "Title too long (80 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-for-seo-research.html",
+      "issue": "Title too long (73 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-for-students-beginners.html",
+      "issue": "Title too long (76 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-free-vs-paid-version.html",
+      "issue": "Title too long (82 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-free-vs-paid.html",
+      "issue": "Title too long (67 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-real-time-search-example.html",
+      "issue": "Title too long (87 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-research-tips-and-tricks.html",
+      "issue": "Title too long (88 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-search-engine-tutorial.html",
+      "issue": "Title too long (74 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-tools-and-extensions.html",
+      "issue": "Title too long (87 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-vs-bing-ai-comparison.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-vs-chatgpt-vs-gemini.html",
+      "issue": "Title too long (84 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/perplexity-ai-vs-traditional-search-engines.html",
+      "issue": "Title too long (85 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/qwin-ai-agent-setup-customer-support-automation.html",
+      "issue": "Title too long (91 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/qwin-ai-automation-tools-small-business-growth.html",
+      "issue": "Title too long (90 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/qwin-ai-chatbot-website-customer-service-setup.html",
+      "issue": "Title too long (93 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/qwin-ai-consulting-services-startups-entrepreneurs.html",
+      "issue": "Title too long (111 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/qwin-ai-crm-automation-integration-step-by-step.html",
+      "issue": "Title too long (71 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/qwin-ai-lead-generation-automation-system-tutorial.html",
+      "issue": "Title too long (103 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/qwin-ai-productivity-automation-solutions-companies.html",
+      "issue": "Title too long (95 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/qwin-ai-vs-other-ai-automation-tools-comparison-2026.html",
+      "issue": "Title too long (71 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/qwin-ai-workflow-automation-examples-beginners.html",
+      "issue": "Title too long (96 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/reddit-traffic-affiliate-marketing-beginners-2026.html",
+      "issue": "Title too long (80 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/run-llama3-ollama-locally-performance-guide.html",
+      "issue": "Title too long (74 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/sam-altman-interview-2026.html",
+      "issue": "Title too long (97 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/step-by-step-reddit-lead-generation-strategy-2026.html",
+      "issue": "Title too long (68 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/tools-required-for-artificial-intelligence.html",
+      "issue": "Title too long (86 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/top-ai-automation-tools.html",
+      "issue": "Title too long (66 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/top-zapier-use-cases-for-marketing-automation.html",
+      "issue": "Title too long (72 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/what-is-generative-ai-complete-guide-2026.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/what-is-generative-ai-complete-guide-2026.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/what-is-groq-chip-how-it-works.html",
+      "issue": "Title too long (85 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/what-is-perplexity-ai-how-it-works.html",
+      "issue": "Title too long (79 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/where-subscribe-ai-assistant-multiple-capabilities.html",
+      "issue": "Title too long (91 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/why-coreweave-is-growing-fast-2026.html",
+      "issue": "Title too long (75 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/why-groq-is-faster-than-traditional-ai-chips.html",
+      "issue": "Title too long (84 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/zapier-automation-examples-for-beginners.html",
+      "issue": "Title too long (78 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/zapier-pricing-plans-explained-for-beginners.html",
+      "issue": "Title too long (88 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/zapier-vs-make-which-is-better-for-automation.html",
+      "issue": "Title too long (83 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog/zapier-workflow-ideas-to-save-time-in-business.html",
+      "issue": "Title too long (83 chars)",
+      "severity": "LOW"
+    },
+    {
+      "file": "blog.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "googlea8e9563d4c0c037a.html",
+      "issue": "Missing <title>",
+      "severity": "HIGH"
+    },
+    {
+      "file": "googlea8e9563d4c0c037a.html",
+      "issue": "Missing meta description",
+      "severity": "HIGH"
+    },
+    {
+      "file": "googlea8e9563d4c0c037a.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "googlea8e9563d4c0c037a.html",
+      "issue": "Missing JSON-LD schema",
+      "severity": "HIGH"
+    },
+    {
+      "file": "googlea8e9563d4c0c037a.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "googlea8e9563d4c0c037a.html",
+      "issue": "Missing og:image",
+      "severity": "MED"
+    },
+    {
+      "file": "googlea8e9563d4c0c037a.html",
+      "issue": "Missing H1 tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "guide.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "guide.html",
+      "issue": "Missing JSON-LD schema",
+      "severity": "HIGH"
+    },
+    {
+      "file": "guide.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "guide.html",
+      "issue": "Missing og:image",
+      "severity": "MED"
+    },
+    {
+      "file": "index.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "sitemap.html",
+      "issue": "Meta description too long",
+      "severity": "LOW"
+    },
+    {
+      "file": "sitemap.html",
+      "issue": "Missing JSON-LD schema",
+      "severity": "HIGH"
+    }
+  ]
+}

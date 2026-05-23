@@ -1,0 +1,41 @@
+[INFO] Found 272 HTML files to process
+[] =======================================================
+[PHASE] PHASE 1 — SITE AUDIT
+[] =======================================================
+[INFO] Total pages scanned : 272
+[INFO] HIGH severity issues: 30
+[INFO] MED  severity issues: 22
+[INFO] LOW  severity issues: 227
+[INFO] Audit report saved → seo-audit-report.json
+[] =======================================================
+[PHASE] PHASE 2 — ENTITY & BRAND SYSTEM
+[] =======================================================
+[INFO] Organization schema saved → schema/organization.json
+[INFO] WebSite schema saved      → schema/website.json
+[] =======================================================
+[PHASE] PHASE 3 — TECHNICAL SEO SYSTEM
+[] =======================================================
+[INFO] robots.txt generated — all AI crawlers allowed
+[INFO] sitemap.xml generated — 272 URLs
+[INFO] sitemap.html generated — human-readable
+[INFO] rss.xml generated — top 50 pages
+[INFO] llms.txt generated — AI crawler instructions
+[INFO] ai.txt generated — AI permissions file
+[INFO] humans.txt generated
+[INFO] security.txt generated
+[] =======================================================
+[PHASE] PHASE 4 — SCHEMA & META INJECTION
+[] =======================================================
+[INFO] Schema/meta injected into 21 pages
+[] =======================================================
+[PHASE] PHASE 5 — FOOTER INJECTION (ALL PAGES)
+[] =======================================================
+[INFO] Footer injected: 272 pages · Already had footer: 0
+[] =======================================================
+[PHASE] PHASE 6 — NAV — ADD GUIDE LINK
+[] =======================================================
+[INFO] Guide nav added: 0 pages · Already present: 272
+[] =======================================================
+[PHASE] PHASE 7 — GEO/AEO AI VISIBILITY TAGS
+[] =======================================================
+[INFO] GEO/AEO tags injected: 271 pages

@@ -1,0 +1,20 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://neuraplus-ai.github.io/#website",
+  "url": "https://neuraplus-ai.github.io",
+  "name": "NeuraPulse",
+  "description": "Expert AI guides, tools, and analysis \u2014 making artificial intelligence understandable and actionable for developers and creators worldwide.",
+  "publisher": {
+    "@id": "https://neuraplus-ai.github.io/#organization"
+  },
+  "inLanguage": "en",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://neuraplus-ai.github.io/blog.html?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
