@@ -1,15 +1,13 @@
 name: NeuraPulse Enterprise SEO
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - main
-      - master
-
-  workflow_dispatch:
-
-  schedule:
-    - cron: "0 2 * * 0"
+    paths-ignore:
+      - ".github/workflows/**"
 
 permissions:
   contents: write
@@ -23,7 +21,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -34,21 +31,23 @@ jobs:
         run: |
           python -m pip install --upgrade pip
 
-      - name: Run enterprise.py
+      - name: Run Enterprise Script
         run: |
           python enterprise.py
 
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Commit Changes
         run: |
-          git config user.name "NeuraPulse Bot"
-          git config user.email "bot@neurapulse.ai"
-
           git add .
 
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "No changes detected"
           else
-            git commit -m "🤖 Enterprise SEO Auto Update"
+            git commit -m "🤖 Auto SEO Update"
           fi
 
       - name: Pull Latest Changes
@@ -57,4 +56,4 @@ jobs:
 
       - name: Push Changes
         run: |
-          git push origin main
+          git push origin HEAD:main
