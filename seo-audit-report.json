@@ -1,8 +1,8 @@
 {
-  "generated": "2026-05-24T02:40:01Z",
-  "total_pages": 273,
-  "high": 8,
-  "med": 2,
+  "generated": "2026-05-25T10:04:27Z",
+  "total_pages": 275,
+  "high": 14,
+  "med": 6,
   "low": 227,
   "issues": [
     {
@@ -184,6 +184,31 @@
       "file": "blog/best-free-ai-tools-like-chatgpt-for-students.html",
       "issue": "Title too long (68 chars)",
       "severity": "LOW"
+    },
+    {
+      "file": "blog/best-kimi-ai-chatbot-for-websites.html",
+      "issue": "Missing meta description",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/best-kimi-ai-chatbot-for-websites.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/best-kimi-ai-chatbot-for-websites.html",
+      "issue": "Missing JSON-LD schema",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/best-kimi-ai-chatbot-for-websites.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/best-kimi-ai-chatbot-for-websites.html",
+      "issue": "Missing og:image",
+      "severity": "MED"
     },
     {
       "file": "blog/best-n8n-workflows-for-seo-and-marketing-automation.html",
@@ -769,6 +794,31 @@
       "file": "blog/kimi-ai-tools-for-web-designers.html",
       "issue": "Meta description too long",
       "severity": "LOW"
+    },
+    {
+      "file": "blog/kimi-ai-website-builder-vs-wordpress.html",
+      "issue": "Missing meta description",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-website-builder-vs-wordpress.html",
+      "issue": "Missing canonical tag",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-website-builder-vs-wordpress.html",
+      "issue": "Missing JSON-LD schema",
+      "severity": "HIGH"
+    },
+    {
+      "file": "blog/kimi-ai-website-builder-vs-wordpress.html",
+      "issue": "Missing og:title",
+      "severity": "MED"
+    },
+    {
+      "file": "blog/kimi-ai-website-builder-vs-wordpress.html",
+      "issue": "Missing og:image",
+      "severity": "MED"
     },
     {
       "file": "blog/kimi-ai-website-generation.html",
