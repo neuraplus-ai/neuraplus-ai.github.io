@@ -1,7 +1,9 @@
 name: NeuraPulse Cleanup
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -20,67 +22,7 @@ jobs:
           python-version: "3.11"
 
       - name: Run Cleanup
-        run: |
-          python3 -c "
-          import re
-          from pathlib import Path
-
-          ROOT = Path('.')
-          SKIP = {'neurapulse_enterprise.py','neurapulse_card_injector.py','neurapulse_cleanup.py'}
-
-          BLOCKS = [
-              ('<!-- NP:NAV -->','<!-- /NP:NAV -->'),
-              ('<!-- NP:FOOTER -->','<!-- /NP:FOOTER -->'),
-              ('<!-- NP:ENGAGE -->','<!-- /NP:ENGAGE -->'),
-              ('<!-- NP:ANALYTICS -->','<!-- /NP:ANALYTICS -->'),
-              ('<!-- NP:GEO -->','<!-- /NP:GEO -->'),
-              ('<!-- np:meta -->','<!-- /np:meta -->'),
-              ('<!-- NP:BLOG-CARDS-START -->','<!-- NP:BLOG-CARDS-END -->'),
-              ('<!-- NP:GUIDE-CARDS-START -->','<!-- NP:GUIDE-CARDS-END -->'),
-          ]
-
-          LONE = ['<!-- /NP:NAV -->','<!-- /NP:FOOTER -->','<!-- /NP:ENGAGE -->',
-                  '<!-- /NP:ANALYTICS -->','<!-- /NP:GEO -->','<!-- /np:meta -->',
-                  '<!-- NP:BLOG-CARDS-START -->','<!-- NP:BLOG-CARDS-END -->',
-                  '<!-- NP:GUIDE-CARDS-START -->','<!-- NP:GUIDE-CARDS-END -->']
-
-          STYLES = ['np-nav-css','np-footer-css','np-engage-css']
-
-          files = [p for p in ROOT.rglob('*.html')
-                   if not any(d in {'.git','node_modules'} for d in p.parts)
-                   and p.name not in SKIP]
-
-          print(f'Found {len(files)} HTML files')
-          cleaned = 0
-
-          for f in sorted(files):
-              try:
-                  orig = f.read_text(encoding='utf-8',errors='ignore')
-                  html = orig
-                  for s,e in BLOCKS:
-                      if s in html:
-                          html = re.sub(re.escape(s)+r'[\s\S]*?'+re.escape(e),'',html)
-                  for m in LONE:
-                      html = html.replace(m,'')
-                  for sid in STYLES:
-                      pat = re.compile(r'<style\s[^>]*id=[\"\''+sid+r'[\"\'][^>]*>[\s\S]*?</style>',re.I)
-                      found = pat.findall(html)
-                      if len(found)>1:
-                          first=[True]
-                          def rep(m,first=first):
-                              if first[0]:first[0]=False;return m.group(0)
-                              return ''
-                          html=pat.sub(rep,html)
-                  html = re.sub(r'\n{4,}','\n\n',html)
-                  if html != orig:
-                      f.write_text(html,encoding='utf-8')
-                      cleaned += 1
-                      print(f'CLEANED: {f}')
-              except Exception as ex:
-                  print(f'ERROR {f}: {ex}')
-
-          print(f'Done: {cleaned}/{len(files)} files cleaned')
-          "
+        run: python neurapulse_cleanup.py --auto
 
       - name: Commit
         run: |
