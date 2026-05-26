@@ -1,35 +1,20 @@
-# ╔══════════════════════════════════════════════════════════╗
-# ║  NeuraPulse — Enterprise Cleanup Workflow                ║
-# ║  MANUAL TRIGGER ONLY — never auto-runs                  ║
-# ║  Place at: .github/workflows/np-cleanup.yml             ║
-# ╚══════════════════════════════════════════════════════════╝
-
 name: NeuraPulse Enterprise Cleanup
 
-# ── ONLY manual trigger — NO push / NO schedule / NO PR ──
 on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Dry run only (preview, no changes written)"
+        description: "Dry run only? (true = preview only, false = apply changes)"
         required: true
         default: "true"
         type: choice
         options:
           - "true"
           - "false"
-      create_backup_branch:
-        description: "Create a git backup branch before cleaning"
+      create_backup:
+        description: "Create backup branch before cleaning?"
         required: true
         default: "true"
-        type: choice
-        options:
-          - "true"
-          - "false"
-      verbose:
-        description: "Verbose logging (show every change)"
-        required: false
-        default: "false"
         type: choice
         options:
           - "true"
@@ -43,75 +28,48 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # ── 1. Checkout ──────────────────────────────────────
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # ── 2. Setup Python ──────────────────────────────────
-      - name: Setup Python 3.11
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # ── 3. Scan — show what would be changed ────────────
-      - name: Scan for enterprise injection damage
-        run: |
-          echo "══════════════════════════════════════"
-          echo "  SCAN: Detecting injected patterns"
-          echo "══════════════════════════════════════"
-          python neurapulse_cleanup.py --dry-run ${{ inputs.verbose == 'true' && '--verbose' || '' }}
+      - name: Preview changes (dry run)
+        run: python neurapulse_cleanup.py --dry-run --verbose
 
-      # ── 4. Optional: create backup branch ───────────────
-      - name: Create backup branch (pre-cleanup snapshot)
-        if: ${{ inputs.create_backup_branch == 'true' && inputs.dry_run == 'false' }}
+      - name: Create backup branch
+        if: ${{ inputs.create_backup == 'true' && inputs.dry_run == 'false' }}
         run: |
-          BRANCH="backup/pre-cleanup-$(date +%Y%m%d-%H%M%S)"
           git config user.email "bot@neurapulse.ai"
-          git config user.name "NeuraPulse Cleanup Bot"
+          git config user.name "NeuraPulse Bot"
+          BRANCH="backup/pre-cleanup-$(date +%Y%m%d-%H%M%S)"
           git checkout -b "$BRANCH"
           git push origin "$BRANCH"
-          echo "✅ Backup branch created: $BRANCH"
+          echo "Backup branch created: $BRANCH"
           git checkout -
 
-      # ── 5. Apply cleanup (only when dry_run = false) ────
-      - name: Apply enterprise injection cleanup
+      - name: Apply cleanup
         if: ${{ inputs.dry_run == 'false' }}
-        run: |
-          echo "══════════════════════════════════════"
-          echo "  APPLYING CLEANUP"
-          echo "══════════════════════════════════════"
-          # Feed 'y' to the confirmation prompt automatically
-          echo "y" | python neurapulse_cleanup.py ${{ inputs.verbose == 'true' && '--verbose' || '' }}
+        run: echo "y" | python neurapulse_cleanup.py --verbose
 
-      # ── 6. Show diff (only when changes were made) ──────
-      - name: Show git diff of changes
-        if: ${{ inputs.dry_run == 'false' }}
-        run: |
-          git diff --stat
-          echo "────────────────────────────────────"
-          git diff --name-only
-
-      # ── 7. Commit and push (only when dry_run = false) ──
-      - name: Commit and push cleaned files
+      - name: Commit changes
         if: ${{ inputs.dry_run == 'false' }}
         run: |
           git config user.email "bot@neurapulse.ai"
-          git config user.name "NeuraPulse Cleanup Bot"
+          git config user.name "NeuraPulse Bot"
           git add -A
-          git diff --staged --quiet \
-            && echo "ℹ️  Nothing to commit — files already clean" \
-            || git commit -m "cleanup: remove enterprise injection damage [manual]"
+          git diff --staged --quiet && echo "Nothing to commit" || git commit -m "cleanup: remove enterprise injection damage"
           git push origin HEAD
 
-      # ── 8. Upload cleanup log as artifact ───────────────
-      - name: Upload cleanup log
+      - name: Upload log
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cleanup-log-${{ github.run_number }}
+          name: cleanup-log
           path: cleanup-log-*.txt
           if-no-files-found: ignore
-          retention-days: 30
