@@ -2,7 +2,7 @@
 [] =======================================================
 [PHASE] PHASE 1 — NAV + FOOTER INJECTION
 [] =======================================================
-[INFO] Nav injected: 227 pages · Already had nav: 52
+[INFO] Nav injected: 1 pages · Already had nav: 278
 [INFO] Footer added: 0 pages · Already had footer: 279
 [] =======================================================
 [PHASE] PHASE 2 — SEO META + SCHEMA INJECTION
@@ -11,7 +11,7 @@
 [] =======================================================
 [PHASE] PHASE 3 — GEO/AEO AI VISIBILITY TAGS
 [] =======================================================
-[INFO] GEO/AEO tags injected: 278 pages
+[INFO] GEO/AEO tags injected: 0 pages
 [] =======================================================
 [PHASE] PHASE 4 — TECHNICAL SEO FILES
 [] =======================================================
