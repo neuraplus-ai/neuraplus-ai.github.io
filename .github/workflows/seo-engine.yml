@@ -1,36 +1,41 @@
 # ══════════════════════════════════════════════════════
-#  NeuraPulse — SEO Engine GitHub Actions Workflow
-#  Runs automatically on every push to main
-#  Also runs on a schedule (every Sunday 00:00 UTC)
+#  NeuraPulse SEO Engine — GitHub Actions Workflow v2.0
+#  · Runs on every push to main/master
+#  · Runs every Sunday at midnight UTC
+#  · Can be triggered manually from GitHub Actions tab
 # ══════════════════════════════════════════════════════
-
 name: NeuraPulse SEO Engine
 
 on:
   push:
     branches: [ main, master ]
+    paths-ignore:
+      - 'seo-run-log.txt'
+      - 'seo-audit-report.json'
+      - 'sitemap.xml'
+      - 'rss.xml'
+      - 'robots.txt'
+      - 'llms.txt'
+      - 'ai.txt'
   schedule:
-    - cron: '0 0 * * 0'      # Every Sunday midnight UTC
-  workflow_dispatch:           # Allow manual trigger from GitHub UI
-
-concurrency:
-  group: seo-engine
-  cancel-in-progress: true
+    - cron: '0 0 * * 0'    # Every Sunday midnight UTC
+  workflow_dispatch:         # Manual trigger from GitHub UI
 
 permissions:
-  contents: write              # Needed to commit generated files back
+  contents: write
 
 jobs:
   seo-engine:
     runs-on: ubuntu-latest
-    name: Run All SEO Phases
+    name: Run SEO Engine — All Phases
 
     steps:
-      # ── 1. Checkout repo ──
+      # ── 1. Checkout full repo ──
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # ── 2. Setup Python ──
       - name: Setup Python 3.11
@@ -42,17 +47,22 @@ jobs:
       - name: Run NeuraPulse SEO Engine
         run: python seo_engine.py
 
-      # ── 4. Commit all generated files back to repo ──
-      - name: Commit Generated Files
+      # ── 4. Commit all changes back to repo ──
+      - name: Commit & Push Changes
         run: |
-          git config --local user.email "seo-bot@neuraplus.ai"
-          git config --local user.name "NeuraPulse SEO Bot"
+          git config user.email "seo-bot@neuraplus.ai"
+          git config user.name "NeuraPulse SEO Bot"
           git add -A
-          git diff --staged --quiet || git commit -m "🤖 SEO Engine: auto-update sitemap, schema, footer, llms.txt [skip ci]"
+          git diff --staged --quiet \
+            && echo "✅ Nothing changed — repo already up to date" \
+            || git commit -m "🤖 SEO Engine v2: nav + footer + schema + sitemap [skip ci]"
+          git push origin HEAD
 
-      # ── 5. Push changes ──
-      - name: Push Changes
-        uses: ad-m/github-push-action@master
+      # ── 5. Upload run log as downloadable artifact ──
+      - name: Upload SEO Run Log
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          name: seo-run-log-${{ github.run_number }}
+          path: seo-run-log.txt
+          retention-days: 30
