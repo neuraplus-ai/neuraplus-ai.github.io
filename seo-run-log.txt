@@ -1,9 +1,10 @@
 [INFO] Found 279 HTML files
 [] =======================================================
-[PHASE] PHASE 1 — NAV + FOOTER INJECTION
+[PHASE] PHASE 1 — NAV + FOOTER + FADE FIX
 [] =======================================================
-[INFO] Nav injected: 1 pages · Already had nav: 278
-[INFO] Footer added: 0 pages · Already had footer: 279
+[INFO] Fade fix injected : 0 pages
+[INFO] Nav injected      : 1 pages · Already had nav: 278
+[INFO] Footer added      : 0 pages · Already had footer: 279
 [] =======================================================
 [PHASE] PHASE 2 — SEO META + SCHEMA INJECTION
 [] =======================================================
