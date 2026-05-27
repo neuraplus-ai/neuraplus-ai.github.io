@@ -1,0 +1,91 @@
+# ══════════════════════════════════════════════════════════════════════
+# NeuraPulse — Page Health Check + Auto Fade Fix
+# File: .github/workflows/check_pages.yml
+#
+# Runs automatically on every push to main.
+# 1. Scans all HTML files for the .fade black-page bug
+# 2. Auto-injects the fade fix if needed
+# 3. Commits the fix back to the repo automatically
+# 4. Reports how many pages were checked/fixed
+# ══════════════════════════════════════════════════════════════════════
+
+name: 🔍 Page Health Check + Auto Fade Fix
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:   # lets you run it manually from GitHub Actions tab
+
+permissions:
+  contents: write      # needed to commit the auto-fix back
+
+jobs:
+  check-and-fix:
+    name: Check pages & fix black screen bug
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Get the repo ──────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Set up Python ─────────────────────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # ── 3. Run the fade fix script ───────────────────────────────────
+      - name: Run fade_fix.py on all HTML pages
+        run: python fade_fix.py
+
+      # ── 4. Check if anything changed ─────────────────────────────────
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      # ── 5. Commit fixes back to repo if any pages were updated ───────
+      - name: Commit auto-fixed pages
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix: auto-inject fade fix to prevent black pages [skip ci]"
+          git push
+
+      # ── 6. Show summary report ───────────────────────────────────────
+      - name: Summary
+        run: |
+          echo "### 🔍 Page Health Check Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Count HTML files
+          TOTAL=$(find . -name "*.html" \
+            -not -path "./.git/*" \
+            -not -path "./node_modules/*" \
+            -not -path "./assets/*" \
+            -not -path "./schema/*" \
+            -not -path "./_cleanup_backup/*" | wc -l)
+
+          # Count pages that have the fix
+          FIXED=$(grep -rl "NP:FADE-FIX" --include="*.html" . \
+            2>/dev/null | wc -l || echo 0)
+
+          # Count pages missing the fix
+          MISSING=$(( TOTAL - FIXED ))
+
+          echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 📄 Total HTML pages | $TOTAL |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ Pages with fade fix | $FIXED |" >> $GITHUB_STEP_SUMMARY
+          echo "| ⚠️ Pages still missing fix | $MISSING |" >> $GITHUB_STEP_SUMMARY
+
+          if [ "$MISSING" -eq 0 ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "✅ **All pages are protected from the black-screen bug!**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ **$MISSING pages may still show as black. Run fade_fix.py manually.**" >> $GITHUB_STEP_SUMMARY
+          fi
