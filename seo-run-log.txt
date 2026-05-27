@@ -1,10 +1,10 @@
-[INFO] Found 282 HTML files
+[INFO] Found 284 HTML files
 [] =======================================================
 [PHASE] PHASE 1 — NAV + FOOTER + FADE FIX
 [] =======================================================
 [INFO] Fade fix injected : 0 pages
-[INFO] Nav injected      : 1 pages · Already had nav: 281
-[INFO] Footer added      : 0 pages · Already had footer: 282
+[INFO] Nav injected      : 1 pages · Already had nav: 283
+[INFO] Footer added      : 2 pages · Already had footer: 282
 [] =======================================================
 [PHASE] PHASE 2 — SEO META + SCHEMA INJECTION
 [] =======================================================
@@ -17,7 +17,7 @@
 [PHASE] PHASE 4 — TECHNICAL SEO FILES
 [] =======================================================
 [INFO] robots.txt updated
-[INFO] sitemap.xml updated — 282 URLs
+[INFO] sitemap.xml updated — 284 URLs
 [INFO] rss.xml · llms.txt · ai.txt · robots.txt · sitemap.xml — all updated
 [] =======================================================
 [PHASE] PHASE 5 — ENTITY SCHEMA FILES
