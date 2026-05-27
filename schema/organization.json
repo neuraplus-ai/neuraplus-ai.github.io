@@ -6,11 +6,11 @@
   "url": "https://neuraplus-ai.github.io",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://neuraplus-ai.github.io/assets/logo.png",
+    "url": "https://neuraplus-ai.github.io/assets/images/logo.png",
     "width": 200,
     "height": 60
   },
-  "description": "Expert AI guides, tools, and analysis \u2014 making artificial intelligence understandable and actionable for developers and creators worldwide.",
+  "description": "Expert AI guides, tools, and analysis \u2014 making artificial intelligence understandable and actionable.",
   "foundingDate": "2025",
   "founder": {
     "@type": "Person",
@@ -18,11 +18,12 @@
     "url": "https://neuraplus-ai.github.io/about.html"
   },
   "sameAs": [
-    "https://twitter.com/neuraplus_ai",
-    "https://linkedin.com/in/prashant-lalwani",
-    "https://youtube.com/@neurapulse",
-    "https://github.com/neuraplus-ai",
-    "https://discord.gg/neurapulse"
+    "https://x.com/AiNeuraplus",
+    "https://www.instagram.com/neuraplus.ai/",
+    "https://www.linkedin.com/in/prashant-lalwani-361010407/",
+    "https://www.youtube.com/channel/UC0-7t4itquvY3ed2tGKLjQA",
+    "https://www.facebook.com/profile.php?id=61589600083095",
+    "https://pinterest.com/neuraplus_ai"
   ],
   "knowsAbout": [
     "Kimi AI",

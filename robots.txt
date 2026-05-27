@@ -1,41 +1,16 @@
 User-agent: *
 Allow: /
-
-# Block internal/utility files
 Disallow: /seo-audit-report.json
 Disallow: /scripts/
 Disallow: /*.py$
-
-# AI Crawlers — allow full access
 User-agent: GPTBot
 Allow: /
-
 User-agent: Google-Extended
 Allow: /
-
 User-agent: ClaudeBot
 Allow: /
-
 User-agent: PerplexityBot
 Allow: /
-
-User-agent: Amazonbot
-Allow: /
-
 User-agent: anthropic-ai
 Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-User-agent: Meta-ExternalAgent
-Allow: /
-
-# Sitemaps
 Sitemap: https://neuraplus-ai.github.io/sitemap.xml
-Sitemap: https://neuraplus-ai.github.io/sitemap-news.xml
-
-Host: https://neuraplus-ai.github.io

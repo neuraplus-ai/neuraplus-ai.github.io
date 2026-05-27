@@ -1,41 +1,24 @@
-[INFO] Found 1111 HTML files to process
+[INFO] Found 279 HTML files
 [] =======================================================
-[PHASE] PHASE 1 — SITE AUDIT
+[PHASE] PHASE 1 — NAV + FOOTER INJECTION
 [] =======================================================
-[INFO] Total pages scanned : 1111
-[INFO] HIGH severity issues: 46
-[INFO] MED  severity issues: 14
-[INFO] LOW  severity issues: 914
-[INFO] Audit report saved → seo-audit-report.json
+[INFO] Nav injected: 227 pages · Already had nav: 52
+[INFO] Footer added: 0 pages · Already had footer: 279
 [] =======================================================
-[PHASE] PHASE 2 — ENTITY & BRAND SYSTEM
+[PHASE] PHASE 2 — SEO META + SCHEMA INJECTION
 [] =======================================================
-[INFO] Organization schema saved → schema/organization.json
-[INFO] WebSite schema saved      → schema/website.json
+[INFO] SEO meta/schema injected: 0 pages
 [] =======================================================
-[PHASE] PHASE 3 — TECHNICAL SEO SYSTEM
+[PHASE] PHASE 3 — GEO/AEO AI VISIBILITY TAGS
 [] =======================================================
-[INFO] robots.txt generated — all AI crawlers allowed
-[INFO] sitemap.xml generated — 1111 URLs
-[INFO] sitemap.html generated — human-readable
-[INFO] rss.xml generated — top 50 pages
-[INFO] llms.txt generated — AI crawler instructions
-[INFO] ai.txt generated — AI permissions file
-[INFO] humans.txt generated
-[INFO] security.txt generated
+[INFO] GEO/AEO tags injected: 278 pages
 [] =======================================================
-[PHASE] PHASE 4 — SCHEMA & META INJECTION
+[PHASE] PHASE 4 — TECHNICAL SEO FILES
 [] =======================================================
-[INFO] Schema/meta injected into 2 pages
+[INFO] robots.txt updated
+[INFO] sitemap.xml updated — 279 URLs
+[INFO] rss.xml · llms.txt · ai.txt · robots.txt · sitemap.xml — all updated
 [] =======================================================
-[PHASE] PHASE 5 — FOOTER INJECTION (ALL PAGES)
+[PHASE] PHASE 5 — ENTITY SCHEMA FILES
 [] =======================================================
-[INFO] Footer injected: 833 pages · Already had footer: 278
-[] =======================================================
-[PHASE] PHASE 6 — NAV — ADD GUIDE LINK
-[] =======================================================
-[INFO] Guide nav added: 0 pages · Already present: 1111
-[] =======================================================
-[PHASE] PHASE 7 — GEO/AEO AI VISIBILITY TAGS
-[] =======================================================
-[INFO] GEO/AEO tags injected: 3 pages
+[INFO] schema/organization.json + schema/website.json saved
