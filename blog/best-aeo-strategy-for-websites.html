@@ -184,6 +184,21 @@ aside{position:sticky;top:84px;height:fit-content;display:flex;flex-direction:co
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Answer Engine Optimization (AEO)?","acceptedAnswer":{"@type":"Answer","text":"Answer Engine Optimization (AEO) is the practice of structuring your website content so that AI-powered search engines like ChatGPT Search, Perplexity, Claude, and Gemini extract and cite your pages in their generated answers. It focuses on question-answer content structure, schema markup, factual density, and entity authority."}},{"@type":"Question","name":"How is AEO different from traditional SEO?","acceptedAnswer":{"@type":"Answer","text":"Traditional SEO optimizes for ranking in a list of blue links. AEO optimizes for being the cited source inside an AI-generated answer. AEO prioritizes direct answer structure, schema markup, and factual density over keyword density and backlink volume."}},{"@type":"Question","name":"Which schema types matter most for AEO?","acceptedAnswer":{"@type":"Answer","text":"The highest-impact schema types for AEO are FAQPage, HowTo, Article (with dateModified and named author), and Person for author authority. These communicate content type, freshness, and credibility to AI retrieval systems in a machine-readable format."}}]}
 ]
 </script>
+<!-- NP:FADE-FIX -->
+<style id="np-fade-fix">
+  /* Prevent black pages: force .fade elements visible immediately.
+     IntersectionObserver animations still work on top of this. */
+  .fade {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+  .fade.vis {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>
+<!-- /NP:FADE-FIX -->
 </head>
 <body>
 

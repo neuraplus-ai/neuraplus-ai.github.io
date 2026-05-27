@@ -160,6 +160,21 @@ aside{position:sticky;top:84px;height:fit-content;display:flex;flex-direction:co
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is GEO (Generative Engine Optimization)?","acceptedAnswer":{"@type":"Answer","text":"GEO is the practice of optimizing web content to be cited and surfaced by AI-powered search engines like ChatGPT Search, Perplexity, Claude, and Google Gemini. It combines traditional SEO principles with AI-specific signals such as direct-answer structure, entity authority, schema markup, and crawl accessibility for AI bots."}},{"@type":"Question","name":"How is GEO different from traditional SEO?","acceptedAnswer":{"@type":"Answer","text":"Traditional SEO targets ranked positions on a results page; GEO targets inclusion in a synthesized AI answer. GEO requires content to be machine-extractable with a clear direct-answer format, while SEO can succeed with persuasive or narrative writing that ranks well without being easily machine-parsed."}},{"@type":"Question","name":"How long does GEO take to show results?","acceptedAnswer":{"@type":"Answer","text":"Most publishers see their first AI citations within 2-6 weeks of implementing GEO optimizations, provided their site is actively crawled by AI bots. Platforms like Perplexity re-index qualifying pages within hours; ChatGPT Search typically takes 3-14 days per crawl cycle."}}]}
 ]
 </script>
+<!-- NP:FADE-FIX -->
+<style id="np-fade-fix">
+  /* Prevent black pages: force .fade elements visible immediately.
+     IntersectionObserver animations still work on top of this. */
+  .fade {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+  .fade.vis {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>
+<!-- /NP:FADE-FIX -->
 </head>
 <body>
 

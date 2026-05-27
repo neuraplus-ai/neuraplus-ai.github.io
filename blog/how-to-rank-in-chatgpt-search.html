@@ -203,6 +203,21 @@ aside{position:sticky;top:84px;height:fit-content;display:flex;flex-direction:co
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does ChatGPT Search decide which pages to cite?","acceptedAnswer":{"@type":"Answer","text":"ChatGPT Search uses OAI-SearchBot to crawl pages, then a retrieval-augmented generation pipeline selects the most relevant, well-structured, and factually dense content to cite in responses."}},{"@type":"Question","name":"Does robots.txt affect ChatGPT Search indexing?","acceptedAnswer":{"@type":"Answer","text":"Yes. If you block OAI-SearchBot in robots.txt, ChatGPT Search cannot crawl or cite your content. You must explicitly allow this bot in your robots.txt file."}},{"@type":"Question","name":"What schema markup helps rank in ChatGPT Search?","acceptedAnswer":{"@type":"Answer","text":"Article, FAQPage, HowTo, and Person schema types have the strongest impact on ChatGPT Search citation rates, according to publisher data from 2026."}}]}
 ]
 </script>
+<!-- NP:FADE-FIX -->
+<style id="np-fade-fix">
+  /* Prevent black pages: force .fade elements visible immediately.
+     IntersectionObserver animations still work on top of this. */
+  .fade {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+  .fade.vis {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>
+<!-- /NP:FADE-FIX -->
 </head>
 <body>
 
