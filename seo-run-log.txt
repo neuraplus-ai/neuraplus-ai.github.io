@@ -4,7 +4,7 @@
 [] =======================================================
 [INFO] Fade fix    : 0 pages
 [INFO] Nav added   : 1 · skipped: 296
-[INFO] Footer added: 2 · skipped: 295
+[INFO] Footer added: 1 · skipped: 296
 [] =======================================================
 [PHASE] PHASE 2 — SEO META + SCHEMA
 [] =======================================================
