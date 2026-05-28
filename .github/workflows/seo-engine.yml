@@ -1,5 +1,5 @@
 # ══════════════════════════════════════════════════════
-#  NeuraPulse SEO Engine — GitHub Actions Workflow v2.0
+#  NeuraPulse SEO Engine — GitHub Actions Workflow v2.1
 #  · Runs on every push to main/master
 #  · Runs every Sunday at midnight UTC
 #  · Can be triggered manually from GitHub Actions tab
@@ -13,13 +13,14 @@ on:
       - 'seo-run-log.txt'
       - 'seo-audit-report.json'
       - 'sitemap.xml'
+      - 'sitemap.html'
       - 'rss.xml'
       - 'robots.txt'
       - 'llms.txt'
       - 'ai.txt'
   schedule:
-    - cron: '0 0 * * 0'    # Every Sunday midnight UTC
-  workflow_dispatch:         # Manual trigger from GitHub UI
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -28,8 +29,8 @@ jobs:
   seo-engine:
     runs-on: ubuntu-latest
     name: Run SEO Engine — All Phases
-
     steps:
+
       # ── 1. Checkout full repo ──
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -47,7 +48,7 @@ jobs:
       - name: Run NeuraPulse SEO Engine
         run: python seo_engine.py
 
-      # ── 4. Commit all changes back to repo ──
+      # ── 4. Commit and push with rebase to avoid conflicts ──
       - name: Commit & Push Changes
         run: |
           git config user.email "seo-bot@neuraplus.ai"
@@ -56,6 +57,7 @@ jobs:
           git diff --staged --quiet \
             && echo "✅ Nothing changed — repo already up to date" \
             || git commit -m "🤖 SEO Engine v2: nav + footer + schema + sitemap [skip ci]"
+          git pull --rebase origin main
           git push origin HEAD
 
       # ── 5. Upload run log as downloadable artifact ──
