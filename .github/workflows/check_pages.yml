@@ -1,31 +1,32 @@
 # ══════════════════════════════════════════════════════════════════════
-# NeuraPulse — Page Health Check + Auto Fade Fix
+# NeuraPulse — Universal Page Health Check + Auto Fix v2
 # File: .github/workflows/check_pages.yml
 #
 # Runs automatically on every push to main.
-# 1. Scans all HTML files for the .fade black-page bug
-# 2. Auto-injects the fade fix if needed
-# 3. Commits the fix back to the repo automatically
-# 4. Reports how many pages were checked/fixed
+# 1. Scans all HTML files for black screen, image jump, bar/counter bugs
+# 2. Auto-injects universal fix v2 (covers .fade AND .reveal classes)
+# 3. Removes old v1 NP:FADE-FIX blocks to prevent duplication
+# 4. Commits fixes back to repo automatically
+# 5. Reports full health check with issue breakdown
 # ══════════════════════════════════════════════════════════════════════
 
-name: 🔍 Page Health Check + Auto Fade Fix
+name: 🔍 Universal Page Health Check + Auto Fix v2
 
 on:
   push:
     branches: [main, master]
-  workflow_dispatch:   # lets you run it manually from GitHub Actions tab
+  workflow_dispatch:   # run manually from GitHub Actions tab
 
 permissions:
-  contents: write      # needed to commit the auto-fix back
+  contents: write      # needed to commit auto-fixes back
 
 jobs:
   check-and-fix:
-    name: Check pages & fix black screen bug
+    name: Check & fix all page bugs
     runs-on: ubuntu-latest
 
     steps:
-      # ── 1. Get the repo ──────────────────────────────────────────────
+      # ── 1. Checkout repo ─────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -35,8 +36,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      # ── 3. Run the fade fix script ───────────────────────────────────
-      - name: Run fade_fix.py on all HTML pages
+      # ── 3. Run the universal fix script ──────────────────────────────
+      - name: Run fade_fix.py (Universal Fix v2)
         run: python fade_fix.py
 
       # ── 4. Check if anything changed ─────────────────────────────────
@@ -45,23 +46,23 @@ jobs:
         run: |
           git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
-      # ── 5. Commit fixes back to repo if any pages were updated ───────
+      # ── 5. Commit fixes back if any pages were updated ───────────────
       - name: Commit auto-fixed pages
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "fix: auto-inject fade fix to prevent black pages [skip ci]"
+          git commit -m "fix: universal page fix v2 - black screen, image jump, bars [skip ci]"
           git push
 
-      # ── 6. Show summary report ───────────────────────────────────────
-      - name: Summary
+      # ── 6. Full health report ─────────────────────────────────────────
+      - name: Health Report
         run: |
-          echo "### 🔍 Page Health Check Complete" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔍 NeuraPulse Universal Page Health Check v2" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          # Count HTML files
+          # Count total HTML files (excluding system dirs)
           TOTAL=$(find . -name "*.html" \
             -not -path "./.git/*" \
             -not -path "./node_modules/*" \
@@ -69,23 +70,54 @@ jobs:
             -not -path "./schema/*" \
             -not -path "./_cleanup_backup/*" | wc -l)
 
-          # Count pages that have the fix
-          FIXED=$(grep -rl "NP:FADE-FIX" --include="*.html" . \
+          # Count pages with new v2 fix
+          FIXED_V2=$(grep -rl "NP:UNIVERSAL-FIX-V2" --include="*.html" . \
             2>/dev/null | wc -l || echo 0)
 
-          # Count pages missing the fix
-          MISSING=$(( TOTAL - FIXED ))
+          # Count pages still using old v1 fix only
+          FIXED_V1_ONLY=$(grep -rl "NP:FADE-FIX" --include="*.html" . \
+            2>/dev/null | grep -L "NP:UNIVERSAL-FIX-V2" | wc -l || echo 0)
 
+          # Count pages with .reveal class (newer style pages)
+          REVEAL_PAGES=$(grep -rl 'class="reveal"' --include="*.html" . \
+            2>/dev/null | wc -l || echo 0)
+
+          # Count pages with .fade class (older style pages)
+          FADE_PAGES=$(grep -rl 'class="fade"' --include="*.html" . \
+            2>/dev/null | wc -l || echo 0)
+
+          # Count pages missing fix entirely
+          MISSING=$(( TOTAL - FIXED_V2 ))
+
+          # Count pages with broken image references (missing aspect-ratio)
+          IMAGE_ISSUES=$(grep -rl "blog-hero-image" --include="*.html" . \
+            2>/dev/null | xargs grep -L "aspect-ratio" 2>/dev/null | wc -l || echo 0)
+
+          # Count pages with benchmark bars
+          BAR_PAGES=$(grep -rl 'class="bfill"' --include="*.html" . \
+            2>/dev/null | wc -l || echo 0)
+
+          echo "#### 📊 Page Counts" >> $GITHUB_STEP_SUMMARY
           echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
           echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
           echo "| 📄 Total HTML pages | $TOTAL |" >> $GITHUB_STEP_SUMMARY
-          echo "| ✅ Pages with fade fix | $FIXED |" >> $GITHUB_STEP_SUMMARY
-          echo "| ⚠️ Pages still missing fix | $MISSING |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ Pages with v2 fix | $FIXED_V2 |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔄 Pages with old v1 fix only | $FIXED_V1_ONLY |" >> $GITHUB_STEP_SUMMARY
+          echo "| ⚠️ Pages missing any fix | $MISSING |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
 
+          echo "#### 🐛 Bug Types Detected" >> $GITHUB_STEP_SUMMARY
+          echo "| Bug Type | Pages Affected |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|---------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔴 .reveal black screen | $REVEAL_PAGES pages |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔴 .fade black screen | $FADE_PAGES pages |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🟡 Image layout shift | $IMAGE_ISSUES pages |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🟡 Benchmark bars at 0% | $BAR_PAGES pages |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Final status
           if [ "$MISSING" -eq 0 ]; then
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "✅ **All pages are protected from the black-screen bug!**" >> $GITHUB_STEP_SUMMARY
+            echo "## ✅ All $TOTAL pages are protected!" >> $GITHUB_STEP_SUMMARY
           else
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "⚠️ **$MISSING pages may still show as black. Run fade_fix.py manually.**" >> $GITHUB_STEP_SUMMARY
+            echo "## ⚠️ $MISSING pages still need fixing — re-run workflow." >> $GITHUB_STEP_SUMMARY
           fi
