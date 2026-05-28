@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 ╔══════════════════════════════════════════════════════════════════╗
-║      NeuraPulse — SEO Engine v2.0                               ║
-║      Fixes black pages · Injects Nav · Single Footer · Schema   ║
+║      NeuraPulse — SEO Engine v2.1                               ║
+║      Fixes black pages · Nav · Footer · Schema · Sitemap HTML   ║
 ╚══════════════════════════════════════════════════════════════════╝
 DROP IN REPO ROOT AND RUN:  python seo_engine.py
 """
@@ -38,7 +38,7 @@ CFG = {
     ],
     "skip_dirs":  {".git", "node_modules", ".github", "assets", "schema", "scripts", "_cleanup_backup"},
     "skip_files": {"seo_engine.py", "neurapulse_cleanup.py", "neurapulse_enterprise.py",
-                   "neurapulse_card_injector.py", "master_inject.py"},
+                   "neurapulse_card_injector.py", "master_inject.py", "np-restore.py"},
     "topics": [
         "Kimi AI", "ChatGPT", "Claude AI", "Gemini AI", "Groq AI",
         "AI Advertising", "AI Automation", "Prompt Engineering",
@@ -80,10 +80,34 @@ def depth(path):
     return len(path.relative_to(ROOT).parts) - 1
 
 def rp(path, target):
-    """Relative path from page to target."""
     if target.startswith("http"): return target
     d = depth(path)
     return ("../" * d) + target.lstrip("/")
+
+def page_title(path):
+    """Extract clean title from filename for sitemap display."""
+    name = path.stem.replace("-", " ").replace("_", " ").title()
+    parts = path.relative_to(ROOT).parts
+    if len(parts) > 1:
+        section = parts[0].replace("-", " ").replace("_", " ").title()
+        return f"{name} — {section}"
+    return name
+
+def get_category(path):
+    """Determine page category from path."""
+    parts = path.relative_to(ROOT).parts
+    if len(parts) == 1:
+        name = path.stem.lower()
+        if name == "index": return "Home"
+        if name == "blog": return "Blog"
+        if name == "guide": return "Guide"
+        if name == "about": return "About"
+        if name == "contact": return "Contact"
+        return "Page"
+    folder = parts[0].lower()
+    if folder == "blog": return "Blog Article"
+    if folder == "guide": return "Guide Article"
+    return folder.title()
 
 # ══════════════════════════════════════════════════════
 # SOCIAL ICONS
@@ -96,7 +120,7 @@ ICON_FB  = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6
 ICON_PIN = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>'
 
 # ══════════════════════════════════════════════════════
-# NAV HTML
+# NAV
 # ══════════════════════════════════════════════════════
 NAV_CSS = """\
 <style id="np-nav-css">
@@ -157,9 +181,9 @@ def build_nav(path):
         "<script>\n"
         "function npMenu(btn){\n"
         "  btn.classList.toggle('open');\n"
-        "  btn.setAttribute('aria-expanded', btn.classList.contains('open'));\n"
+        "  btn.setAttribute('aria-expanded',btn.classList.contains('open'));\n"
         "  document.getElementById('np-mob').classList.toggle('open');\n"
-        "  document.body.style.overflow = btn.classList.contains('open') ? 'hidden' : '';\n"
+        "  document.body.style.overflow=btn.classList.contains('open')?'hidden':'';\n"
         "}\n"
         "document.addEventListener('keydown',function(e){\n"
         "  if(e.key==='Escape'){var b=document.getElementById('np-ham-btn');\n"
@@ -176,23 +200,23 @@ def build_nav(path):
         "<!-- NP:NAV -->\n"
         + NAV_CSS + "\n"
         + '<nav id="np-nav" role="navigation" aria-label="Main navigation">\n'
-        + f'  <a href="{rp(path, "index.html")}" class="np-logo" aria-label="{CFG["brand"]} Home">\n'
+        + f'  <a href="{rp(path,"index.html")}" class="np-logo" aria-label="{CFG["brand"]} Home">\n'
         + f'    <span class="np-logo-dot" aria-hidden="true"></span>{CFG["brand"]}\n  </a>\n'
         + '  <div class="np-links">\n    '
         + links
-        + f'<a href="{rp(path, "contact.html")}" class="np-sub-btn">Subscribe</a>\n  </div>\n'
+        + f'<a href="{rp(path,"contact.html")}" class="np-sub-btn">Subscribe</a>\n  </div>\n'
         + '  <button class="np-ham" id="np-ham-btn" aria-label="Open menu" aria-expanded="false" '
         + 'aria-controls="np-mob" onclick="npMenu(this)">'
         + '<span></span><span></span><span></span></button>\n</nav>\n'
         + '<div id="np-mob" role="dialog" aria-label="Mobile navigation">\n'
         + mob_links
-        + f'  <a href="{rp(path, "contact.html")}" class="np-mob-cta">Subscribe Free &rarr;</a>\n</div>\n'
+        + f'  <a href="{rp(path,"contact.html")}" class="np-mob-cta">Subscribe Free &rarr;</a>\n</div>\n'
         + nav_js + "\n"
         + "<!-- /NP:NAV -->"
     )
 
 # ══════════════════════════════════════════════════════
-# FOOTER HTML
+# FOOTER
 # ══════════════════════════════════════════════════════
 FOOTER_CSS = """\
 <style id="np-footer-css">
@@ -210,15 +234,12 @@ FOOTER_CSS = """\
   align-items:center;gap:8px;text-decoration:none;margin-bottom:14px;}
 .np-fb-dot{width:8px;height:8px;background:#00d4ff;border-radius:50%;
   box-shadow:0 0 10px #00d4ff;animation:npblink 2s ease infinite;flex-shrink:0;}
-.np-fb-desc{color:#8899aa;font-size:.85rem;line-height:1.75;
-  max-width:260px;margin-bottom:22px;}
+.np-fb-desc{color:#8899aa;font-size:.85rem;line-height:1.75;max-width:260px;margin-bottom:22px;}
 .np-soc{display:flex;gap:9px;flex-wrap:wrap;}
-.np-si{width:40px;height:40px;border-radius:8px;
-  border:1px solid rgba(0,212,255,.13);display:flex;align-items:center;
-  justify-content:center;color:#8899aa;text-decoration:none;
-  transition:all .25s;background:#111827;}
-.np-si:hover{border-color:#00d4ff;color:#00d4ff;
-  transform:translateY(-3px);box-shadow:0 0 14px rgba(0,212,255,.25);}
+.np-si{width:40px;height:40px;border-radius:8px;border:1px solid rgba(0,212,255,.13);
+  display:flex;align-items:center;justify-content:center;color:#8899aa;
+  text-decoration:none;transition:all .25s;background:#111827;}
+.np-si:hover{border-color:#00d4ff;color:#00d4ff;transform:translateY(-3px);}
 .np-si.ig:hover{border-color:#e1306c;color:#e1306c;}
 .np-si.fb:hover{border-color:#1877f2;color:#1877f2;}
 .np-si.pin:hover{border-color:#e60023;color:#e60023;}
@@ -249,10 +270,9 @@ FOOTER_CSS = """\
 
 def build_footer(path):
     s = CFG["social"]
-
     social_icons = (
         '<div class="np-soc">'
-        f'<a href="{s["twitter"]}" target="_blank" rel="noopener" class="np-si" aria-label="X/Twitter">{ICON_X}</a>'
+        f'<a href="{s["twitter"]}" target="_blank" rel="noopener" class="np-si" aria-label="X">{ICON_X}</a>'
         f'<a href="{s["instagram"]}" target="_blank" rel="noopener" class="np-si ig" aria-label="Instagram">{ICON_IG}</a>'
         f'<a href="{s["linkedin"]}" target="_blank" rel="noopener" class="np-si" aria-label="LinkedIn">{ICON_LI}</a>'
         f'<a href="{s["youtube"]}" target="_blank" rel="noopener" class="np-si" aria-label="YouTube">{ICON_YT}</a>'
@@ -260,67 +280,60 @@ def build_footer(path):
         f'<a href="{s["pinterest"]}" target="_blank" rel="noopener" class="np-si pin" aria-label="Pinterest">{ICON_PIN}</a>'
         '</div>'
     )
-
     brand_block = (
         '<div>\n'
-        f'<a href="{rp(path, "index.html")}" class="np-fb-logo">'
-        f'<span class="np-fb-dot"></span>{CFG["brand"]}</a>\n'
+        f'<a href="{rp(path,"index.html")}" class="np-fb-logo"><span class="np-fb-dot"></span>{CFG["brand"]}</a>\n'
         f'<p class="np-fb-desc">{CFG["description"]}</p>\n'
         f'{social_icons}\n</div>\n'
     )
-
     col_guides = (
         '<div class="np-fcol"><h4>Guides &amp; Topics</h4><ul>'
-        f'<li><a href="{rp(path, "guide.html")}">AI Guides Hub</a></li>'
-        f'<li><a href="{rp(path, "blog.html")}">AI SEO &amp; GEO</a></li>'
-        f'<li><a href="{rp(path, "blog.html")}">AI Advertising</a></li>'
-        f'<li><a href="{rp(path, "blog.html")}">AI Automation</a></li>'
-        f'<li><a href="{rp(path, "blog.html")}">Prompt Engineering</a></li>'
-        f'<li><a href="{rp(path, "blog.html")}">AI Marketing</a></li>'
+        f'<li><a href="{rp(path,"guide.html")}">AI Guides Hub</a></li>'
+        f'<li><a href="{rp(path,"blog.html")}">AI SEO &amp; GEO</a></li>'
+        f'<li><a href="{rp(path,"blog.html")}">AI Advertising</a></li>'
+        f'<li><a href="{rp(path,"blog.html")}">AI Automation</a></li>'
+        f'<li><a href="{rp(path,"blog.html")}">Prompt Engineering</a></li>'
+        f'<li><a href="{rp(path,"blog.html")}">AI Marketing</a></li>'
         '</ul></div>\n'
     )
-
     col_company = (
         '<div class="np-fcol"><h4>Company</h4><ul>'
-        f'<li><a href="{rp(path, "about.html")}">About NeuraPulse</a></li>'
-        f'<li><a href="{rp(path, "contact.html")}">Contact</a></li>'
-        f'<li><a href="{rp(path, "contact.html")}">Write for Us</a></li>'
-        f'<li><a href="{rp(path, "contact.html")}">Privacy Policy</a></li>'
-        f'<li><a href="{rp(path, "contact.html")}">Terms</a></li>'
-        f'<li><a href="{rp(path, "sitemap.html")}">Sitemap</a></li>'
+        f'<li><a href="{rp(path,"about.html")}">About NeuraPulse</a></li>'
+        f'<li><a href="{rp(path,"contact.html")}">Contact</a></li>'
+        f'<li><a href="{rp(path,"contact.html")}">Write for Us</a></li>'
+        f'<li><a href="{rp(path,"contact.html")}">Privacy Policy</a></li>'
+        f'<li><a href="{rp(path,"contact.html")}">Terms</a></li>'
+        f'<li><a href="{rp(path,"sitemap.html")}">Sitemap</a></li>'
         '</ul></div>\n'
     )
-
     col_news = (
         '<div class="np-fcol"><h4>Newsletter</h4><ul>'
-        f'<li><a href="{rp(path, "contact.html")}">Subscribe Free &rarr;</a></li>'
-        f'<li><a href="{rp(path, "contact.html")}">Weekly AI Updates</a></li>'
-        f'<li><a href="{rp(path, "blog.html")}">Latest Articles</a></li>'
-        f'<li><a href="{rp(path, "guide.html")}">Free Guides</a></li>'
-        f'<li><a href="{rp(path, "blog.html")}">AI Tool Reviews</a></li>'
+        f'<li><a href="{rp(path,"contact.html")}">Subscribe Free &rarr;</a></li>'
+        f'<li><a href="{rp(path,"contact.html")}">Weekly AI Updates</a></li>'
+        f'<li><a href="{rp(path,"blog.html")}">Latest Articles</a></li>'
+        f'<li><a href="{rp(path,"guide.html")}">Free Guides</a></li>'
+        f'<li><a href="{rp(path,"blog.html")}">AI Tool Reviews</a></li>'
         '</ul>'
         '<div style="margin-top:16px;padding:14px;background:rgba(0,212,255,.05);'
         'border:1px solid rgba(0,212,255,.15);border-radius:8px;">'
         '<p style="color:#8899aa;font-size:.78rem;margin-bottom:10px;">Join 4,200+ AI readers</p>'
-        f'<a href="{rp(path, "contact.html")}" style="display:block;background:#00d4ff;color:#000;'
+        f'<a href="{rp(path,"contact.html")}" style="display:block;background:#00d4ff;color:#000;'
         'text-align:center;padding:9px;border-radius:5px;font-size:.78rem;font-weight:700;'
         'text-decoration:none;letter-spacing:.06em;text-transform:uppercase;">Subscribe Free</a>'
         '</div></div>\n'
     )
-
     bottom = (
         '<div class="np-fbot">'
         f'<p class="np-fcopy">&copy; {YEAR} {CFG["brand"]} &middot; {CFG["author"]} &middot; All rights reserved</p>'
         '<div class="np-flinks">'
-        f'<a href="{rp(path, "sitemap.html")}">Sitemap</a>'
-        f'<a href="{rp(path, "contact.html")}">Privacy</a>'
-        f'<a href="{rp(path, "contact.html")}">Terms</a>'
-        f'<a href="{rp(path, "contact.html")}">Cookie Policy</a>'
+        f'<a href="{rp(path,"sitemap.html")}">Sitemap</a>'
+        f'<a href="{rp(path,"contact.html")}">Privacy</a>'
+        f'<a href="{rp(path,"contact.html")}">Terms</a>'
+        f'<a href="{rp(path,"contact.html")}">Cookie Policy</a>'
         '</div>'
         f'<div class="np-fbadge">Live &middot; AI-Powered &middot; {TODAY}</div>'
         '</div>\n'
     )
-
     return (
         "<!-- NP:FOOTER -->\n"
         + FOOTER_CSS + "\n"
@@ -339,210 +352,164 @@ def build_footer(path):
 class MetaParser(HTMLParser):
     def __init__(self):
         super().__init__()
-        self.title = ""; self.desc = ""; self.canon = ""
-        self.og_title = ""; self.og_image = ""; self.schema = False
-        self.h1s = []; self._in_title = False
+        self.title=""; self.desc=""; self.canon=""
+        self.og_title=""; self.og_image=""; self.schema=False
+        self.h1s=[]; self._in_title=False
     def handle_starttag(self, tag, attrs):
-        a = dict(attrs)
-        if tag == "title": self._in_title = True
-        if tag == "meta":
-            n = a.get("name","").lower(); pr = a.get("property","").lower()
-            if n == "description":    self.desc     = a.get("content","")
-            if pr == "og:title":      self.og_title = a.get("content","")
-            if pr == "og:image":      self.og_image = a.get("content","")
-        if tag == "link" and a.get("rel") == "canonical": self.canon = a.get("href","")
-        if tag == "script" and a.get("type") == "application/ld+json": self.schema = True
-        if tag == "h1": self.h1s.append("")
+        a=dict(attrs)
+        if tag=="title": self._in_title=True
+        if tag=="meta":
+            n=a.get("name","").lower(); pr=a.get("property","").lower()
+            if n=="description": self.desc=a.get("content","")
+            if pr=="og:title": self.og_title=a.get("content","")
+            if pr=="og:image": self.og_image=a.get("content","")
+        if tag=="link" and a.get("rel")=="canonical": self.canon=a.get("href","")
+        if tag=="script" and a.get("type")=="application/ld+json": self.schema=True
+        if tag=="h1": self.h1s.append("")
     def handle_endtag(self, tag):
-        if tag == "title": self._in_title = False
+        if tag=="title": self._in_title=False
     def handle_data(self, data):
-        if self._in_title: self.title += data
+        if self._in_title: self.title+=data
 
-# ══════════════════════════════════════════════════════
-# FADE FIX — forces .fade elements visible
-# Injected into every page <head> as a safety fallback.
-# The JS IntersectionObserver adds .vis on scroll,
-# but if it fails, this CSS ensures content is NEVER
-# permanently invisible.
-# ══════════════════════════════════════════════════════
+# FADE FIX
 FADE_FIX = """<style>.fade,.fade.vis{opacity:1!important;transform:translateY(0)!important;}</style>"""
 
 # ══════════════════════════════════════════════════════
-# PHASE 1 — FIX BLACK PAGES: NAV + FOOTER + FADE FIX
+# PHASE 1 — NAV + FOOTER + FADE FIX
 # ══════════════════════════════════════════════════════
 def phase1_nav_footer(files):
     log("="*55, "")
     log("PHASE 1 — NAV + FOOTER + FADE FIX", "PHASE")
     log("="*55, "")
-    nav_added = nav_skip = footer_added = footer_skip = fade_fixed = 0
+    nav_added=nav_skip=footer_added=footer_skip=fade_fixed=0
 
     for f in files:
-        try:
-            html = f.read_text(encoding="utf-8", errors="ignore")
+        try: html=f.read_text(encoding="utf-8",errors="ignore")
         except: continue
-        changed = False
-
-        # ── FADE FIX — remove any manual inline version, inject proper one ──
+        changed=False
 
         if 'class="fade"' in html or "class='fade'" in html:
             if 'opacity:1!important;transform:translateY(0)!important' not in html:
                 if "</head>" in html:
-                    html = html.replace("</head>", FADE_FIX + "\n</head>", 1)
-                    changed = True
-                    fade_fixed += 1
-        # ── NAV ──
-        # Check if a real nav exists (not just the empty comment left by cleanup)
-        has_real_nav = bool(re.search(r'<nav\b[^>]*>', html, re.IGNORECASE))
+                    html=html.replace("</head>", FADE_FIX+"\n</head>",1)
+                    changed=True; fade_fixed+=1
+
+        has_real_nav=bool(re.search(r'<nav\b[^>]*>',html,re.IGNORECASE))
         if not has_real_nav:
-            nav_html = build_nav(f)
-            # Try inserting after <body ...> tag
-            body_match = re.search(r'<body[^>]*>', html, re.IGNORECASE)
+            nav_html=build_nav(f)
+            body_match=re.search(r'<body[^>]*>',html,re.IGNORECASE)
             if body_match:
-                pos = body_match.end()
-                html = html[:pos] + "\n" + nav_html + "\n" + html[pos:]
+                pos=body_match.end()
+                html=html[:pos]+"\n"+nav_html+"\n"+html[pos:]
             elif "</head>" in html:
-                # fallback: after head
-                html = html.replace("</head>", "</head>\n" + nav_html, 1)
-            changed = True
-            nav_added += 1
+                html=html.replace("</head>","</head>\n"+nav_html,1)
+            changed=True; nav_added+=1
         else:
-            nav_skip += 1
+            nav_skip+=1
 
-        # ── FOOTER ──
-        has_np_footer   = 'id="np-footer"' in html
-        has_orig_footer = bool(re.search(r'<footer\b', html, re.IGNORECASE))
-
+        has_np_footer='id="np-footer"' in html
+        has_orig_footer=bool(re.search(r'<footer\b',html,re.IGNORECASE))
         if has_np_footer:
-            # Already has NP footer — skip
-            footer_skip += 1
+            footer_skip+=1
         elif has_orig_footer:
-            # Has original footer — leave it alone, don't replace
-            footer_skip += 1
+            footer_skip+=1
         else:
-            # No footer at all — add one before </body>
-            footer_html = build_footer(f)
+            footer_html=build_footer(f)
             if "</body>" in html:
-                html = html.replace("</body>", footer_html + "\n</body>", 1)
+                html=html.replace("</body>",footer_html+"\n</body>",1)
             else:
-                html += "\n" + footer_html
-            changed = True
-            footer_added += 1
+                html+="\n"+footer_html
+            changed=True; footer_added+=1
 
         if changed:
-            f.write_text(html, encoding="utf-8")
+            f.write_text(html,encoding="utf-8")
 
-    log(f"Fade fix injected : {fade_fixed} pages")
-    log(f"Nav injected      : {nav_added} pages · Already had nav: {nav_skip}")
-    log(f"Footer added      : {footer_added} pages · Already had footer: {footer_skip}")
+    log(f"Fade fix    : {fade_fixed} pages")
+    log(f"Nav added   : {nav_added} · skipped: {nav_skip}")
+    log(f"Footer added: {footer_added} · skipped: {footer_skip}")
 
 # ══════════════════════════════════════════════════════
-# PHASE 2 — SEO META, SCHEMA, CANONICAL
+# PHASE 2 — SEO META + SCHEMA
 # ══════════════════════════════════════════════════════
 ORG_SCHEMA = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": SITE + "/#organization",
-    "name": CFG["brand"],
-    "url": SITE,
-    "logo": {"@type": "ImageObject", "url": CFG["logo"], "width": 200, "height": 60},
-    "description": CFG["description"],
-    "foundingDate": "2025",
-    "founder": {"@type": "Person", "name": CFG["author"], "url": SITE + "/about.html"},
-    "sameAs": list(CFG["social"].values()),
-    "knowsAbout": CFG["topics"]
+    "@context":"https://schema.org","@type":"Organization",
+    "@id":SITE+"/#organization","name":CFG["brand"],"url":SITE,
+    "logo":{"@type":"ImageObject","url":CFG["logo"],"width":200,"height":60},
+    "description":CFG["description"],"foundingDate":"2025",
+    "founder":{"@type":"Person","name":CFG["author"],"url":SITE+"/about.html"},
+    "sameAs":list(CFG["social"].values()),"knowsAbout":CFG["topics"]
 }
-
 WEBSITE_SCHEMA = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": SITE + "/#website",
-    "url": SITE,
-    "name": CFG["brand"],
-    "description": CFG["description"],
-    "publisher": {"@id": SITE + "/#organization"},
-    "inLanguage": "en",
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": {"@type": "EntryPoint", "urlTemplate": SITE + "/blog.html?q={search_term_string}"},
-        "query-input": "required name=search_term_string"
+    "@context":"https://schema.org","@type":"WebSite",
+    "@id":SITE+"/#website","url":SITE,"name":CFG["brand"],
+    "description":CFG["description"],"publisher":{"@id":SITE+"/#organization"},
+    "inLanguage":"en","potentialAction":{
+        "@type":"SearchAction",
+        "target":{"@type":"EntryPoint","urlTemplate":SITE+"/blog.html?q={search_term_string}"},
+        "query-input":"required name=search_term_string"
     }
 }
 
 def phase2_seo_meta(files):
-    log("="*55, "")
-    log("PHASE 2 — SEO META + SCHEMA INJECTION", "PHASE")
-    log("="*55, "")
-    updated = 0
-
+    log("="*55,"")
+    log("PHASE 2 — SEO META + SCHEMA","PHASE")
+    log("="*55,"")
+    updated=0
     for f in files:
-        try:
-            html = f.read_text(encoding="utf-8", errors="ignore")
+        try: html=f.read_text(encoding="utf-8",errors="ignore")
         except: continue
-
-        p = MetaParser()
+        p=MetaParser()
         try: p.feed(html)
         except: pass
-
-        title = p.title.strip() or (f.stem.replace("-"," ").replace("_"," ").title() + " – " + CFG["brand"])
-        desc  = p.desc or CFG["description"]
-        url   = url_for(f)
-        inject = []
-
+        title=p.title.strip() or (f.stem.replace("-"," ").replace("_"," ").title()+" – "+CFG["brand"])
+        desc=p.desc or CFG["description"]
+        url=url_for(f)
+        inject=[]
         if not p.canon:
             inject.append(f'<link rel="canonical" href="{url}"/>')
-
         if not p.og_title:
-            inject.append(f'<meta property="og:title" content="{title}"/>')
-            inject.append(f'<meta property="og:description" content="{desc}"/>')
-            inject.append(f'<meta property="og:url" content="{url}"/>')
-            inject.append(f'<meta property="og:type" content="article"/>')
-            inject.append(f'<meta property="og:site_name" content="{CFG["brand"]}"/>')
-            inject.append(f'<meta property="og:image" content="{CFG["logo"]}"/>')
-            inject.append(f'<meta name="twitter:card" content="summary_large_image"/>')
-            inject.append(f'<meta name="twitter:site" content="{CFG["twitter_handle"]}"/>')
-            inject.append(f'<meta name="twitter:title" content="{title}"/>')
-            inject.append(f'<meta name="twitter:description" content="{desc}"/>')
-            inject.append(f'<meta name="twitter:image" content="{CFG["logo"]}"/>')
-
+            inject+=[
+                f'<meta property="og:title" content="{title}"/>',
+                f'<meta property="og:description" content="{desc}"/>',
+                f'<meta property="og:url" content="{url}"/>',
+                f'<meta property="og:type" content="article"/>',
+                f'<meta property="og:site_name" content="{CFG["brand"]}"/>',
+                f'<meta property="og:image" content="{CFG["logo"]}"/>',
+                f'<meta name="twitter:card" content="summary_large_image"/>',
+                f'<meta name="twitter:site" content="{CFG["twitter_handle"]}"/>',
+                f'<meta name="twitter:title" content="{title}"/>',
+                f'<meta name="twitter:description" content="{desc}"/>',
+                f'<meta name="twitter:image" content="{CFG["logo"]}"/>',
+            ]
         if not p.schema:
-            rel  = str(f.relative_to(ROOT))
-            mod  = datetime.datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d")
-            slug = f.stem.replace("-"," ").replace("_"," ").title()
-            is_blog = "blog" in rel.lower()
-            schema_list = [ORG_SCHEMA, WEBSITE_SCHEMA, {
-                "@context": "https://schema.org",
-                "@type": "Article" if is_blog else "WebPage",
-                "@id": url + "#article",
-                "url": url,
-                "headline": title or slug,
-                "description": desc,
-                "dateModified": mod,
-                "datePublished": mod,
-                "author": {"@type": "Person", "name": CFG["author"], "url": SITE + "/about.html"},
-                "publisher": {"@id": SITE + "/#organization"},
-                "mainEntityOfPage": {"@type": "WebPage", "@id": url},
-                "inLanguage": "en",
-                "image": {"@type": "ImageObject", "url": CFG["logo"]}
+            rel=str(f.relative_to(ROOT))
+            mod=datetime.datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d")
+            slug=f.stem.replace("-"," ").replace("_"," ").title()
+            is_blog="blog" in rel.lower()
+            schema_list=[ORG_SCHEMA,WEBSITE_SCHEMA,{
+                "@context":"https://schema.org",
+                "@type":"Article" if is_blog else "WebPage",
+                "@id":url+"#article","url":url,
+                "headline":title or slug,"description":desc,
+                "dateModified":mod,"datePublished":mod,
+                "author":{"@type":"Person","name":CFG["author"],"url":SITE+"/about.html"},
+                "publisher":{"@id":SITE+"/#organization"},
+                "mainEntityOfPage":{"@type":"WebPage","@id":url},
+                "inLanguage":"en","image":{"@type":"ImageObject","url":CFG["logo"]}
             }]
-            inject.append(f'<script type="application/ld+json">\n{json.dumps(schema_list, indent=2)}\n</script>')
-
+            inject.append(f'<script type="application/ld+json">\n{json.dumps(schema_list,indent=2)}\n</script>')
         if inject and "</head>" in html:
-            html = html.replace("</head>", "\n".join(inject) + "\n</head>", 1)
-            f.write_text(html, encoding="utf-8")
-            updated += 1
-
+            html=html.replace("</head>","\n".join(inject)+"\n</head>",1)
+            f.write_text(html,encoding="utf-8"); updated+=1
     log(f"SEO meta/schema injected: {updated} pages")
 
 # ══════════════════════════════════════════════════════
-# PHASE 3 — GEO / AEO TAGS
+# PHASE 3 — GEO/AEO TAGS
 # ══════════════════════════════════════════════════════
 def phase3_geo(files):
-    log("="*55, "")
-    log("PHASE 3 — GEO/AEO AI VISIBILITY TAGS", "PHASE")
-    log("="*55, "")
-    updated = 0
-
-    geo_block = f"""<!-- NP:GEO -->
+    log("="*55,""); log("PHASE 3 — GEO/AEO TAGS","PHASE"); log("="*55,"")
+    updated=0
+    geo_block=f"""<!-- NP:GEO -->
 <meta name="author" content="{CFG["author"]}"/>
 <meta name="publisher" content="{CFG["brand"]}"/>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
@@ -558,125 +525,312 @@ def phase3_geo(files):
 <meta name="target" content="all"/>
 <link rel="alternate" type="application/rss+xml" title="{CFG["brand"]} RSS" href="{SITE}/rss.xml"/>
 <!-- /NP:GEO -->"""
-
     for f in files:
-        try:
-            html = f.read_text(encoding="utf-8", errors="ignore")
+        try: html=f.read_text(encoding="utf-8",errors="ignore")
         except: continue
         if "NP:GEO" in html: continue
         if "<head>" in html:
-            html = html.replace("<head>", "<head>\n" + geo_block, 1)
-            f.write_text(html, encoding="utf-8")
-            updated += 1
-
+            html=html.replace("<head>","<head>\n"+geo_block,1)
+            f.write_text(html,encoding="utf-8"); updated+=1
     log(f"GEO/AEO tags injected: {updated} pages")
 
 # ══════════════════════════════════════════════════════
 # PHASE 4 — TECHNICAL FILES
 # ══════════════════════════════════════════════════════
 def phase4_technical(files):
-    log("="*55, "")
-    log("PHASE 4 — TECHNICAL SEO FILES", "PHASE")
-    log("="*55, "")
+    log("="*55,""); log("PHASE 4 — TECHNICAL SEO FILES","PHASE"); log("="*55,"")
 
-    # robots.txt
-    robots = f"""User-agent: *\nAllow: /\nDisallow: /seo-audit-report.json\nDisallow: /scripts/\nDisallow: /*.py$
-User-agent: GPTBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /
-User-agent: ClaudeBot\nAllow: /\nUser-agent: PerplexityBot\nAllow: /
-User-agent: anthropic-ai\nAllow: /\nSitemap: {SITE}/sitemap.xml\n"""
-    (ROOT / "robots.txt").write_text(robots)
-    log("robots.txt updated")
+    (ROOT/"robots.txt").write_text(
+        f"User-agent: *\nAllow: /\nDisallow: /seo-audit-report.json\nDisallow: /*.py$\n"
+        f"User-agent: GPTBot\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\n"
+        f"User-agent: Google-Extended\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\n"
+        f"User-agent: anthropic-ai\nAllow: /\nSitemap: {SITE}/sitemap.xml\n"
+    )
 
-    # sitemap.xml
-    xml_urls = []
+    xml_urls=[]
     for f in files:
-        u = url_for(f)
-        mod = datetime.datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d")
-        is_home = f.name == "index.html" and depth(f) == 0
-        priority = "1.0" if is_home else ("0.9" if depth(f) == 0 else "0.8")
-        freq = "daily" if is_home else ("weekly" if depth(f) == 0 else "monthly")
+        u=url_for(f)
+        mod=datetime.datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d")
+        is_home=f.name=="index.html" and depth(f)==0
+        priority="1.0" if is_home else ("0.9" if depth(f)==0 else "0.8")
+        freq="daily" if is_home else ("weekly" if depth(f)==0 else "monthly")
         xml_urls.append(f"  <url><loc>{u}</loc><lastmod>{mod}</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>")
+    (ROOT/"sitemap.xml").write_text(
+        f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        +"\n".join(xml_urls)+"\n</urlset>",encoding="utf-8")
+    log(f"sitemap.xml — {len(files)} URLs")
 
-    sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{chr(10).join(xml_urls)}
-</urlset>"""
-    (ROOT / "sitemap.xml").write_text(sitemap, encoding="utf-8")
-    log(f"sitemap.xml updated — {len(files)} URLs")
-
-    # rss.xml
-    items = ""
+    items=""
     for f in list(files)[:50]:
-        u = url_for(f)
-        mod = datetime.datetime.fromtimestamp(f.stat().st_mtime).strftime("%a, %d %b %Y %H:%M:%S +0000")
-        title = f.stem.replace("-"," ").replace("_"," ").title()
-        items += f"  <item><title>{title}</title><link>{u}</link><guid isPermaLink=\"true\">{u}</guid><pubDate>{mod}</pubDate></item>\n"
+        u=url_for(f)
+        mod=datetime.datetime.fromtimestamp(f.stat().st_mtime).strftime("%a, %d %b %Y %H:%M:%S +0000")
+        title=f.stem.replace("-"," ").replace("_"," ").title()
+        items+=f'  <item><title>{title}</title><link>{u}</link><guid isPermaLink="true">{u}</guid><pubDate>{mod}</pubDate></item>\n'
+    (ROOT/"rss.xml").write_text(
+        f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+        f'<channel>\n  <title>{CFG["brand"]}</title>\n  <link>{SITE}</link>\n'
+        f'  <description>{CFG["description"]}</description>\n  <language>en</language>\n'
+        f'  <atom:link href="{SITE}/rss.xml" rel="self" type="application/rss+xml"/>\n'
+        +items+"</channel>\n</rss>",encoding="utf-8")
 
-    rss = f"""<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-<channel>
-  <title>{CFG["brand"]}</title>
-  <link>{SITE}</link>
-  <description>{CFG["description"]}</description>
-  <language>en</language>
-  <atom:link href="{SITE}/rss.xml" rel="self" type="application/rss+xml"/>
-{items}
-</channel>
-</rss>"""
-    (ROOT / "rss.xml").write_text(rss, encoding="utf-8")
-
-    # llms.txt
-    topics = "\n".join(f"- {t}" for t in CFG["topics"])
-    llms = f"""# {CFG["brand"]} — LLMs.txt
-> {CFG["brand"]} is an AI-focused media platform. Founded by {CFG["author"]} in 2025.
-## About
-- Website: {SITE}
-- Author: {CFG["author"]}
-- Description: {CFG["description"]}
-- Updated: {TODAY}
-## Topics
-{topics}
-## Key Pages
-- Home: {SITE}/
-- Blog: {SITE}/blog.html
-- Guides: {SITE}/guide.html
-## Permissions
-- AI training: allowed
-- AI indexing: allowed
-- AI citations: allowed
-"""
-    (ROOT / "llms.txt").write_text(llms, encoding="utf-8")
-
-    # ai.txt
-    (ROOT / "ai.txt").write_text(f"""# ai.txt — AI Access Policy for {CFG["brand"]}
-ai-indexing: allowed\nai-training: allowed\nai-citations: allowed
-cite-as: {CFG["brand"]}\ncite-author: {CFG["author"]}\ncite-url: {SITE}
-last-updated: {TODAY}\n""", encoding="utf-8")
-
-    log("rss.xml · llms.txt · ai.txt · robots.txt · sitemap.xml — all updated")
+    topics="\n".join(f"- {t}" for t in CFG["topics"])
+    (ROOT/"llms.txt").write_text(
+        f"# {CFG['brand']} — LLMs.txt\n> Founded by {CFG['author']} in 2025.\n"
+        f"## About\n- Website: {SITE}\n- Author: {CFG['author']}\n- Updated: {TODAY}\n"
+        f"## Topics\n{topics}\n## Permissions\n- AI training: allowed\n- AI indexing: allowed\n",
+        encoding="utf-8")
+    (ROOT/"ai.txt").write_text(
+        f"# ai.txt\nai-indexing: allowed\nai-training: allowed\nai-citations: allowed\n"
+        f"cite-as: {CFG['brand']}\ncite-author: {CFG['author']}\ncite-url: {SITE}\nlast-updated: {TODAY}\n",
+        encoding="utf-8")
+    log("robots.txt · sitemap.xml · rss.xml · llms.txt · ai.txt — done")
 
 # ══════════════════════════════════════════════════════
-# PHASE 5 — ENTITY SCHEMA FILES
+# PHASE 5 — HTML SITEMAP (NEW — fully automated)
 # ══════════════════════════════════════════════════════
-def phase5_entity():
-    log("="*55, "")
-    log("PHASE 5 — ENTITY SCHEMA FILES", "PHASE")
-    log("="*55, "")
-    schema_dir = ROOT / "schema"
+def phase5_html_sitemap(files):
+    log("="*55,""); log("PHASE 5 — HTML SITEMAP (AUTO)","PHASE"); log("="*55,"")
+
+    # Group pages by category
+    categories = {}
+    for f in files:
+        cat = get_category(f)
+        if cat not in categories:
+            categories[cat] = []
+        u   = url_for(f)
+        mod = datetime.datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d")
+        title = page_title(f)
+        categories[cat].append((title, u, mod))
+
+    # Sort categories — Home first, then alphabetical
+    order = ["Home", "Blog", "Guide", "About", "Contact", "Page"]
+    sorted_cats = sorted(categories.keys(), key=lambda x: (order.index(x) if x in order else 99, x))
+
+    # Build category sections
+    sections = ""
+    total = 0
+    for cat in sorted_cats:
+        pages = sorted(categories[cat], key=lambda x: x[0])
+        total += len(pages)
+        rows = ""
+        for title, url, mod in pages:
+            rows += f"""
+            <tr>
+              <td><a href="{url}" target="_blank">{title}</a></td>
+              <td><span class="cat-badge">{cat}</span></td>
+              <td>{mod}</td>
+              <td><a href="{url}" target="_blank" class="visit-btn">Visit →</a></td>
+            </tr>"""
+        sections += f"""
+        <div class="cat-section">
+          <div class="cat-header">
+            <h2>{cat}</h2>
+            <span class="cat-count">{len(pages)} pages</span>
+          </div>
+          <table class="sitemap-table">
+            <thead><tr><th>Page</th><th>Category</th><th>Last Updated</th><th></th></tr></thead>
+            <tbody>{rows}</tbody>
+          </table>
+        </div>"""
+
+    html_sitemap = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sitemap — {CFG["brand"]}</title>
+<meta name="description" content="Complete HTML sitemap for {CFG["brand"]} — {total} pages indexed."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="{SITE}/sitemap.html"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+:root{{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:#1e2d45;
+  --accent:#00e5ff;--accent2:#7c3aed;--text:#e2e8f0;--text-dim:#64748b;}}
+*{{box-sizing:border-box;margin:0;padding:0;}}
+body{{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;
+  font-size:15px;line-height:1.6;overflow-x:hidden;}}
+::-webkit-scrollbar{{width:4px;}}
+::-webkit-scrollbar-thumb{{background:var(--accent2);border-radius:2px;}}
+
+/* NAV */
+nav{{position:sticky;top:0;z-index:100;display:flex;align-items:center;
+  justify-content:space-between;padding:0 5%;height:64px;
+  background:rgba(5,8,16,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);}}
+.nav-logo{{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;
+  color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px;}}
+.nav-dot{{width:8px;height:8px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 8px var(--accent);animation:blink 2s ease infinite;}}
+@keyframes blink{{0%,100%{{opacity:1;}}50%{{opacity:.4;}}}}
+.nav-links{{display:flex;gap:1.5rem;}}
+.nav-links a{{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color .2s;}}
+.nav-links a:hover{{color:var(--accent);}}
+
+/* HERO */
+.hero{{padding:5rem 5% 3rem;border-bottom:1px solid var(--border);}}
+.hero-tag{{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:1rem;
+  display:flex;align-items:center;gap:.75rem;}}
+.hero-tag::before{{content:'';display:block;width:20px;height:1px;background:var(--accent);}}
+.hero h1{{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);
+  letter-spacing:-.03em;margin-bottom:.75rem;}}
+.hero p{{color:var(--text-dim);max-width:500px;font-size:1rem;}}
+
+/* STATS */
+.stats-bar{{display:flex;gap:2rem;padding:2rem 5%;border-bottom:1px solid var(--border);
+  flex-wrap:wrap;background:var(--surface);}}
+.stat{{display:flex;flex-direction:column;gap:4px;}}
+.stat-num{{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;
+  color:var(--accent);line-height:1;}}
+.stat-label{{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-dim);}}
+
+/* SEARCH */
+.search-wrap{{padding:2rem 5% 1rem;}}
+.search-box{{display:flex;gap:.75rem;max-width:600px;}}
+.search-input{{flex:1;background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:.75rem 1.2rem;color:var(--text);font-family:'DM Sans',sans-serif;
+  font-size:.9rem;outline:none;transition:border-color .2s;}}
+.search-input:focus{{border-color:var(--accent);}}
+.search-input::placeholder{{color:var(--text-dim);}}
+.search-btn{{background:var(--accent);color:#000;font-family:'Space Mono',monospace;
+  font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:.75rem 1.5rem;
+  border:none;border-radius:8px;cursor:pointer;font-weight:700;transition:box-shadow .2s;}}
+.search-btn:hover{{box-shadow:0 0 20px rgba(0,229,255,.4);}}
+
+/* CONTENT */
+.content{{padding:1.5rem 5% 4rem;}}
+.cat-section{{margin-bottom:3rem;}}
+.cat-header{{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;
+  padding-bottom:.75rem;border-bottom:1px solid var(--border);}}
+.cat-header h2{{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);}}
+.cat-count{{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);background:rgba(0,229,255,.08);
+  border:1px solid rgba(0,229,255,.2);padding:.25rem .75rem;border-radius:100px;}}
+
+/* TABLE */
+.sitemap-table{{width:100%;border-collapse:collapse;font-size:.88rem;}}
+.sitemap-table th{{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-dim);padding:.65rem 1rem;
+  border-bottom:2px solid var(--border);text-align:left;}}
+.sitemap-table td{{padding:.75rem 1rem;border-bottom:1px solid var(--border);
+  color:var(--text-dim);vertical-align:middle;}}
+.sitemap-table tr:hover td{{background:var(--surface2);}}
+.sitemap-table td:first-child a{{color:var(--text);text-decoration:none;
+  transition:color .2s;font-weight:500;}}
+.sitemap-table td:first-child a:hover{{color:var(--accent);}}
+.cat-badge{{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.08em;
+  text-transform:uppercase;padding:.2rem .6rem;border-radius:4px;
+  background:rgba(0,229,255,.08);color:var(--accent);border:1px solid rgba(0,229,255,.15);
+  white-space:nowrap;}}
+.visit-btn{{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--accent);text-decoration:none;
+  padding:.3rem .75rem;border:1px solid rgba(0,229,255,.25);border-radius:4px;
+  transition:all .2s;white-space:nowrap;}}
+.visit-btn:hover{{background:rgba(0,229,255,.1);border-color:var(--accent);}}
+
+/* FOOTER */
+.page-footer{{border-top:1px solid var(--border);padding:2rem 5%;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}}
+.page-footer span{{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text-dim);}}
+.page-footer a{{color:var(--accent);text-decoration:none;}}
+
+/* RESPONSIVE */
+@media(max-width:768px){{
+  .nav-links{{display:none;}}
+  .stats-bar{{gap:1.5rem;}}
+  .sitemap-table th:nth-child(2),.sitemap-table td:nth-child(2),
+  .sitemap-table th:nth-child(3),.sitemap-table td:nth-child(3){{display:none;}}
+}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="{SITE}/" class="nav-logo"><span class="nav-dot"></span>{CFG["brand"]}</a>
+  <div class="nav-links">
+    <a href="{SITE}/">Home</a>
+    <a href="{SITE}/blog.html">Blog</a>
+    <a href="{SITE}/guide.html">Guide</a>
+    <a href="{SITE}/about.html">About</a>
+    <a href="{SITE}/contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Complete Site Index</div>
+  <h1>{CFG["brand"]} — HTML Sitemap</h1>
+  <p>Every page on {CFG["brand"]} — updated automatically. {total} pages indexed as of {TODAY}.</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">{total}</span><span class="stat-label">Total Pages</span></div>
+  <div class="stat"><span class="stat-num">{len(categories)}</span><span class="stat-label">Categories</span></div>
+  <div class="stat"><span class="stat-num">{TODAY}</span><span class="stat-label">Last Updated</span></div>
+  <div class="stat"><span class="stat-num">Auto</span><span class="stat-label">Updated On Push</span></div>
+</div>
+
+<div class="search-wrap">
+  <div class="search-box">
+    <input type="text" class="search-input" id="siteSearch" placeholder="Search pages..." oninput="filterRows(this.value)"/>
+    <button class="search-btn" onclick="filterRows(document.getElementById('siteSearch').value)">Search</button>
+  </div>
+</div>
+
+<div class="content" id="sitemapContent">
+  {sections}
+</div>
+
+<div class="page-footer">
+  <span>&copy; {YEAR} {CFG["brand"]} &middot; {CFG["author"]}</span>
+  <span>XML Sitemap: <a href="{SITE}/sitemap.xml">{SITE}/sitemap.xml</a></span>
+  <span>Last updated: {TODAY}</span>
+</div>
+
+<script>
+function filterRows(query) {{
+  var q = query.toLowerCase().trim();
+  var rows = document.querySelectorAll('.sitemap-table tbody tr');
+  var sections = document.querySelectorAll('.cat-section');
+  rows.forEach(function(row) {{
+    var text = row.textContent.toLowerCase();
+    row.style.display = (!q || text.includes(q)) ? '' : 'none';
+  }});
+  // Hide empty sections
+  sections.forEach(function(sec) {{
+    var visible = sec.querySelectorAll('tbody tr:not([style*="none"])').length;
+    sec.style.display = visible > 0 ? '' : 'none';
+  }});
+}}
+</script>
+
+</body>
+</html>"""
+
+    (ROOT / "sitemap.html").write_text(html_sitemap, encoding="utf-8")
+    log(f"sitemap.html generated — {total} pages across {len(categories)} categories")
+
+# ══════════════════════════════════════════════════════
+# PHASE 6 — ENTITY SCHEMA FILES
+# ══════════════════════════════════════════════════════
+def phase6_entity():
+    log("="*55,""); log("PHASE 6 — ENTITY SCHEMA FILES","PHASE"); log("="*55,"")
+    schema_dir=ROOT/"schema"
     schema_dir.mkdir(exist_ok=True)
-    (schema_dir / "organization.json").write_text(json.dumps(ORG_SCHEMA, indent=2))
-    (schema_dir / "website.json").write_text(json.dumps(WEBSITE_SCHEMA, indent=2))
+    (schema_dir/"organization.json").write_text(json.dumps(ORG_SCHEMA,indent=2))
+    (schema_dir/"website.json").write_text(json.dumps(WEBSITE_SCHEMA,indent=2))
     log("schema/organization.json + schema/website.json saved")
 
 # ══════════════════════════════════════════════════════
 # MAIN
 # ══════════════════════════════════════════════════════
 if __name__ == "__main__":
-    print("\n" + "═"*58)
-    print("  NeuraPulse SEO Engine v2.0")
+    print("\n"+"═"*58)
+    print("  NeuraPulse SEO Engine v2.1")
     print(f"  Root : {ROOT}")
     print(f"  Time : {TS}")
-    print("═"*58 + "\n")
+    print("═"*58+"\n")
 
     files = get_files()
     log(f"Found {len(files)} HTML files")
@@ -685,17 +839,15 @@ if __name__ == "__main__":
     phase2_seo_meta(files)
     phase3_geo(files)
     phase4_technical(files)
-    phase5_entity()
+    phase5_html_sitemap(files)
+    phase6_entity()
 
-    # Save log
-    (ROOT / "seo-run-log.txt").write_text("\n".join(logs), encoding="utf-8")
+    (ROOT/"seo-run-log.txt").write_text("\n".join(logs),encoding="utf-8")
 
-    print("\n" + "═"*58)
+    print("\n"+"═"*58)
     print("  ✅  ALL PHASES COMPLETE")
     print(f"  Pages processed: {len(files)}")
     print("═"*58)
     print("\n  FILES GENERATED:")
-    print("  robots.txt · sitemap.xml · rss.xml · llms.txt · ai.txt")
-    print("  schema/organization.json · schema/website.json")
-    print("  seo-run-log.txt\n")
-    print("  NEXT: git add . && git commit -m 'SEO Engine v2' && git push\n")
+    print("  robots.txt · sitemap.xml · sitemap.html · rss.xml")
+    print("  llms.txt · ai.txt · schema/*.json · seo-run-log.txt\n")
