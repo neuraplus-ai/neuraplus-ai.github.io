@@ -1,4 +1,4 @@
-# ai.txt — AI Access Policy for NeuraPulse
+# ai.txt
 ai-indexing: allowed
 ai-training: allowed
 ai-citations: allowed

@@ -1,9 +1,8 @@
 # NeuraPulse — LLMs.txt
-> NeuraPulse is an AI-focused media platform. Founded by Prashant Lalwani in 2025.
+> Founded by Prashant Lalwani in 2025.
 ## About
 - Website: https://neuraplus-ai.github.io
 - Author: Prashant Lalwani
-- Description: Expert AI guides, tools, and analysis — making artificial intelligence understandable and actionable.
 - Updated: 2026-05-28
 ## Topics
 - Kimi AI
@@ -22,11 +21,6 @@
 - n8n Automation
 - AI Coding
 - Free AI Tools
-## Key Pages
-- Home: https://neuraplus-ai.github.io/
-- Blog: https://neuraplus-ai.github.io/blog.html
-- Guides: https://neuraplus-ai.github.io/guide.html
 ## Permissions
 - AI training: allowed
 - AI indexing: allowed
-- AI citations: allowed

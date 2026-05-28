@@ -1,13 +1,12 @@
 User-agent: *
 Allow: /
 Disallow: /seo-audit-report.json
-Disallow: /scripts/
 Disallow: /*.py$
 User-agent: GPTBot
 Allow: /
-User-agent: Google-Extended
-Allow: /
 User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
 Allow: /
 User-agent: PerplexityBot
 Allow: /

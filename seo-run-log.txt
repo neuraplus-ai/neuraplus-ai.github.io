@@ -1,25 +1,28 @@
-[INFO] Found 286 HTML files
+[INFO] Found 287 HTML files
 [] =======================================================
 [PHASE] PHASE 1 — NAV + FOOTER + FADE FIX
 [] =======================================================
-[INFO] Fade fix injected : 0 pages
-[INFO] Nav injected      : 1 pages · Already had nav: 285
-[INFO] Footer added      : 0 pages · Already had footer: 286
+[INFO] Fade fix    : 0 pages
+[INFO] Nav added   : 1 · skipped: 286
+[INFO] Footer added: 1 · skipped: 286
 [] =======================================================
-[PHASE] PHASE 2 — SEO META + SCHEMA INJECTION
+[PHASE] PHASE 2 — SEO META + SCHEMA
 [] =======================================================
 [INFO] SEO meta/schema injected: 0 pages
 [] =======================================================
-[PHASE] PHASE 3 — GEO/AEO AI VISIBILITY TAGS
+[PHASE] PHASE 3 — GEO/AEO TAGS
 [] =======================================================
-[INFO] GEO/AEO tags injected: 0 pages
+[INFO] GEO/AEO tags injected: 1 pages
 [] =======================================================
 [PHASE] PHASE 4 — TECHNICAL SEO FILES
 [] =======================================================
-[INFO] robots.txt updated
-[INFO] sitemap.xml updated — 286 URLs
-[INFO] rss.xml · llms.txt · ai.txt · robots.txt · sitemap.xml — all updated
+[INFO] sitemap.xml — 287 URLs
+[INFO] robots.txt · sitemap.xml · rss.xml · llms.txt · ai.txt — done
 [] =======================================================
-[PHASE] PHASE 5 — ENTITY SCHEMA FILES
+[PHASE] PHASE 5 — HTML SITEMAP (AUTO)
+[] =======================================================
+[INFO] sitemap.html generated — 287 pages across 7 categories
+[] =======================================================
+[PHASE] PHASE 6 — ENTITY SCHEMA FILES
 [] =======================================================
 [INFO] schema/organization.json + schema/website.json saved
