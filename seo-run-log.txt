@@ -8,11 +8,11 @@
 [] =======================================================
 [PHASE] PHASE 2 — SEO META + SCHEMA
 [] =======================================================
-[INFO] SEO meta/schema injected: 1 pages
+[INFO] SEO meta/schema injected: 2 pages
 [] =======================================================
 [PHASE] PHASE 3 — GEO/AEO TAGS
 [] =======================================================
-[INFO] GEO/AEO tags injected: 1 pages
+[INFO] GEO/AEO tags injected: 2 pages
 [] =======================================================
 [PHASE] PHASE 4 — TECHNICAL SEO FILES
 [] =======================================================
