@@ -1,10 +1,10 @@
-[INFO] Found 301 HTML files
+[INFO] Found 302 HTML files
 [] =======================================================
 [PHASE] PHASE 1 — NAV + FOOTER + FADE FIX
 [] =======================================================
 [INFO] Fade fix    : 0 pages
-[INFO] Nav added   : 1 · skipped: 300
-[INFO] Footer added: 1 · skipped: 300
+[INFO] Nav added   : 1 · skipped: 301
+[INFO] Footer added: 1 · skipped: 301
 [] =======================================================
 [PHASE] PHASE 2 — SEO META + SCHEMA
 [] =======================================================
@@ -16,12 +16,12 @@
 [] =======================================================
 [PHASE] PHASE 4 — TECHNICAL SEO FILES
 [] =======================================================
-[INFO] sitemap.xml — 301 URLs
+[INFO] sitemap.xml — 302 URLs
 [INFO] robots.txt · sitemap.xml · rss.xml · llms.txt · ai.txt — done
 [] =======================================================
 [PHASE] PHASE 5 — HTML SITEMAP (AUTO)
 [] =======================================================
-[INFO] sitemap.html generated — 301 pages across 7 categories
+[INFO] sitemap.html generated — 302 pages across 7 categories
 [] =======================================================
 [PHASE] PHASE 6 — ENTITY SCHEMA FILES
 [] =======================================================
