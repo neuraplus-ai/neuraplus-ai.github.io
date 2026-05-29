@@ -1,16 +1,16 @@
 # ══════════════════════════════════════════════════════════════════════
-# NeuraPulse — Universal Page Health Check + Auto Fix v2
+# NeuraPulse — Universal Page Health Check + Auto Fix v3
 # File: .github/workflows/check_pages.yml
 #
 # Runs automatically on every push to main.
 # 1. Scans all HTML files for black screen, image jump, bar/counter bugs
-# 2. Auto-injects universal fix v2 (covers .fade AND .reveal classes)
-# 3. Removes old v1 NP:FADE-FIX blocks to prevent duplication
-# 4. Commits fixes back to repo automatically
+# 2. Auto-injects universal fix v3 (covers .fi, .fade AND .reveal classes)
+# 3. Removes old v1/v2 NP fix blocks to prevent duplication
+# 4. Commits fixes back to repo automatically (with rebase to avoid conflicts)
 # 5. Reports full health check with issue breakdown
 # ══════════════════════════════════════════════════════════════════════
 
-name: 🔍 Universal Page Health Check + Auto Fix v2
+name: 🔍 Universal Page Health Check + Auto Fix v3
 
 on:
   push:
@@ -29,6 +29,8 @@ jobs:
       # ── 1. Checkout repo ─────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history needed for rebase
 
       # ── 2. Set up Python ─────────────────────────────────────────────
       - name: Set up Python
@@ -37,7 +39,7 @@ jobs:
           python-version: "3.11"
 
       # ── 3. Run the universal fix script ──────────────────────────────
-      - name: Run fade_fix.py (Universal Fix v2)
+      - name: Run fade_fix.py (Universal Fix v3)
         run: python fade_fix.py
 
       # ── 4. Check if anything changed ─────────────────────────────────
@@ -53,13 +55,14 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "fix: universal page fix v2 - black screen, image jump, bars [skip ci]"
-          git push
+          git commit -m "fix: universal page fix v3 - fi blackout, black screen, image jump [skip ci]"
+          git pull --rebase origin main
+          git push origin main
 
       # ── 6. Full health report ─────────────────────────────────────────
       - name: Health Report
         run: |
-          echo "### 🔍 NeuraPulse Universal Page Health Check v2" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔍 NeuraPulse Universal Page Health Check v3" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # Count total HTML files (excluding system dirs)
@@ -70,13 +73,21 @@ jobs:
             -not -path "./schema/*" \
             -not -path "./_cleanup_backup/*" | wc -l)
 
-          # Count pages with new v2 fix
-          FIXED_V2=$(grep -rl "NP:UNIVERSAL-FIX-V2" --include="*.html" . \
+          # Count pages with new v3 fix
+          FIXED_V3=$(grep -rl "NP:UNIVERSAL-FIX-V3" --include="*.html" . \
             2>/dev/null | wc -l || echo 0)
+
+          # Count pages still using old v2 fix only
+          FIXED_V2_ONLY=$(grep -rl "NP:UNIVERSAL-FIX-V2" --include="*.html" . \
+            2>/dev/null | grep -L "NP:UNIVERSAL-FIX-V3" | wc -l || echo 0)
 
           # Count pages still using old v1 fix only
           FIXED_V1_ONLY=$(grep -rl "NP:FADE-FIX" --include="*.html" . \
-            2>/dev/null | grep -L "NP:UNIVERSAL-FIX-V2" | wc -l || echo 0)
+            2>/dev/null | grep -L "NP:UNIVERSAL-FIX-V3" | wc -l || echo 0)
+
+          # Count pages with .fi class (YOUR main bug)
+          FI_PAGES=$(grep -rl 'class="fi"' --include="*.html" . \
+            2>/dev/null | wc -l || echo 0)
 
           # Count pages with .reveal class (newer style pages)
           REVEAL_PAGES=$(grep -rl 'class="reveal"' --include="*.html" . \
@@ -87,7 +98,7 @@ jobs:
             2>/dev/null | wc -l || echo 0)
 
           # Count pages missing fix entirely
-          MISSING=$(( TOTAL - FIXED_V2 ))
+          MISSING=$(( TOTAL - FIXED_V3 ))
 
           # Count pages with broken image references (missing aspect-ratio)
           IMAGE_ISSUES=$(grep -rl "blog-hero-image" --include="*.html" . \
@@ -101,7 +112,8 @@ jobs:
           echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
           echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
           echo "| 📄 Total HTML pages | $TOTAL |" >> $GITHUB_STEP_SUMMARY
-          echo "| ✅ Pages with v2 fix | $FIXED_V2 |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ Pages with v3 fix | $FIXED_V3 |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔄 Pages with old v2 fix only | $FIXED_V2_ONLY |" >> $GITHUB_STEP_SUMMARY
           echo "| 🔄 Pages with old v1 fix only | $FIXED_V1_ONLY |" >> $GITHUB_STEP_SUMMARY
           echo "| ⚠️ Pages missing any fix | $MISSING |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -109,6 +121,7 @@ jobs:
           echo "#### 🐛 Bug Types Detected" >> $GITHUB_STEP_SUMMARY
           echo "| Bug Type | Pages Affected |" >> $GITHUB_STEP_SUMMARY
           echo "|----------|---------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔴 .fi black screen (main bug) | $FI_PAGES pages |" >> $GITHUB_STEP_SUMMARY
           echo "| 🔴 .reveal black screen | $REVEAL_PAGES pages |" >> $GITHUB_STEP_SUMMARY
           echo "| 🔴 .fade black screen | $FADE_PAGES pages |" >> $GITHUB_STEP_SUMMARY
           echo "| 🟡 Image layout shift | $IMAGE_ISSUES pages |" >> $GITHUB_STEP_SUMMARY
@@ -117,7 +130,7 @@ jobs:
 
           # Final status
           if [ "$MISSING" -eq 0 ]; then
-            echo "## ✅ All $TOTAL pages are protected!" >> $GITHUB_STEP_SUMMARY
+            echo "## ✅ All $TOTAL pages are protected with v3!" >> $GITHUB_STEP_SUMMARY
           else
             echo "## ⚠️ $MISSING pages still need fixing — re-run workflow." >> $GITHUB_STEP_SUMMARY
           fi
