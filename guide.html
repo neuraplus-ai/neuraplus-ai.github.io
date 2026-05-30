@@ -597,77 +597,60 @@ html {
    - cat      : must match a key in CATEGORIES below
    - title    : guide title
    - desc     : short description (2–3 sentences)
-   - url      : link to the blog post / guide HTML file
+   - url      : link to the guide post / guide HTML file
    - read     : estimated read time  e.g. "18 min"
    - chapters : number of chapters   e.g. "6 Chapters"
    - date     : publish / update date e.g. "May 2026"
-   - author   : author name
+   - author   : Prashant Lalwani
    - stats    : (featured only) array of { val, label } — max 2
 ═══════════════════════════════════════════════════════════════ */
 const GUIDES = [
 
   /* ── FEATURED ─────────────────────────────────────────────── */
- /* — GRID CARDS — add new guides below this line ————————————— */
-{
-	featured : false,
-	cat      : "ai-models",
-	title    : "What Is the Groq Chip and How Does It Work? Complete 2026 Guide",
-	desc     : "The definitive pillar guide to Groq AI — what the LPU architecture is, why it runs large language models up to 10× faster than any GPU, how the on-chip SRAM eliminates the memory bottleneck, real-world benchmark data, and a step-by-step walkthrough on using the free Groq API right now.",
-	url      : "guide/what-is-groq-chip-how-it-works.html",
-	read     : "18 min",
-	chapters : "6 Chapters",
-	date     : "May 2026",
-	author   : "Prashant Lalwani",
-	stats    : [
-		{ val: "750+", label: "Tokens / sec" },
-		{ val: "10×",  label: "Faster than GPU" }
-	]
-},
-{
-	featured : false,
-	cat      : "benchmarks",
-	title    : "Groq Speed & Performance Guide: LPU Benchmarks 2026",
-	desc     : "Complete breakdown of Groq LPU performance — why the architecture outperforms every GPU in AI inference, head-to-head numbers vs NVIDIA H100, real-world application performance benchmarks, and the architectural decisions that deliver sub-300ms latency at scale.",
-	url      : "guide/groq-speed-performance-guide.html",
-	read     : "16 min",
-	chapters : "5 Chapters",
-	date     : "May 2026",
-	author   : "Prashant Lalwani",
-	stats    : [
-		{ val: "8×",   label: "Faster than H100" },
-		{ val: "14ms", label: "First token latency" }
-	]
-},
-{
-	featured : false,
-	cat      : "benchmarks",
-	title    : "Groq vs NVIDIA AI Inference 2026: The Complete Comparison",
-	desc     : "Every major head-to-head comparison — Groq LPU vs NVIDIA GPU, Groq vs CPU inference, Groq vs OpenAI latency, Groq vs Gemini, and Groq vs Anthropic Claude speed — with real benchmark data, architectural explanations, and a clear decision framework for choosing the right platform in 2026.",
-	url      : "guide/groq-vs-nvidia-ai-inference-2026.html",
-	read     : "22 min",
-	chapters : "5 Comparisons",
-	date     : "May 2026",
-	author   : "Prashant Lalwani",
-	stats    : [
-		{ val: "10×",  label: "vs NVIDIA GPU" },
-		{ val: "500×", label: "vs CPU inference" }
-	]
-},
-{
-	featured : false,
-	cat      : "ai-models",
-	title    : "Groq AI Platform Tutorial: Beginner's Guide 2026",
-	desc     : "Why Groq is faster than traditional AI chips — the complete guide to LPU speed architecture, how on-chip SRAM eliminates GPU bottlenecks, real inference speed numbers vs GPU, production performance case studies, and benchmark results that prove the LPU advantage.",
-	url      : "guide/groq-ai-platform-tutorial-beginners.htm",
-	read     : "16 min",
-	chapters : "5 Chapters",
-	date     : "May 2026",
-	author   : "Prashant Lalwani",
-	stats    : [
-		{ val: "580+", label: "Tokens / sec" },
-		{ val: "0",    label: "Off-chip memory calls" }
-	]
-}
+  {
+    featured : true,
+    cat      : "ai-models",
+    title    : "What Is the Groq Chip and How Does It Work? Complete 2026 Guide",
+    desc     : "The definitive pillar guide to Groq AI — what the LPU architecture is, why it runs large language models up to 10× faster than any GPU, how the on-chip SRAM eliminates the memory bottleneck, real-world benchmark data, and a step-by-step walkthrough on using the free Groq API right now.",
+    url      : "guide/what-is-groq-chip-how-it-works.html",
+    read     : "18 min",
+    chapters : "6 Chapters",
+    date     : "May 2026",
+    author   : "Prashant Lalwani",
+    stats    : [
+      { val: "750+", label: "Tokens / sec" },
+      { val: "10×",  label: "Faster than GPU" }
+    ]
+  },
+
+  /* ── GRID CARDS — add new guides below this line ────────── */
+  {
+    featured : false,
+    cat      : "ai-models",
+    title    : "Why Groq is Faster Than Traditional AI Chips: Speed, GPU Comparison & Benchmarks 2026",
+    desc     : "Discover why Groq outperforms traditional AI chips with its revolutionary LPU architecture. Compare Groq vs GPUs, explore real-world benchmarks, and learn how it delivers ultra-fast AI inference in 2026.",
+    url      : "guide/groq-speed-performance-guide.html",
+    read     : "15 min",
+    chapters : "8 Chapters"
+  },
+  {
+    featured : false,
+    cat      : "ai-ads",
+    title    : "Groq vs NVIDIA AI Inference 2026: The Complete Speed Benchmark Guide",
+    desc     : "Compare Groq and NVIDIA for AI inference in 2026. Explore speed benchmarks, latency tests, architecture differences, and discover which platform delivers the fastest real-time AI performance.",
+    url      : "guide/groq-vs-nvidia-ai-inference-2026.html",
+    read     : "16 min",
+    chapters : "7 Chapters"
+  },
+  {
+    featured : false,
+    cat      : "automation",
+    title    : "Groq AI Platform Tutorial for Beginners 2026: Build Fast AI Apps & Chatbots",
+    desc     : "Learn how to use the Groq AI Platform step by step. This beginner-friendly guide shows you how to build fast AI apps, chatbots, and API-powered projects using Groq's ultra-low-latency infrastructure in 2026.",
+    url      : "guide/groq-ai-platform-tutorial-beginners.html",
+    read     : "18 min",
+    chapters : "9 Chapters"
+  },
   {
     featured : false,
     cat      : "prompts",
