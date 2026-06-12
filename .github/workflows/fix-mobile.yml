@@ -1,0 +1,251 @@
+name: Fix Mobile View
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fix-mobile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Inject mobile CSS fix into all HTML files
+        run: |
+          # This CSS only applies on screens under 768px (mobile only)
+          # Desktop is 100% untouched - zero risk
+
+          MOBILE_CSS='<style id="np-mobile-fix">
+          /* =============================================
+             NeuraPulse Mobile Fix — MOBILE ONLY
+             Only applies under 768px — desktop untouched
+             ============================================= */
+          @media (max-width: 768px) {
+
+            /* 1. Fix body overflow — stop horizontal scroll */
+            html, body {
+              overflow-x: hidden !important;
+              width: 100% !important;
+              max-width: 100vw !important;
+            }
+
+            /* 2. Fix layout grid — force single column */
+            .layout {
+              grid-template-columns: 1fr !important;
+              padding: 1rem !important;
+              gap: 1.5rem !important;
+            }
+
+            /* 3. Fix article width */
+            article {
+              width: 100% !important;
+              min-width: 0 !important;
+              overflow-x: hidden !important;
+            }
+
+            /* 4. Fix stats row — 2 columns on mobile */
+            .stats-row {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 0.5rem !important;
+            }
+
+            /* 5. Fix stat pill text */
+            .stat-pill .sv {
+              font-size: 1rem !important;
+            }
+            .stat-pill .sl {
+              font-size: 0.5rem !important;
+            }
+
+            /* 6. Fix tables — make scrollable */
+            .live-table-wrap,
+            .table-wrap {
+              overflow-x: auto !important;
+              -webkit-overflow-scrolling: touch !important;
+              width: 100% !important;
+              max-width: 100% !important;
+            }
+
+            /* 7. Fix h1 font size */
+            article h1 {
+              font-size: 1.6rem !important;
+              line-height: 1.25 !important;
+            }
+
+            /* 8. Fix h2 font size */
+            article h2 {
+              font-size: 1.2rem !important;
+            }
+
+            /* 9. Fix API viz pipeline — stack vertically */
+            .api-viz {
+              flex-direction: column !important;
+              gap: 0.5rem !important;
+              padding: 1rem !important;
+            }
+            .api-node {
+              width: 100% !important;
+              padding: 0.6rem !important;
+            }
+            .api-line {
+              flex: 0 0 20px !important;
+              width: 2px !important;
+              height: 20px !important;
+              margin: 0 auto !important;
+            }
+
+            /* 10. Fix steps layout */
+            .step {
+              gap: 0.75rem !important;
+            }
+            .step-num {
+              width: 32px !important;
+              height: 32px !important;
+              font-size: 0.8rem !important;
+              flex-shrink: 0 !important;
+            }
+
+            /* 11. Fix floating chat/back-to-top button */
+            #np-btn {
+              width: 46px !important;
+              height: 46px !important;
+              bottom: 1rem !important;
+              right: 1rem !important;
+            }
+
+            /* 12. Fix chat window width on mobile */
+            #np-win {
+              width: calc(100vw - 2rem) !important;
+              right: 1rem !important;
+              bottom: 4.5rem !important;
+            }
+
+            /* 13. Fix share buttons — wrap properly */
+            .share-btns {
+              gap: 0.4rem !important;
+              flex-wrap: wrap !important;
+            }
+            .share-btn {
+              font-size: 0.6rem !important;
+              padding: 0.4rem 0.75rem !important;
+            }
+
+            /* 14. Fix meta row wrapping */
+            .meta-row {
+              flex-wrap: wrap !important;
+              gap: 0.6rem !important;
+            }
+
+            /* 15. Fix tip/warn box padding */
+            .tip-box,
+            .warn-box,
+            .seo-highlight {
+              padding: 0.85rem 1rem !important;
+            }
+
+            /* 16. Fix use case grid — 2 columns */
+            .usecase-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 0.6rem !important;
+            }
+
+            /* 17. Fix footer grid */
+            .np-fi {
+              grid-template-columns: 1fr !important;
+              gap: 1.5rem !important;
+            }
+
+            /* 18. Fix breadcrumb overflow */
+            .breadcrumb {
+              flex-wrap: wrap !important;
+              font-size: 0.55rem !important;
+            }
+
+            /* 19. Fix ticker text readable */
+            .ticker span {
+              font-size: 0.65rem !important;
+            }
+
+            /* 20. Fix images never overflow */
+            img {
+              max-width: 100% !important;
+              height: auto !important;
+            }
+
+            /* 21. Fix inline code/pre overflow */
+            pre, code {
+              max-width: 100% !important;
+              overflow-x: auto !important;
+              white-space: pre-wrap !important;
+              word-break: break-word !important;
+            }
+
+            /* 22. Fix sidebar always below article */
+            aside {
+              position: static !important;
+              width: 100% !important;
+            }
+
+            /* 23. Fix nav height on small screens */
+            #np-nav {
+              padding: 0 4% !important;
+              height: 58px !important;
+            }
+
+            /* 24. Fix blog card overflow on listing page */
+            .blog-card,
+            .post-card {
+              width: 100% !important;
+              overflow: hidden !important;
+            }
+
+            /* 25. Fix counter stats showing 0 - ensure visible */
+            [data-target] {
+              opacity: 1 !important;
+              visibility: visible !important;
+            }
+
+          }
+          </style>'
+
+          echo "Starting mobile fix injection..."
+          fixed=0
+          skipped=0
+
+          for file in $(find . -name "*.html" -not -path "./.git/*"); do
+
+            # Skip if already has our mobile fix
+            if grep -q "np-mobile-fix" "$file"; then
+              echo "SKIP (already fixed): $file"
+              skipped=$((skipped + 1))
+              continue
+            fi
+
+            # Only inject into files that have </head>
+            if grep -q "</head>" "$file"; then
+              # Inject before </head>
+              sed -i "s|</head>|${MOBILE_CSS}\n</head>|" "$file"
+              echo "FIXED: $file"
+              fixed=$((fixed + 1))
+            else
+              echo "SKIP (no head tag): $file"
+              skipped=$((skipped + 1))
+            fi
+
+          done
+
+          echo ""
+          echo "========================================"
+          echo "FIXED:   $fixed files"
+          echo "SKIPPED: $skipped files"
+          echo "========================================"
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "fix: add mobile CSS improvements to all pages"
+          git push
+          echo "Done! Mobile fixes deployed."
