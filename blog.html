@@ -437,8 +437,8 @@ document.getElementById('srch').addEventListener('input',function(){var q=this.v
         <li><a href="blog.html">Gemini AI Ads</a></li>
         <li><a href="blog.html">AI Automation</a></li>
         <li><a href="blog.html">Prompt Engineering</a></li>
-        <li><a href="blog.html">AI Models & LLMs</a></li>
-        <li><a href="blog.html">AI SEO & GEO</a></li>
+        <li><a href="blog.html">AI Models &amp; LLMs</a></li>
+        <li><a href="blog.html">AI SEO &amp; GEO</a></li>
       </ul>
     </div>
     <div class="np-col">
@@ -459,4 +459,106 @@ document.getElementById('srch').addEventListener('input',function(){var q=this.v
   </div>
 </footer>
 
+<script>
+(function(){
+  var srch = document.getElementById('srch');
+  var cl   = document.getElementById('cl');
+  if (!srch) return;
+
+  function updateCount(c){
+    if (cl) cl.textContent = 'Showing ' + c + ' article' + (c !== 1 ? 's' : '');
+  }
+
+  var index = [];
+  document.querySelectorAll('.card').forEach(function(card){
+    var link = (card.tagName === 'A') ? card : card.querySelector('a[href]');
+    if (!link) return;
+    var titleEl = card.querySelector('h1,h2,h3,h4,.title') || link;
+    index.push({
+      card: card,
+      href: link.getAttribute('href'),
+      title: (titleEl.textContent || '').trim(),
+      cat: (card.dataset.cat || '').trim()
+    });
+  });
+  var TOTAL = index.length;
+
+  var wrap = srch.parentElement;
+  if (getComputedStyle(wrap).position === 'static') wrap.style.position = 'relative';
+
+  var dropdown = document.createElement('div');
+  dropdown.style.cssText = 'position:absolute;top:100%;left:0;right:0;background:var(--surface,#0c1120);border:1px solid var(--border,#1e2d45);border-radius:8px;margin-top:6px;max-height:360px;overflow-y:auto;z-index:500;display:none;box-shadow:0 12px 40px rgba(0,0,0,0.45);';
+  wrap.appendChild(dropdown);
+
+  function renderDropdown(matches){
+    dropdown.innerHTML = '';
+    if (!matches.length){ dropdown.style.display = 'none'; return; }
+    matches.slice(0, 8).forEach(function(item){
+      var row = document.createElement('a');
+      row.href = item.href;
+      row.style.cssText = 'display:block;padding:0.75rem 1rem;color:var(--text,#e2e8f0);text-decoration:none;border-bottom:1px solid var(--border,#1e2d45);font-family:"DM Sans",sans-serif;font-size:0.85rem;transition:background 0.15s;';
+      row.addEventListener('mouseover', function(){ row.style.background = 'var(--surface2,#111827)'; });
+      row.addEventListener('mouseout',  function(){ row.style.background = 'transparent'; });
+      var catTag = item.cat ? ' <span style="font-family:\'Space Mono\',monospace;font-size:0.58rem;color:var(--accent,#00e5ff);letter-spacing:0.08em;margin-left:6px;">' + item.cat.toUpperCase() + '</span>' : '';
+      row.innerHTML = item.title + catTag;
+      dropdown.appendChild(row);
+    });
+    dropdown.style.display = 'block';
+  }
+
+  function filterGrid(matchHrefs){
+    var c = 0;
+    document.querySelectorAll('.card').forEach(function(card){
+      var link = (card.tagName === 'A') ? card : card.querySelector('a[href]');
+      var href = link ? link.getAttribute('href') : null;
+      var show = !matchHrefs || (href && matchHrefs.indexOf(href) > -1);
+      card.style.display = show ? '' : 'none';
+      if (show) c++;
+    });
+    updateCount(c);
+  }
+
+  srch.addEventListener('input', function(){
+    var q = this.value.toLowerCase().trim();
+
+    if (!q){
+      dropdown.style.display = 'none';
+      filterGrid(null);
+      return;
+    }
+
+    document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('active'); });
+
+    var matches = index.filter(function(item){
+      return (item.title + ' ' + item.cat).toLowerCase().indexOf(q) > -1;
+    });
+
+    renderDropdown(matches);
+    filterGrid(matches.map(function(m){ return m.href; }));
+  });
+
+  document.addEventListener('click', function(e){
+    if (!wrap.contains(e.target)) dropdown.style.display = 'none';
+  });
+  srch.addEventListener('focus', function(){
+    if (this.value.trim()) dropdown.style.display = 'block';
+  });
+
+  window.filt = function(cat, btn){
+    document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    srch.value = '';
+    dropdown.style.display = 'none';
+
+    var c = 0;
+    document.querySelectorAll('.card').forEach(function(card){
+      var d = (card.dataset.cat || '').toLowerCase();
+      var show = (cat === 'all' || d.indexOf(cat.toLowerCase()) > -1);
+      card.style.display = show ? '' : 'none';
+      if (show) c++;
+    });
+    updateCount(c);
+  };
+})();
+</script>
 </body></html>
