@@ -19,18 +19,28 @@
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="In 2026, the two main approaches are: using Claude Code (Anthropic's dedicated coding CLI), or building custom GitHub Actions workflows that call the Claude ..." name="description"/><meta content="Prashant Lalwani" name="author"/><meta content="index, follow" name="robots"/><meta content="How to Connect Anthropic Claude with GitHub – NeuraPlusAI Blog" property="og:title"/><link href="https://neuraplus-ai.github.io/blog/connect-anthropic-claude-github.html" rel="canonical"/><link href="../favicon.svg" rel="icon" type="image/svg+xml"/><title>How to Connect Anthropic Claude with GitHub – NeuraPlusAI Blog</title><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;display=swap" rel="stylesheet"/><style>
+})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Learn how to connect Anthropic Claude with GitHub in 2026. Set up Claude Code CLI or GitHub Actions for automated code reviews, PR analysis, and development workflows." name="description"/><meta content="Prashant Lalwani" name="author"/><meta content="index, follow" name="robots"/><meta content="How to Connect Anthropic Claude with GitHub – NeuraPlusAI Blog" property="og:title"/><meta content="Learn how to connect Anthropic Claude with GitHub in 2026. Set up Claude Code CLI or GitHub Actions for automated code reviews, PR analysis, and development workflows." property="og:description"/><link href="https://neuraplus-ai.github.io/blog/connect-anthropic-claude-github.html" rel="canonical"/><link href="../favicon.svg" rel="icon" type="image/svg+xml"/><title>How to Connect Anthropic Claude with GitHub – NeuraPlusAI Blog</title><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;display=swap" rel="stylesheet"/><style>
 :root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:#1e2d45;--accent:#00e5ff;--accent2:#7c3aed;--accent3:#f59e0b;--text:#e2e8f0;--text-dim:#64748b;--text-muted:#334155;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.85;overflow-x:hidden;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.85;overflow-x:hidden;position:relative;}
+
+/* Interactive Background Canvas */
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;}
+.bg-glow{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden;}
+.glow-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.12;animation:drift 20s infinite alternate ease-in-out;}
+.glow-1{width:600px;height:600px;background:var(--accent);top:-10%;left:-10%;animation-delay:0s;}
+.glow-2{width:500px;height:500px;background:var(--accent2);bottom:-10%;right:-10%;animation-delay:-10s;}
+@keyframes drift{0%{transform:translate(0,0) scale(1);}100%{transform:translate(100px,50px) scale(1.2);}}
+
 ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(5,8,16,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(5,8,16,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,.12);}
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
-.ld{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite;}@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.nav-links{display:flex;gap:2rem;list-style:none;}.nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s;}.nav-links a:hover,.nav-links a.active{color:var(--accent);}
-.nav-cta{font-family:'Space Mono',monospace;font-size:0.72rem;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.5rem 1.2rem;border-radius:4px;text-decoration:none;}
-.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}.hbg span{display:block;width:22px;height:2px;background:var(--text-dim);border-radius:2px;}
+.ld{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.7;transform:scale(1.5);}}
+.nav-links{display:flex;gap:2rem;list-style:none;}.nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s;position:relative;}.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform 0.25s;}.nav-links a:hover,.nav-links a.active{color:var(--accent);}.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+.nav-cta{font-family:'Space Mono',monospace;font-size:0.72rem;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.5rem 1.2rem;border-radius:4px;text-decoration:none;transition:box-shadow 0.2s,transform 0.2s;}.nav-cta:hover{box-shadow:0 0 22px var(--accent);transform:translateY(-1px);}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}.hbg span{display:block;width:22px;height:2px;background:var(--text-dim);border-radius:2px;transition:all 0.3s;}
 @media(max-width:900px){nav{padding:0 1.5rem;}.nav-links{display:none;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(5,8,16,0.99);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}.hbg{display:flex;}}
-.wrap{max-width:800px;margin:0 auto;padding:0 2rem;}@media(max-width:600px){.wrap{padding:0 1.2rem;}}
+.wrap{max-width:800px;margin:0 auto;padding:0 2rem;position:relative;z-index:1;}@media(max-width:600px){.wrap{padding:0 1.2rem;}}
 .hero{padding:7.5rem 0 2.5rem;}
 .bc{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.4rem;display:flex;align-items:center;gap:0.5rem;}.bc a{color:var(--text-dim);text-decoration:none;}.bc a:hover{color:var(--accent);}
 .tag{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.28rem 0.75rem;border-radius:3px;display:inline-block;margin-bottom:1.1rem;}
@@ -45,6 +55,7 @@ article h3{font-family:'Syne',sans-serif;font-weight:600;font-size:1.1rem;margin
 article p{color:#c8d4e8;margin-bottom:1.2rem;font-size:0.97rem;}
 article ul,article ol{margin:0 0 1.2rem 1.4rem;color:#c8d4e8;font-size:0.97rem;}
 article li{margin-bottom:0.55rem;}article strong{color:var(--text);font-weight:600;}
+article a{color:var(--accent);text-decoration:none;transition:color 0.2s;}article a:hover{color:#7c3aed;text-decoration:underline;}
 .code-block{background:#070d1a;border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;margin:1.4rem 0;overflow-x:auto;}
 .code-block pre{font-family:'Space Mono',monospace;font-size:0.76rem;color:#94a3b8;line-height:1.75;white-space:pre-wrap;word-break:break-all;}
 .code-label{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.6rem;}
@@ -53,31 +64,58 @@ article li{margin-bottom:0.55rem;}article strong{color:var(--text);font-weight:6
 .step{display:flex;gap:1.1rem;align-items:flex-start;}
 .sn{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:0.82rem;color:#fff;flex-shrink:0;margin-top:0.1rem;}
 .sc h4{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:0.25rem;}.sc p{font-size:0.88rem;color:var(--text-dim);margin:0;}
-.callout{border-radius:0 10px 10px 0;padding:1.1rem 1.4rem;margin:1.6rem 0;border-left:3px solid var(--accent);background:rgba(0,229,255,0.04);}
+.callout{border-radius:0 10px 10px 0;padding:1.1rem 1.4rem;margin:1.6rem 0;border-left:3px solid var(--accent);background:rgba(0,229,255,0.04);backdrop-filter:blur(10px);}
 .callout.green{border-left-color:#34d399;background:rgba(52,211,153,0.04);}
 .callout.amber{border-left-color:var(--accent3);background:rgba(245,158,11,0.04);}
 .cl-label{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.45rem;color:var(--accent);}
 .callout.green .cl-label{color:#34d399;}.callout.amber .cl-label{color:var(--accent3);}
 .callout p{margin:0;font-size:0.9rem;color:#c8d4e8;}
-.related{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:2.5rem 0;}
+.related{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:2.5rem 0;backdrop-filter:blur(10px);}
 .rl{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:0.9rem;}
 .related-links{display:flex;flex-direction:column;gap:0.5rem;}
-.related-links a{display:flex;align-items:center;gap:0.7rem;color:var(--text);text-decoration:none;font-size:0.9rem;font-weight:500;padding:0.55rem 0.7rem;border-radius:7px;border:none;transition:background 0.2s;}
-.related-links a:hover{background:rgba(0,229,255,0.06);}
+.related-links a{display:flex;align-items:center;gap:0.7rem;color:var(--text);text-decoration:none;font-size:0.9rem;font-weight:500;padding:0.55rem 0.7rem;border-radius:7px;border:none;transition:background 0.2s,transform 0.2s;}
+.related-links a:hover{background:rgba(0,229,255,0.06);transform:translateX(3px);}
 .related-links a .arr{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--accent);flex-shrink:0;}
-footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:4rem;}
-.flogo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--text);}
-.flinks{display:flex;gap:2rem;list-style:none;}.flinks a{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;}.flinks a:hover{color:var(--accent);}
-.fcopy{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-muted);}
-@media(max-width:900px){footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}}
+
+/* FAQ Section Styles */
+.faq-section{margin:3rem 0;padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;backdrop-filter:blur(10px);}
+.faq-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:1.5rem;color:var(--text);}
+.faq-item{border-bottom:1px solid var(--border);padding:1.2rem 0;cursor:pointer;transition:all 0.3s;}
+.faq-item:last-child{border-bottom:none;}
+.faq-item:hover{background:rgba(0,229,255,0.02);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-family:'Syne',sans-serif;font-weight:600;font-size:1rem;color:var(--text);margin-bottom:0.5rem;}
+.faq-toggle{font-size:1.5rem;color:var(--accent);transition:transform 0.3s;}
+.faq-item.active .faq-toggle{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;color:var(--text-dim);font-size:0.92rem;line-height:1.7;}
+.faq-item.active .faq-a{max-height:500px;padding-top:0.5rem;}
+
+/* Enhanced Footer Styles */
+footer{border-top:1px solid var(--border);padding:3rem 3rem 2rem;max-width:1280px;margin:4rem auto 0;display:flex;flex-direction:column;gap:2rem;animation:footerSlideUp 0.8s ease-out;position:relative;z-index:1;}
+@keyframes footerSlideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.footer-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border);animation:footerFadeIn 1s ease-out 0.2s both;}
+@keyframes footerFadeIn{from{opacity:0;}to{opacity:1;}}
+.footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);display:flex;align-items:center;gap:0.5rem;transition:transform 0.3s;text-decoration:none;}
+.footer-logo:hover{transform:scale(1.05);}
+.footer-logo .ld{animation:pulse 2s ease-in-out infinite;}
+.footer-links{display:flex;gap:2rem;list-style:none;flex-wrap:wrap;}
+.footer-links a{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:all 0.3s;position:relative;}
+.footer-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s;}
+.footer-links a:hover{color:var(--accent);}
+.footer-links a:hover::after{width:100%;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;animation:footerFadeIn 1s ease-out 0.4s both;}
+.footer-copy{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-muted);}
+.footer-social{display:flex;gap:1rem;}
+.footer-social a{color:var(--text-dim);transition:all 0.3s;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;background:var(--surface);border:1px solid var(--border);}
+.footer-social a:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,229,255,0.2);}
+@media(max-width:900px){footer{padding:2rem 1.5rem;}.footer-top,.footer-bottom{flex-direction:column;text-align:center;}}
 .fi{opacity:0;transform:translateY(16px);transition:opacity 0.55s,transform 0.55s;}.fi.v{opacity:1;transform:none;}
-</style><link href="/popup.css" rel="stylesheet"/><meta content="In 2026, the two main approaches are: using Claude Code (Anthropic's dedicated coding CLI), or building custom GitHub Actions workflows that call the Claude ..." property="og:description"/><meta content="https://neuraplus-ai.github.io/favicon.svg" property="og:image"/><meta content="https://neuraplus-ai.github.io/blog/connect-anthropic-claude-github.html" property="og:url"/><meta content="website" property="og:type"/><meta content="summary_large_image" name="twitter:card"/><meta content="How to Connect Anthropic Claude with GitHub – NeuraPlusAI Blog" name="twitter:title"/><meta content="In 2026, the two main approaches are: using Claude Code (Anthropic's dedicated coding CLI), or building custom GitHub Actions workflows that call the Claude ..." name="twitter:description"/><meta content="https://neuraplus-ai.github.io/favicon.svg" name="twitter:image"/><meta content="AI blog, artificial intelligence, NeuraPlusAI" name="keywords"/><meta content="NeuraPlusAI" property="og:site_name"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="@neuraplus_ai" name="twitter:site"/><script type="application/ld+json">{
+</style><link href="/popup.css" rel="stylesheet"/><meta content="Learn how to connect Anthropic Claude with GitHub in 2026. Set up Claude Code CLI or GitHub Actions for automated code reviews, PR analysis, and development workflows." property="og:description"/><meta content="https://neuraplus-ai.github.io/favicon.svg" property="og:image"/><meta content="https://neuraplus-ai.github.io/blog/connect-anthropic-claude-github.html" property="og:url"/><meta content="website" property="og:type"/><meta content="summary_large_image" name="twitter:card"/><meta content="How to Connect Anthropic Claude with GitHub – NeuraPlusAI Blog" name="twitter:title"/><meta content="Learn how to connect Anthropic Claude with GitHub in 2026. Set up Claude Code CLI or GitHub Actions for automated code reviews, PR analysis, and development workflows." name="twitter:description"/><meta content="https://neuraplus-ai.github.io/favicon.svg" name="twitter:image"/><meta content="AI blog, artificial intelligence, NeuraPlusAI" name="keywords"/><meta content="NeuraPlusAI" property="og:site_name"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="@neuraplus_ai" name="twitter:site"/><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "name": "How to Connect Anthropic Claude with GitHub \u2013 NeuraPlusAI Blog",
+  "name": "How to Connect Anthropic Claude with GitHub – NeuraPlusAI Blog",
   "description": "Read 'How to Connect Anthropic Claude with GitHub' on the NeuraPlusAI blog.",
   "url": "https://neuraplus-ai.github.io/blog/connect-anthropic-claude-github.html",
-  "headline": "How to Connect Anthropic Claude with GitHub \u2013 NeuraPlusAI Blog",
+  "headline": "How to Connect Anthropic Claude with GitHub – NeuraPlusAI Blog",
   "author": {
     "@type": "Organization",
     "name": "NeuraPlusAI"
@@ -90,6 +128,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;mar
       "url": "https://neuraplus-ai.github.io/favicon.svg"
     }
   }
+}</script>
 
 
 <!-- NP:UNIVERSAL-FIX-V3 -->
@@ -238,7 +277,16 @@ html {
 })();
 </script>
 <!-- /NP:UNIVERSAL-FIX-V3 -->
-</head><body><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" style="display:none;visibility:hidden" width="0"></iframe></noscript><nav><a class="logo" href="../index.html"><span class="ld"></span>NeuraPulse</a><ul class="nav-links" id="nl"><li><a href="../index.html">Home</a></li><li><a class="active" href="../blog.html">Blog</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li></ul><a class="nav-cta" href="../contact.html">Subscribe</a><button class="hbg" id="hbg"><span></span><span></span><span></span></button></nav><main><div class="wrap"><div class="hero fi"><div class="bc"><a href="../blog.html">Blog</a><span>/</span><span>Claude AI</span></div><div class="tag" style="color:#34d399;background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);">Development · Claude + GitHub</div><h1>How to Connect Anthropic Claude with GitHub</h1>
+</head><body>
+
+<!-- Interactive Background Elements -->
+<canvas id="bg-canvas"></canvas>
+<div class="bg-glow" aria-hidden="true">
+<div class="glow-orb glow-1"></div>
+<div class="glow-orb glow-2"></div>
+</div>
+
+<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" style="display:none;visibility:hidden" width="0"></iframe></noscript><nav><a class="logo" href="../index.html"><span class="ld"></span>NeuraPulse</a><ul class="nav-links" id="nl"><li><a href="../index.html">Home</a></li><li><a class="active" href="../blog.html">Blog</a></li><li><a href="../guide.html">Guide</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li></ul><a class="nav-cta" href="../contact.html">Subscribe</a><button class="hbg" id="hbg"><span></span><span></span><span></span></button></nav><main><div class="wrap"><div class="hero fi"><div class="bc"><a href="../blog.html">Blog</a><span>/</span><span>Claude AI</span></div><div class="tag" style="color:#34d399;background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);">Development · Claude + GitHub</div><h1>How to Connect Anthropic Claude with GitHub</h1>
 <img alt="How to Connect Anthropic Claude with GitHub" class="blog-hero-image" height="630" loading="lazy" src="/assets/images/blog/connect-anthropic-claude-github.jpg" style="width:100%;max-width:1200px;height:auto;border-radius:8px;margin:0 auto 2rem;display:block;" title="How to Connect Anthropic Claude with GitHub" width="1200"/>
 <div class="meta"><div class="av">PL</div><div class="mi"><div class="mn">Prashant Lalwani</div><div class="md">April 08, 2026 · 11 min read</div></div><div class="mdiv"></div><div class="ms">Dev · Claude Code · GitHub Actions</div></div><svg class="hero-img" viewbox="0 0 800 340" xmlns="http://www.w3.org/2000/svg"><defs><lineargradient id="ghbg" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#050810"></stop><stop offset="100%" stop-color="#0a1128"></stop></lineargradient></defs><rect fill="url(#ghbg)" height="340" width="800"></rect><rect fill="rgba(30,45,69,0.5)" height="140" rx="14" stroke="rgba(100,116,139,0.4)" stroke-width="1.5" width="200" x="40" y="100"></rect><text fill="#e2e8f0" font-family="Syne,sans-serif" font-size="16" font-weight="800" text-anchor="middle" x="140" y="148">GitHub</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="9" text-anchor="middle" x="140" y="170">Push · PR · Actions</text><rect fill="rgba(52,211,153,0.1)" height="22" rx="5" stroke="rgba(52,211,153,0.35)" stroke-width="1" width="150" x="65" y="188"></rect><text fill="#34d399" font-family="Space Mono,monospace" font-size="9" text-anchor="middle" x="140" y="203">on: pull_request</text><rect fill="rgba(52,211,153,0.1)" height="22" rx="5" stroke="rgba(52,211,153,0.35)" stroke-width="1" width="150" x="65" y="218"></rect><text fill="#34d399" font-family="Space Mono,monospace" font-size="9" text-anchor="middle" x="140" y="233">jobs: claude-review</text><line stroke="rgba(0,229,255,0.6)" stroke-dasharray="6,3" stroke-width="2.5" x1="244" x2="295" y1="170" y2="170"></line><polygon fill="#00e5ff" points="295,164 310,170 295,176"></polygon><text fill="#64748b" font-family="Space Mono,monospace" font-size="8" text-anchor="middle" x="275" y="158">trigger</text><rect fill="rgba(0,229,255,0.07)" height="180" rx="14" stroke="rgba(0,229,255,0.45)" stroke-width="2" width="190" x="315" y="80"></rect><text fill="#00e5ff" font-family="Syne,sans-serif" font-size="16" font-weight="800" text-anchor="middle" x="410" y="130">Claude API</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="9" text-anchor="middle" x="410" y="152">claude-sonnet-4</text><rect fill="rgba(0,229,255,0.08)" height="22" rx="5" stroke="rgba(0,229,255,0.25)" stroke-width="1" width="150" x="335" y="168"></rect><text fill="#94a3b8" font-family="Space Mono,monospace" font-size="8" text-anchor="middle" x="410" y="183">ANTHROPIC_API_KEY</text><rect fill="rgba(0,229,255,0.08)" height="22" rx="5" stroke="rgba(0,229,255,0.25)" stroke-width="1" width="150" x="335" y="198"></rect><text fill="#94a3b8" font-family="Space Mono,monospace" font-size="8" text-anchor="middle" x="410" y="213">Review PR diff</text><rect fill="rgba(0,229,255,0.08)" height="22" rx="5" stroke="rgba(0,229,255,0.25)" stroke-width="1" width="150" x="335" y="228"></rect><text fill="#94a3b8" font-family="Space Mono,monospace" font-size="8" text-anchor="middle" x="410" y="243">Post comment</text><line stroke="rgba(52,211,153,0.6)" stroke-dasharray="6,3" stroke-width="2.5" x1="509" x2="558" y1="170" y2="170"></line><polygon fill="#34d399" points="558,164 573,170 558,176"></polygon><rect fill="rgba(52,211,153,0.07)" height="140" rx="14" stroke="rgba(52,211,153,0.4)" stroke-width="1.5" width="190" x="575" y="100"></rect><text fill="#34d399" font-family="Syne,sans-serif" font-size="14" font-weight="800" text-anchor="middle" x="670" y="140">Auto Review</text><text fill="#64748b" font-family="Space Mono,monospace" font-size="9" text-anchor="middle" x="670" y="160">Posted on PR</text><rect fill="rgba(52,211,153,0.1)" height="22" rx="5" stroke="rgba(52,211,153,0.3)" stroke-width="1" width="150" x="595" y="175"></rect><text fill="#34d399" font-family="Space Mono,monospace" font-size="8" text-anchor="middle" x="670" y="190">✓ Bugs detected</text><rect fill="rgba(52,211,153,0.1)" height="22" rx="5" stroke="rgba(52,211,153,0.3)" stroke-width="1" width="150" x="595" y="205"></rect><text fill="#34d399" font-family="Space Mono,monospace" font-size="8" text-anchor="middle" x="670" y="220">✓ Suggestions added</text><text fill="#e2e8f0" font-family="Syne,sans-serif" font-size="14" font-weight="700" text-anchor="middle" x="400" y="48">GitHub Actions + Claude API Integration</text><text fill="rgba(100,116,139,0.4)" font-family="Space Mono,monospace" font-size="9" letter-spacing="2" text-anchor="middle" x="400" y="316">AUTO CODE REVIEW ON EVERY PR · NEURA PULSE 2026</text></svg></div><article><p class="fi">Connecting Claude to GitHub transforms your development workflow in ways that feel like having a senior engineer reviewing every single commit. In 2026, the two main approaches are: using <strong>Claude Code</strong> (Anthropic's dedicated coding CLI), or building custom <strong>GitHub Actions workflows</strong> that call the Claude API for automated code review, documentation generation, and test writing on every pull request.</p><div class="callout fi"><div class="cl-label">Two Approaches</div><p><strong>Claude Code (CLI):</strong> Interactive coding assistant in your terminal. Directly edits files, runs commands, reads your repo. <strong>GitHub Actions + API:</strong> Automated review bot that comments on every PR, runs on push, requires no developer interaction.</p></div><h2 class="fi">Method 1 — Claude Code CLI</h2><p class="fi">Claude Code is Anthropic's official command-line tool that gives Claude direct access to your codebase. It can read files, make edits, run tests, and push commits — turning it into an agentic developer that works inside your repository.</p><div class="steps fi"><div class="step"><div class="sn">1</div><div class="sc"><h4>Install Claude Code</h4><p>Requires Node.js 18+. Run the install command from your terminal. You'll authenticate with your Anthropic API key on first launch.</p></div></div><div class="step"><div class="sn">2</div><div class="sc"><h4>Open Your Repo Directory</h4><p>Navigate to your project root and launch Claude Code. It immediately reads your file structure and understands the codebase context.</p></div></div><div class="step"><div class="sn">3</div><div class="sc"><h4>Give Natural Language Instructions</h4><p>"Review the auth module for security issues", "Write unit tests for the payment service", "Refactor this function to use async/await" — Claude makes the changes directly.</p></div></div></div><div class="code-block fi"><div class="code-label">Install Claude Code</div><pre><span class="cm"># Install globally via npm</span>
 <span class="kw">npm install</span> <span class="str">-g @anthropic-ai/claude-code</span>
@@ -298,8 +346,244 @@ html {
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo, body
-            });</pre></div><h2 class="fi">Setting Up Your API Key in GitHub Secrets</h2><div class="steps fi"><div class="step"><div class="sn">1</div><div class="sc"><h4>Get API Key</h4><p>Go to console.anthropic.com → API Keys → Create new key. Copy it immediately (shown only once).</p></div></div><div class="step"><div class="sn">2</div><div class="sc"><h4>Add to GitHub Secrets</h4><p>In your repo: Settings → Secrets and variables → Actions → New repository secret. Name it ANTHROPIC_API_KEY.</p></div></div><div class="step"><div class="sn">3</div><div class="sc"><h4>Test the Workflow</h4><p>Open a test PR with a small change. The Actions tab will show the Claude review workflow running. After completion, Claude's review appears as a comment on the PR.</p></div></div></div><div class="callout amber fi"><div class="cl-label">Cost Control Tip</div><p>Add a diff size check before calling Claude — skip the API call if the diff is less than 50 lines (trivial changes). This prevents API costs from piling up on formatting-only commits while keeping reviews on meaningful code changes.</p></div><div class="related fi"><div class="rl">→ Related Articles</div><div class="related-links"><a href="automate-blog-writing-anthropic-claude.html"><span class="arr">→</span> How to Automate Blog Writing with Anthropic Claude</a><a href="anthropic-claude-use-cases-startups.html"><span class="arr">→</span> Claude Use Cases for Startups</a><a href="anthropic-claude-pricing-free-vs-paid.html"><span class="arr">→</span> Claude Pricing: Free vs Paid Plans</a><a href="anthropic-claude-seo-content-generation.html"><span class="arr">→</span> Claude for SEO Content Generation</a></div></div></article></div></main><footer><span class="flogo">NeuraPulse<span style="color:var(--accent)">.</span></span><ul class="flinks"><li><a href="../index.html">Home</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li></ul><p class="fcopy">© 2026 NeuraPulse · Prashant Lalwani</p></footer><script>
+            });</pre></div><h2 class="fi">Setting Up Your API Key in GitHub Secrets</h2><div class="steps fi"><div class="step"><div class="sn">1</div><div class="sc"><h4>Get API Key</h4><p>Go to console.anthropic.com → API Keys → Create new key. Copy it immediately (shown only once).</p></div></div><div class="step"><div class="sn">2</div><div class="sc"><h4>Add to GitHub Secrets</h4><p>In your repo: Settings → Secrets and variables → Actions → New repository secret. Name it ANTHROPIC_API_KEY.</p></div></div><div class="step"><div class="sn">3</div><div class="sc"><h4>Test the Workflow</h4><p>Open a test PR with a small change. The Actions tab will show the Claude review workflow running. After completion, Claude's review appears as a comment on the PR.</p></div></div></div><div class="callout amber fi"><div class="cl-label">Cost Control Tip</div><p>Add a diff size check before calling Claude — skip the API call if the diff is less than 50 lines (trivial changes). This prevents API costs from piling up on formatting-only commits while keeping reviews on meaningful code changes.</p></div>
+
+<!-- 3 Additional Paragraphs -->
+<p class="fi">When implementing Claude with GitHub, it's crucial to establish clear guidelines for what Claude should and shouldn't do. Create a <code>.claude-config.json</code> file in your repository root that specifies review priorities, coding standards, and security policies. This ensures Claude's reviews align with your team's specific requirements and coding conventions, making the automated feedback more relevant and actionable.</p>
+
+<p class="fi">Security considerations are paramount when connecting AI to your codebase. Never commit your Anthropic API key directly to your repository—always use GitHub Secrets or environment variables. Additionally, consider implementing rate limiting on your GitHub Actions workflow to prevent unexpected API costs during mass PR submissions. For enterprise teams, you may want to set up a proxy server that logs all Claude API calls for compliance and auditing purposes.</p>
+
+<p class="fi">The future of AI-assisted development extends beyond code review. Teams are now using Claude to automatically generate pull request descriptions, suggest code refactoring opportunities, identify potential performance bottlenecks, and even write comprehensive documentation for new features. As Claude's capabilities continue to evolve, we can expect even deeper integration with development workflows, potentially including real-time code suggestions during development and automated bug detection before code is even committed.</p>
+
+<!-- FAQ Section -->
+<div class="faq-section fi">
+<h2 class="faq-title">Frequently Asked Questions</h2>
+
+<div class="faq-item">
+<div class="faq-q">
+<span>What's the difference between Claude Code CLI and GitHub Actions integration?</span>
+<span class="faq-toggle">+</span>
+</div>
+<div class="faq-a">
+<p>Claude Code CLI is an interactive tool that runs in your terminal, allowing you to have real-time conversations with Claude about your code. It's ideal for active development sessions where you want immediate feedback and assistance. GitHub Actions integration, on the other hand, is fully automated—it runs in the background on every pull request without requiring any manual intervention. Use Claude Code for interactive development and GitHub Actions for automated code review workflows.</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">
+<span>How much does it cost to use Claude with GitHub?</span>
+<span class="faq-toggle">+</span>
+</div>
+<div class="faq-a">
+<p>Costs depend on your usage pattern. Claude Code CLI requires an Anthropic API key, with pricing based on token usage (approximately $3 per million input tokens and $15 per million output tokens for Claude Sonnet). GitHub Actions integration costs the same per API call, but you can control costs by implementing filters (like skipping small diffs). For a typical team reviewing 50 PRs per month with moderate-sized diffs, expect to spend $50-150 monthly on API costs.</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">
+<span>Can Claude understand my entire codebase context?</span>
+<span class="faq-toggle">+</span>
+</div>
+<div class="faq-a">
+<p>Yes, Claude Code can read and understand your entire repository structure. When you launch Claude Code in your project directory, it automatically indexes your file structure and can reference any file in your codebase. For GitHub Actions, you can configure the workflow to include relevant files in the context sent to Claude, though you'll need to be mindful of token limits. Claude's context window is 200K tokens, which can accommodate most codebases when used strategically.</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">
+<span>Is it safe to send my code to Claude API?</span>
+<span class="faq-toggle">+</span>
+</div>
+<div class="faq-a">
+<p>Anthropic takes security seriously and has robust data protection measures in place. Your code is encrypted in transit and at rest, and Anthropic does not use your code to train their models. However, for highly sensitive codebases (financial systems, proprietary algorithms, etc.), you should review Anthropic's data handling policies and consider implementing additional security measures like API gateways, audit logging, and access controls. Many enterprises use Claude successfully for code review with proper security protocols in place.</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">
+<span>Can Claude automatically fix bugs it finds?</span>
+<span class="faq-toggle">+</span>
+</div>
+<div class="faq-a">
+<p>With Claude Code CLI, yes—Claude can directly edit files and push commits to fix issues it identifies. You can instruct it to "fix the security vulnerability in the auth module" and it will make the necessary changes. For GitHub Actions integration, Claude typically posts review comments with suggestions rather than making automatic changes, though you can configure the workflow to apply fixes automatically if desired. Most teams prefer the review-and-approve workflow to maintain code quality control.</p>
+</div>
+</div>
+</div>
+
+<div class="related fi"><div class="rl">→ Related Articles</div><div class="related-links"><a href="automate-blog-writing-anthropic-claude.html"><span class="arr">→</span> How to Automate Blog Writing with Anthropic Claude</a><a href="anthropic-claude-use-cases-startups.html"><span class="arr">→</span> Claude Use Cases for Startups</a><a href="anthropic-claude-pricing-free-vs-paid.html"><span class="arr">→</span> Claude Pricing: Free vs Paid Plans</a><a href="anthropic-claude-seo-content-generation.html"><span class="arr">→</span> Claude for SEO Content Generation</a></div></div></article></div></main><footer>
+<div class="footer-top">
+<a class="footer-logo" href="../index.html"><span class="ld"></span>NeuraPulse<span style="color:var(--accent)">.</span></a>
+<ul class="footer-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../blog.html">Blog</a></li>
+<li><a href="../guide.html">Guide</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../contact.html">Contact</a></li>
+</ul>
+</div>
+<div class="footer-bottom">
+<p class="footer-copy">© 2026 NeuraPulse · Prashant Lalwani · All rights reserved</p>
+<div class="footer-social">
+<a href="https://x.com/AiNeuraplus" target="_blank" rel="noopener" aria-label="Twitter">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</a>
+<a href="https://www.linkedin.com/in/prashant-lalwani-361010407/" target="_blank" rel="noopener" aria-label="LinkedIn">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+</a>
+<a href="https://github.com/neuraplus-ai" target="_blank" rel="noopener" aria-label="GitHub">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+</a>
+</div>
+</div>
+</footer><script>
 document.getElementById('hbg').addEventListener('click',function(){document.getElementById('nl').classList.toggle('open');});
 var io=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('v');io.unobserve(en.target);}});},{threshold:0.06});
 document.querySelectorAll('.fi').forEach(function(el){io.observe(el);});
+
+// FAQ Accordion Functionality
+document.querySelectorAll('.faq-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    const isActive = this.classList.contains('active');
+    
+    // Close all FAQ items
+    document.querySelectorAll('.faq-item').forEach(function(faq) {
+      faq.classList.remove('active');
+    });
+    
+    // Open clicked item if it wasn't already active
+    if (!isActive) {
+      this.classList.add('active');
+    }
+  });
+});
+
+// INTERACTIVE CANVAS BACKGROUND WITH CURVES
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let width, height;
+let points = [];
+let mouse = { x: -1000, y: -1000 };
+const pointCount = 70;
+const connectionDistance = 160;
+const mouseDistance = 250;
+
+function resize() {
+width = canvas.width = window.innerWidth;
+height = canvas.height = window.innerHeight;
+}
+
+class Point {
+constructor() {
+this.x = Math.random() * width;
+this.y = Math.random() * height;
+this.vx = (Math.random() - 0.5) * 0.4;
+this.vy = (Math.random() - 0.5) * 0.4;
+this.radius = Math.random() * 1.5 + 0.5;
+}
+
+update() {
+this.x += this.vx;
+this.y += this.vy;
+
+if (this.x < 0 || this.x > width) this.vx *= -1;
+if (this.y < 0 || this.y > height) this.vy *= -1;
+
+const dx = mouse.x - this.x;
+const dy = mouse.y - this.y;
+const dist = Math.sqrt(dx * dx + dy * dy);
+if (dist < mouseDistance) {
+this.x += dx * 0.003;
+this.y += dy * 0.003;
+}
+}
+
+draw() {
+ctx.beginPath();
+ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+ctx.fillStyle = 'rgba(0, 229, 255, 0.6)';
+ctx.fill();
+}
+}
+
+function initPoints() {
+points = [];
+for (let i = 0; i < pointCount; i++) {
+points.push(new Point());
+}
+}
+
+function animate() {
+ctx.clearRect(0, 0, width, height);
+
+for (let i = 0; i < points.length; i++) {
+for (let j = i + 1; j < points.length; j++) {
+const dx = points[i].x - points[j].x;
+const dy = points[i].y - points[j].y;
+const dist = Math.sqrt(dx * dx + dy * dy);
+
+if (dist < connectionDistance) {
+const opacity = (1 - dist / connectionDistance) * 0.25;
+ctx.beginPath();
+ctx.moveTo(points[i].x, points[i].y);
+
+const midX = (points[i].x + points[j].x) / 2;
+const midY = (points[i].y + points[j].y) / 2;
+
+const mouseDx = mouse.x - midX;
+const mouseDy = mouse.y - midY;
+const mouseDist = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy);
+
+if (mouseDist < mouseDistance) {
+const pull = (1 - mouseDist / mouseDistance) * 40;
+const cpX = midX + (mouseDx / mouseDist) * pull;
+const cpY = midY + (mouseDy / mouseDist) * pull;
+ctx.quadraticCurveTo(cpX, cpY, points[j].x, points[j].y);
+} else {
+ctx.lineTo(points[j].x, points[j].y);
+}
+
+ctx.strokeStyle = `rgba(124, 58, 237, ${opacity})`;
+ctx.lineWidth = 1;
+ctx.stroke();
+}
+}
+
+const dx = points[i].x - mouse.x;
+const dy = points[i].y - mouse.y;
+const dist = Math.sqrt(dx * dx + dy * dy);
+if (dist < mouseDistance) {
+const opacity = (1 - dist / mouseDistance) * 0.5;
+ctx.beginPath();
+ctx.moveTo(points[i].x, points[i].y);
+ctx.lineTo(mouse.x, mouse.y);
+ctx.strokeStyle = `rgba(0, 229, 255, ${opacity})`;
+ctx.lineWidth = 1;
+ctx.stroke();
+}
+
+points[i].update();
+points[i].draw();
+}
+
+requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+resize();
+initPoints();
+});
+
+window.addEventListener('mousemove', (e) => {
+mouse.x = e.clientX;
+mouse.y = e.clientY;
+});
+
+window.addEventListener('mouseout', () => {
+mouse.x = -1000;
+mouse.y = -1000;
+});
+
+resize();
+initPoints();
+animate();
 </script><script src="/popup.js"></script></body></html>
