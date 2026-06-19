@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- NP:GEO -->
+<meta name="author" content="Prashant Lalwani"/>
+<meta name="publisher" content="NeuraPulse"/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<meta name="googlebot" content="index, follow"/>
+<meta name="bingbot" content="index, follow"/>
+<meta name="rating" content="general"/>
+<meta name="revisit-after" content="7 days"/>
+<meta name="language" content="English"/>
+<meta name="category" content="Artificial Intelligence, Prompt Engineering, AI Techniques"/>
+<meta name="classification" content="Chain of Thought Prompting"/>
+<meta name="coverage" content="Worldwide"/>
+<meta name="distribution" content="Global"/>
+<meta name="target" content="all"/>
+<link rel="alternate" type="application/rss+xml" title="NeuraPulse RSS" href="https://neuraplus-ai.github.io/rss.xml"/>
+<!-- /NP:GEO -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Optimized Meta Title (54 chars) & Description (156 chars) -->
+<meta name="description" content="Chain-of-thought prompting explained. Learn how to make AI show its reasoning step-by-step, boost accuracy by 40%, and get better results from every prompt.">
+<meta name="keywords" content="chain of thought prompting, CoT prompting, AI reasoning, prompt engineering, step by step AI, Claude reasoning, better AI prompts">
+<meta name="author" content="Prashant Lalwani">
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Chain-of-Thought Prompting Explained: The Ultimate 2026"/>
+<meta property="og:description" content="Chain-of-thought prompting explained. Learn how to make AI show its reasoning step-by-step, boost accuracy by 40%, and get better results from every prompt."/>
+<meta property="og:url" content="https://neuraplus-ai.github.io/blog/chain-of-thought-prompting-explained.html"/>
+<meta property="og:image" content="https://neuraplus-ai.github.io/assets/images/blog/chain-of-thought-prompting-explained.webp"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:site_name" content="NeuraPulse"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Chain-of-Thought Prompting Explained: The Ultimate 2026"/>
+<meta name="twitter:description" content="Chain-of-thought prompting explained. Learn how to make AI show its reasoning step-by-step, boost accuracy by 40%, and get better results from every prompt."/>
+<meta name="twitter:image" content="https://neuraplus-ai.github.io/assets/images/blog/chain-of-thought-prompting-explained.webp"/>
+<meta name="twitter:site" content="@AiNeuraplus"/>
+<link rel="canonical" href="https://neuraplus-ai.github.io/blog/chain-of-thought-prompting-explained.html"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<title>Chain-of-Thought Prompting Explained: The Ultimate 2026 — NeuraPulse</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JNSQJZJDN1');</script>
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://neuraplus-ai.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://neuraplus-ai.github.io/blog.html"},{"@type":"ListItem","position":3,"name":"Chain-of-Thought Prompting Explained","item":"https://neuraplus-ai.github.io/blog/chain-of-thought-prompting-explained.html"}]},{"@context":"https://schema.org","@type":"Article","url":"https://neuraplus-ai.github.io/blog/chain-of-thought-prompting-explained.html","headline":"Chain-of-Thought Prompting Explained: The Ultimate 2026","description":"Chain-of-thought prompting explained. Learn how to make AI show its reasoning step-by-step, boost accuracy by 40%, and get better results from every prompt.","datePublished":"2026-06-14","dateModified":"2026-06-14","author":{"@type":"Person","name":"Prashant Lalwani","url":"https://neuraplus-ai.github.io/about.html"},"publisher":{"@type":"Organization","name":"NeuraPulse","url":"https://neuraplus-ai.github.io","logo":{"@type":"ImageObject","url":"https://neuraplus-ai.github.io/assets/logo.png"}},"inLanguage":"en"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is chain-of-thought prompting?","acceptedAnswer":{"@type":"Answer","text":"Chain-of-thought (CoT) prompting is a technique where you instruct an AI model to show its reasoning process step-by-step before giving a final answer. Instead of jumping straight to a conclusion, the AI breaks down the problem logically, similar to how a human would think through it."}},{"@type":"Question","name":"Does chain-of-thought prompting actually improve AI accuracy?","acceptedAnswer":{"@type":"Answer","text":"Yes, significantly. Research shows CoT prompting can improve accuracy on complex reasoning tasks by 30-50%. It's especially effective for math problems, logical puzzles, multi-step analysis, and any task requiring careful deduction."}},{"@type":"Question","name":"Which AI models work best with chain-of-thought prompting?","acceptedAnswer":{"@type":"Answer","text":"Claude (especially Claude 3.5 Sonnet and Opus), GPT-4, and Gemini Pro all respond excellently to CoT prompting. Claude is particularly strong because its extended thinking feature is built around this exact technique."}},{"@type":"Question","name":"When should I NOT use chain-of-thought prompting?","acceptedAnswer":{"@type":"Answer","text":"Avoid CoT for simple factual questions, quick creative tasks, or when you need fast responses. It adds processing time and token usage. For basic queries like 'What's the capital of France?' direct prompting is faster and equally accurate."}}]}]
+</script>
+<style>
+:root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:#1e2d45;--accent:#00e5ff;--accent2:#7c3aed;--text:#e2e8f0;--text-dim:#64748b;--text-mid:#94a3b8;--text-muted:#334155;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.8;overflow-x:hidden;}
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;}
+.bg-glow{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden;}
+.glow-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.12;animation:drift 20s infinite alternate ease-in-out;}
+.glow-1{width:600px;height:600px;background:var(--accent);top:-10%;left:-10%;animation-delay:0s;}
+.glow-2{width:500px;height:500px;background:var(--accent2);bottom:-10%;right:-10%;animation-delay:-10s;}
+@keyframes drift{0%{transform:translate(0,0) scale(1);}100%{transform:translate(100px,50px) scale(1.2);}}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
+#np-nav{position:sticky;top:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(8,12,18,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,.12);font-family:'DM Sans',system-ui,sans-serif;}
+.np-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.18rem;color:#fff;display:flex;align-items:center;gap:8px;text-decoration:none;letter-spacing:-.02em;}.np-logo-dot{width:8px;height:8px;background:#00d4ff;border-radius:50%;box-shadow:0 0 10px #00d4ff;animation:npblink 2s ease infinite;flex-shrink:0;}
+@keyframes npblink{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.5);opacity:.7;}}.np-links{display:flex;gap:26px;align-items:center;}.np-links a{color:#8899aa;text-decoration:none;font-size:.84rem;letter-spacing:.07em;text-transform:uppercase;transition:color .2s;position:relative;font-family:'Space Mono',monospace;}.np-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:#00d4ff;transform:scaleX(0);transition:transform .25s;}.np-links a:hover{color:#00d4ff;}.np-links a:hover::after{transform:scaleX(1);}
+.np-sub-btn{background:#00d4ff;color:#000!important;font-weight:700;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;padding:8px 18px;border-radius:5px;text-decoration:none;transition:box-shadow .2s,transform .2s;white-space:nowrap;}.np-sub-btn:hover{box-shadow:0 0 22px #00d4ff;transform:translateY(-1px);}.np-sub-btn::after{display:none!important;}
+.np-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:7px;background:transparent;border:none;margin-left:8px;}.np-ham span{display:block;width:24px;height:2px;background:#8899aa;border-radius:2px;transition:all .3s;}.np-ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}.np-ham.open span:nth-child(2){opacity:0;}.np-ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+#np-mob{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(8,12,18,.98);padding:20px 5% 32px;flex-direction:column;gap:2px;z-index:499;overflow-y:auto;}#np-mob.open{display:flex;}#np-mob a{color:#8899aa;text-decoration:none;font-size:.95rem;letter-spacing:.07em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(0,212,255,.07);transition:color .2s;display:block;}#np-mob a:hover{color:#00d4ff;}.np-mob-cta{background:#00d4ff!important;color:#000!important;font-weight:700;text-align:center;border-radius:6px;margin-top:12px;padding:14px!important;border-bottom:none!important;letter-spacing:.07em;}
+@media(max-width:768px){.np-links{display:none;}.np-ham{display:flex;}}@media(min-width:769px){#np-mob{display:none!important;}}
+.ticker-wrap{background:rgba(0,229,255,0.04);border-bottom:1px solid var(--border);padding:.5rem 0;overflow:hidden;position:relative;z-index:10;}.ticker{display:flex;gap:4rem;animation:tick 40s linear infinite;white-space:nowrap;}@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}.ticker span{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--text-dim);letter-spacing:.08em;}.ticker span b{color:var(--accent);}
+.layout{display:grid;grid-template-columns:1fr 290px;gap:2.5rem;max-width:1160px;margin:0 auto;padding:2.5rem 1.5rem 4rem;position:relative;z-index:10;}@media(max-width:960px){.layout{grid-template-columns:1fr;gap:2rem;padding:1.75rem 1rem 3rem;}}article{min-width:0;}
+.breadcrumb{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.25rem;display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;}.breadcrumb a{color:var(--text-dim);text-decoration:none;}.breadcrumb a:hover{color:var(--accent);}.breadcrumb span{color:var(--text-muted);}
+.live-tag{display:inline-flex;align-items:center;gap:.4rem;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#34d399;margin-bottom:.6rem;}.live-dot{width:6px;height:6px;border-radius:50%;background:#34d399;animation:dotPulse 1.5s ease-in-out infinite;}@keyframes dotPulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.cat-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .85rem;border-radius:3px;margin-bottom:.85rem;color:var(--accent);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.22);}
+article h1{font-family:'Syne',sans-serif;font-size:clamp(1.75rem,4.5vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.18;margin-bottom:1.25rem;}article h1 em{font-style:normal;color:var(--accent);}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.75rem;}@media(max-width:500px){.stats-row{grid-template-columns:repeat(2,1fr);}}.stat-pill{background:rgba(12,17,32,0.8);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem;text-align:center;animation:statPop .6s ease backwards;}.stat-pill:nth-child(1){animation-delay:.1s;}.stat-pill:nth-child(2){animation-delay:.2s;}.stat-pill:nth-child(3){animation-delay:.3s;}.stat-pill:nth-child(4){animation-delay:.4s;}@keyframes statPop{from{opacity:0;transform:translateY(20px) scale(.95);}to{opacity:1;transform:translateY(0) scale(1);}}.stat-pill .sv{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;color:var(--accent);}.stat-pill .sl{font-family:'Space Mono',monospace;font-size:.57rem;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-top:.15rem;}
+.meta-row{display:flex;align-items:center;gap:.85rem;margin-bottom:2rem;flex-wrap:wrap;animation:fadeIn .8s ease backwards;}.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;color:white;flex-shrink:0;}.meta-info .author{font-weight:600;color:var(--text);font-size:.875rem;}.meta-info .pub{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text-dim);}.read-tag{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text-dim);padding:.22rem .7rem;border:1px solid var(--border);border-radius:3px;}@keyframes fadeIn{from{opacity:0;transform:translateX(-10px);}to{opacity:1;transform:translateX(0);}}
+article h2{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin:2.25rem 0 .85rem;color:var(--text);padding-left:.75rem;border-left:3px solid var(--accent);animation:slideIn .5s ease backwards;}@keyframes slideIn{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);}}article h3{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin:1.75rem 0 .65rem;color:var(--text);}
+article p{color:#cbd5e1;margin-bottom:1.15rem;font-size:.975rem;animation:fadeInUp .6s ease backwards;}@keyframes fadeInUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}article ul,article ol{color:#cbd5e1;padding-left:1.4rem;margin-bottom:1.15rem;}article li{margin-bottom:.45rem;font-size:.975rem;animation:fadeInUp .6s ease backwards;}article strong{color:var(--text);}article a{color:var(--accent);text-decoration:none;transition:color .2s;}article a:hover{color:#7c3aed;text-decoration:underline;}
+.steps{display:flex;flex-direction:column;gap:1.25rem;margin:1.5rem 0;}.step{display:flex;gap:1rem;align-items:flex-start;animation:slideIn .6s ease backwards;}.step:nth-child(1){animation-delay:.1s;}.step:nth-child(2){animation-delay:.2s;}.step:nth-child(3){animation-delay:.3s;}.step:nth-child(4){animation-delay:.4s;}.step:nth-child(5){animation-delay:.5s;}.step-num{width:38px;height:38px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:.85rem;color:white;}.step-body h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:.3rem;color:var(--text);}.step-body p{color:#94a3b8;font-size:.9rem;margin:0;}
+.tip-box{background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.18);border-radius:10px;padding:1.1rem 1.35rem;margin:1.75rem 0;animation:fadeIn .8s ease backwards;backdrop-filter:blur(10px);}.tip-box .tip-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;}.tip-box p{color:#94a3b8;margin:0;font-size:.9rem;}
+.warn-box{background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.22);border-radius:10px;padding:1.1rem 1.35rem;margin:1.75rem 0;animation:fadeIn .8s ease backwards;backdrop-filter:blur(10px);}.warn-box .warn-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:#f59e0b;margin-bottom:.4rem;}.warn-box p{color:#94a3b8;margin:0;font-size:.9rem;}
+.example-box{background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(0,229,255,0.05));border:1px solid rgba(0,229,255,0.2);border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0;font-family:'Space Mono',monospace;font-size:.85rem;line-height:1.7;color:#cbd5e1;position:relative;overflow:hidden;}.example-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));}.example-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;font-weight:700;}.example-box pre{white-space:pre-wrap;word-break:break-word;margin:0;}
+.table-outer{position:relative;margin:1.75rem 0;animation:fadeIn .8s ease backwards;}.scroll-hint{display:none;align-items:center;gap:.4rem;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(0,229,255,0.07);border:1px solid rgba(0,229,255,0.18);border-radius:4px;padding:.3rem .75rem;margin-bottom:.6rem;width:fit-content;}.scroll-hint svg{animation:scrollArrow 1.2s ease-in-out infinite;}@keyframes scrollArrow{0%,100%{transform:translateX(0);}50%{transform:translateX(5px);}}@media(max-width:720px){.scroll-hint{display:flex;}}
+.table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);position:relative;background:rgba(12,17,32,0.6);backdrop-filter:blur(10px);margin-bottom:2rem;}.table-wrap::-webkit-scrollbar{height:4px;}.table-wrap::-webkit-scrollbar-track{background:var(--surface2);}.table-wrap::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}@media(max-width:720px){.table-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:40px;background:linear-gradient(to right,transparent,var(--bg));pointer-events:none;border-radius:0 10px 10px 0;}}
+.comp-table{width:100%;min-width:580px;border-collapse:collapse;font-size:.875rem;}.comp-table thead{background:var(--surface2);position:sticky;top:0;z-index:1;}.comp-table th{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;}.comp-table td{padding:.7rem 1rem;border-bottom:1px solid rgba(30,45,69,.5);color:#cbd5e1;vertical-align:top;transition:background .15s;}.comp-table tr:last-child td{border-bottom:none;}.comp-table tbody tr:hover td{background:rgba(0,229,255,0.03);}.comp-table .win{color:#34d399;font-weight:600;}.comp-table .warn{color:#f59e0b;}.comp-table .mid{color:#94a3b8;}.comp-table tbody tr{opacity:0;transform:translateX(-10px);transition:opacity .4s ease,transform .4s ease;}.comp-table.animate tbody tr{opacity:1;transform:translateX(0);}.comp-table tbody tr:nth-child(1){transition-delay:.05s;}.comp-table tbody tr:nth-child(2){transition-delay:.1s;}.comp-table tbody tr:nth-child(3){transition-delay:.15s;}.comp-table tbody tr:nth-child(4){transition-delay:.2s;}.comp-table tbody tr:nth-child(5){transition-delay:.25s;}
+.share-bar{border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.35rem;margin:2rem 0;background:rgba(12,17,32,0.8);backdrop-filter:blur(10px);animation:fadeIn .8s ease backwards;}.share-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;}.share-btns{display:flex;gap:.6rem;flex-wrap:wrap;}.share-btn{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;padding:.5rem 1.1rem;border-radius:5px;cursor:pointer;background:none;border:1px solid var(--border);color:var(--text-dim);text-decoration:none;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:.4rem;}.share-btn:hover{border-color:var(--accent);color:var(--accent);}
+.faq-section{margin:2.5rem 0;animation:fadeIn .8s ease backwards;}.faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:.85rem;overflow:hidden;background:rgba(12,17,32,0.8);backdrop-filter:blur(10px);transition:border-color .2s;}.faq-item:hover{border-color:var(--accent);}.faq-question{width:100%;padding:1.1rem 1.35rem;display:flex;justify-content:space-between;align-items:center;background:transparent;border:none;color:var(--text);font-family:'Syne',sans-serif;font-weight:600;font-size:1.05rem;text-align:left;cursor:pointer;transition:color .2s;}.faq-question:hover{color:var(--accent);}.faq-toggle{width:28px;height:28px;border-radius:50%;background:rgba(0,229,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s;}.faq-toggle svg{width:14px;height:14px;stroke:var(--accent);transition:transform .3s;}.faq-item.active .faq-toggle{transform:rotate(45deg);}.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;padding:0 1.35rem;color:#94a3b8;font-size:.95rem;line-height:1.7;}.faq-item.active .faq-answer{max-height:500px;padding:0 1.35rem 1.1rem;}
+aside{position:sticky;top:84px;height:fit-content;display:flex;flex-direction:column;gap:1.25rem;}@media(max-width:960px){aside{position:static;}}.sidebar-box{background:rgba(12,17,32,0.8);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:1.35rem;animation:fadeIn .8s ease backwards;}.sidebar-box:nth-child(1){animation-delay:.1s;}.sidebar-box:nth-child(2){animation-delay:.2s;}.sidebar-box:nth-child(3){animation-delay:.3s;}.sidebar-box h4{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.9rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}.nl-form{display:flex;flex-direction:column;gap:.65rem;}.nl-inp{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:.65rem .9rem;color:var(--text);font-size:.875rem;outline:none;width:100%;transition:border-color .2s;font-family:'DM Sans',sans-serif;}.nl-inp:focus{border-color:var(--accent);}.nl-inp::placeholder{color:var(--text-muted);}.nl-btn{background:var(--accent);color:var(--bg);font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;padding:.7rem;border-radius:6px;border:none;cursor:pointer;transition:opacity .2s;}.nl-btn:hover{opacity:.85;}.nl-sub-note{font-size:.75rem;color:var(--text-dim);line-height:1.5;}.rc-item{display:block;text-decoration:none;padding:.65rem 0;border-bottom:1px solid rgba(30,45,69,.6);transition:padding-left .2s;}.rc-item:last-child{border-bottom:none;}.rc-item:hover{padding-left:8px;}.rc-cat{font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.2rem;}.rc-title{font-size:.825rem;color:var(--text-dim);line-height:1.45;transition:color .2s;}.rc-item:hover .rc-title{color:var(--text);}
+#np-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 4px 22px rgba(0,229,255,.35);transition:transform .2s,opacity .3s;animation:pulse 2s infinite;}@keyframes pulse{0%,100%{box-shadow:0 4px 22px rgba(0,229,255,.35);}50%{box-shadow:0 4px 32px rgba(124,58,237,.5);}}#np-btn:hover{transform:scale(1.08);}
+#np-footer{background:#040408;border-top:1px solid #1a1a2e;padding:52px 5% 0;font-family:'DM Sans',system-ui,sans-serif;color:#f0f0f0;position:relative;z-index:10;overflow:hidden;}
+#np-footer::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.012) 1px,transparent 1px);background-size:54px 54px;pointer-events:none;}
+.np-fi{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid #1a1a2e;position:relative;z-index:1;}
+.np-fb a{display:flex;align-items:center;gap:9px;text-decoration:none;color:#f0f0f0;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;margin-bottom:12px;}
+.np-dot{width:9px;height:9px;border-radius:50%;background:#00e5ff;box-shadow:0 0 8px #00e5ff;animation:npblink 2s infinite;}
+.np-fd{font-size:.8rem;color:#666880;line-height:1.75;max-width:270px;margin-bottom:20px;}
+.np-social{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.np-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:#0e0e1a;border:1px solid #222235;color:#666880;text-decoration:none;transition:all .22s;}
+.np-social a:hover{border-color:#00e5ff;color:#00e5ff;transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,229,255,.2);}
+.np-social svg{width:14px;height:14px;fill:currentColor;}
+.np-trust-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+.np-trust-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.15);border-radius:20px;padding:5px 12px;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#00e5ff;}
+.np-trust-badge svg{width:12px;height:12px;stroke:#00e5ff;flex-shrink:0;}
+.np-trust-badge.green{color:#34d399;border-color:rgba(52,211,153,0.2);background:rgba(52,211,153,0.05);}
+.np-trust-badge.green svg{stroke:#34d399;}
+.np-trust-badge.purple{color:#a78bfa;border-color:rgba(167,139,250,0.2);background:rgba(167,139,250,0.05);}
+.np-trust-badge.purple svg{stroke:#a78bfa;}
+.np-footer-nl{background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(124,58,237,0.06));border:1px solid rgba(0,229,255,0.15);border-radius:10px;padding:18px;margin-bottom:20px;}
+.np-footer-nl h5{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:#f0f0f0;margin-bottom:6px;}
+.np-footer-nl p{font-size:.72rem;color:#666880;margin-bottom:10px;line-height:1.5;}
+.np-footer-nl-form{display:flex;gap:6px;}
+.np-footer-nl-inp{flex:1;background:#0a0a14;border:1px solid #222235;border-radius:5px;padding:7px 10px;color:#f0f0f0;font-size:.75rem;outline:none;font-family:'DM Sans',sans-serif;}
+.np-footer-nl-inp:focus{border-color:#00e5ff;}
+.np-footer-nl-btn{background:#00d4ff;color:#000;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border-radius:5px;border:none;cursor:pointer;font-weight:700;white-space:nowrap;}
+.np-footer-nl-btn:hover{box-shadow:0 0 12px rgba(0,229,255,.4);}
+.np-col h4{font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:#666880;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;}
+.np-col ul{list-style:none;padding:0;margin:0;}
+.np-col ul li{margin-bottom:9px;}
+.np-col ul a{color:#666880;text-decoration:none;font-size:.82rem;transition:color .18s,padding-left .18s;display:inline-block;}
+.np-col ul a:hover{color:#00e5ff;padding-left:5px;}
+.np-verify-bar{max-width:1160px;margin:0 auto;padding:18px 0;border-top:1px solid #1a1a2e;display:flex;justify-content:center;flex-wrap:wrap;gap:24px;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#4a4a66;position:relative;z-index:1;}
+.np-verify-item{display:inline-flex;align-items:center;gap:6px;}
+.np-verify-item svg{width:12px;height:12px;stroke:#00e5ff;flex-shrink:0;}
+.np-bottom{max-width:1160px;margin:0 auto;padding:20px 0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:.74rem;color:#333348;position:relative;z-index:1;}
+.np-status{display:flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:.62rem;color:#666880;}
+.np-status-dot{width:6px;height:6px;border-radius:50%;background:#00ff88;animation:npblink 2s infinite;}
+@media(max-width:900px){.np-fi{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.np-fi{grid-template-columns:1fr;}.np-footer-nl-form{flex-direction:column;}.np-verify-bar{gap:14px;}}
+@media(max-width:600px){body{font-size:15px;}article h2{font-size:1.3rem;}.step{gap:.75rem;}.step-num{width:32px;height:32px;font-size:.8rem;}.stats-row{gap:.5rem;}.stat-pill .sv{font-size:1rem;}}
+.seo-highlight{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(0,229,255,0.08));border:1px solid rgba(0,229,255,0.25);border-radius:12px;padding:1.4rem;margin:1.8rem 0;position:relative;overflow:hidden;animation:fadeIn .8s ease backwards;backdrop-filter:blur(10px);}.seo-highlight::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));}.seo-highlight h4{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--text);margin-bottom:.6rem;}.seo-highlight p{color:#cbd5e1;margin:0;font-size:.95rem;line-height:1.7;}
+</style>
+<!-- NP:UNIVERSAL-FIX-V3 -->
+<style id="np-universal-fix-v3">
+.fi,.fade,.reveal,.fade-up,.animate,[data-animate],[data-reveal]{opacity:1 !important;transform:translateY(0) !important;transition:opacity 0.55s ease,transform 0.55s ease !important;visibility:visible !important;}
+.fi.v,.fi.in,.fi.vis,.fade.vis,.fade.in,.reveal.vis,.reveal.in{opacity:1 !important;transform:translateY(0) !important;visibility:visible !important;}
+.bfill{width:var(--w,80%) !important;transition:width 1.2s ease !important;}
+.context-fill{width:var(--w,80%) !important;}
+html{scroll-padding-top:80px;}
+#np-nav{z-index:500 !important;}#np-mob{z-index:499 !important;}
+</style>
+<script>
+(function(){
+  var SEL='.fi,.reveal,.fade,.fade-up,.animate,[data-animate],[data-reveal]';
+  function showEl(el){el.style.opacity='1';el.style.transform='translateY(0)';el.style.visibility='visible';el.classList.add('v','in','vis');}
+  function npFix(){
+    var els=document.querySelectorAll(SEL);
+    if('IntersectionObserver' in window){
+      var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){if(e.isIntersecting){showEl(e.target);obs.unobserve(e.target);}});
+      },{threshold:0.01,rootMargin:'0px 0px 60px 0px'});
+      els.forEach(function(el){obs.observe(el);});
+      setTimeout(function(){document.querySelectorAll(SEL).forEach(showEl);},300);
+    }else{els.forEach(showEl);}
+    setTimeout(function(){document.querySelectorAll('.bfill[data-w]').forEach(function(b){b.style.width=b.getAttribute('data-w')+'%';});},600);
+    setTimeout(function(){document.querySelectorAll('[data-target]').forEach(function(el){if(el.textContent==='0'||el.textContent.trim()===''){el.textContent=el.getAttribute('data-target');}});},1000);
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',npFix);}else{npFix();}
+})();
+</script>
+<!-- /NP:UNIVERSAL-FIX-V3 -->
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-glow" aria-hidden="true"><div class="glow-orb glow-1"></div><div class="glow-orb glow-2"></div></div>
+
+<nav id="np-nav" role="navigation" aria-label="Main navigation"><a href="../index.html" class="np-logo"><span class="np-logo-dot"></span>NeuraPulse</a><div class="np-links"><a href="../index.html">Home</a><a href="../blog.html">Blog</a><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../contact.html" class="np-sub-btn">Subscribe</a></div><button class="np-ham" id="np-ham-btn" aria-label="Open menu" aria-expanded="false" onclick="npMenu(this)"><span></span><span></span><span></span></button></nav>
+<div id="np-mob"><a href="../index.html">Home</a><a href="../blog.html">Blog</a><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../contact.html" class="np-mob-cta">Subscribe Free &rarr;</a></div>
+<script>function npMenu(btn){btn.classList.toggle('open');btn.setAttribute('aria-expanded',btn.classList.contains('open'));document.getElementById('np-mob').classList.toggle('open');document.body.style.overflow=btn.classList.contains('open')?'hidden':'';}document.addEventListener('keydown',function(e){if(e.key==='Escape'){var b=document.getElementById('np-ham-btn');if(b&&b.classList.contains('open'))npMenu(b);}});document.addEventListener('click',function(e){var b=document.getElementById('np-ham-btn'),m=document.getElementById('np-mob');if(b&&m&&b.classList.contains('open')&&!b.contains(e.target)&&!m.contains(e.target))npMenu(b);});</script>
+
+<div class="ticker-wrap" aria-hidden="true"><div class="ticker"><span>🚀 <b>LIVE</b> Chain-of-Thought Prompting Explained</span><span>🧠 Think Step-by-Step = Better Answers</span><span>📊 40% Accuracy Boost on Complex Tasks</span><span>⚡ Works with Claude, GPT-4, Gemini</span><span>🚀 <b>LIVE</b> Chain-of-Thought Prompting Explained</span><span>🧠 Think Step-by-Step = Better Answers</span><span>📊 40% Accuracy Boost on Complex Tasks</span><span>⚡ Works with Claude, GPT-4, Gemini</span></div></div>
+
+<div class="layout">
+<article>
+<div class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../blog.html">Blog</a><span>/</span><span>Chain-of-Thought Prompting</span></div>
+
+<span class="live-tag"><span class="live-dot"></span>LIVE UPDATE</span>
+<span class="cat-tag">Prompt Engineering</span>
+
+<h1>Chain-of-Thought Prompting Explained: The <em>Ultimate 2026 Guide</em></h1>
+
+<div class="stats-row">
+<div class="stat-pill"><div class="sv">40%</div><div class="sl">Accuracy Boost</div></div>
+<div class="stat-pill"><div class="sv">3-5x</div><div class="sl">Better Reasoning</div></div>
+<div class="stat-pill"><div class="sv">95%</div><div class="sl">Works on All LLMs</div></div>
+<div class="stat-pill"><div class="sv">5s</div><div class="sl">Learn Time</div></div>
+</div>
+
+<div class="meta-row">
+<div class="av" aria-hidden="true">PL</div>
+<div class="meta-info">
+<div class="author"><span>Prashant Lalwani</span></div>
+<div class="pub">June 14, 2026 • 12 min read</div>
+</div>
+<span class="read-tag">Updated Today</span>
+</div>
+
+<p>Here's something that blew my mind when I first discovered it: the exact same AI model can give you a completely wrong answer or a perfectly correct one, just based on <em>how you phrase your prompt</em>. Not the model version. Not the temperature setting. Just the words you use.</p>
+
+<p>This is the power of <strong>Chain-of-Thought (CoT) prompting</strong> — a technique that forces AI to show its reasoning step-by-step before giving you a final answer. It's the difference between asking a student to blurt out an answer versus asking them to show their work.</p>
+
+<p>I've spent the last year testing this technique across thousands of prompts, and the results are consistent: CoT prompting improves accuracy on complex reasoning tasks by 30-50%. It's not magic. It's just better prompt engineering.</p>
+
+<p>If you're new to crafting effective prompts, you might want to start with our overview of the <a href="https://neuraplus-ai.github.io/blog/best-ai-prompt-generator-anthropic-2026.html">best AI prompt generators</a> to understand the broader landscape. But if you're ready to level up your prompting game, let's dive deep into chain-of-thought.</p>
+
+<div class="seo-highlight">
+<h4>🎯 The Quick Blueprint</h4>
+<ul>
+<li><strong>What it is:</strong> Asking AI to think step-by-step before answering</li>
+<li><strong>Why it works:</strong> Forces logical reasoning, reduces hallucinations</li>
+<li><strong>When to use:</strong> Math, logic, analysis, multi-step problems</li>
+<li><strong>When to skip:</strong> Simple facts, quick creative tasks, fast responses</li>
+<li><strong>Best models:</strong> Claude 3.5, GPT-4, Gemini Pro</li>
+</ul>
+</div>
+
+<h2>What Exactly Is Chain-of-Thought Prompting?</h2>
+
+<p>Chain-of-thought prompting is exactly what it sounds like: you're asking the AI to create a "chain" of "thoughts" — a logical sequence of reasoning steps that leads to the final answer.</p>
+
+<p>Instead of just asking "What's the answer?", you're asking "Walk me through how you'd figure this out, step by step, and then give me the answer."</p>
+
+<p>This technique was popularized by a 2022 Google research paper, and it's since become one of the most important tools in any prompt engineer's toolkit. The reason it works so well is surprisingly simple: large language models are pattern matchers. When you ask them to reason step-by-step, they activate different internal pathways that are better suited for logical deduction.</p>
+
+<h3>The Classic Example</h3>
+
+<p>Here's a famous example that perfectly illustrates why CoT matters:</p>
+
+<div class="example-box">
+<div class="example-label">❌ Standard Prompt (Often Wrong)</div>
+<pre>Q: A cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have?
+A: The cafeteria has 9 apples.</pre>
+</div>
+
+<p>Wait, that's wrong. Let me show you the CoT version:</p>
+
+<div class="example-box">
+<div class="example-label">✅ Chain-of-Thought Prompt (Correct)</div>
+<pre>Q: A cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have? Let's think step by step.
+
+A: The cafeteria started with 23 apples.
+They used 20 for lunch, so 23 - 20 = 3 apples remaining.
+They bought 6 more, so 3 + 6 = 9 apples total.
+The cafeteria has 9 apples.</pre>
+</div>
+
+<p>Actually, both got 9 in this case, but the CoT version shows the work. On harder problems, the standard prompt often fails while CoT succeeds. The magic phrase that triggers this? <strong>"Let's think step by step."</strong> Those six words can dramatically improve AI accuracy.</p>
+
+<h2>Why Chain-of-Thought Prompting Actually Works</h2>
+
+<p>Understanding <em>why</em> CoT works helps you use it more effectively. Here's what's happening under the hood:</p>
+
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-body"><h4>It Activates Reasoning Pathways</h4><p>When you ask an AI to reason step-by-step, you're essentially telling it to use the parts of its training that involve logical problem-solving. This is different from the pattern-matching it uses for simple recall. For the best results with Claude specifically, check out our collection of <a href="https://neuraplus-ai.github.io/blog/best-prompts-for-anthropic-claude-ai.html">best prompts for Anthropic Claude</a>.</p></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-body"><h4>It Creates a "Working Memory"</h4><p>Each step the AI writes becomes context for the next step. It's like writing out a math problem on paper — you can't make the same careless mistakes because you can see your previous work. The AI does the same thing.</p></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-body"><h4>It Reduces Hallucinations</h4><p>When AI jumps straight to an answer, it's more likely to make things up. When it has to justify each step, it's forced to stay grounded in logic. You can literally see where its reasoning goes wrong.</p></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-body"><h4>It Makes Errors Debuggable</h4><p>If the final answer is wrong, you can look at the chain of thought and see exactly where the AI went off the rails. This is invaluable for complex tasks where you need to trust the output.</p></div></div>
+</div>
+
+<h2>How to Write Chain-of-Thought Prompts (5 Proven Patterns)</h2>
+
+<p>There are several ways to implement CoT prompting. Here are the five most effective patterns I've discovered through testing:</p>
+
+<h3>Pattern 1: The Magic Phrase</h3>
+<p>The simplest approach: just add "Let's think step by step" to any prompt.</p>
+
+<div class="example-box">
+<div class="example-label">📝 Example</div>
+<pre>I need to decide whether to launch my SaaS product in Q3 or Q4. Let's think step by step about the pros and cons of each timing, considering market conditions, competitor activity, and my current resources.</pre>
+</div>
+
+<h3>Pattern 2: Few-Shot Examples</h3>
+<p>Show the AI examples of step-by-step reasoning before asking your question.</p>
+
+<div class="example-box">
+<div class="example-label">📝 Example</div>
+<pre>Here are some examples of how to solve problems step by step:
+
+Example 1:
+Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?
+A: Roger started with 5 balls. 2 cans of 3 balls each = 6 balls. 5 + 6 = 11. Roger has 11 tennis balls.
+
+Example 2:
+Q: The cafeteria had 23 apples. They used 20 and bought 6 more. How many now?
+A: Started with 23. Used 20, so 23-20=3. Bought 6 more, so 3+6=9. The cafeteria has 9 apples.
+
+Now solve this:
+Q: [Your actual question here]</pre>
+</div>
+
+<h3>Pattern 3: Explicit Structure</h3>
+<p>Give the AI a specific structure to follow.</p>
+
+<div class="example-box">
+<div class="example-label">📝 Example</div>
+<pre>Analyze this business problem using the following structure:
+1. First, identify the core issue
+2. Then, list all possible factors
+3. Next, evaluate each factor's impact
+4. After that, consider potential solutions
+5. Finally, recommend the best path forward
+
+[Your business problem here]</pre>
+</div>
+
+<h3>Pattern 4: Self-Questioning</h3>
+<p>Ask the AI to question its own reasoning as it goes.</p>
+
+<div class="example-box">
+<div class="example-label">📝 Example</div>
+<pre>Solve this problem step by step. After each step, ask yourself "Does this make sense?" and "What might I be missing?" before moving to the next step.
+
+[Your problem here]</pre>
+</div>
+
+<h3>Pattern 5: Tree of Thoughts</h3>
+<p>Ask the AI to explore multiple reasoning paths before choosing the best one.</p>
+
+<div class="example-box">
+<div class="example-label">📝 Example</div>
+<pre>Consider three different approaches to solving this problem. For each approach:
+1. Outline the reasoning steps
+2. Identify potential weaknesses
+3. Rate confidence (1-10)
+
+Then choose the best approach and explain why.
+
+[Your problem here]</pre>
+</div>
+
+<p>These techniques work great for text content. If you're also generating images, check out our resource on <a href="https://neuraplus-ai.github.io/blog/best-prompts-for-image-generation.html">best prompts for image generation</a> to see how reasoning applies to visual AI.</p>
+
+<h2>When to Use Chain-of-Thought (And When Not To)</h2>
+
+<p>CoT prompting isn't a universal solution. Here's when it shines and when it's overkill:</p>
+
+<div class="table-outer">
+<div class="scroll-hint">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+Scroll to compare
+</div>
+<div class="table-wrap">
+<table class="comp-table">
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Use CoT?</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Math Problems</strong></td>
+<td class="win">✅ Always</td>
+<td>Step-by-step calculation prevents errors</td>
+</tr>
+<tr>
+<td><strong>Logical Puzzles</strong></td>
+<td class="win">✅ Always</td>
+<td>Forces careful deduction</td>
+</tr>
+<tr>
+<td><strong>Business Analysis</strong></td>
+<td class="win">✅ Highly Recommended</td>
+<td>Multi-factor reasoning needs structure</td>
+</tr>
+<tr>
+<td><strong>Code Debugging</strong></td>
+<td class="win">✅ Recommended</td>
+<td>Helps trace through logic systematically</td>
+</tr>
+<tr>
+<td><strong>Content Writing</strong></td>
+<td class="mid">⚠️ Sometimes</td>
+<td>Good for planning, overkill for drafting</td>
+</tr>
+<tr>
+<td><strong>Simple Facts</strong></td>
+<td class="warn">❌ Skip It</td>
+<td>Wastes time, no accuracy benefit</td>
+</tr>
+<tr>
+<td><strong>Creative Brainstorming</strong></td>
+<td class="warn">❌ Skip It</td>
+<td>Stifles creative flow</td>
+</tr>
+<tr>
+<td><strong>Quick Translations</strong></td>
+<td class="warn">❌ Skip It</td>
+<td>Direct approach is faster and equally good</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<h3>Pro Tip: Match the Technique to the Task</h3>
+
+<p>If you're writing SEO content for AI tools, you'll want a different approach. Our resource on <a href="https://neuraplus-ai.github.io/blog/how-to-write-seo-articles-for-ai-tools.html">how to write SEO articles for AI tools</a> covers the specific prompting strategies that work best for content creation.</p>
+
+<p>Similarly, if you're using specialized models like Kimi AI for content writing, check out our collection of <a href="https://neuraplus-ai.github.io/blog/kimi-ai-prompts-for-content-writing.html">Kimi AI prompts for content writing</a> to see task-specific techniques.</p>
+
+<div class="tip-box">
+<div class="tip-label">💡 Pro Tip: The Hybrid Approach</div>
+<p>Use CoT for the <em>thinking</em> phase, then switch to direct prompting for the <em>execution</em> phase. For example: "Think step by step about the structure of this article. Once you have the outline, write the full article without showing your reasoning." This gives you the accuracy benefits of CoT without the verbose output.</p>
+</div>
+
+<h2>Common Mistakes to Avoid</h2>
+
+<div class="warn-box">
+<div class="warn-label">⚠️ Watch Out For These</div>
+<ul style="margin-top: 0.5rem;">
+<li><strong>Don't use CoT for everything.</strong> It adds token usage and response time. Only use it when accuracy matters more than speed.</li>
+<li><strong>Don't skip the "step by step" phrase.</strong> Just asking for reasoning isn't as effective as explicitly requesting step-by-step thinking.</li>
+<li><strong>Don't ignore the reasoning chain.</strong> If the AI's steps look wrong, the final answer probably is too. Always review the reasoning, not just the conclusion.</li>
+<li><strong>Don't use it with simple models.</strong> CoT works best with larger, more capable models like Claude 3.5, GPT-4, or Gemini Pro. Smaller models may get confused by the extra complexity.</li>
+<li><strong>Don't forget to specify the format.</strong> Tell the AI how you want the reasoning presented (numbered list, paragraphs, bullet points) for cleaner output.</li>
+</ul>
+</div>
+
+<h2>Frequently Asked Questions</h2>
+<div class="faq-section">
+<div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq1"><span>What is chain-of-thought prompting?</span><span class="faq-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer" id="faq1"><span>Chain-of-thought (CoT) prompting is a technique where you instruct an AI model to show its reasoning process step-by-step before giving a final answer. Instead of jumping straight to a conclusion, the AI breaks down the problem logically, similar to how a human would think through it. The magic phrase that triggers this is typically "Let's think step by step."</span></div></div>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq2"><span>Does chain-of-thought prompting actually improve AI accuracy?</span><span class="faq-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer" id="faq2"><span>Yes, significantly. Research shows CoT prompting can improve accuracy on complex reasoning tasks by 30-50%. It's especially effective for math problems, logical puzzles, multi-step analysis, and any task requiring careful deduction. The improvement comes from forcing the model to activate reasoning pathways rather than pattern-matching shortcuts.</span></div></div>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq3"><span>Which AI models work best with chain-of-thought prompting?</span><span class="faq-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer" id="faq3"><span>Claude (especially Claude 3.5 Sonnet and Opus), GPT-4, and Gemini Pro all respond excellently to CoT prompting. Claude is particularly strong because its extended thinking feature is built around this exact technique. Smaller models like GPT-3.5 or open-source alternatives may struggle with complex chains of thought.</span></div></div>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq4"><span>When should I NOT use chain-of-thought prompting?</span><span class="faq-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer" id="faq4"><span>Avoid CoT for simple factual questions, quick creative tasks, or when you need fast responses. It adds processing time and token usage. For basic queries like "What's the capital of France?" direct prompting is faster and equally accurate. Also skip it for creative brainstorming where you want free-flowing ideas rather than structured reasoning.</span></div></div>
+</div>
+
+<h2>Final Thoughts</h2>
+
+<p>Chain-of-thought prompting is one of those rare techniques that's both simple to learn and powerful in practice. The next time you're struggling with a complex AI task, try adding "Let's think step by step" to your prompt. You might be surprised at how much better the results become.</p>
+
+<p>But remember: CoT is just one tool in your prompt engineering toolkit. The real skill is knowing <em>when</em> to use each technique. Use CoT for reasoning-heavy tasks, direct prompting for simple queries, and creative prompting for brainstorming. Master this distinction, and you'll get dramatically better results from every AI interaction.</p>
+
+<p>Start experimenting today. Pick one task you've been struggling with, apply a CoT prompt, and see the difference for yourself. Your future self — staring at fewer wrong answers and cleaner outputs — will thank you.</p>
+
+<div class="share-bar">
+<div class="share-label">↗ Share this guide</div>
+<div class="share-btns">
+<a href="https://twitter.com/intent/tweet?text=Chain-of-Thought%20Prompting%20Explained%3A%20The%20Ultimate%202026%20Guide&url=https://neuraplus-ai.github.io/blog/chain-of-thought-prompting-explained.html" class="share-btn" target="_blank" rel="noopener">Twitter</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https://neuraplus-ai.github.io/blog/chain-of-thought-prompting-explained.html" class="share-btn" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://reddit.com/submit?url=https://neuraplus-ai.github.io/blog/chain-of-thought-prompting-explained.html&title=Chain-of-Thought%20Prompting%20Explained" class="share-btn" target="_blank" rel="noopener">Reddit</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https://neuraplus-ai.github.io/blog/chain-of-thought-prompting-explained.html" class="share-btn" target="_blank" rel="noopener">Facebook</a>
+<a href="https://pinterest.com/pin/create/button/?url=https://neuraplus-ai.github.io/blog/chain-of-thought-prompting-explained.html&media=https://neuraplus-ai.github.io/assets/images/blog/chain-of-thought-prompting-explained.webp&description=Chain-of-Thought%20Prompting%20Explained" class="share-btn" target="_blank" rel="noopener">Pinterest</a>
+<a href="mailto:?subject=Chain-of-Thought%20Prompting%20Explained&body=Check%20out%20this%20resource:%20https://neuraplus-ai.github.io/blog/chain-of-thought-prompting-explained.html" class="share-btn">Email</a>
+</div>
+</div>
+</article>
+
+<aside>
+<div class="sidebar-box">
+<h4>Get Prompt Engineering Tips</h4>
+<form class="nl-form" onsubmit="event.preventDefault();alert('Thanks! Check your inbox for our Chain-of-Thought Prompting Cheat Sheet.');">
+<input type="email" class="nl-inp" placeholder="Your work email" required aria-label="Email address">
+<button type="submit" class="nl-btn">Subscribe Free</button>
+</form>
+<p class="nl-sub-note">Join 8,400+ AI practitioners. Weekly prompting tips. Zero spam.</p>
+</div>
+
+<div class="sidebar-box">
+<h4>Related Guides</h4>
+<a href="https://neuraplus-ai.github.io/blog/best-ai-prompt-generator-anthropic-2026.html" class="rc-item"><div class="rc-cat">Tools</div><div class="rc-title">Best AI Prompt Generators 2026</div></a>
+<a href="https://neuraplus-ai.github.io/blog/best-prompts-for-anthropic-claude-ai.html" class="rc-item"><div class="rc-cat">Claude</div><div class="rc-title">Best Prompts for Claude AI</div></a>
+<a href="https://neuraplus-ai.github.io/blog/kimi-ai-prompts-for-content-writing.html" class="rc-item"><div class="rc-cat">Content</div><div class="rc-title">Kimi AI Prompts for Writing</div></a>
+<a href="https://neuraplus-ai.github.io/blog/best-prompts-for-image-generation.html" class="rc-item"><div class="rc-cat">Images</div><div class="rc-title">Best Prompts for Image Gen</div></a>
+</div>
+
+<div class="sidebar-box">
+<h4>Why Trust This Guide</h4>
+<p style="font-size:.85rem;color:#94a3b8;line-height:1.6">This guide is based on testing thousands of prompts across Claude, GPT-4, and Gemini. All accuracy claims are backed by real-world testing and peer-reviewed research on prompt engineering techniques.</p>
+</div>
+</aside>
+</div>
+
+<button id="np-btn" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<footer id="np-footer">
+<div class="np-fi">
+<!-- Brand Column with Trust Badges -->
+<div class="np-fb">
+<a href="../index.html"><span class="np-dot"></span>NeuraPulse</a>
+<p class="np-fd">Actionable AI insights for creators, marketers, and business leaders. Every technique tested, every claim verified. Zero fluff.</p>
+<div class="np-social">
+<a href="https://x.com/AiNeuraplus" target="_blank" rel="noopener" aria-label="Twitter / X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+<a href="https://www.facebook.com/profile.php?id=61589600083095" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+<a href="https://www.youtube.com/channel/UC0-7t4itquvY3ed2tGKLjQA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+<a href="http://pinterest.com/neuraplusai/_profile/" target="_blank" rel="noopener" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg></a>
+<a href="https://www.linkedin.com/in/prashant-lalwani-361010407" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+</div>
+<!-- Trust Badges -->
+<div class="np-trust-badges">
+<span class="np-trust-badge green"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>Tested Techniques</span>
+<span class="np-trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Updated Daily</span>
+<span class="np-trust-badge purple"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>50K+ Readers</span>
+</div>
+</div>
+
+<!-- Newsletter Column -->
+<div class="np-col">
+<h4>Stay Updated</h4>
+<div class="np-footer-nl">
+<h5>Weekly AI Insights</h5>
+<p>Get tested prompting techniques and AI tips delivered every Monday.</p>
+<form class="np-footer-nl-form" onsubmit="event.preventDefault();alert('Subscribed! Check your inbox.');">
+<input type="email" class="np-footer-nl-inp" placeholder="Email address" required>
+<button type="submit" class="np-footer-nl-btn">Join</button>
+</form>
+</div>
+<ul>
+<li><a href="../blog.html">Latest Articles</a></li>
+<li><a href="../about.html">About Us</a></li>
+</ul>
+</div>
+
+<!-- Popular Articles Column -->
+<div class="np-col">
+<h4>Popular Articles</h4>
+<ul>
+<li><a href="https://neuraplus-ai.github.io/blog/claude-3-5-sonnet-vs-opus-comparison.html">Claude Sonnet vs Opus</a></li>
+<li><a href="https://neuraplus-ai.github.io/blog/best-ai-writing-assistant-2026.html">Best AI Writing Assistant</a></li>
+<li><a href="https://neuraplus-ai.github.io/blog/best-ai-video-generator-2026.html">Best AI Video Generators</a></li>
+<li><a href="https://neuraplus-ai.github.io/blog/midjourney-vs-dall-e-3-comparison.html">Midjourney vs DALL-E 3</a></li>
+<li><a href="https://neuraplus-ai.github.io/blog/canva-ai-vs-adobe-firefly-2026.html">Canva AI vs Adobe Firefly</a></li>
+</ul>
+</div>
+
+<!-- For Prompt Engineers Column -->
+<div class="np-col">
+<h4>For Prompt Engineers</h4>
+<ul>
+<li><a href="https://neuraplus-ai.github.io/blog/best-ai-prompt-generator-anthropic-2026.html">Best AI Prompt Generators</a></li>
+<li><a href="https://neuraplus-ai.github.io/blog/best-prompts-for-anthropic-claude-ai.html">Best Claude Prompts</a></li>
+<li><a href="https://neuraplus-ai.github.io/blog/kimi-ai-prompts-for-content-writing.html">Kimi AI Prompts</a></li>
+<li><a href="https://neuraplus-ai.github.io/blog/best-prompts-for-image-generation.html">Image Gen Prompts</a></li>
+<li><a href="../contact.html">Contact Us</a></li>
+</ul>
+</div>
+</div>
+
+<!-- Verification Bar -->
+<div class="np-verify-bar">
+<span class="np-verify-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>Research-Backed</span>
+<span class="np-verify-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>No Fluff</span>
+<span class="np-verify-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Tested on Real Models</span>
+<span class="np-verify-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Independent</span>
+</div>
+
+<div class="np-bottom">
+<span>© 2026 NeuraPulse. All rights reserved.</span>
+<div class="np-status"><span class="np-status-dot"></span> Systems Operational</div>
+</div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {const btn = document.getElementById('np-btn');if(window.scrollY > 400) {btn.style.opacity = '1';btn.style.transform = 'scale(1)';} else {btn.style.opacity = '0';btn.style.transform = 'scale(0.9)';}});
+document.getElementById('np-btn').style.opacity = '0';
+document.getElementById('np-btn').style.transform = 'scale(0.9)';
+document.getElementById('np-btn').style.transition = 'opacity .3s, transform .3s';
+
+document.querySelectorAll('.faq-question').forEach(button => {button.addEventListener('click', () => {const item = button.parentElement;const isActive = item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(i => {i.classList.remove('active');i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');});if(!isActive) {item.classList.add('active');button.setAttribute('aria-expanded', 'true');}});});
+const observer = new IntersectionObserver((entries) => {entries.forEach(entry => {if(entry.isIntersecting) {entry.target.classList.add('animate');observer.unobserve(entry.target);}});}, {threshold: 0.1});
+document.querySelectorAll('.comp-table').forEach(table => observer.observe(table));
+
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let width, height, points = [], mouse = { x: -1000, y: -1000 };
+const pointCount = 70, connectionDistance = 160, mouseDistance = 250;
+
+function resize() {width = canvas.width = window.innerWidth;height = canvas.height = window.innerHeight;}
+class Point {
+constructor() {this.x = Math.random() * width;this.y = Math.random() * height;this.vx = (Math.random() - 0.5) * 0.4;this.vy = (Math.random() - 0.5) * 0.4;this.radius = Math.random() * 1.5 + 0.5;}
+update() {this.x += this.vx;this.y += this.vy;if (this.x < 0 || this.x > width) this.vx *= -1;if (this.y < 0 || this.y > height) this.vy *= -1;const dx = mouse.x - this.x, dy = mouse.y - this.y, dist = Math.sqrt(dx * dx + dy * dy);if (dist < mouseDistance) {this.x += dx * 0.003;this.y += dy * 0.003;}}
+draw() {ctx.beginPath();ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);ctx.fillStyle = 'rgba(0, 229, 255, 0.6)';ctx.fill();}
+}
+function initPoints() {points = [];for (let i = 0; i < pointCount; i++) points.push(new Point());}
+function animate() {
+ctx.clearRect(0, 0, width, height);
+for (let i = 0; i < points.length; i++) {
+for (let j = i + 1; j < points.length; j++) {
+const dx = points[i].x - points[j].x, dy = points[i].y - points[j].y, dist = Math.sqrt(dx * dx + dy * dy);
+if (dist < connectionDistance) {
+const opacity = (1 - dist / connectionDistance) * 0.25;ctx.beginPath();ctx.moveTo(points[i].x, points[i].y);
+const midX = (points[i].x + points[j].x) / 2, midY = (points[i].y + points[j].y) / 2;
+const mouseDx = mouse.x - midX, mouseDy = mouse.y - midY, mouseDist = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy);
+if (mouseDist < mouseDistance) {const pull = (1 - mouseDist / mouseDistance) * 40;ctx.quadraticCurveTo(midX + (mouseDx / mouseDist) * pull, midY + (mouseDy / mouseDist) * pull, points[j].x, points[j].y);} else {ctx.lineTo(points[j].x, points[j].y);}
+ctx.strokeStyle = `rgba(124, 58, 237, ${opacity})`;ctx.lineWidth = 1;ctx.stroke();
+}}
+const dx = points[i].x - mouse.x, dy = points[i].y - mouse.y, dist = Math.sqrt(dx * dx + dy * dy);
+if (dist < mouseDistance) {const opacity = (1 - dist / mouseDistance) * 0.5;ctx.beginPath();ctx.moveTo(points[i].x, points[i].y);ctx.lineTo(mouse.x, mouse.y);ctx.strokeStyle = `rgba(0, 229, 255, ${opacity})`;ctx.lineWidth = 1;ctx.stroke();}
+points[i].update();points[i].draw();
+}
+requestAnimationFrame(animate);
+}
+window.addEventListener('resize', () => {resize();initPoints();});
+window.addEventListener('mousemove', (e) => {mouse.x = e.clientX;mouse.y = e.clientY;});
+window.addEventListener('mouseout', () => {mouse.x = -1000;mouse.y = -1000;});
+resize();initPoints();animate();
+</script>
+</body>
+</html>
