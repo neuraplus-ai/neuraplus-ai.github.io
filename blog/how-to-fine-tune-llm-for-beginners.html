@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- NP:GEO -->
+<meta name="author" content="Prashant Lalwani"/>
+<meta name="publisher" content="NeuraPulse"/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<meta name="googlebot" content="index, follow"/>
+<meta name="bingbot" content="index, follow"/>
+<meta name="rating" content="general"/>
+<meta name="revisit-after" content="7 days"/>
+<meta name="language" content="English"/>
+<meta name="category" content="Artificial Intelligence, LLM, Machine Learning, Fine-Tuning"/>
+<meta name="classification" content="LLM Fine-Tuning Guide"/>
+<meta name="subject" content="Fine-Tuning LLM, AI Training, Model Customization, Beginner Guide"/>
+<meta name="coverage" content="Worldwide"/>
+<meta name="distribution" content="Global"/>
+<meta name="target" content="all"/>
+<link rel="alternate" type="application/rss+xml" title="NeuraPulse RSS" href="https://neuraplus-ai.github.io/rss.xml"/>
+<!-- /NP:GEO -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Learn how to fine-tune LLMs step-by-step. Complete beginner guide covering data preparation, training, evaluation & deployment. Start customizing AI models today.">
+<meta name="keywords" content="how to fine-tune LLM, fine-tune large language model, LLM fine-tuning tutorial, fine-tuning for beginners, AI model training, custom LLM, fine-tuning guide">
+<meta name="author" content="Prashant Lalwani">
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="How to Fine-Tune LLM for Beginners: Complete 2026 Guide"/>
+<meta property="og:description" content="Learn how to fine-tune LLMs step-by-step. Complete beginner guide covering data preparation, training, evaluation & deployment. Start customizing AI models today."/>
+<meta property="og:url" content="https://neuraplus-ai.github.io/blog/how-to-fine-tune-llm-for-beginners.html"/>
+<meta property="og:image" content="https://neuraplus-ai.github.io/assets/images/blog/how-to-fine-tune-llm-for-beginners.webp"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="669"/>
+<meta property="og:site_name" content="NeuraPulse"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="How to Fine-Tune LLM for Beginners: Complete 2026 Guide"/>
+<meta name="twitter:description" content="Learn how to fine-tune LLMs step-by-step. Complete beginner guide covering data preparation, training, evaluation & deployment. Start customizing AI models today."/>
+<meta name="twitter:image" content="https://neuraplus-ai.github.io/assets/images/blog/how-to-fine-tune-llm-for-beginners.webp"/>
+<meta name="twitter:site" content="@AiNeuraplus"/>
+<link rel="canonical" href="https://neuraplus-ai.github.io/blog/how-to-fine-tune-llm-for-beginners.html"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<title>How to Fine-Tune LLM for Beginners: Complete 2026 Guide — NeuraPulse</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JNSQJZJDN1');</script>
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://neuraplus-ai.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://neuraplus-ai.github.io/blog.html"},{"@type":"ListItem","position":3,"name":"Fine-Tune LLM Guide","item":"https://neuraplus-ai.github.io/blog/how-to-fine-tune-llm-for-beginners.html"}]},{"@context":"https://schema.org","@type":"Article","url":"https://neuraplus-ai.github.io/blog/how-to-fine-tune-llm-for-beginners.html","headline":"How to Fine-Tune LLM for Beginners: Complete 2026 Guide","description":"Learn how to fine-tune LLMs step-by-step. Complete beginner guide covering data preparation, training, evaluation & deployment. Start customizing AI models today.","datePublished":"2026-07-01","dateModified":"2026-07-01","image":{"@type":"ImageObject","url":"https://neuraplus-ai.github.io/assets/images/blog/how-to-fine-tune-llm-for-beginners.webp","width":1200,"height":669},"author":{"@type":"Person","name":"Prashant Lalwani","url":"https://neuraplus-ai.github.io/about.html"},"publisher":{"@type":"Organization","name":"NeuraPulse","url":"https://neuraplus-ai.github.io","logo":{"@type":"ImageObject","url":"https://neuraplus-ai.github.io/assets/logo.png"}},"inLanguage":"en"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is fine-tuning in LLMs?","acceptedAnswer":{"@type":"Answer","text":"Fine-tuning is the process of taking a pre-trained large language model and training it further on your specific data to customize its behavior, knowledge, or writing style. It's like teaching an already-smart AI new specialized skills for your particular use case."}},{"@type":"Question","name":"How much data do I need to fine-tune an LLM?","acceptedAnswer":{"@type":"Answer","text":"You can start with as few as 50-100 high-quality examples for basic fine-tuning. For better results, aim for 500-5,000 examples. The key is quality over quantity — 100 excellent examples beat 10,000 mediocre ones."}},{"@type":"Question","name":"Is fine-tuning expensive for beginners?","acceptedAnswer":{"@type":"Answer","text":"Not anymore! With modern techniques like LoRA and QLoRA, you can fine-tune models on consumer hardware or cloud services for $5-50. OpenAI's fine-tuning API starts at just a few dollars for small datasets. Many beginners spend under $20 for their first fine-tuning project."}},{"@type":"Question","name":"How long does it take to fine-tune an LLM?","acceptedAnswer":{"@type":"Answer","text":"With cloud APIs like OpenAI, fine-tuning can take 10 minutes to 2 hours depending on dataset size. For open-source models with LoRA on a single GPU, expect 1-6 hours. The entire process including data preparation typically takes 1-3 days for beginners."}},{"@type":"Question","name":"What's the difference between fine-tuning and RAG?","acceptedAnswer":{"@type":"Answer","text":"Fine-tuning modifies the model's internal weights through training, permanently teaching it new knowledge or styles. RAG retrieves external information at query time without changing the model. Fine-tuning is like learning a skill; RAG is like looking things up in a book."}}]}]
+</script>
+<style>
+:root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:#1e2d45;--accent:#00e5ff;--accent2:#7c3aed;--accent3:#ef4444;--text:#e2e8f0;--text-dim:#64748b;--text-mid:#94a3b8;--text-muted:#334155;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+img{max-width:100%;height:auto;}
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;}
+.bg-glow{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden;}
+.glow-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.12;animation:drift 20s infinite alternate ease-in-out;}
+.glow-1{width:600px;height:600px;background:var(--accent);top:-10%;left:-10%;animation-delay:0s;}
+.glow-2{width:500px;height:500px;background:var(--accent2);bottom:-10%;right:-10%;animation-delay:-10s;}
+@keyframes drift{0%{transform:translate(0,0) scale(1);}100%{transform:translate(100px,50px) scale(1.2);}}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
+
+/* NAV */
+#np-nav{position:sticky;top:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(8,12,18,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,.12);font-family:'DM Sans',system-ui,sans-serif;}
+.np-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.18rem;color:#fff;display:flex;align-items:center;gap:8px;text-decoration:none;letter-spacing:-.02em;}
+.np-logo-dot{width:8px;height:8px;background:#00d4ff;border-radius:50%;box-shadow:0 0 10px #00d4ff;animation:npblink 2s ease infinite;flex-shrink:0;}
+@keyframes npblink{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.5);opacity:.7;}}
+.np-links{display:flex;gap:26px;align-items:center;}
+.np-links a{color:#8899aa;text-decoration:none;font-size:.84rem;letter-spacing:.07em;text-transform:uppercase;transition:color .2s;position:relative;font-family:'Space Mono',monospace;}
+.np-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:#00d4ff;transform:scaleX(0);transition:transform .25s;}
+.np-links a:hover{color:#00d4ff;}
+.np-links a:hover::after{transform:scaleX(1);}
+.np-sub-btn{background:#00d4ff;color:#000!important;font-weight:700;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;padding:8px 18px;border-radius:5px;text-decoration:none;transition:box-shadow .2s,transform .2s;white-space:nowrap;}
+.np-sub-btn:hover{box-shadow:0 0 22px #00d4ff;transform:translateY(-1px);}
+.np-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:7px;background:transparent;border:none;margin-left:8px;}
+.np-ham span{display:block;width:24px;height:2px;background:#8899aa;border-radius:2px;transition:all .3s;}
+.np-ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.np-ham.open span:nth-child(2){opacity:0;}
+.np-ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+#np-mob{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(8,12,18,.98);padding:20px 5% 32px;flex-direction:column;gap:2px;z-index:499;overflow-y:auto;}
+#np-mob.open{display:flex;}
+#np-mob a{color:#8899aa;text-decoration:none;font-size:.95rem;letter-spacing:.07em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(0,212,255,.07);transition:color .2s;display:block;}
+#np-mob a:hover{color:#00d4ff;}
+.np-mob-cta{background:#00d4ff!important;color:#000!important;font-weight:700;text-align:center;border-radius:6px;margin-top:12px;padding:14px!important;border-bottom:none!important;letter-spacing:.07em;}
+
+/* TICKER */
+.ticker-wrap{background:rgba(0,229,255,0.04);border-bottom:1px solid var(--border);padding:.5rem 0;overflow:hidden;position:relative;z-index:10;}
+.ticker{display:flex;gap:4rem;animation:tick 40s linear infinite;white-space:nowrap;}
+@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.ticker span{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--text-dim);letter-spacing:.08em;}
+.ticker span b{color:var(--accent);}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:1fr 290px;gap:2.5rem;max-width:1160px;margin:0 auto;padding:2.5rem 1.5rem 4rem;position:relative;z-index:10;}
+article{min-width:0;}
+
+.breadcrumb{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.25rem;display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;}
+.breadcrumb a{color:var(--text-dim);text-decoration:none;}
+.breadcrumb a:hover{color:var(--accent);}
+.breadcrumb span{color:var(--text-muted);}
+
+.live-tag{display:inline-flex;align-items:center;gap:.4rem;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#34d399;margin-bottom:.6rem;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#34d399;animation:dotPulse 1.5s ease-in-out infinite;}
+@keyframes dotPulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+
+.cat-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .85rem;border-radius:3px;margin-bottom:.85rem;color:var(--accent);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.22);}
+
+article h1{font-family:'Syne',sans-serif;font-size:clamp(1.75rem,4.5vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.18;margin-bottom:1.25rem;}
+article h1 em{font-style:normal;color:var(--accent);}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.75rem;}
+.stat-pill{background:rgba(12,17,32,0.8);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem;text-align:center;animation:statPop .6s ease backwards;}
+.stat-pill:nth-child(1){animation-delay:.1s;}
+.stat-pill:nth-child(2){animation-delay:.2s;}
+.stat-pill:nth-child(3){animation-delay:.3s;}
+.stat-pill:nth-child(4){animation-delay:.4s;}
+@keyframes statPop{from{opacity:0;transform:translateY(20px) scale(.95);}to{opacity:1;transform:translateY(0) scale(1);}}
+.stat-pill .sv{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;color:var(--accent);}
+.stat-pill .sl{font-family:'Space Mono',monospace;font-size:.57rem;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-top:.15rem;}
+
+.meta-row{display:flex;align-items:center;gap:.85rem;margin-bottom:2rem;flex-wrap:wrap;animation:fadeIn .8s ease backwards;}
+.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;color:white;flex-shrink:0;}
+.meta-info .author{font-weight:600;color:var(--text);font-size:.875rem;}
+.meta-info .pub{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text-dim);}
+.read-tag{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text-dim);padding:.22rem .7rem;border:1px solid var(--border);border-radius:3px;}
+@keyframes fadeIn{from{opacity:0;transform:translateX(-10px);}to{opacity:1;transform:translateX(0);}}
+
+/* HERO IMAGE */
+.hero-img-wrap{margin:0 0 2rem;border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 32px rgba(0,229,255,0.08);background:var(--surface);}
+.hero-img-wrap img{width:100%;height:auto;display:block;aspect-ratio:1200/669;object-fit:cover;}
+.hero-img-wrap figcaption{text-align:center;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--text-dim);padding:.85rem 1rem;border-top:1px solid var(--border);}
+
+article h2{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin:2.25rem 0 .85rem;color:var(--text);padding-left:.75rem;border-left:3px solid var(--accent);animation:slideIn .5s ease backwards;}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);}}
+article h3{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin:1.75rem 0 .65rem;color:var(--text);}
+article h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin:1.25rem 0 .5rem;color:var(--text-mid);}
+
+article p{color:#cbd5e1;margin-bottom:1.15rem;font-size:.975rem;animation:fadeInUp .6s ease backwards;}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+article ul,article ol{color:#cbd5e1;padding-left:1.4rem;margin-bottom:1.15rem;}
+article li{margin-bottom:.45rem;font-size:.975rem;}
+article strong{color:var(--text);}
+article a{color:var(--accent);text-decoration:none;transition:color .2s;word-break:break-word;}
+article a:hover{color:#7c3aed;text-decoration:underline;}
+article code{background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);border-radius:4px;padding:.15rem .4rem;font-family:'Space Mono',monospace;font-size:.85rem;color:var(--accent);}
+
+/* TABLE — mobile scroll wrapper */
+.table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.5rem 0;border-radius:10px;border:1px solid var(--border);}
+table{width:100%;min-width:480px;border-collapse:collapse;font-size:.9rem;background:rgba(12,17,32,0.6);}
+table thead{background:rgba(0,229,255,0.06);}
+th{background:rgba(0,229,255,0.08);color:var(--accent);text-align:left;padding:.85rem 1rem;font-family:'Space Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--border);white-space:nowrap;}
+td{padding:.85rem 1rem;border-bottom:1px solid var(--border);color:var(--text-dim);}
+tr:last-child td{border-bottom:none;}
+tr:hover{background:rgba(0,229,255,0.03);}
+
+/* CALLOUT */
+.callout{background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.18);border-left:3px solid var(--accent);border-radius:10px;padding:1.1rem 1.35rem;margin:1.75rem 0;animation:fadeIn .8s ease backwards;backdrop-filter:blur(10px);}
+.callout.amber{background:rgba(245,158,11,0.05);border-color:rgba(245,158,11,0.22);border-left-color:#f59e0b;}
+.callout.red{background:rgba(239,68,68,0.05);border-color:rgba(239,68,68,0.22);border-left-color:var(--accent3);}
+.callout.green{background:rgba(52,211,153,0.05);border-color:rgba(52,211,153,0.22);border-left-color:#34d399;}
+.callout p{color:#94a3b8;margin:0;font-size:.9rem;}
+.callout strong{color:var(--text);}
+
+/* CODE BLOCK */
+.code-block{background:#060b18;border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin:1.5rem 0;overflow-x:auto;-webkit-overflow-scrolling:touch;font-family:'Space Mono',monospace;font-size:.82rem;line-height:1.7;color:#94a3b8;}
+.code-block pre{margin:0;white-space:pre;word-break:normal;}
+.code-block .kw{color:#a78bfa;}
+.code-block .str{color:#34d399;}
+.code-block .cm{color:#334155;font-style:italic;}
+
+/* SHARE BAR */
+.share-bar{border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.35rem;margin:2rem 0;background:rgba(12,17,32,0.8);backdrop-filter:blur(10px);}
+.share-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;}
+.share-btns{display:flex;gap:.6rem;flex-wrap:wrap;}
+.share-btn{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;padding:.5rem 1.1rem;border-radius:5px;cursor:pointer;background:none;border:1px solid var(--border);color:var(--text-dim);text-decoration:none;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:.4rem;}
+.share-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+/* FAQ */
+.faq-section{margin:2.5rem 0;}
+.faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:.85rem;overflow:hidden;background:rgba(12,17,32,0.8);backdrop-filter:blur(10px);transition:border-color .2s;}
+.faq-item:hover{border-color:var(--accent);}
+.faq-question{width:100%;padding:1.1rem 1.35rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;background:transparent;border:none;color:var(--text);font-family:'Syne',sans-serif;font-weight:600;font-size:1.05rem;text-align:left;cursor:pointer;transition:color .2s;}
+.faq-question:hover{color:var(--accent);}
+.faq-toggle{width:28px;height:28px;border-radius:50%;background:rgba(0,229,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s;}
+.faq-toggle svg{width:14px;height:14px;stroke:var(--accent);}
+.faq-item.active .faq-toggle{transform:rotate(45deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;padding:0 1.35rem;color:#94a3b8;font-size:.95rem;line-height:1.7;}
+.faq-item.active .faq-answer{max-height:500px;padding:0 1.35rem 1.1rem;}
+
+/* SIDEBAR */
+aside{position:sticky;top:84px;height:fit-content;display:flex;flex-direction:column;gap:1.25rem;}
+.sidebar-box{background:rgba(12,17,32,0.8);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:1.35rem;}
+.sidebar-box h4{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.9rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+.nl-form{display:flex;flex-direction:column;gap:.65rem;}
+.nl-inp{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:.65rem .9rem;color:var(--text);font-size:.875rem;outline:none;width:100%;transition:border-color .2s;font-family:'DM Sans',sans-serif;}
+.nl-inp:focus{border-color:var(--accent);}
+.nl-inp::placeholder{color:var(--text-muted);}
+.nl-btn{background:var(--accent);color:var(--bg);font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;padding:.7rem;border-radius:6px;border:none;cursor:pointer;transition:opacity .2s;}
+.nl-btn:hover{opacity:.85;}
+.nl-sub-note{font-size:.75rem;color:var(--text-dim);line-height:1.5;}
+.rc-item{display:block;text-decoration:none;padding:.65rem 0;border-bottom:1px solid rgba(30,45,69,.6);transition:padding-left .2s;}
+.rc-item:last-child{border-bottom:none;}
+.rc-item:hover{padding-left:8px;}
+.rc-cat{font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.2rem;}
+.rc-title{font-size:.825rem;color:var(--text-dim);line-height:1.45;transition:color .2s;}
+.rc-item:hover .rc-title{color:var(--text);}
+
+/* BACK TO TOP */
+#np-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 4px 22px rgba(0,229,255,.35);transition:transform .2s,opacity .3s;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 4px 22px rgba(0,229,255,.35);}50%{box-shadow:0 4px 32px rgba(124,58,237,.5);}}
+#np-btn:hover{transform:scale(1.08);}
+
+/* FOOTER */
+#np-footer{background:#040408;border-top:1px solid #1a1a2e;padding:52px 5% 0;font-family:'DM Sans',system-ui,sans-serif;color:#f0f0f0;position:relative;z-index:10;overflow:hidden;}
+#np-footer::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.012) 1px,transparent 1px);background-size:54px 54px;pointer-events:none;}
+.np-fi{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid #1a1a2e;position:relative;z-index:1;}
+.np-fb a{display:flex;align-items:center;gap:9px;text-decoration:none;color:#f0f0f0;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;margin-bottom:12px;}
+.np-dot{width:9px;height:9px;border-radius:50%;background:#00e5ff;box-shadow:0 0 8px #00e5ff;animation:npblink 2s infinite;}
+.np-fd{font-size:.8rem;color:#666880;line-height:1.75;max-width:270px;margin-bottom:20px;}
+.np-social{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.np-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:#0e0e1a;border:1px solid #222235;color:#666880;text-decoration:none;transition:all .22s;}
+.np-social a:hover{border-color:#00e5ff;color:#00e5ff;transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,229,255,.2);}
+.np-social svg{width:14px;height:14px;fill:currentColor;}
+.np-trust-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+.np-trust-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.15);border-radius:20px;padding:5px 12px;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#00e5ff;white-space:nowrap;}
+.np-trust-badge svg{width:12px;height:12px;stroke:#00e5ff;flex-shrink:0;}
+.np-trust-badge.green{color:#34d399;border-color:rgba(52,211,153,0.2);background:rgba(52,211,153,0.05);}
+.np-trust-badge.green svg{stroke:#34d399;}
+.np-trust-badge.purple{color:#a78bfa;border-color:rgba(167,139,250,0.2);background:rgba(167,139,250,0.05);}
+.np-trust-badge.purple svg{stroke:#a78bfa;}
+.np-footer-nl{background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(124,58,237,0.06));border:1px solid rgba(0,229,255,0.15);border-radius:10px;padding:18px;margin-bottom:20px;}
+.np-footer-nl h5{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:#f0f0f0;margin-bottom:6px;}
+.np-footer-nl p{font-size:.72rem;color:#666880;margin-bottom:10px;line-height:1.5;}
+.np-footer-nl-form{display:flex;gap:6px;flex-wrap:wrap;}
+.np-footer-nl-inp{flex:1;min-width:0;background:#0a0a14;border:1px solid #222235;border-radius:5px;padding:7px 10px;color:#f0f0f0;font-size:.75rem;outline:none;font-family:'DM Sans',sans-serif;}
+.np-footer-nl-inp:focus{border-color:#00e5ff;}
+.np-footer-nl-btn{background:#00d4ff;color:#000;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border-radius:5px;border:none;cursor:pointer;font-weight:700;white-space:nowrap;}
+.np-footer-nl-btn:hover{box-shadow:0 0 12px rgba(0,229,255,.4);}
+.np-col h4{font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:#666880;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;}
+.np-col ul{list-style:none;padding:0;margin:0;}
+.np-col ul li{margin-bottom:9px;}
+.np-col ul a{color:#666880;text-decoration:none;font-size:.82rem;transition:color .18s,padding-left .18s;display:inline-block;}
+.np-col ul a:hover{color:#00e5ff;padding-left:5px;}
+.np-verify-bar{max-width:1160px;margin:0 auto;padding:18px 0;border-top:1px solid #1a1a2e;display:flex;justify-content:center;flex-wrap:wrap;gap:24px;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#4a4a66;position:relative;z-index:1;}
+.np-verify-item{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+.np-verify-item svg{width:12px;height:12px;stroke:#00e5ff;flex-shrink:0;}
+.np-bottom{max-width:1160px;margin:0 auto;padding:20px 0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:.74rem;color:#333348;position:relative;z-index:1;}
+.np-status{display:flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:.62rem;color:#666880;white-space:nowrap;}
+.np-status-dot{width:6px;height:6px;border-radius:50%;background:#00ff88;animation:npblink 2s infinite;flex-shrink:0;}
+
+/* MOBILE */
+@media(max-width:960px){
+  .layout{grid-template-columns:1fr;gap:2rem;padding:1.75rem 1rem 3rem;}
+  aside{position:static;}
+  .np-fi{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .np-links{display:none;}
+  .np-ham{display:flex;}
+  #np-nav{padding:0 1rem;}
+  .layout{padding:1.5rem 1rem 2rem;}
+  article h1{font-size:clamp(1.5rem,6vw,2rem);margin-bottom:1rem;}
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:.5rem;}
+  .stat-pill{padding:.6rem .7rem;}
+  .stat-pill .sv{font-size:1rem;}
+  .stat-pill .sl{font-size:.52rem;}
+  article h2{font-size:1.25rem;margin:1.75rem 0 .75rem;padding-left:.6rem;}
+  article h3{font-size:1.05rem;margin:1.5rem 0 .6rem;}
+  article p{font-size:.92rem;line-height:1.65;margin-bottom:1rem;}
+  article li{font-size:.92rem;}
+  .callout{padding:.9rem 1.1rem;margin:1.5rem 0;}
+  .callout p{font-size:.85rem;}
+  .code-block{padding:1rem;margin:1.25rem 0;font-size:.75rem;}
+  .faq-question{padding:.9rem 1.1rem;font-size:.95rem;}
+  .faq-item.active .faq-answer{padding:0 1.1rem 1rem;}
+  table{font-size:.8rem;}
+  th,td{padding:.6rem .7rem;}
+  #np-footer{padding:40px 1rem 0;}
+  .np-fi{gap:30px;padding-bottom:30px;}
+  .np-fd{font-size:.75rem;max-width:100%;}
+  .np-col ul a{font-size:.78rem;}
+}
+@media(max-width:480px){
+  #np-nav{height:56px;padding:0 .75rem;}
+  .np-logo{font-size:.9rem;gap:6px;}
+  .layout{padding:1.25rem .75rem 1.5rem;}
+  article h1{font-size:1.5rem;line-height:1.2;}
+  .stats-row{gap:.4rem;}
+  .stat-pill{padding:.5rem .6rem;}
+  .stat-pill .sv{font-size:.9rem;}
+  .stat-pill .sl{font-size:.48rem;}
+  article h2{font-size:1.15rem;}
+  article h3{font-size:1rem;}
+  article p{font-size:.88rem;line-height:1.6;}
+  .callout{padding:.8rem 1rem;}
+  .callout p{font-size:.82rem;}
+  .code-block{padding:.9rem;font-size:.7rem;}
+  table{font-size:.72rem;}
+  th,td{padding:.5rem .6rem;}
+  .share-btn{font-size:.55rem;padding:.4rem .75rem;}
+  .faq-question{padding:.8rem 1rem;font-size:.88rem;}
+  .faq-item.active .faq-answer{padding:0 1rem .9rem;}
+  .faq-answer{font-size:.82rem;}
+  #np-footer{padding:32px .75rem 0;}
+  .np-fi{gap:24px;padding-bottom:24px;grid-template-columns:1fr;}
+  .np-verify-bar{flex-direction:column;align-items:center;gap:10px;}
+  .np-bottom{flex-direction:column;text-align:center;font-size:.62rem;}
+}
+</style>
+<!-- NP:UNIVERSAL-FIX-V3 -->
+<style id="np-universal-fix-v3">
+.fi,.fade,.reveal,.fade-up,.animate,[data-animate],[data-reveal]{opacity:1 !important;transform:translateY(0) !important;transition:opacity 0.55s ease,transform 0.55s ease !important;visibility:visible !important;}
+html{scroll-padding-top:80px;}
+#np-nav{z-index:500 !important;}
+#np-mob{z-index:499 !important;}
+</style>
+<script>
+(function(){
+  var SEL='.fi,.reveal,.fade,.fade-up,.animate,[data-animate],[data-reveal]';
+  function showEl(el){el.style.opacity='1';el.style.transform='translateY(0)';el.style.visibility='visible';el.classList.add('v','in','vis');}
+  function npFix(){
+    var els=document.querySelectorAll(SEL);
+    if('IntersectionObserver' in window){
+      var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){showEl(e.target);obs.unobserve(e.target);}});},{threshold:0.01,rootMargin:'0px 0px 60px 0px'});
+      els.forEach(function(el){obs.observe(el);});
+      setTimeout(function(){document.querySelectorAll(SEL).forEach(showEl);},300);
+    }else{els.forEach(showEl);}
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',npFix);}else{npFix();}
+})();
+</script>
+<!-- /NP:UNIVERSAL-FIX-V3 -->
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-glow" aria-hidden="true"><div class="glow-orb glow-1"></div><div class="glow-orb glow-2"></div></div>
+
+<nav id="np-nav" role="navigation" aria-label="Main navigation">
+  <a href="../index.html" class="np-logo" aria-label="NeuraPulse Home">
+    <span class="np-logo-dot" aria-hidden="true"></span>NeuraPulse
+  </a>
+  <div class="np-links">
+    <a href="../index.html">Home</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../guide.html">Guide</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../contact.html" class="np-sub-btn">Subscribe</a>
+  </div>
+  <button class="np-ham" id="np-ham-btn" aria-label="Open menu" aria-expanded="false" onclick="npMenu(this)"><span></span><span></span><span></span></button>
+</nav>
+<div id="np-mob" role="dialog" aria-label="Mobile navigation">
+  <a href="../index.html">Home</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../guide.html">Guide</a>
+  <a href="../about.html">About</a>
+  <a href="../contact.html">Contact</a>
+  <a href="../contact.html" class="np-mob-cta">Subscribe Free &rarr;</a>
+</div>
+<script>
+function npMenu(btn){
+  btn.classList.toggle('open');
+  btn.setAttribute('aria-expanded', btn.classList.contains('open'));
+  document.getElementById('np-mob').classList.toggle('open');
+  document.body.style.overflow = btn.classList.contains('open') ? 'hidden' : '';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var b=document.getElementById('np-ham-btn');if(b&&b.classList.contains('open'))npMenu(b);}});
+document.addEventListener('click',function(e){var b=document.getElementById('np-ham-btn'),m=document.getElementById('np-mob');if(b&&m&&b.classList.contains('open')&&!b.contains(e.target)&&!m.contains(e.target))npMenu(b);});
+</script>
+
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker">
+    <span>🎓 <b>BEGINNER GUIDE</b> Fine-Tune LLMs</span>
+    <span>💰 Start from $5</span>
+    <span>⚡ Step-by-Step Tutorial</span>
+    <span>🚀 Deploy Your Custom AI</span>
+    <span>🎓 <b>BEGINNER GUIDE</b> Fine-Tune LLMs</span>
+    <span>💰 Start from $5</span>
+    <span>⚡ Step-by-Step Tutorial</span>
+    <span>🚀 Deploy Your Custom AI</span>
+  </div>
+</div>
+
+<div class="layout">
+<article>
+<div class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a><span>/</span>
+  <a href="../blog.html">Blog</a><span>/</span>
+  <a href="../blog.html#llm">LLM Guide</a><span>/</span>
+  <span>Fine-Tune LLM</span>
+</div>
+
+<span class="live-tag"><span class="live-dot"></span>BEGINNER FRIENDLY</span>
+<span class="cat-tag">LLM Fine-Tuning</span>
+
+<h1>How to Fine-Tune LLM <em>for Beginners</em>: Complete 2026 Guide</h1>
+
+<div class="stats-row">
+  <div class="stat-pill"><div class="sv">6</div><div class="sl">Steps</div></div>
+  <div class="stat-pill"><div class="sv">$5+</div><div class="sl">Min Cost</div></div>
+  <div class="stat-pill"><div class="sv">2h</div><div class="sl">Setup Time</div></div>
+  <div class="stat-pill"><div class="sv">2026</div><div class="sl">Latest Methods</div></div>
+</div>
+
+<div class="meta-row">
+  <div class="av" aria-hidden="true">PL</div>
+  <div class="meta-info">
+    <div class="author"><span>Prashant Lalwani</span></div>
+    <div class="pub">July 1, 2026 · 14 min read</div>
+  </div>
+  <span class="read-tag">Updated Today</span>
+</div>
+
+<!-- HERO IMAGE -->
+<figure class="hero-img-wrap">
+  <img
+    src="../assets/images/blog/how-to-fine-tune-llm-for-beginners.webp"
+    alt="How to Fine-Tune LLMs: A Beginner's Guide — step-by-step infographic showing the 4-stage fine-tuning pipeline: Select Base Model (Llama, Mistral), Prepare Task Data (Medical Q&A, Code Snippets), Run Fine-Tuning using LoRA and QLoRA, Deploy Specialist LLM such as MedGPT and CoderLlama — NeuraPulse AI Blog"
+    width="1200"
+    height="669"
+    loading="eager"
+    decoding="async"
+    fetchpriority="high"
+  />
+  <figcaption>From raw data to deployed custom AI model — the complete beginner's journey</figcaption>
+</figure>
+
+<p>Fine-tuning an LLM sounds like something only ML researchers do. It's not. In 2026, you can fine-tune your own custom AI model without a PhD, without expensive hardware, and without writing complex code from scratch.</p>
+
+<p>I've helped hundreds of beginners do exactly this over the past two years. Here's everything you actually need to know — no fluff.</p>
+
+<div class="callout">
+  <p><strong>🎯 What You'll Learn:</strong> What fine-tuning is and why it matters, how to prepare training data, which models to choose, step-by-step fine-tuning process, evaluation techniques, deployment strategies, and real-world use cases.</p>
+</div>
+
+<h2>What Fine-Tuning Actually Is</h2>
+
+<p>Think of it this way. You hire a brilliant generalist who knows everything about everything. But you need someone who knows <em>your</em> company, <em>your</em> products, <em>your</em> tone. You don't send them back to school — you train them on your specific stuff.</p>
+
+<p>That's fine-tuning. You take a smart pre-trained model (Llama, Mistral, GPT-4o) and teach it your specific domain, style, or task. The general intelligence stays. The specialization gets added.</p>
+
+<div class="callout green">
+  <p><strong>💡 Key Insight:</strong> Fine-tuning is like giving a smart employee specialized training for your company. You're not teaching them to read or think — you're teaching them <em>your</em> specific knowledge and skills.</p>
+</div>
+
+<h3>Why Not Just Use Prompts?</h3>
+
+<p>Prompting works, but it has real limits. Fine-tuning gives you:</p>
+
+<ul>
+  <li><strong>Consistency:</strong> Predictable outputs every time, no long system prompts needed</li>
+  <li><strong>Cost savings:</strong> No massive context window on every API call</li>
+  <li><strong>Better quality:</strong> Stronger performance on specialized tasks</li>
+  <li><strong>Style control:</strong> Perfect for matching your brand voice or specific formats</li>
+</ul>
+
+<p>That said — if your data changes constantly or you need to cite sources, <a href="https://neuraplus-ai.github.io/blog/rag-vs-fine-tuning-which-is-better.html">RAG</a> might serve you better. Fine-tuning shines when you need reliable, consistent outputs on a specific task.</p>
+
+<h2>Step 1: Pick Your Base Model</h2>
+
+<p>Two main paths here.</p>
+
+<h3>OpenAI API — Best for Beginners</h3>
+
+<p>No GPU needed, simple setup, automatic optimization. You just upload data and press go.</p>
+
+<ul>
+  <li><strong>GPT-4o-mini:</strong> Cheapest option, great for most tasks ($3/1M training tokens)</li>
+  <li><strong>GPT-4o:</strong> More capable, higher cost ($25/1M training tokens)</li>
+  <li><strong>Advantage:</strong> No hardware required, handles optimization automatically</li>
+  <li><strong>Downside:</strong> Can't see model weights, tied to their platform</li>
+</ul>
+
+<h3>Open-Source — Best for Control</h3>
+
+<p>If you want full ownership and the ability to run models locally:</p>
+
+<ul>
+  <li><strong>Llama 3.1 (8B/70B):</strong> Excellent all-around performance</li>
+  <li><strong>Mistral/Mixtral:</strong> Great efficiency and quality</li>
+  <li><strong>Qwen 2.5:</strong> Strong multilingual capabilities</li>
+  <li><strong>Phi-3:</strong> Small but surprisingly capable</li>
+</ul>
+
+<p>For a detailed comparison, check our guide on the <a href="https://neuraplus-ai.github.io/blog/best-open-source-llm-2026.html">best open-source LLMs in 2026</a>. For coding-specific needs, see the <a href="https://neuraplus-ai.github.io/blog/best-llm-for-coding-2026.html">best LLMs for coding</a> or our <a href="https://neuraplus-ai.github.io/blog/best-ollama-models-for-coding-chatgpt-alternatives.html">best Ollama models guide</a>.</p>
+
+<div class="callout amber">
+  <p><strong>⚠️ Beginner Tip:</strong> Start with OpenAI's API if you're completely new. Learn the process first, then move to open-source once you understand what's actually happening under the hood.</p>
+</div>
+
+<h2>Step 2: Prepare Your Training Data</h2>
+
+<p>This is where most beginners go wrong — and it's the most important step of all. A mediocre model trained on great data will outperform a great model trained on mediocre data. Every time.</p>
+
+<h3>How Much Data Do You Need?</h3>
+
+<div class="table-scroll">
+<table>
+  <thead>
+    <tr>
+      <th>Examples</th>
+      <th>What to Expect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>50–100</strong></td><td>Basic customization, noticeable improvement</td></tr>
+    <tr><td><strong>500–1,000</strong></td><td>Strong, reliable outputs</td></tr>
+    <tr><td><strong>2,000–5,000</strong></td><td>Production-ready quality</td></tr>
+    <tr><td><strong>10,000+</strong></td><td>Expert-level performance</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Start with 100 solid examples. Don't obsess over scale until you've validated the approach works.</p>
+
+<h3>The Format: JSONL</h3>
+
+<p>Most platforms expect data in JSONL — one JSON object per line:</p>
+
+<div class="code-block">
+<pre><span class="cm"># Instruction-following example</span>
+<span class="str">{"messages": [
+  {"role": "system", "content": "You are a customer support agent for TechCorp."},
+  {"role": "user", "content": "How do I reset my password?"},
+  {"role": "assistant", "content": "Go to techcorp.com/login, click Forgot Password, enter your email, and follow the link in your inbox."}
+]}</span>
+
+<span class="cm"># Style/tone example</span>
+<span class="str">{"messages": [
+  {"role": "user", "content": "Write a product description for wireless headphones"},
+  {"role": "assistant", "content": "🎧 Experience sound like never before. 40-hour battery life, active noise cancellation, crystal-clear audio. Premium comfort meets premium sound."}
+]}</span></pre>
+</div>
+
+<h3>Data Quality Checklist</h3>
+
+<ul>
+  <li>✓ <strong>Diversity:</strong> Cover different scenarios, not just easy cases</li>
+  <li>✓ <strong>Consistency:</strong> Similar inputs should get similar outputs</li>
+  <li>✓ <strong>Accuracy:</strong> Everything must be factually correct</li>
+  <li>✓ <strong>No duplicates:</strong> Remove identical or near-identical examples</li>
+  <li>✓ <strong>Balanced:</strong> Equal representation across categories/topics</li>
+</ul>
+
+<div class="callout red">
+  <p><strong>🚨 Critical Warning:</strong> Never include passwords, API keys, or personal data in training data. Fine-tuned models can leak training data through clever prompts. Sanitize everything before you upload.</p>
+</div>
+
+<h2>Step 3: Choose Your Fine-Tuning Method</h2>
+
+<p><strong>Full fine-tuning</strong> updates every single weight in the model. Maximum performance, but requires 40GB+ GPU memory and costs hundreds to thousands per run. Not for beginners.</p>
+
+<p><strong>LoRA (Low-Rank Adaptation)</strong> adds small trainable layers while leaving most of the model frozen. Gets you 95% of full fine-tuning quality at about 10% of the cost. Needs 16–24GB VRAM.</p>
+
+<p><strong>QLoRA</strong> is LoRA plus quantization. Fine-tune a 70B model on a consumer GPU with 8–12GB VRAM. Small quality trade-off, massive cost savings.</p>
+
+<div class="callout green">
+  <p><strong>💡 Beginner Recommendation:</strong> Start with LoRA. If you're using OpenAI's API, they handle all of this automatically — you don't need to think about it.</p>
+</div>
+
+<h2>Step 4: Set Up and Train</h2>
+
+<h3>Option A: OpenAI API (Easiest)</h3>
+
+<div class="code-block">
+<pre><span class="kw">import</span> openai
+
+<span class="cm"># Upload training file</span>
+<span class="str">file = openai.files.create(
+    file=open("training_data.jsonl", "rb"),
+    purpose="fine-tune"
+)</span>
+
+<span class="cm"># Start the job</span>
+<span class="str">job = openai.fine_tuning.jobs.create(
+    training_file=file.id,
+    model="gpt-4o-mini-2024-07-18",
+    hyperparameters={"n_epochs": 3}
+)</span>
+
+<span class="str">print(f"Job ID: {job.id} | Status: {job.status}")</span></pre>
+</div>
+
+<h3>Option B: Open-Source with LoRA (Hugging Face)</h3>
+
+<div class="code-block">
+<pre><span class="cm"># Install required libraries</span>
+<span class="kw">pip install transformers datasets peft bitsandbytes trl</span>
+
+<span class="kw">from</span> transformers <span class="kw">import</span> AutoModelForCausalLM, AutoTokenizer
+<span class="kw">from</span> peft <span class="kw">import</span> LoraConfig, get_peft_model
+<span class="kw">from</span> trl <span class="kw">import</span> SFTTrainer
+
+<span class="str">model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.1-8B")
+tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B")</span>
+
+<span class="str">lora_config = LoraConfig(
+    r=16, lora_alpha=32,
+    target_modules=["q_proj", "v_proj"],
+    lora_dropout=0.05, task_type="CAUSAL_LM"
+)</span>
+
+<span class="str">model = get_peft_model(model, lora_config)
+trainer = SFTTrainer(model=model, train_dataset=dataset,
+                     tokenizer=tokenizer, max_seq_length=512)
+trainer.train()</span></pre>
+</div>
+
+<p>For a complete setup walkthrough, see our <a href="https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html">Ollama setup guide for beginners</a>.</p>
+
+<h3>Hardware Reality Check</h3>
+
+<div class="table-scroll">
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>GPU Needed</th>
+      <th>Rough Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>OpenAI API</strong></td><td>None</td><td>$3–50</td></tr>
+    <tr><td><strong>QLoRA (7B model)</strong></td><td>8–12GB VRAM</td><td>$2–20/run</td></tr>
+    <tr><td><strong>LoRA (7B model)</strong></td><td>16–24GB VRAM</td><td>$5–50/run</td></tr>
+    <tr><td><strong>Full fine-tune (7B)</strong></td><td>40GB+ VRAM</td><td>$100–1,000+/run</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout">
+  <p><strong>💰 No GPU?</strong> Use Google Colab (free), RunPod ($0.40/hr), or Lambda Labs ($0.50/hr). You can fine-tune a 7B model with LoRA for under $5 on these platforms.</p>
+</div>
+
+<h3>Training Time Estimates</h3>
+
+<div class="table-scroll">
+<table>
+  <thead>
+    <tr>
+      <th>Dataset</th>
+      <th>Model</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>100 examples</td><td>GPT-4o-mini via API</td><td>10–30 min</td></tr>
+    <tr><td>1,000 examples</td><td>Llama 3.1 8B, RTX 4090</td><td>1–2 hrs</td></tr>
+    <tr><td>5,000 examples</td><td>Llama 3.1 8B, RTX 4090</td><td>4–6 hrs</td></tr>
+    <tr><td>10,000 examples</td><td>Llama 3.1 70B, A100</td><td>12–24 hrs</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Step 5: Evaluate Before You Ship</h2>
+
+<p>Training finished doesn't mean your model is good. This step is non-negotiable.</p>
+
+<p><strong>What to check:</strong> Watch the loss curve — training loss should drop and flatten. If validation loss climbs while training loss drops, you're overfitting. Then test with real queries from your actual use case, not just things the model already saw. Have someone who doesn't know the model read the outputs and judge honestly.</p>
+
+<div class="code-block">
+<pre><span class="cm"># Test your fine-tuned model</span>
+<span class="str">response = openai.chat.completions.create(
+    model="ft:gpt-4o-mini-2024-07-18:your-org:custom-model:id",
+    messages=[
+        {"role": "system", "content": "You are a helpful customer support assistant."},
+        {"role": "user", "content": "How do I reset my password?"}
+    ]
+)</span>
+<span class="str">print(response.choices[0].message.content)</span></pre>
+</div>
+
+<h3>Common Problems and Fixes</h3>
+
+<div class="table-scroll">
+<table>
+  <thead>
+    <tr>
+      <th>Problem</th>
+      <th>What You'll See</th>
+      <th>Fix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Overfitting</strong></td><td>Great on training data, bad on new inputs</td><td>More diverse data, fewer epochs</td></tr>
+    <tr><td><strong>Underfitting</strong></td><td>Poor performance everywhere</td><td>More epochs, check data quality</td></tr>
+    <tr><td><strong>Catastrophic forgetting</strong></td><td>Loses general knowledge</td><td>Switch to LoRA, add general examples</td></tr>
+    <tr><td><strong>Inconsistent outputs</strong></td><td>Same question, wildly different answers</td><td>More examples, tighter consistency</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Step 6: Deploy It</h2>
+
+<h4>OpenAI — Already Live</h4>
+<div class="code-block">
+<pre><span class="str">response = openai.chat.completions.create(
+    model="ft:gpt-4o-mini-2024-07-18:your-org:model-name:abc123",
+    messages=[{"role": "user", "content": "Your question here"}]
+)</span></pre>
+</div>
+
+<h4>Open-Source Options</h4>
+<ul>
+  <li><strong>Ollama</strong> — easiest for local deployment. See our <a href="https://neuraplus-ai.github.io/blog/best-ollama-models-for-coding-chatgpt-alternatives.html">Ollama models guide</a></li>
+  <li><strong>vLLM</strong> — high-performance production serving</li>
+  <li><strong>FastAPI + Transformers</strong> — for a fully custom API</li>
+</ul>
+
+<h4>Build AI Agents</h4>
+<p>Want to go further? Use your fine-tuned model as the brain of an AI agent. Our guide on <a href="https://neuraplus-ai.github.io/blog/how-to-build-AI-agents-without-coding.html">how to build AI agents without coding</a> walks you through the whole setup.</p>
+
+<div class="callout">
+  <p><strong>🚀 Pro Tip:</strong> Start with API deployment to validate your model works in practice. Move to self-hosting once you're confident — the cost savings at scale are significant.</p>
+</div>
+
+<h2>Five Beginner Projects Worth Building</h2>
+
+<p><strong>Customer support bot</strong> — 100–500 Q&A pairs from your support tickets. 1–2 days, $5–20.</p>
+<p><strong>Content writer</strong> — 50–200 examples of your best existing content. Outputs in your brand voice. 2–3 days, $10–30.</p>
+<p><strong>Code assistant</strong> — 200–1,000 code examples with explanations. 3–5 days, $20–50.</p>
+<p><strong>Document summarizer</strong> — 100–300 document-summary pairs in your preferred format. 1–2 days, $5–15.</p>
+<p><strong>Email responder</strong> — 100–500 email examples in your writing style. 2–3 days, $10–25.</p>
+
+<h2>Mistakes That Will Cost You Time</h2>
+
+<p><strong>Bad data.</strong> This kills more fine-tuning projects than anything else. Spend 70% of your time on data prep — it's not glamorous, but it's where the actual work is.</p>
+
+<p><strong>Too few examples.</strong> Ten examples won't teach a model anything useful. Minimum 50, ideally 100+, before you start training.</p>
+
+<p><strong>Training too long.</strong> More epochs isn't always better. Watch your validation loss — when it stops dropping or starts rising, stop.</p>
+
+<p><strong>Skipping evaluation.</strong> Deploying without testing is how you end up with a broken model in production. Always test on data the model hasn't seen.</p>
+
+<p><strong>Sensitive data in training.</strong> Strip out passwords, API keys, personal information, anything confidential. Fine-tuned models can reproduce training data when prompted carefully.</p>
+
+<h2>Common Questions</h2>
+<div class="faq-section">
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq1">
+      <span>What is fine-tuning in LLMs?</span>
+      <span class="faq-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+    </button>
+    <div class="faq-answer" id="faq1">
+      <span>Fine-tuning takes a pre-trained language model and trains it further on your specific data to customize its behavior, knowledge, or writing style. It's like teaching an already-smart AI new specialized skills for your particular use case — without building a model from scratch.</span>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq2">
+      <span>How much data do I need to fine-tune an LLM?</span>
+      <span class="faq-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+    </button>
+    <div class="faq-answer" id="faq2">
+      <span>You can start with as few as 50–100 high-quality examples. For stronger results, aim for 500–5,000. Quality matters far more than quantity — 100 excellent examples will outperform 10,000 mediocre ones every time.</span>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq3">
+      <span>Is fine-tuning expensive for beginners?</span>
+      <span class="faq-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+    </button>
+    <div class="faq-answer" id="faq3">
+      <span>Not anymore. With LoRA and QLoRA, you can fine-tune on consumer hardware or cloud rentals for $5–50. OpenAI's API starts at just a few dollars for small datasets. Most beginners spend under $20 on their first project.</span>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq4">
+      <span>How long does fine-tuning take?</span>
+      <span class="faq-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+    </button>
+    <div class="faq-answer" id="faq4">
+      <span>OpenAI's API can complete a training job in 10 minutes to 2 hours. Open-source models with LoRA on a single GPU typically take 1–6 hours. Including data preparation, expect the whole process to take 1–3 days for a beginner's first project.</span>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq5">
+      <span>What's the difference between fine-tuning and RAG?</span>
+      <span class="faq-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+    </button>
+    <div class="faq-answer" id="faq5">
+      <span>Fine-tuning changes the model's internal weights through training — knowledge becomes permanent. RAG retrieves external information at query time without modifying the model at all. Fine-tuning is like learning a skill; RAG is like looking something up in a book. When in doubt, try RAG first — it's faster to set up.</span>
+    </div>
+  </div>
+</div>
+
+<h2>Where to Start</h2>
+
+<p>Pick one small use case. Gather 100 clean examples. Run your first training job.</p>
+
+<p>Your first model won't be perfect — that's fine. The point is understanding the process. Once you've done it once, the second time is much faster and the third time starts to feel easy.</p>
+
+<p>The tools exist, the costs are manageable, and the community around this is genuinely helpful. There's no reason to wait.</p>
+
+<div class="share-bar">
+  <div class="share-label">↗ Share this guide</div>
+  <div class="share-btns">
+    <a href="https://twitter.com/intent/tweet?text=How%20to%20Fine-Tune%20LLM%20for%20Beginners%3A%20Complete%202026%20Guide&url=https://neuraplus-ai.github.io/blog/how-to-fine-tune-llm-for-beginners.html" class="share-btn" target="_blank" rel="noopener">Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://neuraplus-ai.github.io/blog/how-to-fine-tune-llm-for-beginners.html" class="share-btn" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://reddit.com/submit?url=https://neuraplus-ai.github.io/blog/how-to-fine-tune-llm-for-beginners.html&title=How%20to%20Fine-Tune%20LLM%20for%20Beginners" class="share-btn" target="_blank" rel="noopener">Reddit</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://neuraplus-ai.github.io/blog/how-to-fine-tune-llm-for-beginners.html" class="share-btn" target="_blank" rel="noopener">Facebook</a>
+    <a href="mailto:?subject=How%20to%20Fine-Tune%20LLM%20for%20Beginners&body=Check%20out%20this%20guide:%20https://neuraplus-ai.github.io/blog/how-to-fine-tune-llm-for-beginners.html" class="share-btn">Email</a>
+  </div>
+</div>
+</article>
+
+<aside>
+  <div class="sidebar-box">
+    <h4>Get AI Tutorials</h4>
+    <form class="nl-form" onsubmit="event.preventDefault();alert('Thanks! Check your inbox for our LLM Fine-Tuning Quick Start Guide.');">
+      <input type="email" class="nl-inp" placeholder="Your work email" required aria-label="Email address">
+      <button type="submit" class="nl-btn">Subscribe Free</button>
+    </form>
+    <p class="nl-sub-note">Join 8,400+ AI engineers. Weekly tutorials. Zero spam.</p>
+  </div>
+
+  <div class="sidebar-box">
+    <h4>Related Guides</h4>
+    <a href="https://neuraplus-ai.github.io/blog/rag-vs-fine-tuning-which-is-better.html" class="rc-item"><div class="rc-cat">Comparison</div><div class="rc-title">RAG vs Fine-Tuning: Which is Better?</div></a>
+    <a href="https://neuraplus-ai.github.io/blog/best-open-source-llm-2026.html" class="rc-item"><div class="rc-cat">LLMs</div><div class="rc-title">Best Open-Source LLMs 2026</div></a>
+    <a href="https://neuraplus-ai.github.io/blog/best-llm-for-coding-2026.html" class="rc-item"><div class="rc-cat">Coding</div><div class="rc-title">Best LLMs for Coding 2026</div></a>
+    <a href="https://neuraplus-ai.github.io/blog/how-to-build-AI-agents-without-coding.html" class="rc-item"><div class="rc-cat">Agents</div><div class="rc-title">Build AI Agents No-Code</div></a>
+    <a href="https://neuraplus-ai.github.io/blog/best-ollama-models-for-coding-chatgpt-alternatives.html" class="rc-item"><div class="rc-cat">Ollama</div><div class="rc-title">Best Ollama Models Guide</div></a>
+  </div>
+
+  <div class="sidebar-box">
+    <h4>Why Trust This Guide</h4>
+    <p style="font-size:.85rem;color:#94a3b8;line-height:1.6">Based on 2+ years teaching hundreds of beginners to fine-tune LLMs. All code examples are tested and verified with real-world results.</p>
+  </div>
+</aside>
+</div>
+
+<button id="np-btn" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<footer id="np-footer">
+  <div class="np-fi">
+    <div class="np-fb">
+      <a href="../index.html"><span class="np-dot"></span>NeuraPulse</a>
+      <p class="np-fd">Actionable AI insights for developers, marketers, and business leaders. Every tool tested, every method verified. Zero fluff.</p>
+      <div class="np-social">
+        <a href="https://x.com/AiNeuraplus" target="_blank" rel="noopener" aria-label="Twitter / X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61589600083095" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.youtube.com/channel/UC0-7t4itquvY3ed2tGKLjQA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="http://pinterest.com/neuraplusai/_profile/" target="_blank" rel="noopener" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg></a>
+        <a href="https://www.linkedin.com/in/prashant-lalwani-361010407" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+      <div class="np-trust-badges">
+        <span class="np-trust-badge green"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>Beginner Verified</span>
+        <span class="np-trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Updated Daily</span>
+        <span class="np-trust-badge purple"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>50K+ Readers</span>
+      </div>
+    </div>
+    <div class="np-col">
+      <h4>Stay Updated</h4>
+      <div class="np-footer-nl">
+        <h5>Weekly AI Insights</h5>
+        <p>Get tested tutorials and LLM guides delivered every Monday.</p>
+        <form class="np-footer-nl-form" onsubmit="event.preventDefault();alert('Subscribed! Check your inbox.');">
+          <input type="email" class="np-footer-nl-inp" placeholder="Email address" required>
+          <button type="submit" class="np-footer-nl-btn">Join</button>
+        </form>
+      </div>
+      <ul>
+        <li><a href="../blog.html">Latest Articles</a></li>
+        <li><a href="../about.html">About Us</a></li>
+        <li><a href="../sitemap.html">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="np-col">
+      <h4>Popular Guides</h4>
+      <ul>
+        <li><a href="https://neuraplus-ai.github.io/blog/rag-vs-fine-tuning-which-is-better.html">RAG vs Fine-Tuning</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/best-open-source-llm-2026.html">Open-Source LLMs</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/best-llm-for-coding-2026.html">LLMs for Coding</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/how-to-build-AI-agents-without-coding.html">Build AI Agents</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/best-ollama-models-for-coding-chatgpt-alternatives.html">Ollama Models</a></li>
+      </ul>
+    </div>
+    <div class="np-col">
+      <h4>For Developers</h4>
+      <ul>
+        <li><a href="https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html">Ollama Setup</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/kimi-ai-prompts-for-content-writing.html">Kimi AI Prompts</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/best-ai-writing-assistant-2026.html">AI Writing Assistant</a></li>
+        <li><a href="https://neuraplus-ai.github.io/blog/best-ai-video-generator-2026.html">AI Video Generators</a></li>
+        <li><a href="../contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="np-verify-bar">
+    <span class="np-verify-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>Beginner Verified</span>
+    <span class="np-verify-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>Hands-On Tested</span>
+    <span class="np-verify-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Real-World Results</span>
+    <span class="np-verify-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Independent</span>
+  </div>
+  <div class="np-bottom">
+    <span>&copy; 2026 NeuraPulse. All rights reserved.</span>
+    <div class="np-status"><span class="np-status-dot"></span> Systems Operational</div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{const b=document.getElementById('np-btn');b.style.opacity=window.scrollY>400?'1':'0';b.style.transform=window.scrollY>400?'scale(1)':'scale(0.9)';});
+document.getElementById('np-btn').style.opacity='0';
+document.getElementById('np-btn').style.transform='scale(0.9)';
+document.getElementById('np-btn').style.transition='opacity .3s, transform .3s';
+
+document.querySelectorAll('.faq-question').forEach(button=>{
+  button.addEventListener('click',()=>{
+    const item=button.parentElement;
+    const isActive=item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('active');i.querySelector('.faq-question').setAttribute('aria-expanded','false');});
+    if(!isActive){item.classList.add('active');button.setAttribute('aria-expanded','true');}
+  });
+});
+
+const canvas=document.getElementById('bg-canvas');
+const ctx=canvas.getContext('2d');
+let width,height,points=[],mouse={x:-1000,y:-1000};
+const pointCount=70,connectionDistance=160,mouseDistance=250;
+function resize(){width=canvas.width=window.innerWidth;height=canvas.height=window.innerHeight;}
+class Point{constructor(){this.x=Math.random()*width;this.y=Math.random()*height;this.vx=(Math.random()-.5)*.4;this.vy=(Math.random()-.5)*.4;this.radius=Math.random()*1.5+.5;}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>width)this.vx*=-1;if(this.y<0||this.y>height)this.vy*=-1;const dx=mouse.x-this.x,dy=mouse.y-this.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<mouseDistance){this.x+=dx*.003;this.y+=dy*.003;}}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);ctx.fillStyle='rgba(0,229,255,0.6)';ctx.fill();}}
+function initPoints(){points=[];for(let i=0;i<pointCount;i++)points.push(new Point());}
+function animate(){ctx.clearRect(0,0,width,height);for(let i=0;i<points.length;i++){for(let j=i+1;j<points.length;j++){const dx=points[i].x-points[j].x,dy=points[i].y-points[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<connectionDistance){const opacity=(1-dist/connectionDistance)*.25;ctx.beginPath();ctx.moveTo(points[i].x,points[i].y);const midX=(points[i].x+points[j].x)/2,midY=(points[i].y+points[j].y)/2;const mDx=mouse.x-midX,mDy=mouse.y-midY,mDist=Math.sqrt(mDx*mDx+mDy*mDy);if(mDist<mouseDistance){const pull=(1-mDist/mouseDistance)*40;ctx.quadraticCurveTo(midX+(mDx/mDist)*pull,midY+(mDy/mDist)*pull,points[j].x,points[j].y);}else{ctx.lineTo(points[j].x,points[j].y);}ctx.strokeStyle=`rgba(124,58,237,${opacity})`;ctx.lineWidth=1;ctx.stroke();}}const dx=points[i].x-mouse.x,dy=points[i].y-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<mouseDistance){const opacity=(1-dist/mouseDistance)*.5;ctx.beginPath();ctx.moveTo(points[i].x,points[i].y);ctx.lineTo(mouse.x,mouse.y);ctx.strokeStyle=`rgba(0,229,255,${opacity})`;ctx.lineWidth=1;ctx.stroke();}points[i].update();points[i].draw();}requestAnimationFrame(animate);}
+window.addEventListener('resize',()=>{resize();initPoints();});
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+window.addEventListener('mouseout',()=>{mouse.x=-1000;mouse.y=-1000;});
+resize();initPoints();animate();
+</script>
+</body>
+</html>
