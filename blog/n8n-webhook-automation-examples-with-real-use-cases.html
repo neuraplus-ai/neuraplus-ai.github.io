@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <!-- NP:GEO -->
 <meta name="author" content="Prashant Lalwani"/>
 <meta name="publisher" content="NeuraPulse"/>
@@ -38,7 +39,16 @@
 <link rel="canonical" href="https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <title>n8n Webhook Automation Examples with Real Use Cases 2026 — NeuraPulse</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://neuraplus-ai.github.io">
+
+<!-- Preload critical fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"></noscript>
+
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JNSQJZJDN1');</script>
@@ -74,7 +84,7 @@ body{
   position:relative;
 }
 
-/* Neural Network Canvas Background */
+/* Performance: Reduce canvas opacity for better rendering */
 #bg-canvas{
   position:fixed;
   top:0;
@@ -83,10 +93,10 @@ body{
   height:100%;
   z-index:-2;
   pointer-events:none;
-  opacity:0.6;
+  opacity:0.4;
+  will-change: transform;
 }
 
-/* Floating Glow Orbs */
 .bg-glow{
   position:fixed;
   top:0;
@@ -97,13 +107,16 @@ body{
   pointer-events:none;
   overflow:hidden;
 }
+
 .glow-orb{
   position:absolute;
   border-radius:50%;
   filter:blur(120px);
-  opacity:0.12;
+  opacity:0.08;
   animation:drift 20s infinite alternate ease-in-out;
+  will-change: transform;
 }
+
 .glow-1{
   width:600px;
   height:600px;
@@ -112,6 +125,7 @@ body{
   left:-10%;
   animation-delay:0s;
 }
+
 .glow-2{
   width:500px;
   height:500px;
@@ -120,6 +134,7 @@ body{
   right:-10%;
   animation-delay:-10s;
 }
+
 .glow-3{
   width:400px;
   height:400px;
@@ -127,7 +142,7 @@ body{
   top:50%;
   left:50%;
   animation-delay:-5s;
-  opacity:0.08;
+  opacity:0.05;
 }
 
 @keyframes drift{
@@ -135,18 +150,13 @@ body{
   100%{transform:translate(100px,50px) scale(1.2);}
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar{width:6px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{
   background:linear-gradient(180deg,var(--accent),var(--accent2));
   border-radius:3px;
 }
-::-webkit-scrollbar-thumb:hover{
-  background:linear-gradient(180deg,var(--accent2),var(--accent));
-}
 
-/* Enhanced Progress Bar */
 .progress-bar{
   position:fixed;
   top:68px;
@@ -157,7 +167,7 @@ body{
   animation:gradientShift 3s ease infinite;
   z-index:99;
   transition:width 0.1s ease-out;
-  box-shadow:0 0 10px var(--accent),0 0 20px var(--accent2);
+  will-change: width;
 }
 
 @keyframes gradientShift{
@@ -165,7 +175,6 @@ body{
   50%{background-position:100% 50%;}
 }
 
-/* Navigation */
 nav{
   position:fixed;
   top:0;
@@ -182,6 +191,7 @@ nav{
   -webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
   transition:all 0.3s ease;
+  will-change: transform, background;
 }
 
 nav.scrolled{
@@ -304,7 +314,6 @@ nav.scrolled{
 .hamburger.active span:nth-child(2){opacity:0;}
 .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px);}
 
-/* Layout */
 .layout{
   display:grid;
   grid-template-columns:1fr 300px;
@@ -314,7 +323,6 @@ nav.scrolled{
   padding:7rem 2rem 5rem;
 }
 
-/* Breadcrumb */
 .breadcrumb{
   font-family:'Space Mono',monospace;
   font-size:0.65rem;
@@ -350,7 +358,6 @@ nav.scrolled{
 .breadcrumb a:hover{color:var(--accent);}
 .breadcrumb a:hover::after{width:100%;}
 
-/* Article Category */
 .article-cat{
   font-family:'Space Mono',monospace;
   font-size:0.65rem;
@@ -384,7 +391,6 @@ nav.scrolled{
   100%{left:100%;}
 }
 
-/* Heading */
 h1{
   font-family:'Syne',sans-serif;
   font-weight:800;
@@ -415,7 +421,6 @@ h1{
   to{opacity:1;transform:translateX(0);}
 }
 
-/* Meta */
 .meta{
   display:flex;
   align-items:center;
@@ -458,7 +463,6 @@ h1{
 .mn{font-size:0.95rem;font-weight:500;display:block;}
 .md{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);display:block;}
 
-/* Tags */
 .tags{display:flex;gap:0.5rem;flex-wrap:wrap;}
 .tag{
   font-family:'Space Mono',monospace;
@@ -478,7 +482,6 @@ h1{
   box-shadow:0 4px 12px var(--glow-cyan);
 }
 
-/* Hero Image Container */
 .hero-image-container{
   width:100%;
   max-width:1200px;
@@ -520,7 +523,6 @@ h1{
 
 .hero-image-container:hover img{transform:scale(1.02);}
 
-/* Content */
 .content h2{
   font-family:'Syne',sans-serif;
   font-size:1.6rem;
@@ -612,7 +614,6 @@ h1{
 
 .content a:hover::before{width:100%;}
 
-/* Callout */
 .callout{
   background:var(--surface);
   border-left:3px solid var(--accent);
@@ -656,7 +657,6 @@ h1{
 .callout.purple{border-left-color:var(--accent2);}
 .callout.purple::before{background:linear-gradient(135deg,var(--glow-purple),transparent);}
 
-/* Workflow Container */
 .workflow-container{
   background:var(--surface);
   border:1px solid var(--border);
@@ -799,7 +799,6 @@ h1{
   50%{box-shadow:0 0 0 8px rgba(0,229,255,0);}
 }
 
-/* Tool Card */
 .tool-card{
   background:var(--surface);
   border:1px solid var(--border);
@@ -849,7 +848,6 @@ h1{
   z-index:1;
 }
 
-/* Badge */
 .badge{
   font-family:'Space Mono',monospace;
   font-size:0.6rem;
@@ -871,7 +869,6 @@ h1{
 .paid{color:var(--accent3);background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);}
 .critical{color:#ef4444;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);}
 
-/* Table */
 table{
   width:100%;
   border-collapse:collapse;
@@ -907,7 +904,6 @@ td{
 tr:last-child td{border-bottom:none;}
 tr:hover{background:rgba(0,229,255,0.03);}
 
-/* Internal Link Box */
 .internal-link-box{
   background:rgba(0,229,255,0.05);
   border:1px solid rgba(0,229,255,0.2);
@@ -968,7 +964,6 @@ tr:hover{background:rgba(0,229,255,0.03);}
   z-index:1;
 }
 
-/* Share Box */
 .share-box{
   margin:4rem 0;
   padding:2rem;
@@ -1045,7 +1040,6 @@ tr:hover{background:rgba(0,229,255,0.03);}
 
 .sbtn:hover::before{width:300px;height:300px;}
 
-/* Related Posts */
 .rp{margin:3rem 0;}
 .rp h2{
   font-family:'Syne',sans-serif;
@@ -1114,7 +1108,6 @@ tr:hover{background:rgba(0,229,255,0.03);}
   z-index:1;
 }
 
-/* Sidebar */
 .sb{
   position:sticky;
   top:90px;
@@ -1178,7 +1171,6 @@ tr:hover{background:rgba(0,229,255,0.03);}
 
 .toc a:hover::before{width:0.5rem;}
 
-/* Related Mini Cards */
 .rmini{display:flex;flex-direction:column;gap:0.75rem;}
 .rmc{
   text-decoration:none;
@@ -1213,7 +1205,6 @@ tr:hover{background:rgba(0,229,255,0.03);}
   line-height:1.3;
 }
 
-/* Newsletter Box */
 .nl-sb{
   background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(0,229,255,0.05));
   border:1px solid rgba(0,229,255,0.2);
@@ -1314,7 +1305,6 @@ tr:hover{background:rgba(0,229,255,0.03);}
 
 .nl-sb button:hover::before{left:100%;}
 
-/* Toast Notification */
 .toast{
   position:fixed;
   bottom:2rem;
@@ -1338,7 +1328,6 @@ tr:hover{background:rgba(0,229,255,0.03);}
   opacity:1;
 }
 
-/* Scroll Reveal Animations */
 .reveal{
   opacity:0;
   transform:translateY(30px);
@@ -1383,7 +1372,6 @@ tr:hover{background:rgba(0,229,255,0.03);}
   transform:scale(1);
 }
 
-/* Responsive */
 @media(max-width:1000px){
   .layout{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;}
   .sb{display:none;}
@@ -1427,7 +1415,6 @@ tr:hover{background:rgba(0,229,255,0.03);}
   .workflow-container{padding:1.5rem 1rem;}
 }
 
-/* Reduced Motion */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation-duration:0.01ms !important;
@@ -1507,17 +1494,14 @@ html{scroll-padding-top:80px;}
 </head>
 <body>
 
-<!-- Neural Network Canvas -->
 <canvas id="bg-canvas"></canvas>
 
-<!-- Floating Glow Orbs -->
 <div class="bg-glow">
   <div class="glow-orb glow-1"></div>
   <div class="glow-orb glow-2"></div>
   <div class="glow-orb glow-3"></div>
 </div>
 
-<!-- Toast Notification -->
 <div class="toast" id="toast"></div>
 
 <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
@@ -1557,7 +1541,6 @@ html{scroll-padding-top:80px;}
 
 <h1 class="reveal">n8n Webhook Automation Examples with <em>Real Use Cases</em> 2026</h1>
 
-<!-- HERO IMAGE WITH WEBP FORMAT AND JPG FALLBACK -->
 <div class="hero-image-container reveal-scale">
   <picture>
     <source 
@@ -1567,7 +1550,7 @@ html{scroll-padding-top:80px;}
     <img 
       alt="n8n Webhook Automation Examples with Real Use Cases 2026 - Complete guide showing webhook workflows, event-driven automation, API integrations, and real-time data processing with n8n" 
       height="630" 
-      loading="eager"
+      loading="lazy"
       fetchpriority="high"
       src="https://neuraplus-ai.github.io/assets/images/blog/n8n-webhook-automation-examples-with-real-use-cases.jpg" 
       title="n8n Webhook Automation Examples with Real Use Cases 2026" 
@@ -1863,7 +1846,6 @@ html{scroll-padding-top:80px;}
   <div class="share-btns">
     <a class="sbtn" href="https://twitter.com/intent/tweet?text=n8n%20Webhook%20Automation%20Examples%20with%20Real%20Use%20Cases&url=https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html" target="_blank">Twitter</a>
     <a class="sbtn" href="https://www.linkedin.com/shareArticle?mini=true&url=https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html" target="_blank">LinkedIn</a>
-    <a class="sbtn" href="https://wa.me/?text=n8n%20Webhook%20Automation%20Guide:%20https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html" target="_blank">WhatsApp</a>
     <button class="sbtn" id="copy-link">Copy Link</button>
   </div>
 </div>
@@ -1944,13 +1926,15 @@ html{scroll-padding-top:80px;}
 </main>
 
 <script>
-// Neural Network Canvas Animation
+// Optimized Canvas Animation - Reduced complexity for better performance
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 let width, height, points = [], mouse = { x: -1000, y: -1000 };
-const pointCount = 60;
+const pointCount = 40; // Reduced from 60 for better performance
 const connectionDistance = 150;
 const mouseDistance = 200;
+let animationId;
+let isVisible = true;
 
 function resize() {
   width = canvas.width = window.innerWidth;
@@ -1961,8 +1945,8 @@ class Point {
   constructor() {
     this.x = Math.random() * width;
     this.y = Math.random() * height;
-    this.vx = (Math.random() - 0.5) * 0.3;
-    this.vy = (Math.random() - 0.5) * 0.3;
+    this.vx = (Math.random() - 0.5) * 0.2; // Slower movement
+    this.vy = (Math.random() - 0.5) * 0.2;
     this.radius = Math.random() * 1.5 + 0.5;
   }
   
@@ -1978,15 +1962,15 @@ class Point {
     const dist = Math.sqrt(dx * dx + dy * dy);
     
     if (dist < mouseDistance) {
-      this.x += dx * 0.002;
-      this.y += dy * 0.002;
+      this.x += dx * 0.001;
+      this.y += dy * 0.001;
     }
   }
   
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0, 229, 255, 0.5)';
+    ctx.fillStyle = 'rgba(0, 229, 255, 0.4)';
     ctx.fill();
   }
 }
@@ -1999,6 +1983,8 @@ function initPoints() {
 }
 
 function animate() {
+  if (!isVisible) return;
+  
   ctx.clearRect(0, 0, width, height);
   
   for (let i = 0; i < points.length; i++) {
@@ -2008,7 +1994,7 @@ function animate() {
       const dist = Math.sqrt(dx * dx + dy * dy);
       
       if (dist < connectionDistance) {
-        const opacity = (1 - dist / connectionDistance) * 0.2;
+        const opacity = (1 - dist / connectionDistance) * 0.15;
         ctx.beginPath();
         ctx.moveTo(points[i].x, points[i].y);
         ctx.lineTo(points[j].x, points[j].y);
@@ -2023,7 +2009,7 @@ function animate() {
     const dist = Math.sqrt(dx * dx + dy * dy);
     
     if (dist < mouseDistance) {
-      const opacity = (1 - dist / mouseDistance) * 0.4;
+      const opacity = (1 - dist / mouseDistance) * 0.3;
       ctx.beginPath();
       ctx.moveTo(points[i].x, points[i].y);
       ctx.lineTo(mouse.x, mouse.y);
@@ -2036,8 +2022,18 @@ function animate() {
     points[i].draw();
   }
   
-  requestAnimationFrame(animate);
+  animationId = requestAnimationFrame(animate);
 }
+
+// Pause animation when tab is not visible
+document.addEventListener('visibilitychange', () => {
+  isVisible = !document.hidden;
+  if (isVisible) {
+    animate();
+  } else {
+    cancelAnimationFrame(animationId);
+  }
+});
 
 window.addEventListener('resize', () => {
   resize();
@@ -2047,7 +2043,7 @@ window.addEventListener('resize', () => {
 window.addEventListener('mousemove', (e) => {
   mouse.x = e.clientX;
   mouse.y = e.clientY;
-});
+}, { passive: true });
 
 window.addEventListener('mouseout', () => {
   mouse.x = -1000;
@@ -2067,14 +2063,13 @@ window.addEventListener('scroll', () => {
   const progress = (scrollTop / scrollHeight) * 100;
   pb.style.width = progress + '%';
   
-  // Nav scroll effect
   const nav = document.getElementById('main-nav');
   if (scrollTop > 50) {
     nav.classList.add('scrolled');
   } else {
     nav.classList.remove('scrolled');
   }
-});
+}, { passive: true });
 
 // Hamburger Menu
 const hamburger = document.getElementById('hamburger');
@@ -2087,7 +2082,6 @@ hamburger.addEventListener('click', () => {
   hamburger.setAttribute('aria-expanded', !isExpanded);
 });
 
-// Close menu on link click
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('active');
@@ -2163,7 +2157,6 @@ document.querySelectorAll('.toc a').forEach(link => {
   });
 });
 
-// Add stagger delay to reveal elements
 revealElements.forEach((el, index) => {
   el.style.transitionDelay = `${index * 0.05}s`;
 });
@@ -2201,20 +2194,26 @@ revealElements.forEach((el, index) => {
       </a>
       <p class="np-fd">Expert AI guides, tools, and analysis — making artificial intelligence understandable and actionable for developers and creators worldwide.</p>
       <div class="np-social">
-        <a href="https://twitter.com/neuraplus_ai" target="_blank" rel="noopener" title="Twitter / X">
-          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.263 5.638 5.9-5.638zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <a href="http://pinterest.com/neuraplusai/_profile/" target="_blank" rel="noopener" title="Pinterest">
+          <svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
         </a>
-        <a href="https://linkedin.com/in/prashant-lalwani" target="_blank" rel="noopener" title="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="https://youtube.com/@neurapulse" target="_blank" rel="noopener" title="YouTube">
+        <a href="https://www.youtube.com/channel/UC0-7t4itquvY3ed2tGKLjQA" target="_blank" rel="noopener" title="YouTube">
           <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
-        <a href="https://github.com/neuraplus-ai" target="_blank" rel="noopener" title="GitHub">
-          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        <a href="https://www.instagram.com/neuraplus.ai/" target="_blank" rel="noopener" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-        <a href="https://discord.gg/neurapulse" target="_blank" rel="noopener" title="Discord">
+        <a href="https://discord.com/channels/@neuraplusai" target="_blank" rel="noopener" title="Discord">
           <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/prashant-lalwani-361010407/" target="_blank" rel="noopener" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61589600083095" target="_blank" rel="noopener" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.tumblr.com/blog/neuraplus-ai" target="_blank" rel="noopener" title="Tumblr">
+          <svg viewBox="0 0 24 24"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
         </a>
       </div>
     </div>
@@ -2244,10 +2243,13 @@ revealElements.forEach((el, index) => {
       <ul>
         <li><a href="../contact.html">Contact</a></li>
         <li><a href="../sitemap.html">Sitemap</a></li>
-        <li><a href="https://twitter.com/neuraplus_ai" target="_blank" rel="noopener">Twitter / X</a></li>
-        <li><a href="https://linkedin.com/in/prashant-lalwani" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://github.com/neuraplus-ai" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://discord.gg/neurapulse" target="_blank" rel="noopener">Discord</a></li>
+        <li><a href="http://pinterest.com/neuraplusai/_profile/" target="_blank" rel="noopener">Pinterest</a></li>
+        <li><a href="https://www.youtube.com/channel/UC0-7t4itquvY3ed2tGKLjQA" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://www.instagram.com/neuraplus.ai/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://discord.com/channels/@neuraplusai" target="_blank" rel="noopener">Discord</a></li>
+        <li><a href="https://www.linkedin.com/in/prashant-lalwani-361010407/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61589600083095" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://www.tumblr.com/blog/neuraplus-ai" target="_blank" rel="noopener">Tumblr</a></li>
       </ul>
     </div>
   </div>
