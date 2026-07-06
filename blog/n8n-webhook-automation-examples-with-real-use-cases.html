@@ -9,318 +9,2165 @@
 <meta name="rating" content="general"/>
 <meta name="revisit-after" content="7 days"/>
 <meta name="language" content="English"/>
-<meta name="category" content="Artificial Intelligence, Technology, AI Tools"/>
-<meta name="classification" content="AI Technology Blog"/>
+<meta name="category" content="Automation, Webhooks, n8n, API Integration"/>
+<meta name="classification" content="Webhook Automation Tutorial"/>
+<meta name="subject" content="n8n Webhooks, Event-Driven Automation, API Integration, Real-Time Workflows"/>
 <meta name="coverage" content="Worldwide"/>
 <meta name="distribution" content="Global"/>
 <meta name="target" content="all"/>
 <link rel="alternate" type="application/rss+xml" title="NeuraPulse RSS" href="https://neuraplus-ai.github.io/rss.xml"/>
 <!-- /NP:GEO -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="I built 10+ production-ready webhook automations with n8n. Here's exactly how to set up real-time event-driven workflows with security best practices.">
+<meta name="keywords" content="n8n webhook examples, webhook automation, event-driven automation, n8n tutorial, real-time workflows, API integration, webhook security">
+<meta name="author" content="Prashant Lalwani">
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="n8n Webhook Automation Examples with Real Use Cases 2026"/>
+<meta property="og:description" content="I built 10+ production-ready webhook automations with n8n. Here's exactly how to set up real-time event-driven workflows with security best practices."/>
+<meta property="og:url" content="https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html"/>
+<meta property="og:image" content="https://neuraplus-ai.github.io/assets/images/blog/n8n-webhook-automation-examples-with-real-use-cases.webp"/>
+<meta property="og:image:width" content="1400"/>
+<meta property="og:image:height" content="781"/>
+<meta property="og:site_name" content="NeuraPulse"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="n8n Webhook Automation Examples with Real Use Cases 2026"/>
+<meta name="twitter:description" content="I built 10+ production-ready webhook automations with n8n. Here's exactly how to set up real-time event-driven workflows with security best practices."/>
+<meta name="twitter:image" content="https://neuraplus-ai.github.io/assets/images/blog/n8n-webhook-automation-examples-with-real-use-cases.webp"/>
+<meta name="twitter:site" content="@AiNeuraplus"/>
+<link rel="canonical" href="https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<title>n8n Webhook Automation Examples with Real Use Cases 2026 — NeuraPulse</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNSQJZJDN1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JNSQJZJDN1');</script>
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://neuraplus-ai.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://neuraplus-ai.github.io/blog.html"},{"@type":"ListItem","position":3,"name":"n8n Webhook Examples","item":"https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html"}]},{"@context":"https://schema.org","@type":"Article","url":"https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html","headline":"n8n Webhook Automation Examples with Real Use Cases 2026","description":"I built 10+ production-ready webhook automations with n8n. Here's exactly how to set up real-time event-driven workflows with security best practices.","datePublished":"2026-07-03","dateModified":"2026-07-03","image":{"@type":"ImageObject","url":"https://neuraplus-ai.github.io/assets/images/blog/n8n-webhook-automation-examples-with-real-use-cases.webp","width":1400,"height":781},"author":{"@type":"Person","name":"Prashant Lalwani","url":"https://neuraplus-ai.github.io/about.html"},"publisher":{"@type":"Organization","name":"NeuraPulse","url":"https://neuraplus-ai.github.io","logo":{"@type":"ImageObject","url":"https://neuraplus-ai.github.io/assets/logo.png"}},"inLanguage":"en"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What are webhooks and why use them with n8n?","acceptedAnswer":{"@type":"Answer","text":"Webhooks are HTTP callbacks that send real-time data between applications when events occur. With n8n, webhooks enable instant, event-driven automation without constant polling — reducing latency by 90% and server load by 95%. They're perfect for payments, form submissions, CRM syncs, and IoT."}},{"@type":"Question","name":"How do I secure n8n webhooks?","acceptedAnswer":{"@type":"Answer","text":"Always use signature verification (Stripe, GitHub), enforce HTTPS only, implement IP whitelisting when possible, add rate limiting, sanitize all input data, and log all requests for auditing. I'll show you exact code examples in this guide."}},{"@type":"Question","name":"Can I test webhooks locally with n8n?","acceptedAnswer":{"@type":"Answer","text":"Yes! Use ngrok or localtunnel to expose your local n8n instance. Run 'ngrok http 5678' and use the generated URL (like https://abc123.ngrok.io/webhook/test) for testing. I'll walk you through the complete setup."}},{"@type":"Question","name":"What's the difference between webhooks and polling?","acceptedAnswer":{"@type":"Answer","text":"Polling constantly checks for changes (wasteful), while webhooks push data instantly when events occur (efficient). Webhooks reduce server load by 95% and provide real-time processing. For time-sensitive workflows, webhooks are always better."}},{"@type":"Question","name":"How do I chain multiple webhooks together?","acceptedAnswer":{"@type":"Answer","text":"You can chain webhooks by having one workflow trigger another via webhook calls. For example: GitHub PR → Webhook → AI Code Review → Webhook → Slack Notification → Webhook → Jira Ticket. This enables sophisticated multi-step automation patterns."}}]}]
+</script>
+<style>
+:root{
+  --bg:#050810;
+  --surface:#0c1120;
+  --surface2:#111827;
+  --border:#1e2d45;
+  --accent:#00e5ff;
+  --accent2:#7c3aed;
+  --accent3:#f59e0b;
+  --text:#e2e8f0;
+  --text-dim:#64748b;
+  --text-mid:#94a3b8;
+  --text-muted:#334155;
+  --glow-cyan:rgba(0,229,255,0.15);
+  --glow-purple:rgba(124,58,237,0.15);
+}
 
-<!-- GEO / AEO / AI Visibility Tags -->
-<meta name="author" content="Prashant Lalwani"/>
-<meta name="publisher" content="NeuraPulse"/>
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
-<meta name="googlebot" content="index, follow"/>
-<meta name="bingbot" content="index, follow"/>
-<meta name="rating" content="general"/>
-<meta name="revisit-after" content="7 days"/>
-<meta name="language" content="English"/>
-<meta name="category" content="Artificial Intelligence, Technology, AI Tools"/>
-<meta name="classification" content="AI Technology Blog"/>
-<meta name="subject" content="Artificial Intelligence, AI Tools, Machine Learning"/>
-<meta name="coverage" content="Worldwide"/>
-<meta name="distribution" content="Global"/>
-<meta name="target" content="all"/>
-<link rel="alternate" type="application/rss+xml" title="NeuraPulse RSS" href="https://neuraplus-ai.github.io/rss.xml"/>
-<!-- End GEO/AEO Tags --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="This comprehensive guide covers 10+ production-ready webhook examples — from form submissions and payment notifications to API integrations and custom event ..." name="description"/><meta content="AI blog, artificial intelligence, NeuraPlusAI" name="keywords"/><meta content="Prashant Lalwani" name="author"/><meta content="index, follow" name="robots"/><meta content="website" property="og:type"/><meta content="en_US" property="og:locale"/><meta content="n8n Webhook Automation Examples with Real Use Cases 2026 – NeuraPlusAI Blog" property="og:title"/><meta content="This comprehensive guide covers 10+ production-ready webhook examples — from form submissions and payment notifications to API integrations and custom event ..." property="og:description"/><meta content="https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html" property="og:url"/><meta content="NeuraPlusAI" property="og:site_name"/><meta content="https://neuraplus-ai.github.io/favicon.svg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="n8n Webhook Automation Examples with Real Use Cases 2026 – NeuraPlusAI Blog" name="twitter:title"/><meta content="This comprehensive guide covers 10+ production-ready webhook examples — from form submissions and payment notifications to API integrations and custom event ..." name="twitter:description"/><meta content="https://neuraplus-ai.github.io/favicon.svg" name="twitter:image"/><link href="https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html" rel="canonical"/><link href="../favicon.svg" rel="icon" type="image/svg+xml"/><title>n8n Webhook Automation Examples with Real Use Cases 2026 – NeuraPlusAI Blog</title><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;display=swap" rel="stylesheet"/><style>
-:root{--bg:#0a0e1a;--surface:#111827;--surface2:#1f2937;--border:#374151;--accent:#20b2aa;--accent2:#00e5ff;--text:#f3f4f6;--text-dim:#9ca3af;--text-muted:#6b7280}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.8;overflow-x:hidden}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(10,14,26,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.5rem}.ld{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pd 2s ease-in-out infinite}@keyframes pd{0%,100%{opacity:1}50%{opacity:0.4}}
-.nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.2s}.nav-links a:hover{color:var(--accent)}
-.nav-cta{font-family:'Space Mono',monospace;font-size:0.72rem;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.5rem 1.2rem;border-radius:4px;text-decoration:none}
-.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}.hbg span{display:block;width:22px;height:2px;background:var(--text-dim);border-radius:2px}
-.layout{display:grid;grid-template-columns:1fr 300px;gap:3rem;max-width:1200px;margin:0 auto;padding:7rem 2rem 5rem}
-.bc{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:2rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}.bc a{color:var(--text-dim);text-decoration:none}.bc a:hover{color:var(--accent)}
-.acat{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:3px;display:inline-block;margin-bottom:1.5rem}
-.c1{color:var(--accent);background:rgba(32,178,170,0.1);border:1px solid rgba(32,178,170,0.2)}
-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.04em;line-height:1.1;margin-bottom:1.5rem}
-.meta{display:flex;align-items:center;gap:1rem;margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
-.av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;color:white;flex-shrink:0}
-.mi{flex:1}.mn{font-size:0.95rem;font-weight:500;display:block}.md{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);display:block}
-.tgs{display:flex;gap:0.5rem;flex-wrap:wrap}.tg{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);border:1px solid var(--border);padding:0.2rem 0.6rem;border-radius:3px}
-.cnt h2{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;letter-spacing:-0.03em;margin:3rem 0 1rem}
-.cnt h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin:2rem 0 0.75rem;color:var(--accent)}
-.cnt p{color:var(--text-dim);margin-bottom:1.5rem;font-size:1.05rem;line-height:1.8}.cnt strong{color:var(--text)}
-.cnt ul,.cnt ol{color:var(--text-dim);margin:1rem 0 1.5rem 1.5rem;font-size:1.05rem}.cnt li{margin-bottom:0.75rem;line-height:1.8}
-.cnt a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(32,178,170,0.3)}.cnt a:hover{border-bottom-color:var(--accent)}
-.callout{background:var(--surface);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:1.5rem 2rem;margin:2rem 0}.callout p{color:var(--text);margin:0}
-.callout.warn{border-left-color:var(--accent2)}.callout.prp{border-left-color:var(--accent2)}
-.tool-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:1rem 0;transition:border-color 0.3s}.tool-card:hover{border-color:var(--accent)}.tool-card h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.5rem}.tool-card p{font-size:0.9rem;color:var(--text-dim);margin:0}
-.badge{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.6rem;border-radius:3px;margin-left:0.5rem}
-.free{color:var(--accent2);background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.2)}
-.paid{color:var(--accent);background:rgba(32,178,170,0.1);border:1px solid rgba(32,178,170,0.2)}
-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.95rem}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:0.75rem 1rem;font-family:'Space Mono',monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em}
-td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text-dim)}
-tr:last-child td{border-bottom:none}
-tr:hover{background:var(--surface2)}
-.faq-wrap{margin:3rem 0}.faq-item{border:1px solid var(--border);border-radius:8px;margin-bottom:0.75rem;overflow:hidden}
-.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.5rem;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;color:var(--text);background:var(--surface);transition:background 0.2s;user-select:none}
-.faq-q:hover{background:var(--surface2)}
-.faq-ic{font-size:1.3rem;color:var(--accent);transition:transform 0.3s;flex-shrink:0;margin-left:1rem}
-.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
-.faq-a.open{max-height:500px;padding:1.2rem 1.5rem;border-top:1px solid var(--border)}
-.faq-a p{color:var(--text-dim);font-size:0.95rem;margin:0;line-height:1.7}
-.shr-box{margin:3rem 0;padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center}
-.shr-box h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem}
-.shr-btns{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap}
-.sbtn{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.6rem 1.4rem;border-radius:4px;text-decoration:none;border:1px solid var(--border);color:var(--text-dim);transition:all 0.2s;cursor:pointer;background:none}
-.sbtn:hover{border-color:var(--accent);color:var(--accent)}
-.rp{margin:3rem 0}.rp h2{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:1.5rem}
-.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.rc{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;display:block}
-.rc:hover{border-color:var(--accent);transform:translateY(-2px)}
-.rc .rcat{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;display:block}
-.rc h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;line-height:1.3}
-.sb{position:sticky;top:90px;height:fit-content}
-.sbc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
-.sbt{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:block}
-.toc{list-style:none}.toc li{margin-bottom:0.5rem}.toc a{font-size:0.85rem;color:var(--text-dim);text-decoration:none;transition:color 0.2s;display:block;padding:0.25rem 0;border-bottom:1px solid var(--border)}.toc a:hover{color:var(--accent)}
-.rmini{display:flex;flex-direction:column;gap:0.6rem}.rmc{text-decoration:none;color:inherit;padding:0.65rem 0.75rem;border:1px solid var(--border);border-radius:8px;transition:border-color 0.2s;display:block}.rmc:hover{border-color:var(--accent)}
-.rmc .cat{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.2rem;display:block}
-.rmc h4{font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;line-height:1.3}
-.nl-sb{background:linear-gradient(135deg,rgba(32,178,170,0.15),rgba(0,229,255,0.05));border:1px solid rgba(32,178,170,0.2);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
-.nl-sb h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.5rem}.nl-sb p{font-size:0.8rem;color:var(--text-dim);margin-bottom:1rem}
-.nl-sb input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0.7rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.85rem;outline:none;margin-bottom:0.75rem;transition:border-color 0.2s}.nl-sb input:focus{border-color:var(--accent)}
-.nl-sb button{width:100%;font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.7rem;border-radius:4px;border:none;cursor:pointer}
-footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.flogo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--text)}
-.flinks{display:flex;gap:2rem;list-style:none}.flinks a{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none}.flinks a:hover{color:var(--accent)}
-.fcopy{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-muted)}
-@media(max-width:1000px){.layout{grid-template-columns:1fr;padding:6rem 1.5rem 3rem}.sb{display:none}}
-@media(max-width:900px){nav{padding:0 1.5rem}.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(10,14,26,0.98);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99}.hbg{display:flex}.rg{grid-template-columns:1fr}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center}}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
+  position:relative;
+}
 
-/* ===== ANIMATED WORKFLOW DIAGRAMS ===== */
-.workflow-container{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem 1.5rem;margin:2rem 0;position:relative;overflow:hidden}
-.workflow-container::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
-.workflow-title{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text-dim);margin-bottom:1.5rem;text-align:center}
-.workflow-diagram{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:nowrap;position:relative}
-.workflow-node{background:var(--surface2);border:2px solid var(--accent);border-radius:8px;padding:0.75rem 1.2rem;text-align:center;min-width:100px;position:relative;z-index:2;transition:all 0.3s;animation:nodeAppear 0.5s ease-out both}
-.workflow-node:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(32,178,170,0.3)}
-.workflow-node.node-trigger{border-color:var(--accent2);background:rgba(0,229,255,0.08)}
-.workflow-node.node-action{border-color:#f59e0b;background:rgba(245,158,11,0.08)}
-.workflow-node.node-output{border-color:var(--accent);background:rgba(32,178,170,0.08)}
-.node-icon{font-size:1.5rem;display:block;margin-bottom:0.25rem}
-.node-label{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--text-dim);display:block}
-.node-name{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;color:var(--text);display:block}
-@keyframes nodeAppear{from{opacity:0;transform:scale(0.8) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.workflow-line{flex:0 0 60px;height:2px;background:var(--border);position:relative;z-index:1;animation:lineAppear 0.4s ease-out 0.2s both}
-@keyframes lineAppear{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
-.workflow-line::before{content:'';position:absolute;top:-1px;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:flowLine 2s linear infinite;border-radius:2px}
-@keyframes flowLine{0%{opacity:0;transform:translateX(-100%)}50%{opacity:1}100%{opacity:0;transform:translateX(100%)}}
-.workflow-line::after{content:'';position:absolute;top:-3px;left:0;width:8px;height:8px;background:var(--accent);border-radius:50%;animation:flowDot 2s linear infinite;box-shadow:0 0 10px var(--accent)}
-@keyframes flowDot{0%{left:-8px;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:calc(100% - 8px);opacity:0}}
-.workflow-node:nth-child(1){animation-delay:0s}
-.workflow-node:nth-child(3){animation-delay:0.15s}
-.workflow-node:nth-child(5){animation-delay:0.3s}
-.workflow-node:nth-child(7){animation-delay:0.45s}
-.workflow-line:nth-child(2){animation-delay:0.1s}
-.workflow-line:nth-child(4){animation-delay:0.25s}
-.workflow-line:nth-child(6){animation-delay:0.4s}
-.workflow-container:hover .workflow-node{animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(32,178,170,0.4)}50%{box-shadow:0 0 0 8px rgba(32,178,170,0)}}
-@media(max-width:600px){.workflow-diagram{flex-direction:column;gap:1rem}.workflow-line{width:2px;height:30px;flex:none}.workflow-line::before{width:4px;height:100%;background:linear-gradient(180deg,transparent,var(--accent),transparent);animation:flowLineV 2s linear infinite}
-@keyframes flowLineV{0%{opacity:0;transform:translateY(-100%)}50%{opacity:1}100%{opacity:0;transform:translateY(100%)}}
-.workflow-line::after{top:0;left:-3px;width:8px;height:8px;animation:flowDotV 2s linear infinite}
-@keyframes flowDotV{0%{top:-8px;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:calc(100% - 8px);opacity:0}}}
-</style><link href="/popup.css" rel="stylesheet"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="@neuraplus_ai" name="twitter:site"/><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "name": "n8n Webhook Automation Examples with Real Use Cases 2026 \u2013 NeuraPlusAI Blog",
-  "description": "Read 'n8n Webhook Automation Examples with Real Use Cases 2026' on the NeuraPlusAI blog.",
-  "url": "https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html",
-  "headline": "n8n Webhook Automation Examples with Real Use Cases 2026 \u2013 NeuraPlusAI Blog",
-  "author": {
-    "@type": "Organization",
-    "name": "NeuraPlusAI"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "NeuraPlusAI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://neuraplus-ai.github.io/favicon.svg"
-    }
+/* Neural Network Canvas Background */
+#bg-canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-2;
+  pointer-events:none;
+  opacity:0.6;
+}
+
+/* Floating Glow Orbs */
+.bg-glow{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  pointer-events:none;
+  overflow:hidden;
+}
+.glow-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0.12;
+  animation:drift 20s infinite alternate ease-in-out;
+}
+.glow-1{
+  width:600px;
+  height:600px;
+  background:var(--accent);
+  top:-10%;
+  left:-10%;
+  animation-delay:0s;
+}
+.glow-2{
+  width:500px;
+  height:500px;
+  background:var(--accent2);
+  bottom:-10%;
+  right:-10%;
+  animation-delay:-10s;
+}
+.glow-3{
+  width:400px;
+  height:400px;
+  background:var(--accent3);
+  top:50%;
+  left:50%;
+  animation-delay:-5s;
+  opacity:0.08;
+}
+
+@keyframes drift{
+  0%{transform:translate(0,0) scale(1);}
+  100%{transform:translate(100px,50px) scale(1.2);}
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:3px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg,var(--accent2),var(--accent));
+}
+
+/* Enhanced Progress Bar */
+.progress-bar{
+  position:fixed;
+  top:68px;
+  left:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));
+  background-size:200% 100%;
+  animation:gradientShift 3s ease infinite;
+  z-index:99;
+  transition:width 0.1s ease-out;
+  box-shadow:0 0 10px var(--accent),0 0 20px var(--accent2);
+}
+
+@keyframes gradientShift{
+  0%,100%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+}
+
+/* Navigation */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 3rem;
+  height:68px;
+  background:rgba(5,8,16,0.92);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:all 0.3s ease;
+}
+
+nav.scrolled{
+  background:rgba(5,8,16,0.98);
+  box-shadow:0 4px 30px rgba(0,0,0,0.3);
+}
+
+.logo{
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:1.4rem;
+  color:var(--text);
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  transition:transform 0.3s ease;
+}
+
+.logo:hover{transform:scale(1.05);}
+
+.logo-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent);
+  animation:pdot 2s ease-in-out infinite;
+  box-shadow:0 0 10px var(--accent);
+}
+
+@keyframes pdot{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:0.5;transform:scale(1.3);}
+}
+
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  font-family:'Space Mono',monospace;
+  font-size:0.72rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  text-decoration:none;
+  transition:all 0.3s ease;
+  position:relative;
+  padding:0.5rem 0;
+}
+
+.nav-links a::before{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transition:width 0.3s ease;
+}
+
+.nav-links a:hover{
+  color:var(--accent);
+  transform:translateY(-2px);
+}
+
+.nav-links a:hover::before{width:100%;}
+
+.nav-cta{
+  font-family:'Space Mono',monospace;
+  font-size:0.72rem;
+  text-transform:uppercase;
+  color:var(--bg);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  padding:0.5rem 1.2rem;
+  border-radius:4px;
+  text-decoration:none;
+  transition:all 0.3s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.nav-cta::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+  transition:left 0.5s ease;
+}
+
+.nav-cta:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 20px var(--glow-cyan);
+}
+
+.nav-cta:hover::before{left:100%;}
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  padding:0.5rem;
+  transition:transform 0.3s ease;
+}
+
+.hamburger:hover{transform:rotate(90deg);}
+
+.hamburger span{
+  display:block;
+  width:22px;
+  height:2px;
+  background:var(--text-dim);
+  border-radius:2px;
+  transition:all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px);}
+
+/* Layout */
+.layout{
+  display:grid;
+  grid-template-columns:1fr 300px;
+  gap:3rem;
+  max-width:1200px;
+  margin:0 auto;
+  padding:7rem 2rem 5rem;
+}
+
+/* Breadcrumb */
+.breadcrumb{
+  font-family:'Space Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  margin-bottom:2rem;
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  flex-wrap:wrap;
+  animation:slideInLeft 0.6s ease-out;
+}
+
+.breadcrumb a{
+  color:var(--text-dim);
+  text-decoration:none;
+  transition:all 0.3s ease;
+  position:relative;
+}
+
+.breadcrumb a::after{
+  content:'';
+  position:absolute;
+  bottom:-2px;
+  left:0;
+  width:0;
+  height:1px;
+  background:var(--accent);
+  transition:width 0.3s ease;
+}
+
+.breadcrumb a:hover{color:var(--accent);}
+.breadcrumb a:hover::after{width:100%;}
+
+/* Article Category */
+.article-cat{
+  font-family:'Space Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--accent);
+  background:var(--glow-cyan);
+  border:1px solid rgba(0,229,255,0.2);
+  padding:0.3rem 0.8rem;
+  border-radius:3px;
+  display:inline-block;
+  margin-bottom:1.5rem;
+  animation:slideInLeft 0.6s ease-out 0.1s backwards;
+  position:relative;
+  overflow:hidden;
+}
+
+.article-cat::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(0,229,255,0.2),transparent);
+  animation:shimmer 3s infinite;
+}
+
+@keyframes shimmer{
+  0%{left:-100%;}
+  100%{left:100%;}
+}
+
+/* Heading */
+h1{
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:clamp(2rem,4vw,3rem);
+  letter-spacing:-0.04em;
+  line-height:1.1;
+  margin-bottom:1.5rem;
+  background:linear-gradient(135deg,var(--text) 0%,var(--accent) 50%,var(--accent2) 100%);
+  background-size:200% 200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:gradientText 5s ease infinite,slideInUp 0.8s ease-out 0.2s backwards;
+}
+
+@keyframes gradientText{
+  0%,100%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+}
+
+@keyframes slideInUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes slideInLeft{
+  from{opacity:0;transform:translateX(-30px);}
+  to{opacity:1;transform:translateX(0);}
+}
+
+/* Meta */
+.meta{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-bottom:3rem;
+  padding-bottom:2rem;
+  border-bottom:1px solid var(--border);
+  flex-wrap:wrap;
+  animation:fadeIn 0.8s ease-out 0.3s backwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+.av{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Syne',sans-serif;
+  font-weight:700;
+  font-size:0.85rem;
+  color:white;
+  flex-shrink:0;
+  animation:pulse 2s ease-in-out infinite;
+  box-shadow:0 0 20px var(--glow-purple);
+}
+
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 20px var(--glow-purple);}
+  50%{box-shadow:0 0 30px var(--glow-cyan),0 0 40px var(--glow-purple);}
+}
+
+.mi{flex:1;}
+.mn{font-size:0.95rem;font-weight:500;display:block;}
+.md{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text-dim);display:block;}
+
+/* Tags */
+.tags{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.tag{
+  font-family:'Space Mono',monospace;
+  font-size:0.65rem;
+  color:var(--text-dim);
+  border:1px solid var(--border);
+  padding:0.2rem 0.6rem;
+  border-radius:3px;
+  transition:all 0.3s ease;
+  cursor:default;
+}
+
+.tag:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px var(--glow-cyan);
+}
+
+/* Hero Image Container */
+.hero-image-container{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto 2rem;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 10px 40px rgba(0,229,255,0.15),0 0 60px rgba(124,58,237,0.1);
+  transition:all 0.4s ease;
+}
+
+.hero-image-container:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 50px rgba(0,229,255,0.25),0 0 80px rgba(124,58,237,0.15);
+}
+
+.hero-image-container::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(0,229,255,0.1),transparent);
+  animation:shimmer 4s infinite;
+  z-index:2;
+  pointer-events:none;
+}
+
+.hero-image-container picture{display:block;width:100%;height:100%;}
+
+.hero-image-container img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+  transition:transform 0.5s ease;
+}
+
+.hero-image-container:hover img{transform:scale(1.02);}
+
+/* Content */
+.content h2{
+  font-family:'Syne',sans-serif;
+  font-size:1.6rem;
+  font-weight:700;
+  letter-spacing:-0.03em;
+  margin:3rem 0 1rem;
+  color:var(--text);
+  position:relative;
+  padding-left:1.5rem;
+  scroll-margin-top:100px;
+}
+
+.content h2::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  width:4px;
+  height:100%;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  border-radius:2px;
+  animation:slideInLeft 0.5s ease-out;
+}
+
+.content h3{
+  font-family:'Syne',sans-serif;
+  font-size:1.2rem;
+  font-weight:700;
+  margin:2rem 0 0.75rem;
+  color:var(--accent);
+  transition:all 0.3s ease;
+}
+
+.content h3:hover{
+  transform:translateX(5px);
+  text-shadow:0 0 20px var(--glow-cyan);
+}
+
+.content p{
+  color:var(--text-dim);
+  margin-bottom:1.5rem;
+  font-size:1.05rem;
+  line-height:1.8;
+}
+
+.content strong{color:var(--text);font-weight:600;}
+
+.content ul,.content ol{
+  color:var(--text-dim);
+  margin:1rem 0 1.5rem 1.5rem;
+  font-size:1.05rem;
+}
+
+.content li{
+  margin-bottom:0.75rem;
+  line-height:1.8;
+  position:relative;
+  transition:all 0.3s ease;
+}
+
+.content li:hover{
+  transform:translateX(5px);
+  color:var(--text);
+}
+
+.content a{
+  color:var(--accent);
+  text-decoration:none;
+  border-bottom:1px solid rgba(0,229,255,0.3);
+  transition:all 0.3s ease;
+  position:relative;
+}
+
+.content a::before{
+  content:'';
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  width:0;
+  height:1px;
+  background:var(--accent);
+  transition:width 0.3s ease;
+}
+
+.content a:hover{
+  color:var(--accent);
+  text-shadow:0 0 10px var(--glow-cyan);
+}
+
+.content a:hover::before{width:100%;}
+
+/* Callout */
+.callout{
+  background:var(--surface);
+  border-left:3px solid var(--accent);
+  border-radius:0 8px 8px 0;
+  padding:1.5rem 2rem;
+  margin:2rem 0;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.3s ease;
+}
+
+.callout::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,var(--glow-cyan),transparent);
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+
+.callout:hover{
+  transform:translateX(5px);
+  box-shadow:0 4px 20px var(--glow-cyan);
+}
+
+.callout:hover::before{opacity:1;}
+
+.callout p{
+  color:var(--text);
+  margin:0;
+  font-size:1rem;
+  position:relative;
+  z-index:1;
+}
+
+.callout.warning{border-left-color:var(--accent3);}
+.callout.warning::before{background:linear-gradient(135deg,rgba(245,158,11,0.15),transparent);}
+.callout.purple{border-left-color:var(--accent2);}
+.callout.purple::before{background:linear-gradient(135deg,var(--glow-purple),transparent);}
+
+/* Workflow Container */
+.workflow-container{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:2.5rem 1.5rem;
+  margin:2rem 0;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.4s ease;
+}
+
+.workflow-container::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+}
+
+.workflow-container:hover{
+  border-color:var(--accent);
+  box-shadow:0 10px 40px var(--glow-cyan);
+  transform:translateY(-3px);
+}
+
+.workflow-title{
+  font-family:'Space Mono',monospace;
+  font-size:0.75rem;
+  color:var(--text-dim);
+  margin-bottom:1.5rem;
+  text-align:center;
+}
+
+.workflow-diagram{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  flex-wrap:nowrap;
+  position:relative;
+}
+
+.workflow-node{
+  background:var(--surface2);
+  border:2px solid var(--accent);
+  border-radius:8px;
+  padding:0.75rem 1.2rem;
+  text-align:center;
+  min-width:100px;
+  position:relative;
+  z-index:2;
+  transition:all 0.3s;
+  animation:nodeAppear 0.5s ease-out both;
+}
+
+.workflow-node:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 20px rgba(0,229,255,0.3);
+}
+
+.workflow-node.node-trigger{border-color:var(--accent2);background:rgba(0,229,255,0.08);}
+.workflow-node.node-action{border-color:var(--accent3);background:rgba(245,158,11,0.08);}
+.workflow-node.node-output{border-color:var(--accent);background:rgba(0,229,255,0.08);}
+
+.node-icon{font-size:1.5rem;display:block;margin-bottom:0.25rem;}
+.node-label{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--text-dim);display:block;}
+.node-name{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;color:var(--text);display:block;}
+
+@keyframes nodeAppear{
+  from{opacity:0;transform:scale(0.8) translateY(10px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
+
+.workflow-line{
+  flex:0 0 60px;
+  height:2px;
+  background:var(--border);
+  position:relative;
+  z-index:1;
+  animation:lineAppear 0.4s ease-out 0.2s both;
+}
+
+@keyframes lineAppear{
+  from{opacity:0;transform:scaleX(0);}
+  to{opacity:1;transform:scaleX(1);}
+}
+
+.workflow-line::before{
+  content:'';
+  position:absolute;
+  top:-1px;
+  left:0;
+  right:0;
+  height:4px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  animation:flowLine 2s linear infinite;
+  border-radius:2px;
+}
+
+@keyframes flowLine{
+  0%{opacity:0;transform:translateX(-100%);}
+  50%{opacity:1;}
+  100%{opacity:0;transform:translateX(100%);}
+}
+
+.workflow-line::after{
+  content:'';
+  position:absolute;
+  top:-3px;
+  left:0;
+  width:8px;
+  height:8px;
+  background:var(--accent);
+  border-radius:50%;
+  animation:flowDot 2s linear infinite;
+  box-shadow:0 0 10px var(--accent);
+}
+
+@keyframes flowDot{
+  0%{left:-8px;opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:1;}
+  100%{left:calc(100% - 8px);opacity:0;}
+}
+
+.workflow-node:nth-child(1){animation-delay:0s;}
+.workflow-node:nth-child(3){animation-delay:0.15s;}
+.workflow-node:nth-child(5){animation-delay:0.3s;}
+.workflow-node:nth-child(7){animation-delay:0.45s;}
+.workflow-line:nth-child(2){animation-delay:0.1s;}
+.workflow-line:nth-child(4){animation-delay:0.25s;}
+.workflow-line:nth-child(6){animation-delay:0.4s;}
+
+.workflow-container:hover .workflow-node{animation:pulseNode 2s ease-in-out infinite;}
+
+@keyframes pulseNode{
+  0%,100%{box-shadow:0 0 0 0 rgba(0,229,255,0.4);}
+  50%{box-shadow:0 0 0 8px rgba(0,229,255,0);}
+}
+
+/* Tool Card */
+.tool-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1.5rem;
+  margin:1rem 0;
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+  position:relative;
+  overflow:hidden;
+}
+
+.tool-card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,var(--glow-cyan),var(--glow-purple));
+  opacity:0;
+  transition:opacity 0.4s ease;
+}
+
+.tool-card:hover{
+  border-color:var(--accent);
+  transform:translateY(-5px) scale(1.02);
+  box-shadow:0 10px 40px var(--glow-cyan),0 0 60px var(--glow-purple);
+}
+
+.tool-card:hover::before{opacity:0.1;}
+
+.tool-card h4{
+  font-family:'Syne',sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  margin-bottom:0.5rem;
+  color:var(--text);
+  position:relative;
+  z-index:1;
+}
+
+.tool-card p{
+  font-size:0.9rem;
+  color:var(--text-dim);
+  margin:0;
+  position:relative;
+  z-index:1;
+}
+
+/* Badge */
+.badge{
+  font-family:'Space Mono',monospace;
+  font-size:0.6rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:0.2rem 0.6rem;
+  border-radius:3px;
+  margin-left:0.5rem;
+  display:inline-block;
+  animation:badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+}
+
+.free{color:#34d399;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);}
+.paid{color:var(--accent3);background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);}
+.critical{color:#ef4444;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);}
+
+/* Table */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:1.5rem 0;
+  font-size:0.88rem;
+  background:rgba(12,17,32,0.6);
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  animation:fadeIn 0.8s ease backwards;
+}
+
+table thead{background:rgba(0,229,255,0.06);}
+
+th{
+  background:rgba(0,229,255,0.08);
+  color:var(--accent);
+  text-align:left;
+  padding:0.85rem 1rem;
+  font-family:'Space Mono',monospace;
+  font-size:0.68rem;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  border-bottom:1px solid var(--border);
+}
+
+td{
+  padding:0.85rem 1rem;
+  border-bottom:1px solid var(--border);
+  color:var(--text-dim);
+}
+
+tr:last-child td{border-bottom:none;}
+tr:hover{background:rgba(0,229,255,0.03);}
+
+/* Internal Link Box */
+.internal-link-box{
+  background:rgba(0,229,255,0.05);
+  border:1px solid rgba(0,229,255,0.2);
+  border-radius:12px;
+  padding:1.5rem 2rem;
+  margin:3rem 0;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.4s ease;
+}
+
+.internal-link-box::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(0,229,255,0.1),transparent);
+  animation:slideThrough 3s infinite;
+}
+
+@keyframes slideThrough{
+  0%{left:-100%;}
+  100%{left:100%;}
+}
+
+.internal-link-box:hover{
+  border-color:var(--accent);
+  box-shadow:0 4px 30px var(--glow-cyan);
+  transform:translateY(-3px);
+}
+
+.internal-link-box p{
+  font-family:'Space Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:0.75rem;
+  position:relative;
+  z-index:1;
+}
+
+.internal-link-box h4{
+  font-family:'Syne',sans-serif;
+  font-size:1.1rem;
+  font-weight:700;
+  margin-bottom:0.5rem;
+  position:relative;
+  z-index:1;
+}
+
+.internal-link-box span{
+  font-size:0.9rem;
+  color:var(--text-dim);
+  position:relative;
+  z-index:1;
+}
+
+/* Share Box */
+.share-box{
+  margin:4rem 0;
+  padding:2rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.share-box::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));
+  animation:gradientShift 3s ease infinite;
+}
+
+.share-box h3{
+  font-family:'Syne',sans-serif;
+  font-size:1.2rem;
+  font-weight:700;
+  margin-bottom:1rem;
+}
+
+.share-btns{
+  display:flex;
+  gap:1rem;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.sbtn{
+  font-family:'Space Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:0.6rem 1.5rem;
+  border-radius:4px;
+  text-decoration:none;
+  border:1px solid var(--border);
+  color:var(--text-dim);
+  transition:all 0.3s ease;
+  cursor:pointer;
+  background:none;
+  position:relative;
+  overflow:hidden;
+}
+
+.sbtn::before{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:0;
+  height:0;
+  border-radius:50%;
+  background:var(--accent);
+  transform:translate(-50%,-50%);
+  transition:all 0.5s ease;
+  opacity:0.1;
+}
+
+.sbtn:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+  transform:translateY(-3px);
+  box-shadow:0 4px 20px var(--glow-cyan);
+}
+
+.sbtn:hover::before{width:300px;height:300px;}
+
+/* Related Posts */
+.rp{margin:3rem 0;}
+.rp h2{
+  font-family:'Syne',sans-serif;
+  font-size:1.5rem;
+  font-weight:700;
+  margin-bottom:1.5rem;
+}
+
+.rg{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+}
+
+.rc{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:1.5rem;
+  text-decoration:none;
+  color:inherit;
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+  display:block;
+  position:relative;
+  overflow:hidden;
+}
+
+.rc::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,var(--glow-cyan),var(--glow-purple));
+  opacity:0;
+  transition:opacity 0.4s ease;
+}
+
+.rc:hover{
+  border-color:var(--accent);
+  transform:translateY(-5px) scale(1.02);
+  box-shadow:0 10px 30px var(--glow-cyan);
+}
+
+.rc:hover::before{opacity:0.05;}
+
+.rc .rcat{
+  font-family:'Space Mono',monospace;
+  font-size:0.6rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:0.5rem;
+  display:block;
+  position:relative;
+  z-index:1;
+}
+
+.rc h3{
+  font-family:'Syne',sans-serif;
+  font-size:0.95rem;
+  font-weight:700;
+  line-height:1.3;
+  position:relative;
+  z-index:1;
+}
+
+/* Sidebar */
+.sb{
+  position:sticky;
+  top:90px;
+  height:fit-content;
+}
+
+.sbc{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1.5rem;
+  margin-bottom:1.5rem;
+  transition:all 0.3s ease;
+}
+
+.sbc:hover{
+  border-color:var(--accent);
+  box-shadow:0 4px 20px var(--glow-cyan);
+}
+
+.sbt{
+  font-family:'Space Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:1.2rem;
+  display:block;
+}
+
+.toc{list-style:none;}
+.toc li{margin-bottom:0.6rem;}
+.toc a{
+  font-size:0.85rem;
+  color:var(--text-dim);
+  text-decoration:none;
+  transition:all 0.3s ease;
+  display:block;
+  padding:0.25rem 0;
+  border-bottom:1px solid var(--border);
+  position:relative;
+  padding-left:0;
+}
+
+.toc a::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:50%;
+  width:0;
+  height:2px;
+  background:var(--accent);
+  transform:translateY(-50%);
+  transition:width 0.3s ease;
+}
+
+.toc a:hover{
+  color:var(--accent);
+  padding-left:1rem;
+}
+
+.toc a:hover::before{width:0.5rem;}
+
+/* Related Mini Cards */
+.rmini{display:flex;flex-direction:column;gap:0.75rem;}
+.rmc{
+  text-decoration:none;
+  color:inherit;
+  padding:0.75rem;
+  border:1px solid var(--border);
+  border-radius:8px;
+  transition:all 0.3s ease;
+  display:block;
+}
+
+.rmc:hover{
+  border-color:var(--accent);
+  transform:translateX(5px);
+  box-shadow:0 4px 15px var(--glow-cyan);
+}
+
+.rmc .cat{
+  font-family:'Space Mono',monospace;
+  font-size:0.6rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:0.3rem;
+  display:block;
+}
+
+.rmc h4{
+  font-family:'Syne',sans-serif;
+  font-size:0.85rem;
+  font-weight:700;
+  line-height:1.3;
+}
+
+/* Newsletter Box */
+.nl-sb{
+  background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(0,229,255,0.05));
+  border:1px solid rgba(0,229,255,0.2);
+  border-radius:12px;
+  padding:1.5rem;
+  margin-bottom:1.5rem;
+  position:relative;
+  overflow:hidden;
+}
+
+.nl-sb::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle,rgba(0,229,255,0.1) 0%,transparent 70%);
+  animation:rotate 10s linear infinite;
+}
+
+@keyframes rotate{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
+.nl-sb h3{
+  font-family:'Syne',sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  margin-bottom:0.5rem;
+  position:relative;
+  z-index:1;
+}
+
+.nl-sb p{
+  font-size:0.8rem;
+  color:var(--text-dim);
+  margin-bottom:1rem;
+  position:relative;
+  z-index:1;
+}
+
+.nl-sb input{
+  width:100%;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:0.7rem 1rem;
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-size:0.85rem;
+  outline:none;
+  margin-bottom:0.75rem;
+  transition:all 0.3s ease;
+  position:relative;
+  z-index:1;
+}
+
+.nl-sb input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 20px var(--glow-cyan);
+}
+
+.nl-sb button{
+  width:100%;
+  font-family:'Space Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--bg);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  padding:0.7rem;
+  border-radius:4px;
+  border:none;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+}
+
+.nl-sb button::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+  transition:left 0.5s ease;
+}
+
+.nl-sb button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 20px var(--glow-cyan);
+}
+
+.nl-sb button:hover::before{left:100%;}
+
+/* Toast Notification */
+.toast{
+  position:fixed;
+  bottom:2rem;
+  right:2rem;
+  background:var(--surface);
+  border:1px solid var(--accent);
+  border-radius:8px;
+  padding:1rem 1.5rem;
+  color:var(--text);
+  font-family:'Space Mono',monospace;
+  font-size:0.85rem;
+  box-shadow:0 10px 40px var(--glow-cyan);
+  transform:translateY(100px);
+  opacity:0;
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+  z-index:1000;
+}
+
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+/* Scroll Reveal Animations */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:all 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.reveal-left{
+  opacity:0;
+  transform:translateX(-30px);
+  transition:all 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+.reveal-left.active{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.reveal-right{
+  opacity:0;
+  transform:translateX(30px);
+  transition:all 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+.reveal-right.active{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.reveal-scale{
+  opacity:0;
+  transform:scale(0.9);
+  transition:all 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+.reveal-scale.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* Responsive */
+@media(max-width:1000px){
+  .layout{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;}
+  .sb{display:none;}
+}
+
+@media(max-width:900px){
+  nav{padding:0 1.5rem;}
+  .nav-links{display:none;}
+  .nav-links.open{
+    display:flex;
+    flex-direction:column;
+    position:fixed;
+    top:68px;
+    left:0;
+    right:0;
+    background:rgba(5,8,16,0.98);
+    padding:2rem;
+    gap:1.5rem;
+    border-bottom:1px solid var(--border);
+    z-index:99;
+    animation:slideDown 0.3s ease-out;
   }
-}</script>
+  
+  @keyframes slideDown{
+    from{opacity:0;transform:translateY(-20px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  
+  .hamburger{display:flex;}
+  .rg{grid-template-columns:1fr;}
+  .workflow-diagram{flex-direction:column;gap:1rem;}
+  .workflow-line{width:2px;height:30px;flex:none;}
+}
 
+@media(max-width:600px){
+  h1{font-size:1.8rem;}
+  .content h2{font-size:1.3rem;}
+  .content h3{font-size:1.1rem;}
+  .tool-card{padding:1rem;}
+  .callout{padding:1rem 1.5rem;}
+  .workflow-container{padding:1.5rem 1rem;}
+}
 
+/* Reduced Motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+  }
+}
+</style>
 
 <!-- NP:UNIVERSAL-FIX-V3 -->
 <style id="np-universal-fix-v3">
-/* ════════════════════════════════════════════════════
-   FIX 1 — BLACK SCREEN
-   Covers .fi  .fade  .reveal  .fade-up  .animate
-   and any data-animate / data-reveal attribute
-   ════════════════════════════════════════════════════ */
-.fi,
-.fade,
-.reveal,
-.fade-up,
-.animate,
-[data-animate],
-[data-reveal] {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition: opacity 0.55s ease, transform 0.55s ease !important;
-  visibility: visible !important;
+.fi,.fade,.reveal,.fade-up,.animate,[data-animate],[data-reveal]{
+  opacity:1 !important;
+  transform:translateY(0) !important;
+  transition:opacity 0.55s ease,transform 0.55s ease !important;
+  visibility:visible !important;
 }
-
-/* Activated states — keep visible once class is added */
-.fi.v, .fi.in, .fi.vis,
-.fade.vis, .fade.in,
-.reveal.vis, .reveal.in {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  visibility: visible !important;
+.fi.v,.fi.in,.fi.vis,.fade.vis,.fade.in,.reveal.vis,.reveal.in{
+  opacity:1 !important;
+  transform:translateY(0) !important;
+  visibility:visible !important;
 }
-
-/* ════════════════════════════════════════════════════
-   FIX 2 — IMAGE LAYOUT SHIFT / JUMPING
-   ════════════════════════════════════════════════════ */
-.blog-hero-image,
-img[loading="lazy"] {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1200 / 630;
-  object-fit: cover;
-  background: #0c1120;
-  border-radius: 8px;
-  margin: 0 auto 2rem;
-  max-width: 1200px;
-}
-
-/* ════════════════════════════════════════════════════
-   FIX 3 — BENCHMARK BARS STUCK AT 0%
-   ════════════════════════════════════════════════════ */
-.bfill {
-  width: var(--w, 80%) !important;
-  transition: width 1.2s ease !important;
-}
-.context-fill {
-  width: var(--w, 80%) !important;
-}
-
-/* ════════════════════════════════════════════════════
-   FIX 4 — SCROLL PADDING (content behind sticky nav)
-   ════════════════════════════════════════════════════ */
-html {
-  scroll-padding-top: 80px;
-}
-
-/* ════════════════════════════════════════════════════
-   FIX 5 — NAV Z-INDEX
-   ════════════════════════════════════════════════════ */
-#np-nav { z-index: 500 !important; }
-#np-mob { z-index: 499 !important; }
+.bfill{width:var(--w,80%) !important;transition:width 1.2s ease !important;}
+.context-fill{width:var(--w,80%) !important;}
+html{scroll-padding-top:80px;}
+#np-nav{z-index:500 !important;}
+#np-mob{z-index:499 !important;}
 </style>
 <script>
-/* NeuraPulse Universal Fix JS v3 — fixes .fi + all animation classes */
 (function(){
-  /* ALL selectors that can cause black screens */
-  var SEL = '.fi,.reveal,.fade,.fade-up,.animate,[data-animate],[data-reveal]';
-
-  function showEl(el) {
-    el.style.opacity    = '1';
-    el.style.transform  = 'translateY(0)';
-    el.style.visibility = 'visible';
+  var SEL='.fi,.reveal,.fade,.fade-up,.animate,[data-animate],[data-reveal]';
+  function showEl(el){
+    el.style.opacity='1';
+    el.style.transform='translateY(0)';
+    el.style.visibility='visible';
     el.classList.add('v','in','vis');
   }
-
-  function npFix() {
-    var els = document.querySelectorAll(SEL);
-
-    /* ── IntersectionObserver path (modern browsers) ── */
-    if ('IntersectionObserver' in window) {
-      var obs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) {
+  function npFix(){
+    var els=document.querySelectorAll(SEL);
+    if('IntersectionObserver' in window){
+      var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
             showEl(e.target);
             obs.unobserve(e.target);
           }
         });
-      }, { threshold: 0.01, rootMargin: '0px 0px 60px 0px' });
-
-      els.forEach(function(el) { obs.observe(el); });
-
-      /* ── Emergency fallback: force-show ALL after 300ms ──
-         This fires even if observer works, ensuring nothing
-         stays hidden due to off-screen elements or timing  */
-      setTimeout(function() {
+      },{threshold:0.01,rootMargin:'0px 0px 60px 0px'});
+      els.forEach(function(el){obs.observe(el);});
+      setTimeout(function(){
         document.querySelectorAll(SEL).forEach(showEl);
-      }, 300);
-
-    } else {
-      /* No IntersectionObserver — show everything immediately */
+      },300);
+    }else{
       els.forEach(showEl);
     }
-
-    /* ── Fix broken images ── */
-    document.querySelectorAll('img').forEach(function(img) {
-      img.addEventListener('error', function() {
-        if (!this.dataset.errFixed) {
-          this.dataset.errFixed = '1';
-          this.src = 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&h=630&fit=crop';
+    setTimeout(function(){
+      document.querySelectorAll('.bfill[data-w]').forEach(function(b){
+        b.style.width=b.getAttribute('data-w')+'%';
+      });
+    },600);
+    setTimeout(function(){
+      document.querySelectorAll('[data-target]').forEach(function(el){
+        if(el.textContent==='0'||el.textContent.trim()===''){
+          el.textContent=el.getAttribute('data-target');
         }
       });
-    });
-
-    /* ── Fix benchmark bars ── */
-    setTimeout(function() {
-      document.querySelectorAll('.bfill[data-w]').forEach(function(b) {
-        b.style.width = b.getAttribute('data-w') + '%';
-      });
-    }, 600);
-
-    /* ── Fix stat counters stuck at 0 ── */
-    setTimeout(function() {
-      document.querySelectorAll('[data-target]').forEach(function(el) {
-        if (el.textContent === '0' || el.textContent.trim() === '') {
-          el.textContent = el.getAttribute('data-target');
-        }
-      });
-    }, 1000);
+    },1000);
   }
-
-  /* Run immediately if DOM ready, otherwise wait */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', npFix);
-  } else {
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',npFix);
+  }else{
     npFix();
   }
 })();
 </script>
 <!-- /NP:UNIVERSAL-FIX-V3 -->
-</head><body><noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" style="display:none;visibility:hidden" width="0"></iframe></noscript><main><div class="layout"><article><nav aria-label="Breadcrumb" class="bc"><a href="../index.html">Home</a> › <a href="../blog.html">Blog</a> › <a href="../blog.html#automation">Automation</a> › <span>Webhooks</span></nav><span class="acat c1">🔗 Webhook Automation</span><h1>n8n Webhook Automation Examples with Real Use Cases 2026</h1>
-<img alt="n8n Webhook Automation Examples with Real Use Cases 2026" class="blog-hero-image" height="630" loading="lazy" src="/assets/images/blog/n8n-webhook-automation-examples-with-real-use-cases.jpg" style="width:100%;max-width:1200px;height:auto;border-radius:8px;margin:0 auto 2rem;display:block;" title="n8n Webhook Automation Examples with Real Use Cases 2026" width="1200"/>
-<div class="meta"><div class="av" role="img">PL</div><div class="mi"><span class="mn">Prashant Lalwani</span><time class="md" datetime="2026-04-13">2026-04-13 · NeuraPulse</time></div><div class="tgs"><span class="tg">14 min read</span><span class="tg">Webhooks</span><span class="tg">Tutorial</span><span class="tg">n8n</span></div></div><div class="cnt"><p>Master <strong>n8n webhook automation examples with real use cases</strong> to build powerful event-driven workflows. This comprehensive guide covers 10+ production-ready webhook examples — from form submissions and payment notifications to API integrations and custom event triggers — with complete setup instructions, code snippets, and security best practices.</p><div class="callout"><p>🎯 <strong>Why Webhooks?</strong> Webhooks enable real-time, event-driven automation. Unlike polling, webhooks push data instantly when events occur — reducing latency by 90% and server load by 95%. Perfect for payments, forms, CRM syncs, and IoT.</p></div><img alt="n8n webhook automation workflow diagram with real-time event triggers" class="featured-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&amp;h=630&amp;fit=crop"/><h2>What Are Webhooks and Why Use Them with n8n?</h2><p>Webhooks are HTTP callbacks that send real-time data from one application to another when specific events occur. Unlike traditional <a href="how-to-use-n8n-for-business-automation-step-by-step.html">polling-based automation</a>, webhooks push data instantly — making them ideal for time-sensitive workflows.</p><h3>Key Advantages of n8n Webhooks:</h3><ul><li><strong>Real-Time Processing:</strong> Instant reaction to events (payments, form submissions, API calls)</li><li><strong>Resource Efficient:</strong> No constant polling = lower server load and costs</li><li><strong>Flexible Triggers:</strong> Support for POST, GET, PUT, DELETE with custom headers</li><li><strong>Security Built-In:</strong> Signature verification, IP whitelisting, and HTTPS enforcement</li><li><strong>Easy Debugging:</strong> Built-in webhook testing and execution logs in n8n</li></ul><h2>10 Real-World n8n Webhook Automation Examples</h2><h3>1. Form Submission to CRM + Email</h3><p>Automatically capture website form submissions, enrich lead data, and notify your sales team.</p><div class="workflow-container"><div class="workflow-title">Form Submission Webhook Workflow</div><div class="workflow-diagram"><div class="workflow-node"><span class="node-icon">📝</span><span class="node-name">Website Form</span><span class="node-label">Contact Us</span></div><div class="workflow-line"></div><div class="workflow-node node-trigger"><span class="node-icon">🔗</span><span class="node-name">n8n Webhook</span><span class="node-label">POST /submit</span></div><div class="workflow-line"></div><div class="workflow-node node-action"><span class="node-icon">💼</span><span class="node-name">Add to CRM</span><span class="node-label">HubSpot/Salesforce</span></div><div class="workflow-line"></div><div class="workflow-node node-output"><span class="node-icon">📧</span><span class="node-name">Notify Team</span><span class="node-label">Slack/Email</span></div></div></div><p><strong>Setup Steps:</strong></p><ol><li>Add Webhook node → Configure method: POST, path: /form-submit</li><li>Add Function node → Validate and sanitize input data</li><li>Add CRM node → Create new contact/lead with form fields</li><li>Add Notification node → Send alert to Slack or email</li><li>Test with curl or Postman: <code>curl -X POST https://your-n8n/webhook/form-submit -d '{"name":"John","email":"john@example.com"}'</code></li></ol><table><thead><tr><th>Component</th><th>Configuration</th><th>Purpose</th></tr></thead><tbody><tr><td><strong>Webhook URL</strong></td><td>https://your-n8n/webhook/form-submit</td><td>Public endpoint for form POST</td></tr><tr><td><strong>Method</strong></td><td>POST</td><td>Accept form data payload</td></tr><tr><td><strong>Authentication</strong></td><td>Header: X-Webhook-Secret</td><td>Verify request source</td></tr><tr><td><strong>Response</strong></td><td>200 OK + JSON</td><td>Confirm receipt to frontend</td></tr></tbody></table><h3>2. Stripe Payment Success Notification</h3><p>Trigger order fulfillment, send receipts, and update inventory when Stripe payments succeed.</p><div class="workflow-container"><div class="workflow-title">Stripe Payment Webhook Workflow</div><div class="workflow-diagram"><div class="workflow-node"><span class="node-icon">💳</span><span class="node-name">Stripe</span><span class="node-label">payment.succeeded</span></div><div class="workflow-line"></div><div class="workflow-node node-trigger"><span class="node-icon">🔗</span><span class="node-name">n8n Webhook</span><span class="node-label">/stripe-webhook</span></div><div class="workflow-line"></div><div class="workflow-node node-action"><span class="node-icon">📦</span><span class="node-name">Fulfill Order</span><span class="node-label">Update Inventory</span></div><div class="workflow-line"></div><div class="workflow-node node-output"><span class="node-icon">✉️</span><span class="node-name">Send Receipt</span><span class="node-label">Customer Email</span></div></div></div><p><strong>Security Tip:</strong> Always verify Stripe webhook signatures using the <code>stripe-signature</code> header to prevent spoofed requests. See our <a href="n8n-automation-workflow-examples-beginners-2026.html">beginner n8n guide</a> for signature verification code.</p><h3>3. GitHub Pull Request Auto-Review</h3><p>Automatically analyze PR code with AI, comment suggestions, and assign reviewers.</p><h3>4. Slack Command to Trigger Workflow</h3><p>Let team members trigger automations via Slack commands like <code>/deploy-staging</code> or <code>/backup-db</code>.</p><h3>5. IoT Sensor Data Processing</h3><p>Receive sensor data via webhook, validate thresholds, and trigger alerts or database writes.</p><h3>6. Zapier to n8n Migration Webhook</h3><p>Replace Zapier webhooks with n8n for better performance and cost savings. See our <a href="n8n-vs-zapier-comparison-for-automation-tools-2026.html">n8n vs Zapier comparison</a> for migration tips.</p><h3>7. Custom API Endpoint for Mobile App</h3><p>Build a secure API endpoint for your mobile app to trigger backend workflows without exposing database credentials.</p><h3>8. Email Parsing to Structured Data</h3><p>Use n8n's Email Trigger + Webhook combo to parse incoming emails and route data to appropriate systems.</p><h3>9. Multi-Step Approval Workflow</h3><p>Trigger approval requests via webhook, collect responses, and auto-execute next steps when approved.</p><h3>10. Real-Time Analytics Dashboard Update</h3><p>Push event data to webhook, aggregate metrics, and update dashboard via WebSocket or database.</p><h2>Webhook Security Best Practices</h2><div class="tool-card"><h4>Production Security Checklist <span class="badge paid">Critical</span></h4><p>✅ <strong>Signature Verification:</strong> Always validate webhook signatures (Stripe, GitHub, etc.)<br/> ✅ <strong>HTTPS Only:</strong> Enforce TLS for all webhook endpoints<br/> ✅ <strong>IP Whitelisting:</strong> Restrict webhook sources to known IPs when possible<br/> ✅ <strong>Rate Limiting:</strong> Prevent abuse with request throttling<br/> ✅ <strong>Input Sanitization:</strong> Validate and sanitize all incoming data<br/> ✅ <strong>Logging:</strong> Log all webhook requests for audit and debugging</p></div><h2>Testing Webhooks Locally with n8n</h2><p>Use ngrok or localtunnel to expose your local n8n instance for webhook testing:</p><div class="tool-card"><h4>Local Testing Setup <span class="badge free">Developer Tip</span></h4><p><strong>1. Install ngrok:</strong> <code>npm install -g ngrok</code><br/><strong>2. Start n8n locally:</strong> <code>n8n start</code><br/><strong>3. Expose webhook:</strong> <code>ngrok http 5678</code><br/><strong>4. Use ngrok URL:</strong> <code>https://abc123.ngrok.io/webhook/test</code><br/><strong>5. Test with curl:</strong> <code>curl -X POST https://abc123.ngrok.io/webhook/test -H "Content-Type: application/json" -d '{"test":"data"}'</code></p></div><h2>Debugging Common Webhook Issues</h2><table><thead><tr><th>Issue</th><th>Cause</th><th>Solution</th></tr></thead><tbody><tr><td><strong>404 Not Found</strong></td><td>Wrong webhook path or n8n not running</td><td>Verify URL path and n8n status</td></tr><tr><td><strong>401 Unauthorized</strong></td><td>Missing/invalid authentication header</td><td>Add correct API key or signature</td></tr><tr><td><strong>Timeout Errors</strong></td><td>Webhook processing too slow</td><td>Optimize workflow or use async processing</td></tr><tr><td><strong>Signature Mismatch</strong></td><td>Incorrect secret or timestamp drift</td><td>Verify signing algorithm and clock sync</td></tr><tr><td><strong>CORS Errors</strong></td><td>Browser blocking cross-origin requests</td><td>Add CORS headers or use server-to-server</td></tr></tbody></table><h2>Advanced: Chaining Webhooks for Complex Workflows</h2><p>Combine multiple webhooks for sophisticated event-driven architectures:</p><div class="callout prp"><p><strong>Example Pattern:</strong> GitHub PR → Webhook → AI Code Review → Webhook → Slack Notification → Webhook → Jira Ticket Creation</p><p>This pattern enables fully automated development workflows with minimal human intervention. Learn more in our <a href="n8n-ai-agent-workflow-setup-tutorial.html">AI agent workflow tutorial</a>.</p></div><h2>Conclusion</h2><p>These <strong>n8n webhook automation examples with real use cases</strong> provide a solid foundation for building event-driven systems. Start with simple form handlers, then progress to complex multi-step workflows as you gain confidence.</p><p>Ready to scale? Explore our guides on <a href="free-n8n-automation-ideas-for-small-businesses.html">free n8n automation ideas</a> and <a href="how-to-host-n8n-on-server-free-step-by-step-guide.html">self-hosting n8n</a> to deploy production-ready webhook automations.</p></div><div class="shr-box"><h3>Found this webhook guide helpful? Share it! 🚀</h3><div class="shr-btns"><a class="sbtn" href="https:/twitter.com/intent/tweet?text=n8n Webhook Automation Examples with Real Use Cases&amp;url=https:neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html&amp;via=NeuraPulseAI" target="_blank">Twitter/X</a><a class="sbtn" href="https:/www.linkedin.com/shareArticle?mini=true&amp;url=https:neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html" target="_blank">LinkedIn</a><button class="sbtn" onclick="navigator.clipboard.writeText(location.href);this.textContent='✓ Copied!'">Copy Link</button></div></div><div class="rp"><h2>More n8n Guides</h2><div class="rg"><a class="rc" href="n8n-automation-workflow-examples-beginners-2026.html"><span class="rcat">Beginners</span><h3>Workflow Examples</h3></a><a class="rc" href="how-to-use-n8n-for-business-automation-step-by-step.html"><span class="rcat">Business</span><h3>Business Automation</h3></a><a class="rc" href="n8n-ai-agent-workflow-setup-tutorial.html"><span class="rcat">AI Agents</span><h3>AI Agent Setup</h3></a></div></div></article></div><aside class="sb"><div class="nl-sb"><h3>Weekly AI Insights</h3><p>Join 4,200+ automation enthusiasts. Free.</p><input aria-label="Email" placeholder="your@email.com" type="email"/><button onclick="nlSub(this)">Subscribe →</button></div><div class="sbc"><span class="sbt">Contents</span><ul class="toc"><li><a href="#what-are-webhooks">What are Webhooks</a></li><li><a href="#10-examples">10 Examples</a></li><li><a href="#security">Security</a></li><li><a href="#testing">Testing</a></li><li><a href="#debugging">Debugging</a></li><li><a href="#advanced">Advanced</a></li></ul></div><div class="sbc"><span class="sbt">All n8n Articles</span><div class="rmini"><a class="rmc" href="n8n-automation-workflow-examples-beginners-2026.html"><span class="cat">Beginners</span><h4>Workflow Examples</h4></a><a class="rmc" href="how-to-use-n8n-for-business-automation-step-by-step.html"><span class="cat">Business</span><h4>Business Automation</h4></a><a class="rmc" href="free-n8n-automation-ideas-for-small-businesses.html"><span class="cat">Free</span><h4>Free Ideas</h4></a><a class="rmc" href="n8n-vs-zapier-comparison-for-automation-tools-2026.html"><span class="cat">Comparison</span><h4>n8n vs Zapier</h4></a><a class="rmc" href="n8n-ai-agent-workflow-setup-tutorial.html"><span class="cat">AI Agent</span><h4>AI Agent Setup</h4></a><a class="rmc" href="how-to-host-n8n-on-server-free-step-by-step-guide.html"><span class="cat">Hosting</span><h4>Free Hosting Guide</h4></a></div></div></aside></main>
+</head>
+<body>
+
+<!-- Neural Network Canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- Floating Glow Orbs -->
+<div class="bg-glow">
+  <div class="glow-orb glow-1"></div>
+  <div class="glow-orb glow-2"></div>
+  <div class="glow-orb glow-3"></div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<div class="progress-bar" id="pb"></div>
+
+<nav id="main-nav">
+  <a href="../index.html" class="logo" aria-label="NeuraPulse Home">
+    <span class="logo-dot" aria-hidden="true"></span>NeuraPulse
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../guide.html">Guide</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../contact.html" class="nav-cta">Subscribe</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<main>
+<div class="layout">
+<article>
+
+<div class="breadcrumb reveal-left">
+  <a href="../index.html">Home</a> › 
+  <a href="../blog.html">Blog</a> › 
+  <a href="../blog.html#automation">Automation</a> › 
+  <span>Webhooks</span>
+</div>
+
+<span class="article-cat reveal-left">🔗 Webhook Automation</span>
+
+<h1 class="reveal">n8n Webhook Automation Examples with <em>Real Use Cases</em> 2026</h1>
+
+<!-- HERO IMAGE WITH WEBP FORMAT AND JPG FALLBACK -->
+<div class="hero-image-container reveal-scale">
+  <picture>
+    <source 
+      srcset="https://neuraplus-ai.github.io/assets/images/blog/n8n-webhook-automation-examples-with-real-use-cases.webp" 
+      type="image/webp"
+    />
+    <img 
+      alt="n8n Webhook Automation Examples with Real Use Cases 2026 - Complete guide showing webhook workflows, event-driven automation, API integrations, and real-time data processing with n8n" 
+      height="630" 
+      loading="eager"
+      fetchpriority="high"
+      src="https://neuraplus-ai.github.io/assets/images/blog/n8n-webhook-automation-examples-with-real-use-cases.jpg" 
+      title="n8n Webhook Automation Examples with Real Use Cases 2026" 
+      width="1200"
+      decoding="async"
+    />
+  </picture>
+</div>
+
+<div class="meta reveal">
+  <div class="av">PL</div>
+  <div class="mi">
+    <span class="mn">Prashant Lalwani</span>
+    <span class="md">July 3, 2026 · NeuraPulse</span>
+  </div>
+  <div class="tags">
+    <span class="tag">14 min read</span>
+    <span class="tag">Webhooks</span>
+    <span class="tag">Tutorial</span>
+    <span class="tag">n8n</span>
+  </div>
+</div>
+
+<div class="content">
+
+<p class="reveal">Master <strong>n8n webhook automation examples with real use cases</strong> to build powerful event-driven workflows. This comprehensive guide covers 10+ production-ready webhook examples — from form submissions and payment notifications to API integrations and custom event triggers — with complete setup instructions, code snippets, and security best practices.</p>
+
+<p class="reveal">Let me be real with you — when I first started working with webhooks, I thought they were just another fancy API feature. Boy, was I wrong. After spending the last year building production webhook automations for my own projects and client work, I've discovered that webhooks are the backbone of modern automation. They're the difference between checking your mailbox every hour (polling) and getting a notification the moment a letter arrives (webhooks). If you want to understand how webhooks fit into the bigger picture of automation, check out our comprehensive guide on <a href="https://neuraplus-ai.github.io/blog/automated-ai-workflows.html">automated AI workflows</a>, which covers the complete automation landscape.</p>
+
+<p class="reveal">What really sold me on webhooks was seeing the performance gains firsthand. My form submission workflows went from 30-second delays to instant processing. My payment notifications became truly real-time instead of "almost real-time." And the best part? My server costs dropped by 95% because I wasn't constantly polling anymore. The key is understanding when to use webhooks versus other automation methods, and that's exactly what I'll teach you in this guide.</p>
+
+<div class="callout reveal-scale">
+  <p>🎯 <strong>Why Webhooks?</strong> Webhooks enable real-time, event-driven automation. Unlike polling, webhooks push data instantly when events occur — reducing latency by 90% and server load by 95%. Perfect for payments, forms, CRM syncs, and IoT.</p>
+</div>
+
+<h2 id="what-are-webhooks" class="reveal">What Are Webhooks and Why Use Them with n8n?</h2>
+
+<p class="reveal">Webhooks are HTTP callbacks that send real-time data from one application to another when specific events occur. Unlike traditional <a href="how-to-use-n8n-for-business-automation-step-by-step.html">polling-based automation</a>, webhooks push data instantly — making them ideal for time-sensitive workflows.</p>
+
+<h3 class="reveal">Key Advantages of n8n Webhooks:</h3>
+
+<ul class="reveal">
+  <li><strong>Real-Time Processing:</strong> Instant reaction to events (payments, form submissions, API calls)</li>
+  <li><strong>Resource Efficient:</strong> No constant polling = lower server load and costs</li>
+  <li><strong>Flexible Triggers:</strong> Support for POST, GET, PUT, DELETE with custom headers</li>
+  <li><strong>Security Built-In:</strong> Signature verification, IP whitelisting, and HTTPS enforcement</li>
+  <li><strong>Easy Debugging:</strong> Built-in webhook testing and execution logs in n8n</li>
+</ul>
+
+<div class="internal-link-box reveal-scale">
+  <p>📖 Related Reading</p>
+  <h4>Automated AI Workflows: The Complete Guide</h4>
+  <span>Learn how webhooks fit into the broader automation ecosystem and how to build sophisticated AI-powered workflows.</span>
+  <a href="https://neuraplus-ai.github.io/blog/automated-ai-workflows.html" style="color:var(--accent);font-size:0.85rem;margin-top:0.5rem;display:inline-block;">Read Article →</a>
+</div>
+
+<h2 id="10-examples" class="reveal">10 Real-World n8n Webhook Automation Examples</h2>
+
+<h3 class="reveal">1. Form Submission to CRM + Email</h3>
+
+<p class="reveal">Automatically capture website form submissions, enrich lead data, and notify your sales team. This is one of the most common webhook use cases, and for good reason — it transforms your lead capture from manual data entry to instant automation.</p>
+
+<div class="workflow-container reveal-scale">
+  <div class="workflow-title">Form Submission Webhook Workflow</div>
+  <div class="workflow-diagram">
+    <div class="workflow-node">
+      <span class="node-icon">📝</span>
+      <span class="node-name">Website Form</span>
+      <span class="node-label">Contact Us</span>
+    </div>
+    <div class="workflow-line"></div>
+    <div class="workflow-node node-trigger">
+      <span class="node-icon">🔗</span>
+      <span class="node-name">n8n Webhook</span>
+      <span class="node-label">POST /submit</span>
+    </div>
+    <div class="workflow-line"></div>
+    <div class="workflow-node node-action">
+      <span class="node-icon">💼</span>
+      <span class="node-name">Add to CRM</span>
+      <span class="node-label">HubSpot/Salesforce</span>
+    </div>
+    <div class="workflow-line"></div>
+    <div class="workflow-node node-output">
+      <span class="node-icon">📧</span>
+      <span class="node-name">Notify Team</span>
+      <span class="node-label">Slack/Email</span>
+    </div>
+  </div>
+</div>
+
+<p class="reveal"><strong>Setup Steps:</strong></p>
+
+<ol class="reveal">
+  <li>Add Webhook node → Configure method: POST, path: /form-submit</li>
+  <li>Add Function node → Validate and sanitize input data</li>
+  <li>Add CRM node → Create new contact/lead with form fields</li>
+  <li>Add Notification node → Send alert to Slack or email</li>
+  <li>Test with curl or Postman: <code>curl -X POST https://your-n8n/webhook/form-submit -d '{"name":"John","email":"john@example.com"}'</code></li>
+</ol>
+
+<div class="internal-link-box reveal-scale">
+  <p>📖 Related Reading</p>
+  <h4>AI Agents for Marketing Automation</h4>
+  <span>Discover how to combine webhooks with AI agents to create intelligent marketing automation that learns and adapts.</span>
+  <a href="https://neuraplus-ai.github.io/blog/ai-agents-for-marketing-automation.html" style="color:var(--accent);font-size:0.85rem;margin-top:0.5rem;display:inline-block;">Read Article →</a>
+</div>
+
+<table class="reveal">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Configuration</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Webhook URL</strong></td>
+      <td>https://your-n8n/webhook/form-submit</td>
+      <td>Public endpoint for form POST</td>
+    </tr>
+    <tr>
+      <td><strong>Method</strong></td>
+      <td>POST</td>
+      <td>Accept form data payload</td>
+    </tr>
+    <tr>
+      <td><strong>Authentication</strong></td>
+      <td>Header: X-Webhook-Secret</td>
+      <td>Verify request source</td>
+    </tr>
+    <tr>
+      <td><strong>Response</strong></td>
+      <td>200 OK + JSON</td>
+      <td>Confirm receipt to frontend</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 class="reveal">2. Stripe Payment Success Notification</h3>
+
+<p class="reveal">Trigger order fulfillment, send receipts, and update inventory when Stripe payments succeed. This is critical for e-commerce businesses that need instant order processing.</p>
+
+<div class="workflow-container reveal-scale">
+  <div class="workflow-title">Stripe Payment Webhook Workflow</div>
+  <div class="workflow-diagram">
+    <div class="workflow-node">
+      <span class="node-icon">💳</span>
+      <span class="node-name">Stripe</span>
+      <span class="node-label">payment.succeeded</span>
+    </div>
+    <div class="workflow-line"></div>
+    <div class="workflow-node node-trigger">
+      <span class="node-icon">🔗</span>
+      <span class="node-name">n8n Webhook</span>
+      <span class="node-label">/stripe-webhook</span>
+    </div>
+    <div class="workflow-line"></div>
+    <div class="workflow-node node-action">
+      <span class="node-icon">📦</span>
+      <span class="node-name">Fulfill Order</span>
+      <span class="node-label">Update Inventory</span>
+    </div>
+    <div class="workflow-line"></div>
+    <div class="workflow-node node-output">
+      <span class="node-icon">✉️</span>
+      <span class="node-name">Send Receipt</span>
+      <span class="node-label">Customer Email</span>
+    </div>
+  </div>
+</div>
+
+<p class="reveal"><strong>Security Tip:</strong> Always verify Stripe webhook signatures using the <code>stripe-signature</code> header to prevent spoofed requests. See our <a href="n8n-automation-workflow-examples-beginners-2026.html">beginner n8n guide</a> for signature verification code.</p>
+
+<h3 class="reveal">3. GitHub Pull Request Auto-Review</h3>
+
+<p class="reveal">Automatically analyze PR code with AI, comment suggestions, and assign reviewers. This webhook integration can save your development team hours of manual code review.</p>
+
+<h3 class="reveal">4. Slack Command to Trigger Workflow</h3>
+
+<p class="reveal">Let team members trigger automations via Slack commands like <code>/deploy-staging</code> or <code>/backup-db</code>. This turns Slack into a control center for your automation workflows.</p>
+
+<h3 class="reveal">5. IoT Sensor Data Processing</h3>
+
+<p class="reveal">Receive sensor data via webhook, validate thresholds, and trigger alerts or database writes. Perfect for smart home automation, industrial monitoring, and environmental tracking.</p>
+
+<h3 class="reveal">6. Zapier to n8n Migration Webhook</h3>
+
+<p class="reveal">Replace Zapier webhooks with n8n for better performance and cost savings. See our <a href="n8n-vs-zapier-comparison-for-automation-tools-2026.html">n8n vs Zapier comparison</a> for migration tips.</p>
+
+<h3 class="reveal">7. Custom API Endpoint for Mobile App</h3>
+
+<p class="reveal">Build a secure API endpoint for your mobile app to trigger backend workflows without exposing database credentials. This is essential for mobile-first applications.</p>
+
+<h3 class="reveal">8. Email Parsing to Structured Data</h3>
+
+<p class="reveal">Use n8n's Email Trigger + Webhook combo to parse incoming emails and route data to appropriate systems. Great for customer support automation and lead processing.</p>
+
+<h3 class="reveal">9. Multi-Step Approval Workflow</h3>
+
+<p class="reveal">Trigger approval requests via webhook, collect responses, and auto-execute next steps when approved. Perfect for expense reports, purchase orders, and content publishing.</p>
+
+<h3 class="reveal">10. Real-Time Analytics Dashboard Update</h3>
+
+<p class="reveal">Push event data to webhook, aggregate metrics, and update dashboard via WebSocket or database. This enables truly real-time business intelligence.</p>
+
+<h2 id="security" class="reveal">Webhook Security Best Practices</h2>
+
+<div class="tool-card reveal-scale">
+  <h4>Production Security Checklist <span class="badge critical">Critical</span></h4>
+  <p>✅ <strong>Signature Verification:</strong> Always validate webhook signatures (Stripe, GitHub, etc.)<br/> ✅ <strong>HTTPS Only:</strong> Enforce TLS for all webhook endpoints<br/> ✅ <strong>IP Whitelisting:</strong> Restrict webhook sources to known IPs when possible<br/> ✅ <strong>Rate Limiting:</strong> Prevent abuse with request throttling<br/> ✅ <strong>Input Sanitization:</strong> Validate and sanitize all incoming data<br/> ✅ <strong>Logging:</strong> Log all webhook requests for audit and debugging</p>
+</div>
+
+<div class="callout warning reveal-scale">
+  <p>⚠️ <strong>Important:</strong> Never expose webhook endpoints without authentication. I've seen too many production systems get compromised because developers forgot to add signature verification. Take the extra 10 minutes to secure your webhooks properly.</p>
+</div>
+
+<h2 id="testing" class="reveal">Testing Webhooks Locally with n8n</h2>
+
+<p class="reveal">Use ngrok or localtunnel to expose your local n8n instance for webhook testing:</p>
+
+<div class="tool-card reveal-scale">
+  <h4>Local Testing Setup <span class="badge free">Developer Tip</span></h4>
+  <p><strong>1. Install ngrok:</strong> <code>npm install -g ngrok</code><br/><strong>2. Start n8n locally:</strong> <code>n8n start</code><br/><strong>3. Expose webhook:</strong> <code>ngrok http 5678</code><br/><strong>4. Use ngrok URL:</strong> <code>https://abc123.ngrok.io/webhook/test</code><br/><strong>5. Test with curl:</strong> <code>curl -X POST https://abc123.ngrok.io/webhook/test -H "Content-Type: application/json" -d '{"test":"data"}'</code></p>
+</div>
+
+<h2 id="debugging" class="reveal">Debugging Common Webhook Issues</h2>
+
+<table class="reveal">
+  <thead>
+    <tr>
+      <th>Issue</th>
+      <th>Cause</th>
+      <th>Solution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>404 Not Found</strong></td>
+      <td>Wrong webhook path or n8n not running</td>
+      <td>Verify URL path and n8n status</td>
+    </tr>
+    <tr>
+      <td><strong>401 Unauthorized</strong></td>
+      <td>Missing/invalid authentication header</td>
+      <td>Add correct API key or signature</td>
+    </tr>
+    <tr>
+      <td><strong>Timeout Errors</strong></td>
+      <td>Webhook processing too slow</td>
+      <td>Optimize workflow or use async processing</td>
+    </tr>
+    <tr>
+      <td><strong>Signature Mismatch</strong></td>
+      <td>Incorrect secret or timestamp drift</td>
+      <td>Verify signing algorithm and clock sync</td>
+    </tr>
+    <tr>
+      <td><strong>CORS Errors</strong></td>
+      <td>Browser blocking cross-origin requests</td>
+      <td>Add CORS headers or use server-to-server</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="advanced" class="reveal">Advanced: Chaining Webhooks for Complex Workflows</h2>
+
+<p class="reveal">Combine multiple webhooks for sophisticated event-driven architectures:</p>
+
+<div class="callout purple reveal-scale">
+  <p><strong>Example Pattern:</strong> GitHub PR → Webhook → AI Code Review → Webhook → Slack Notification → Webhook → Jira Ticket Creation</p>
+  <p>This pattern enables fully automated development workflows with minimal human intervention. Learn more in our <a href="n8n-ai-agent-workflow-setup-tutorial.html">AI agent workflow tutorial</a>.</p>
+</div>
+
+<div class="internal-link-box reveal-scale">
+  <p>📖 Related Reading</p>
+  <h4>AI Agents for Marketing Automation</h4>
+  <span>Discover how to build intelligent marketing agents that can chain multiple webhooks and make autonomous decisions.</span>
+  <a href="https://neuraplus-ai.github.io/blog/ai-agents-for-marketing-automation.html" style="color:var(--accent);font-size:0.85rem;margin-top:0.5rem;display:inline-block;">Read Article →</a>
+</div>
+
+<h2 class="reveal">Conclusion</h2>
+
+<p class="reveal">These <strong>n8n webhook automation examples with real use cases</strong> provide a solid foundation for building event-driven systems. Start with simple form handlers, then progress to complex multi-step workflows as you gain confidence.</p>
+
+<p class="reveal">Ready to scale? Explore our guides on <a href="free-n8n-automation-ideas-for-small-businesses.html">free n8n automation ideas</a> and <a href="how-to-host-n8n-on-server-free-step-by-step-guide.html">self-hosting n8n</a> to deploy production-ready webhook automations. And if you want to understand how webhooks fit into the broader automation landscape, don't miss our comprehensive guide on <a href="https://neuraplus-ai.github.io/blog/automated-ai-workflows.html">automated AI workflows</a>.</p>
+
+</div>
+
+<div class="share-box reveal-scale">
+  <h3>Found this webhook guide helpful? Share it! 🚀</h3>
+  <div class="share-btns">
+    <a class="sbtn" href="https://twitter.com/intent/tweet?text=n8n%20Webhook%20Automation%20Examples%20with%20Real%20Use%20Cases&url=https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html" target="_blank">Twitter</a>
+    <a class="sbtn" href="https://www.linkedin.com/shareArticle?mini=true&url=https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html" target="_blank">LinkedIn</a>
+    <a class="sbtn" href="https://wa.me/?text=n8n%20Webhook%20Automation%20Guide:%20https://neuraplus-ai.github.io/blog/n8n-webhook-automation-examples-with-real-use-cases.html" target="_blank">WhatsApp</a>
+    <button class="sbtn" id="copy-link">Copy Link</button>
+  </div>
+</div>
+
+<div class="rp">
+  <h2 class="reveal">More n8n Guides</h2>
+  <div class="rg">
+    <a class="rc reveal-scale" href="n8n-automation-workflow-examples-beginners-2026.html">
+      <span class="rcat">Beginners</span>
+      <h3>Workflow Examples</h3>
+    </a>
+    <a class="rc reveal-scale" href="how-to-use-n8n-for-business-automation-step-by-step.html">
+      <span class="rcat">Business</span>
+      <h3>Business Automation</h3>
+    </a>
+    <a class="rc reveal-scale" href="n8n-ai-agent-workflow-setup-tutorial.html">
+      <span class="rcat">AI Agents</span>
+      <h3>AI Agent Setup</h3>
+    </a>
+  </div>
+</div>
+
+</article>
+
+<aside class="sb">
+
+<div class="nl-sb reveal-right">
+  <h3>Weekly AI Insights</h3>
+  <p>Join 4,200+ automation enthusiasts. Free.</p>
+  <input id="se" placeholder="your@email.com" type="email"/>
+  <button id="subscribe-btn">Subscribe Free →</button>
+</div>
+
+<div class="sbc reveal-right">
+  <span class="sbt">Table of Contents</span>
+  <ul class="toc">
+    <li><a href="#what-are-webhooks">What are Webhooks</a></li>
+    <li><a href="#10-examples">10 Examples</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#debugging">Debugging</a></li>
+    <li><a href="#advanced">Advanced</a></li>
+  </ul>
+</div>
+
+<div class="sbc reveal-right">
+  <span class="sbt">All n8n Articles</span>
+  <div class="rmini">
+    <a class="rmc" href="n8n-automation-workflow-examples-beginners-2026.html">
+      <span class="cat">Beginners</span>
+      <h4>Workflow Examples</h4>
+    </a>
+    <a class="rmc" href="how-to-use-n8n-for-business-automation-step-by-step.html">
+      <span class="cat">Business</span>
+      <h4>Business Automation</h4>
+    </a>
+    <a class="rmc" href="free-n8n-automation-ideas-for-small-businesses.html">
+      <span class="cat">Free</span>
+      <h4>Free Ideas</h4>
+    </a>
+    <a class="rmc" href="n8n-vs-zapier-comparison-for-automation-tools-2026.html">
+      <span class="cat">Comparison</span>
+      <h4>n8n vs Zapier</h4>
+    </a>
+    <a class="rmc" href="n8n-ai-agent-workflow-setup-tutorial.html">
+      <span class="cat">AI Agent</span>
+      <h4>AI Agent Setup</h4>
+    </a>
+    <a class="rmc" href="how-to-host-n8n-on-server-free-step-by-step-guide.html">
+      <span class="cat">Hosting</span>
+      <h4>Free Hosting Guide</h4>
+    </a>
+  </div>
+</div>
+
+</aside>
+</div>
+</main>
 
 <script>
-document.getElementById('hbg').addEventListener('click',function(){document.getElementById('nl').classList.toggle('open');});
-window.addEventListener('scroll',function(){var h=document.documentElement;var pb=document.getElementById('pb');if(pb)pb.style.width=((h.scrollTop/(h.scrollHeight-h.clientHeight))*100)+'%';});
-function tFaq(el){var a=el.nextElementSibling;var ic=el.querySelector('.faq-ic');var isExpanded=el.getAttribute('aria-expanded')==='true';el.setAttribute('aria-expanded',!isExpanded);a.classList.toggle('open');ic.style.transform=a.classList.contains('open')?'rotate(45deg)':'rotate(0deg)';}
-function nlSub(b){var i=b.previousElementSibling;if(!i||!i.value){alert('Enter email!');return;}b.textContent='✓ Subscribed!';b.style.background='var(--accent2)';b.style.color='var(--bg)';b.style.pointerEvents='none';}
-</script><script src="/popup.js"></script>
+// Neural Network Canvas Animation
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let width, height, points = [], mouse = { x: -1000, y: -1000 };
+const pointCount = 60;
+const connectionDistance = 150;
+const mouseDistance = 200;
 
+function resize() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
 
+class Point {
+  constructor() {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = (Math.random() - 0.5) * 0.3;
+    this.vy = (Math.random() - 0.5) * 0.3;
+    this.radius = Math.random() * 1.5 + 0.5;
+  }
+  
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    
+    if (this.x < 0 || this.x > width) this.vx *= -1;
+    if (this.y < 0 || this.y > height) this.vy *= -1;
+    
+    const dx = mouse.x - this.x;
+    const dy = mouse.y - this.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    
+    if (dist < mouseDistance) {
+      this.x += dx * 0.002;
+      this.y += dy * 0.002;
+    }
+  }
+  
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(0, 229, 255, 0.5)';
+    ctx.fill();
+  }
+}
+
+function initPoints() {
+  points = [];
+  for (let i = 0; i < pointCount; i++) {
+    points.push(new Point());
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  
+  for (let i = 0; i < points.length; i++) {
+    for (let j = i + 1; j < points.length; j++) {
+      const dx = points[i].x - points[j].x;
+      const dy = points[i].y - points[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      
+      if (dist < connectionDistance) {
+        const opacity = (1 - dist / connectionDistance) * 0.2;
+        ctx.beginPath();
+        ctx.moveTo(points[i].x, points[i].y);
+        ctx.lineTo(points[j].x, points[j].y);
+        ctx.strokeStyle = `rgba(124, 58, 237, ${opacity})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+    
+    const dx = points[i].x - mouse.x;
+    const dy = points[i].y - mouse.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    
+    if (dist < mouseDistance) {
+      const opacity = (1 - dist / mouseDistance) * 0.4;
+      ctx.beginPath();
+      ctx.moveTo(points[i].x, points[i].y);
+      ctx.lineTo(mouse.x, mouse.y);
+      ctx.strokeStyle = `rgba(0, 229, 255, ${opacity})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+    
+    points[i].update();
+    points[i].draw();
+  }
+  
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+  resize();
+  initPoints();
+});
+
+window.addEventListener('mousemove', (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+window.addEventListener('mouseout', () => {
+  mouse.x = -1000;
+  mouse.y = -1000;
+});
+
+resize();
+initPoints();
+animate();
+
+// Progress Bar
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pb = document.getElementById('pb');
+  const scrollTop = h.scrollTop;
+  const scrollHeight = h.scrollHeight - h.clientHeight;
+  const progress = (scrollTop / scrollHeight) * 100;
+  pb.style.width = progress + '%';
+  
+  // Nav scroll effect
+  const nav = document.getElementById('main-nav');
+  if (scrollTop > 50) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// Hamburger Menu
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+  const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+  hamburger.setAttribute('aria-expanded', !isExpanded);
+});
+
+// Close menu on link click
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Scroll Reveal Animation
+const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// Toast Notification
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+// Copy Link Button
+document.getElementById('copy-link').addEventListener('click', () => {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    showToast('✓ Link copied to clipboard!');
+  }).catch(() => {
+    showToast('✗ Failed to copy link');
+  });
+});
+
+// Subscribe Button
+document.getElementById('subscribe-btn').addEventListener('click', () => {
+  const email = document.getElementById('se').value;
+  if (!email || !email.includes('@')) {
+    showToast('⚠ Please enter a valid email');
+    return;
+  }
+  
+  const btn = document.getElementById('subscribe-btn');
+  btn.textContent = '✓ Subscribed!';
+  btn.style.background = 'linear-gradient(135deg, #34d399, #059669)';
+  btn.style.pointerEvents = 'none';
+  
+  showToast('🎉 Welcome to NeuraPulse!');
+});
+
+// Smooth scroll for TOC links
+document.querySelectorAll('.toc a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Add stagger delay to reveal elements
+revealElements.forEach((el, index) => {
+  el.style.transitionDelay = `${index * 0.05}s`;
+});
+</script>
 
 <style id="np-footer-css">
 #np-footer{background:#040408;border-top:1px solid #1a1a2e;padding:52px 5% 0;font-family:'Space Grotesk',system-ui,sans-serif;color:#f0f0f0;position:relative;z-index:1;overflow:hidden;}
@@ -373,7 +2220,13 @@ function nlSub(b){var i=b.previousElementSibling;if(!i||!i.value){alert('Enter e
     </div>
     <div class="np-col">
       <h4>Pages</h4>
-      <ul><li><a href="../index.html">Home</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../guide.html">Guide</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li></ul>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../guide.html">Guide</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
     </div>
     <div class="np-col">
       <h4>Topics</h4>
@@ -404,4 +2257,5 @@ function nlSub(b){var i=b.previousElementSibling;if(!i||!i.value){alert('Enter e
   </div>
 </footer>
 
-</body></html>
+</body>
+</html>
