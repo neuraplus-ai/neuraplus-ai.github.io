@@ -1,0 +1,40 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050810"/>
+      <stop offset="100%" stop-color="#0c1120"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <g font-family="Syne, sans-serif" font-weight="800" text-anchor="middle">
+    <text x="600" y="270" font-size="90" fill="#4285F4">G</text>
+    <text x="668" y="270" font-size="90" fill="#EA4335">o</text>
+    <text x="726" y="270" font-size="90" fill="#FBBC05">o</text>
+    <text x="784" y="270" font-size="90" fill="#4285F4">g</text>
+    <text x="842" y="270" font-size="90" fill="#34A853">l</text>
+    <text x="875" y="270" font-size="90" fill="#EA4335">e</text>
+    <text x="470" y="270" font-size="90" fill="#4285F4"> </text>
+  </g>
+  <g font-family="Syne, sans-serif" font-weight="800" font-size="60" text-anchor="middle" fill="#e2e8f0">
+    <text x="600" y="340">Easter Eggs</text>
+  </g>
+
+  <g font-family="Space Mono, monospace" fill="#64748b" font-size="20" letter-spacing="3">
+    <text x="600" y="420" text-anchor="middle">7 HIDDEN SEARCH TRICKS — FULL LIST 2026</text>
+  </g>
+
+  <g opacity="0.85">
+    <circle cx="180" cy="140" r="4" fill="#00e5ff"/>
+    <circle cx="1020" cy="150" r="4" fill="#7c3aed"/>
+    <circle cx="1050" cy="500" r="4" fill="#00e5ff"/>
+    <circle cx="150" cy="490" r="4" fill="#7c3aed"/>
+    <circle cx="300" cy="90" r="3" fill="#FBBC05"/>
+    <circle cx="900" cy="90" r="3" fill="#34A853"/>
+  </g>
+</svg>

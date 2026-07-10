@@ -1,0 +1,41 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050810"/>
+      <stop offset="100%" stop-color="#0c1120"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <g font-family="Syne, sans-serif" font-weight="800" font-size="120" text-anchor="middle" opacity="0.9">
+    <text x="600" y="300" fill="#e2e8f0">GG</text>
+  </g>
+
+  <g font-family="Syne, sans-serif" font-weight="800" font-size="34">
+    <circle cx="140" cy="120" r="22" fill="#EA4335"/>
+    <text x="140" y="130" fill="#fff" text-anchor="middle" font-size="26">o</text>
+    <circle cx="240" cy="90" r="18" fill="#4285F4"/>
+    <text x="240" y="98" fill="#fff" text-anchor="middle" font-size="22">o</text>
+    <circle cx="1040" cy="130" r="20" fill="#FBBC05"/>
+    <text x="1040" y="139" fill="#000" text-anchor="middle" font-size="24">o</text>
+    <circle cx="950" cy="90" r="16" fill="#34A853"/>
+    <text x="950" y="97" fill="#fff" text-anchor="middle" font-size="20">o</text>
+    <circle cx="190" cy="470" r="19" fill="#4285F4"/>
+    <text x="190" y="478" fill="#fff" text-anchor="middle" font-size="22">o</text>
+    <circle cx="110" cy="410" r="15" fill="#EA4335"/>
+    <text x="110" y="417" fill="#fff" text-anchor="middle" font-size="18">o</text>
+    <circle cx="1010" cy="460" r="21" fill="#34A853"/>
+    <text x="1010" y="469" fill="#fff" text-anchor="middle" font-size="24">o</text>
+    <circle cx="1090" cy="400" r="16" fill="#FBBC05"/>
+    <text x="1090" y="407" fill="#000" text-anchor="middle" font-size="20">o</text>
+  </g>
+
+  <g font-family="Space Mono, monospace" fill="#64748b" font-size="20" letter-spacing="3">
+    <text x="600" y="520" text-anchor="middle">TYPE "ZERG RUSH" — CLICK FAST</text>
+  </g>
+</svg>

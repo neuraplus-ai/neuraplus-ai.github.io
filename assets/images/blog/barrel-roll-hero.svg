@@ -1,0 +1,39 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050810"/>
+      <stop offset="100%" stop-color="#0c1120"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(600,300)">
+    <g>
+      <circle r="150" fill="none" stroke="#1e2d45" stroke-width="2"/>
+      <path d="M -150 0 A 150 150 0 0 1 150 0" fill="none" stroke="#00e5ff" stroke-width="6" stroke-linecap="round"/>
+      <path d="M 150 0 A 150 150 0 0 1 -150 0" fill="none" stroke="#7c3aed" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+      <path d="M 120 -30 L 150 0 L 120 30" fill="none" stroke="#00e5ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g font-family="Syne, sans-serif" font-weight="800" text-anchor="middle">
+      <text y="18" font-size="72" fill="#4285F4">G</text>
+      <text x="46" y="18" font-size="72" fill="#EA4335">o</text>
+      <text x="90" y="18" font-size="72" fill="#FBBC05">o</text>
+      <text x="-46" y="18" font-size="72" fill="#34A853">g</text>
+      <text x="-92" y="18" font-size="72" fill="#4285F4">l</text>
+      <text x="-118" y="18" font-size="72" fill="#EA4335">e</text>
+    </g>
+  </g>
+  <g font-family="Space Mono, monospace" fill="#64748b" font-size="20" letter-spacing="3">
+    <text x="600" y="520" text-anchor="middle">TYPE "DO A BARREL ROLL"</text>
+  </g>
+  <g fill="#334155" font-size="14" font-family="Space Mono, monospace">
+    <circle cx="120" cy="90" r="3" fill="#00e5ff"/>
+    <circle cx="1080" cy="120" r="3" fill="#7c3aed"/>
+    <circle cx="1000" cy="500" r="3" fill="#00e5ff"/>
+    <circle cx="160" cy="530" r="3" fill="#7c3aed"/>
+  </g>
+</svg>
