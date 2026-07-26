@@ -24,8 +24,8 @@
 <title>Best AEO Agency in the US 2026: What It Means | NeuraPulse</title>
 
 <!-- FAVICON: inline SVG data-URI so the tab icon always renders, with no dependency on external asset files -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050810'/%3E%3Ccircle cx='32' cy='32' r='11' fill='%2300e5ff'/%3E%3Ccircle cx='32' cy='32' r='11' fill='none' stroke='%237c3aed' stroke-width='3' opacity='0.55'/%3E%3C/svg%3E"/>
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050810'/%3E%3Ccircle cx='32' cy='32' r='11' fill='%2300e5ff'/%3E%3C/svg%3E"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050810'/%3E%3Cpath d='M8 34h9l5-16 8 28 6-20 4 8h16' fill='none' stroke='%2300e5ff' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050810'/%3E%3Cpath d='M8 34h9l5-16 8 28 6-20 4 8h16' fill='none' stroke='%2300e5ff' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"/>
 <meta name="theme-color" content="#00e5ff"/>
 
 <!-- Open Graph -->
@@ -144,6 +144,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 #np-nav{position:sticky;top:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(8,12,18,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,.12);}
 .np-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.18rem;color:#fff;display:flex;align-items:center;gap:8px;text-decoration:none;letter-spacing:-.02em;}
 .np-logo-dot{width:8px;height:8px;background:#00d4ff;border-radius:50%;box-shadow:0 0 10px #00d4ff;animation:npblink 2s ease infinite;flex-shrink:0;}
+.np-logo-mark{width:28px;height:28px;border-radius:8px;flex-shrink:0;background:#0c1120;border:1px solid rgba(0,212,255,.25);padding:4px;filter:drop-shadow(0 0 6px rgba(0,212,255,.35));}
 @keyframes npblink{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.5);opacity:.7;}}
 .np-links{display:flex;gap:24px;align-items:center;}
 .np-links a{color:#8899aa;text-decoration:none;font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;transition:color .2s;position:relative;font-family:'Space Mono',monospace;}
@@ -264,6 +265,7 @@ aside{position:sticky;top:80px;height:fit-content;display:flex;flex-direction:co
 @media(max-width:640px){.np-fi{grid-template-columns:1fr 1fr;}}
 .np-fb a{display:flex;align-items:center;gap:9px;text-decoration:none;color:#f0f0f0;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;margin-bottom:12px;}
 .np-dot{width:9px;height:9px;border-radius:50%;background:#00e5ff;box-shadow:0 0 8px #00e5ff;animation:npblink 2s infinite;}
+.np-logo-mark-footer{width:30px;height:30px;border-radius:8px;flex-shrink:0;background:#0c1120;border:1px solid rgba(0,212,255,.25);}
 .np-fd{font-size:.8rem;color:#666880;line-height:1.75;max-width:270px;margin-bottom:20px;}
 .np-trust-badges{display:flex;flex-wrap:wrap;gap:8px;}
 .np-trust-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.15);border-radius:20px;padding:4px 11px;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;color:#00e5ff;}
@@ -283,152 +285,6 @@ aside{position:sticky;top:80px;height:fit-content;display:flex;flex-direction:co
 .inline-img{width:100%;height:auto;border-radius:10px;margin:1.5rem 0;border:1px solid var(--border);}
 @media(max-width:600px){article h2{font-size:1.25rem;}.stats-row{gap:.5rem;}.stat-pill .sv{font-size:1rem;}}
 </style>
-<!-- NP:UNIVERSAL-FIX-V3 -->
-<style id="np-universal-fix-v3">
-/* ════════════════════════════════════════════════════
-   FIX 1 — BLACK SCREEN
-   Covers .fi  .fade  .reveal  .fade-up  .animate
-   and any data-animate / data-reveal attribute
-   ════════════════════════════════════════════════════ */
-.fi,
-.fade,
-.reveal,
-.fade-up,
-.animate,
-[data-animate],
-[data-reveal] {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition: opacity 0.55s ease, transform 0.55s ease !important;
-  visibility: visible !important;
-}
-
-/* Activated states — keep visible once class is added */
-.fi.v, .fi.in, .fi.vis,
-.fade.vis, .fade.in,
-.reveal.vis, .reveal.in {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  visibility: visible !important;
-}
-
-/* ════════════════════════════════════════════════════
-   FIX 2 — IMAGE LAYOUT SHIFT / JUMPING
-   ════════════════════════════════════════════════════ */
-.blog-hero-image,
-img[loading="lazy"] {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1200 / 630;
-  object-fit: cover;
-  background: #0c1120;
-  border-radius: 8px;
-  margin: 0 auto 2rem;
-  max-width: 1200px;
-}
-
-/* ════════════════════════════════════════════════════
-   FIX 3 — BENCHMARK BARS STUCK AT 0%
-   ════════════════════════════════════════════════════ */
-.bfill {
-  width: var(--w, 80%) !important;
-  transition: width 1.2s ease !important;
-}
-.context-fill {
-  width: var(--w, 80%) !important;
-}
-
-/* ════════════════════════════════════════════════════
-   FIX 4 — SCROLL PADDING (content behind sticky nav)
-   ════════════════════════════════════════════════════ */
-html {
-  scroll-padding-top: 80px;
-}
-
-/* ════════════════════════════════════════════════════
-   FIX 5 — NAV Z-INDEX
-   ════════════════════════════════════════════════════ */
-#np-nav { z-index: 500 !important; }
-#np-mob { z-index: 499 !important; }
-</style>
-<script>
-/* NeuraPulse Universal Fix JS v3 — fixes .fi + all animation classes */
-(function(){
-  /* ALL selectors that can cause black screens */
-  var SEL = '.fi,.reveal,.fade,.fade-up,.animate,[data-animate],[data-reveal]';
-
-  function showEl(el) {
-    el.style.opacity    = '1';
-    el.style.transform  = 'translateY(0)';
-    el.style.visibility = 'visible';
-    el.classList.add('v','in','vis');
-  }
-
-  function npFix() {
-    var els = document.querySelectorAll(SEL);
-
-    /* ── IntersectionObserver path (modern browsers) ── */
-    if ('IntersectionObserver' in window) {
-      var obs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) {
-            showEl(e.target);
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.01, rootMargin: '0px 0px 60px 0px' });
-
-      els.forEach(function(el) { obs.observe(el); });
-
-      /* ── Emergency fallback: force-show ALL after 300ms ──
-         This fires even if observer works, ensuring nothing
-         stays hidden due to off-screen elements or timing  */
-      setTimeout(function() {
-        document.querySelectorAll(SEL).forEach(showEl);
-      }, 300);
-
-    } else {
-      /* No IntersectionObserver — show everything immediately */
-      els.forEach(showEl);
-    }
-
-    /* ── Fix broken images ── */
-    document.querySelectorAll('img').forEach(function(img) {
-      img.addEventListener('error', function() {
-        if (!this.dataset.errFixed) {
-          this.dataset.errFixed = '1';
-          this.src = 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&h=630&fit=crop';
-        }
-      });
-    });
-
-    /* ── Fix benchmark bars ── */
-    setTimeout(function() {
-      document.querySelectorAll('.bfill[data-w]').forEach(function(b) {
-        b.style.width = b.getAttribute('data-w') + '%';
-      });
-    }, 600);
-
-    /* ── Fix stat counters stuck at 0 ── */
-    setTimeout(function() {
-      document.querySelectorAll('[data-target]').forEach(function(el) {
-        if (el.textContent === '0' || el.textContent.trim() === '') {
-          el.textContent = el.getAttribute('data-target');
-        }
-      });
-    }, 1000);
-  }
-
-  /* Run immediately if DOM ready, otherwise wait */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', npFix);
-  } else {
-    npFix();
-  }
-})();
-</script>
-<!-- /NP:UNIVERSAL-FIX-V3 -->
 </head>
 <body>
 
@@ -440,7 +296,11 @@ html {
 
 <nav id="np-nav" role="navigation" aria-label="Main navigation">
   <a href="../index.html" class="np-logo" aria-label="NeuraPulse Home">
-    <span class="np-logo-dot" aria-hidden="true"></span>NeuraPulse
+    <svg class="np-logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+      <rect width="40" height="40" rx="10" fill="#0c1120"/>
+      <path d="M5 21h6l3-10 5 18 4-13 3 5h9" fill="none" stroke="#00e5ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    NeuraPulse
   </a>
   <div class="np-links">
     <a href="../index.html">Home</a>
@@ -732,7 +592,13 @@ html {
 <footer id="np-footer">
   <div class="np-fi">
     <div class="np-fb">
-      <a href="../index.html"><span class="np-dot"></span>NeuraPulse</a>
+      <a href="../index.html">
+        <svg class="np-logo-mark-footer" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="10" fill="#0c1120"/>
+          <path d="M5 21h6l3-10 5 18 4-13 3 5h9" fill="none" stroke="#00e5ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        NeuraPulse
+      </a>
       <p class="np-fd">Actionable AI insights for professionals, marketers, and business leaders. Every tool tested, every method verified. Zero fluff.</p>
       <div class="np-trust-badges">
         <span class="np-trust-badge green"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Verified</span>
