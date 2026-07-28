@@ -269,7 +269,6 @@ html{scroll-padding-top:80px;}
 #np-nav{z-index:500!important;}#np-mob{z-index:499!important;}
 </style>
 <script>
-(function(){var SEL='.fi,.reveal,.fade,.fade-up,.animate,[data-animate],[data-reveal]';function showEl(el){el.style.opacity='1';el.style.transform='translateY(0)';el.style.visibility='visible';el.classList.add('v','in','vis');}function npFix(){var els=document.querySelectorAll(SEL);if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){showEl(e.target);obs.unobserve(e.target);}});},{threshold:0.01,rootMargin:'0px 0px 60px 0px'});els.forEach(function(el){obs.observe(el);});setTimeout(function(){document.querySelectorAll(SEL).forEach(showEl);},300);}else{els.forEach(showEl);}document.querySelectorAll('img').forEach(function(img){img.addEventListener('error',function(){if(!this.dataset.errFixed){this.dataset.errFixed='1';this.src='https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&h=630&fit=crop';}});});setTimeout(function(){document.querySelectorAll('.bfill[data-w]').forEach(function(b){b.style.width=b.getAttribute('data-w')+'%';});},600);setTimeout(function(){document.querySelectorAll('[data-target]').forEach(function(el){if(el.textContent==='0'||el.textContent.trim()===''){el.textContent=el.getAttribute('data-target');}});},1000);}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',npFix);}else{npFix();}})();
 </script>
 <!-- /NP:UNIVERSAL-FIX-V3 -->
 </head>
