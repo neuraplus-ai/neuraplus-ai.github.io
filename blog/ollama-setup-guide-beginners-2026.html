@@ -21,7 +21,42 @@
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Ollama Setup Guide for Beginners 2026: Run Llama Models Locally – NeuraPlusAI Blog" name="description"/><meta content="AI blog, artificial intelligence, NeuraPlusAI, Ollama tutorial, Llama 3 setup, local LLM, quantization, offline AI" name="keywords"/><meta content="Prashant Lalwani" name="author"/><meta content="index, follow" name="robots"/><meta content="article" property="og:type"/><meta content="en_US" property="og:locale"/><meta content="Ollama Setup Guide for Beginners 2026: Run Llama Models Locally – NeuraPlusAI Blog" property="og:title"/><meta content="Ollama Setup Guide for Beginners 2026: Run Llama Models Locally – NeuraPlusAI Blog" property="og:description"/><meta content="https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html" property="og:url"/><meta content="NeuraPlusAI" property="og:site_name"/><meta content="https://neuraplus-ai.github.io/assets/images/blog/llama-setup-guide-beginners-2026.webp" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="Ollama Setup Guide for Beginners 2026 - Run Llama 3 Models Locally" property="og:image:alt"/><meta content="summary_large_image" name="twitter:card"/><meta content="Ollama Setup Guide for Beginners 2026: Run Llama Models Locally – NeuraPlusAI Blog" name="twitter:title"/><meta content="Ollama Setup Guide for Beginners 2026: Run Llama Models Locally – NeuraPlusAI Blog" name="twitter:description"/><meta content="https://neuraplus-ai.github.io/assets/images/blog/llama-setup-guide-beginners-2026.webp" name="twitter:image"/><meta content="@neuraplus_ai" name="twitter:site"/><link href="https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html" rel="canonical"/><link href="../favicon.svg" rel="icon" type="image/svg+xml"/><title>Ollama Setup Guide for Beginners 2026: Run Llama Models Locally – NeuraPlusAI Blog</title><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;display=swap" rel="stylesheet"/><style>
+})(window,document,'script','dataLayer','GTM-TH2D2WBW');</script>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<!-- ✅ SEO META — Title 56 chars / Description 150 chars -->
+<title>Ollama Setup Guide 2026 for Beginners: Run Llama Locally</title>
+<meta name="description" content="Complete Ollama setup guide for beginners 2026. Install Ollama on Windows, Mac &amp; Linux, run Llama 3 locally, quantization tips, API examples &amp; Docker."/>
+<meta content="Ollama setup guide, Ollama for beginners, run Llama locally, local LLM 2026, Ollama installation, model quantization, offline AI chatbot" name="keywords"/>
+<meta content="Prashant Lalwani" name="author"/>
+<meta content="index, follow" name="robots"/>
+
+<!-- ✅ Open Graph -->
+<meta content="article" property="og:type"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="Ollama Setup Guide 2026 for Beginners: Run Llama Locally" property="og:title"/>
+<meta content="Complete Ollama setup guide for beginners 2026. Install Ollama on Windows, Mac &amp; Linux, run Llama 3 locally, quantization tips, API examples &amp; Docker." property="og:description"/>
+<meta content="https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html" property="og:url"/>
+<meta content="NeuraPulse" property="og:site_name"/>
+<meta content="https://neuraplus-ai.github.io/assets/images/blog/llama-setup-guide-beginners-2026.webp" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="Ollama Setup Guide 2026 for Beginners - Run Llama 3 Models Locally" property="og:image:alt"/>
+
+<!-- ✅ Twitter Card -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Ollama Setup Guide 2026 for Beginners: Run Llama Locally" name="twitter:title"/>
+<meta content="Complete Ollama setup guide for beginners 2026. Install Ollama on Windows, Mac &amp; Linux, run Llama 3 locally, quantization tips, API examples &amp; Docker." name="twitter:description"/>
+<meta content="https://neuraplus-ai.github.io/assets/images/blog/llama-setup-guide-beginners-2026.webp" name="twitter:image"/>
+<meta content="@neuraplus_ai" name="twitter:site"/>
+
+<link href="https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html" rel="canonical"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;display=swap" rel="stylesheet"/>
+
+<style>
 :root{--bg:#0a0e1a;--surface:#111827;--surface2:#1f2937;--border:#374151;--accent:#20b2aa;--accent2:#00e5ff;--text:#f3f4f6;--text-dim:#9ca3af;--text-muted:#6b7280}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -39,107 +74,35 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .glow-3{width:400px;height:400px;background:#7c3aed;top:45%;left:50%;animation-delay:-6s;}
 @keyframes drift{0%{transform:translate(0,0) scale(1);}50%{transform:translate(60px,-30px) scale(1.1);}100%{transform:translate(80px,40px) scale(1.18);}}
 
-/* ════════════════════════════════════════════════════
-   NAVIGATION BAR
-   ════════════════════════════════════════════════════ */
-#np-nav{
-  position:fixed;top:0;left:0;right:0;z-index:500;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 5%;height:64px;
-  background:rgba(10,14,26,0.97);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(0,212,255,.12);
-  font-family:'DM Sans',system-ui,sans-serif;
-}
-.np-logo{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1.18rem;
-  color:var(--text);display:flex;align-items:center;gap:8px;
-  text-decoration:none;letter-spacing:-.02em;
-}
-.np-logo-dot{
-  width:8px;height:8px;background:#00d4ff;border-radius:50%;
-  box-shadow:0 0 10px #00d4ff;animation:npblink 2s ease infinite;flex-shrink:0;
-}
+/* Navigation */
+#np-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(10,14,26,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,.12);font-family:'DM Sans',system-ui,sans-serif;}
+.np-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.18rem;color:var(--text);display:flex;align-items:center;gap:8px;text-decoration:none;letter-spacing:-.02em;}
+.np-logo-dot{width:8px;height:8px;background:#00d4ff;border-radius:50%;box-shadow:0 0 10px #00d4ff;animation:npblink 2s ease infinite;flex-shrink:0;}
 @keyframes npblink{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.5);opacity:.7;}}
 .np-links{display:flex;gap:26px;align-items:center;}
-.np-links a{
-  color:#8899aa;text-decoration:none;font-size:.84rem;
-  letter-spacing:.07em;text-transform:uppercase;
-  font-family:'Space Mono',monospace;
-  transition:color .2s;position:relative;
-}
-.np-links a::after{
-  content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;
-  background:#00d4ff;transform:scaleX(0);transition:transform .25s;
-}
+.np-links a{color:#8899aa;text-decoration:none;font-size:.84rem;letter-spacing:.07em;text-transform:uppercase;font-family:'Space Mono',monospace;transition:color .2s;position:relative;}
+.np-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:#00d4ff;transform:scaleX(0);transition:transform .25s;}
 .np-links a:hover,.np-links a.np-active{color:#00d4ff;}
 .np-links a:hover::after,.np-links a.np-active::after{transform:scaleX(1);}
-.np-sub-btn{
-  background:#00d4ff;color:#0a0e1a!important;font-weight:700;font-size:.78rem;
-  letter-spacing:.07em;text-transform:uppercase;padding:8px 18px;
-  border-radius:5px;text-decoration:none;transition:box-shadow .2s,transform .2s;
-  white-space:nowrap;
-}
+.np-sub-btn{background:#00d4ff;color:#0a0e1a!important;font-weight:700;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;padding:8px 18px;border-radius:5px;text-decoration:none;transition:box-shadow .2s,transform .2s;white-space:nowrap;}
 .np-sub-btn:hover{box-shadow:0 0 22px #00d4ff;transform:translateY(-1px);}
-.np-ham{
-  display:none;flex-direction:column;gap:5px;cursor:pointer;
-  padding:7px;background:transparent;border:none;margin-left:8px;
-}
-.np-ham span{
-  display:block;width:24px;height:2px;background:#8899aa;
-  border-radius:2px;transition:all .3s;
-}
+.np-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:7px;background:transparent;border:none;margin-left:8px;}
+.np-ham span{display:block;width:24px;height:2px;background:#8899aa;border-radius:2px;transition:all .3s;}
 .np-ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .np-ham.open span:nth-child(2){opacity:0;}
 .np-ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-#np-mob{
-  display:none;position:fixed;top:64px;left:0;right:0;bottom:0;
-  background:rgba(10,14,26,0.98);backdrop-filter:blur(20px);
-  padding:20px 5% 32px;flex-direction:column;gap:2px;
-  z-index:499;overflow-y:auto;
-}
+#np-mob{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(10,14,26,0.98);backdrop-filter:blur(20px);padding:20px 5% 32px;flex-direction:column;gap:2px;z-index:499;overflow-y:auto;}
 #np-mob.open{display:flex;}
-#np-mob a{
-  color:#8899aa;text-decoration:none;font-size:.95rem;
-  letter-spacing:.07em;text-transform:uppercase;
-  font-family:'Space Mono',monospace;
-  padding:14px 0;border-bottom:1px solid rgba(0,212,255,.07);
-  transition:color .2s;display:block;
-}
+#np-mob a{color:#8899aa;text-decoration:none;font-size:.95rem;letter-spacing:.07em;text-transform:uppercase;font-family:'Space Mono',monospace;padding:14px 0;border-bottom:1px solid rgba(0,212,255,.07);transition:color .2s;display:block;}
 #np-mob a:hover{color:#00d4ff;}
-.np-mob-cta{
-  background:#00d4ff!important;color:#0a0e1a!important;font-weight:700;
-  text-align:center;border-radius:6px;margin-top:12px;
-  padding:14px!important;border-bottom:none!important;letter-spacing:.07em;
-}
+.np-mob-cta{background:#00d4ff!important;color:#0a0e1a!important;font-weight:700;text-align:center;border-radius:6px;margin-top:12px;padding:14px!important;border-bottom:none!important;letter-spacing:.07em;}
 @media(max-width:768px){.np-links{display:none;}.np-ham{display:flex;}}
 @media(min-width:769px){#np-mob{display:none!important;}}
 
-/* ════════════════════════════════════════════════════
-   CENTERED LAYOUT
-   ════════════════════════════════════════════════════ */
-.layout{
-  display:grid;
-  grid-template-columns:1fr min(780px,100%) 300px;
-  gap:2.5rem;
-  max-width:1280px;
-  width:100%;
-  margin:0 auto;
-  padding:7rem 2rem 5rem;
-  position:relative;
-  z-index:10;
-  align-items:start;
-  justify-content:center;
-}
-.layout > article{
-  grid-column:2;
-  width:100%;
-  margin:0 auto;
-  max-width:780px;
-}
-.layout > aside{
-  grid-column:3;
-}
+/* Centered Layout */
+.layout{display:grid;grid-template-columns:1fr min(780px,100%) 300px;gap:2.5rem;max-width:1280px;width:100%;margin:0 auto;padding:7rem 2rem 5rem;position:relative;z-index:10;align-items:start;justify-content:center;}
+.layout > article{grid-column:2;width:100%;margin:0 auto;max-width:780px;}
+.layout > aside{grid-column:3;}
 
 .bc{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:2rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}
 .bc a{color:var(--text-dim);text-decoration:none}
@@ -147,26 +110,9 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .acat{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:3px;display:inline-block;margin-bottom:1.5rem}
 .c1{color:var(--accent);background:rgba(32,178,170,0.1);border:1px solid rgba(32,178,170,0.2)}
 
-h1{
-  font-family:'Syne',sans-serif;
-  font-weight:800;
-  font-size:clamp(2rem,4vw,3rem);
-  letter-spacing:-0.04em;
-  line-height:1.15;
-  margin-bottom:1.5rem;
-  text-align:center;
-}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.04em;line-height:1.15;margin-bottom:1.5rem;text-align:center;}
 
-.meta{
-  display:flex;
-  align-items:center;
-  gap:1rem;
-  margin-bottom:3rem;
-  padding-bottom:2rem;
-  border-bottom:1px solid var(--border);
-  flex-wrap:wrap;
-  justify-content:center;
-}
+.meta{display:flex;align-items:center;gap:1rem;margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border);flex-wrap:wrap;justify-content:center;}
 .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;color:white;flex-shrink:0}
 .mi{flex:0 1 auto;text-align:left}
 .mn{font-size:0.95rem;font-weight:500;display:block}
@@ -183,6 +129,7 @@ h1{
 .cnt li{margin-bottom:0.75rem;line-height:1.8}
 .cnt a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(32,178,170,0.3)}
 .cnt a:hover{border-bottom-color:var(--accent)}
+.cnt code{font-family:'Space Mono',monospace;font-size:0.88em;color:var(--accent2);background:rgba(0,229,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;}
 
 .callout{background:var(--surface);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:1.5rem 2rem;margin:2rem 0;}
 .callout p{color:var(--text);margin:0}
@@ -206,29 +153,8 @@ tr:last-child td{border-bottom:none}
 tr:hover{background:var(--surface2)}
 
 .blog-hero-image,
-.inline-img{
-  display:block;
-  width:100%;
-  max-width:780px;
-  height:auto;
-  aspect-ratio:1200/630;
-  object-fit:cover;
-  background:#0c1120;
-  border-radius:12px;
-  margin:2rem auto;
-  border:1px solid var(--border);
-  box-shadow:0 8px 32px rgba(0,0,0,.4);
-}
+.inline-img{display:block;width:100%;max-width:780px;height:auto;aspect-ratio:1200/630;object-fit:cover;background:#0c1120;border-radius:12px;margin:2rem auto;border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.4);}
 .inline-img-caption{font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--text-dim);text-align:center;margin-top:-1rem;margin-bottom:2rem;letter-spacing:0.05em;}
-
-.faq-wrap{margin:3rem 0}
-.faq-item{border:1px solid var(--border);border-radius:8px;margin-bottom:0.75rem;overflow:hidden}
-.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.5rem;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;color:var(--text);background:var(--surface);transition:background 0.2s;user-select:none}
-.faq-q:hover{background:var(--surface2)}
-.faq-ic{font-size:1.3rem;color:var(--accent);transition:transform 0.3s;flex-shrink:0;margin-left:1rem}
-.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
-.faq-a.open{max-height:500px;padding:1.2rem 1.5rem;border-top:1px solid var(--border)}
-.faq-a p{color:var(--text-dim);font-size:0.95rem;margin:0;line-height:1.7}
 
 .shr-box{margin:3rem 0;padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center;}
 .shr-box h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem}
@@ -265,9 +191,7 @@ tr:hover{background:var(--surface2)}
 .nl-sb input:focus{border-color:var(--accent)}
 .nl-sb button{width:100%;font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:0.7rem;border-radius:4px;border:none;cursor:pointer;}
 
-/* ════════════════════════════════════════════════════
-   RESPONSIVE
-   ════════════════════════════════════════════════════ */
+/* Responsive */
 @media(max-width:1100px){
   .layout{grid-template-columns:1fr min(780px,100%);}
   .layout > article{grid-column:2}
@@ -295,13 +219,14 @@ tr:hover{background:var(--surface2)}
 
 <link href="/popup.css" rel="stylesheet"/>
 
+<!-- ✅ JSON-LD Schema — matches title & description -->
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "name": "Ollama Setup Guide for Beginners 2026: Run Llama Models Locally",
-  "description": "Complete Ollama setup guide for beginners 2026. Learn to run Llama 3 locally on Windows, Mac, and Linux.",
+  "name": "Ollama Setup Guide 2026 for Beginners: Run Llama Locally",
+  "description": "Complete Ollama setup guide for beginners 2026. Install Ollama on Windows, Mac & Linux, run Llama 3 locally, quantization tips, API examples & Docker.",
   "url": "https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html",
-  "headline": "Ollama Setup Guide for Beginners 2026: Run Llama Models Locally",
+  "headline": "Ollama Setup Guide 2026 for Beginners: Run Llama Locally",
   "image": [
     "https://neuraplus-ai.github.io/assets/images/blog/llama-setup-guide-beginners-2026.webp",
     "https://neuraplus-ai.github.io/assets/images/blog/llama-setup-guide-beginners-2026-2.webp"
@@ -315,7 +240,7 @@ tr:hover{background:var(--surface2)}
   },
   "publisher": {
     "@type": "Organization",
-    "name": "NeuraPlusAI",
+    "name": "NeuraPulse",
     "logo": {
       "@type": "ImageObject",
       "url": "https://neuraplus-ai.github.io/favicon.svg"
@@ -329,11 +254,6 @@ tr:hover{background:var(--surface2)}
   opacity: 1 !important;
   transform: translateY(0) !important;
   transition: opacity 0.55s ease, transform 0.55s ease !important;
-  visibility: visible !important;
-}
-.fi.v,.fi.in,.fi.vis,.fade.vis,.fade.in,.reveal.vis,.reveal.in {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
   visibility: visible !important;
 }
 .bfill {
@@ -358,19 +278,12 @@ html { scroll-padding-top: 80px; }
     if ('IntersectionObserver' in window) {
       var obs = new IntersectionObserver(function(entries){
         entries.forEach(function(e){
-          if (e.isIntersecting) {
-            showEl(e.target);
-            obs.unobserve(e.target);
-          }
+          if (e.isIntersecting) { showEl(e.target); obs.unobserve(e.target); }
         });
       }, {threshold: 0.01, rootMargin: '0px 0px 60px 0px'});
       els.forEach(function(el){ obs.observe(el); });
-      setTimeout(function(){
-        document.querySelectorAll(SEL).forEach(showEl);
-      }, 300);
-    } else {
-      els.forEach(showEl);
-    }
+      setTimeout(function(){ document.querySelectorAll(SEL).forEach(showEl); }, 300);
+    } else { els.forEach(showEl); }
     document.querySelectorAll('img').forEach(function(img){
       img.addEventListener('error', function(){
         if (!this.dataset.errFixed) {
@@ -379,15 +292,9 @@ html { scroll-padding-top: 80px; }
         }
       });
     });
-    setTimeout(function(){
-      document.querySelectorAll('.bfill[data-w]').forEach(function(b){
-        b.style.width = b.getAttribute('data-w') + '%';
-      });
-    }, 600);
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', npFix);
-  } else { npFix(); }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', npFix); }
+  else { npFix(); }
 })();
 </script>
 <!-- /NP:UNIVERSAL-FIX-V3 -->
@@ -404,9 +311,7 @@ html { scroll-padding-top: 80px; }
 
 <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-TH2D2WBW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
 
-<!-- ════════════════════════════════════════════════════
-     NAVIGATION
-     ════════════════════════════════════════════════════ -->
+<!-- NAVIGATION -->
 <nav id="np-nav" role="navigation" aria-label="Main navigation">
   <a href="../index.html" class="np-logo" aria-label="NeuraPulse Home">
     <span class="np-logo-dot" aria-hidden="true"></span>NeuraPulse
@@ -442,9 +347,9 @@ html { scroll-padding-top: 80px; }
 
 <span class="acat c1">🦙 Ollama Tutorial</span>
 
-<h1>Ollama Setup Guide for Beginners 2026:<br/>Run Llama Models Locally</h1>
+<h1>Ollama Setup Guide 2026 for Beginners:<br/>Run Llama Models Locally</h1>
 
-<img alt="Ollama Setup Guide for Beginners 2026 - Complete tutorial showing Llama 3 model running locally on a developer's desktop with terminal commands and installation steps" class="blog-hero-image" height="630" loading="eager" src="https://neuraplus-ai.github.io/assets/images/blog/llama-setup-guide-beginners-2026.webp" title="Ollama Setup Guide for Beginners 2026: Run Llama Models Locally" width="1200"/>
+<img alt="Ollama Setup Guide 2026 for Beginners - Complete tutorial showing Llama 3 model running locally on a developer's desktop with terminal commands and installation steps" class="blog-hero-image" height="630" loading="eager" src="https://neuraplus-ai.github.io/assets/images/blog/llama-setup-guide-beginners-2026.webp" title="Ollama Setup Guide 2026 for Beginners: Run Llama Locally" width="1200"/>
 
 <div class="meta">
   <div class="av" role="img">PL</div>
@@ -693,7 +598,7 @@ html { scroll-padding-top: 80px; }
 <div class="shr-box">
   <h3>Found this Ollama guide helpful? Share it! 🚀</h3>
   <div class="shr-btns">
-    <a class="sbtn" href="https://twitter.com/intent/tweet?text=Ollama Setup Guide for Beginners 2026: Run Llama Models Locally&amp;url=https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html" target="_blank" rel="noopener">Twitter/X</a>
+    <a class="sbtn" href="https://twitter.com/intent/tweet?text=Ollama+Setup+Guide+2026+for+Beginners:+Run+Llama+Locally&amp;url=https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html" target="_blank" rel="noopener">Twitter/X</a>
     <a class="sbtn" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://neuraplus-ai.github.io/blog/ollama-setup-guide-beginners-2026.html" target="_blank" rel="noopener">LinkedIn</a>
     <button class="sbtn" onclick="navigator.clipboard.writeText(location.href);this.textContent='✓ Copied!'">Copy Link</button>
   </div>
@@ -777,38 +682,26 @@ html { scroll-padding-top: 80px; }
 </main>
 
 <script>
-/* ── Navigation toggle ── */
+/* Navigation toggle */
 (function(){
   const ham = document.getElementById('np-ham-btn');
   const mob = document.getElementById('np-mob');
   if(!ham || !mob) return;
-
   function npMenu(btn){
     btn.classList.toggle('open');
     btn.setAttribute('aria-expanded', btn.classList.contains('open'));
     mob.classList.toggle('open');
     document.body.style.overflow = btn.classList.contains('open') ? 'hidden' : '';
   }
-
   ham.addEventListener('click', function(){ npMenu(ham); });
-
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape' && ham.classList.contains('open')) npMenu(ham);
   });
-
   document.addEventListener('click', function(e){
     if (ham.classList.contains('open') && !ham.contains(e.target) && !mob.contains(e.target)) npMenu(ham);
   });
 })();
 
-function tFaq(el){
-  var a = el.nextElementSibling;
-  var ic = el.querySelector('.faq-ic');
-  var isExpanded = el.getAttribute('aria-expanded') === 'true';
-  el.setAttribute('aria-expanded', !isExpanded);
-  a.classList.toggle('open');
-  ic.style.transform = a.classList.contains('open') ? 'rotate(45deg)' : 'rotate(0deg)';
-}
 function nlSub(b){
   var i = b.previousElementSibling;
   if (!i || !i.value) { alert('Enter email!'); return; }
@@ -914,7 +807,6 @@ function nlSub(b){
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
   }
-
   function Pt() {
     return {
       x: Math.random() * W,
@@ -925,7 +817,6 @@ function nlSub(b){
       ph: Math.random() * Math.PI * 2
     };
   }
-
   function init() { pts = []; for (let i = 0; i < N; i++) pts.push(Pt()); }
 
   function tick() {
