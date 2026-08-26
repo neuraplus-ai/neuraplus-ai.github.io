@@ -1,10 +1,10 @@
-[INFO] Found 541 HTML files
+[INFO] Found 542 HTML files
 [] =======================================================
 [PHASE] PHASE 1 — NAV + FOOTER + FADE FIX
 [] =======================================================
 [INFO] Fade fix    : 0 pages
-[INFO] Nav added   : 1 · skipped: 540
-[INFO] Footer added: 1 · skipped: 540
+[INFO] Nav added   : 1 · skipped: 541
+[INFO] Footer added: 1 · skipped: 541
 [] =======================================================
 [PHASE] PHASE 2 — SEO META + SCHEMA
 [] =======================================================
@@ -16,12 +16,12 @@
 [] =======================================================
 [PHASE] PHASE 4 — TECHNICAL SEO FILES
 [] =======================================================
-[INFO] sitemap.xml — 541 URLs
+[INFO] sitemap.xml — 542 URLs
 [INFO] robots.txt · sitemap.xml · rss.xml · llms.txt · ai.txt — done
 [] =======================================================
 [PHASE] PHASE 5 — HTML SITEMAP (AUTO)
 [] =======================================================
-[INFO] sitemap.html generated — 541 pages across 8 categories
+[INFO] sitemap.html generated — 542 pages across 8 categories
 [] =======================================================
 [PHASE] PHASE 6 — ENTITY SCHEMA FILES
 [] =======================================================
