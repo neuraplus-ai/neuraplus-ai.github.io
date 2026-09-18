@@ -87,7 +87,7 @@
     submitBtn.style.opacity = '0.7';
     submitBtn.style.pointerEvents = 'none';
 
-    fetch('https://formspree.io/f/xzdogyvo', {
+    fetch('https://formspree.io/f/myezzgya', {
       method: 'POST',
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }
