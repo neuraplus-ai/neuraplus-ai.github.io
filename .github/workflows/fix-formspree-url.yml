@@ -1,0 +1,69 @@
+# .github/workflows/fix-formspree-url.yml
+name: Replace Formspree URL (site-wide)
+
+on:
+  workflow_dispatch:
+    inputs:
+      old_url:
+        description: 'Old Formspree URL to replace'
+        required: true
+        default: 'https://formspree.io/f/xzdogyvo'
+      new_url:
+        description: 'New Formspree URL'
+        required: true
+        default: 'https://formspree.io/f/myezzgya'
+
+jobs:
+  replace-url:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Replace URL across all pages
+        run: |
+          OLD="${{ github.event.inputs.old_url }}"
+          NEW="${{ github.event.inputs.new_url }}"
+
+          echo "Replacing:"
+          echo "  OLD: $OLD"
+          echo "  NEW: $NEW"
+          echo ""
+
+          OLD_ESC=$(printf '%s\n' "$OLD" | sed -e 's/[\/&.]/\\&/g')
+          NEW_ESC=$(printf '%s\n' "$NEW" | sed -e 's/[\/&]/\\&/g')
+
+          TOTAL_FILES=0
+          TOTAL_HITS=0
+
+          FILES=$(grep -rlF "$OLD" --include="*.html" --include="*.js" --include="*.json" --include="*.xml" . 2>/dev/null || true)
+
+          if [ -z "$FILES" ]; then
+            echo "No files contain the old URL. Nothing to do."
+            exit 0
+          fi
+
+          for file in $FILES; do
+            HITS=$(grep -oF "$OLD" "$file" | wc -l)
+            sed -i "s/${OLD_ESC}/${NEW_ESC}/g" "$file"
+            echo "Updated: $file ($HITS occurrence(s))"
+            TOTAL_FILES=$((TOTAL_FILES+1))
+            TOTAL_HITS=$((TOTAL_HITS+HITS))
+          done
+
+          echo ""
+          echo "Done: $TOTAL_HITS occurrence(s) replaced across $TOTAL_FILES file(s)."
+
+          REMAINING=$(grep -rlF "$OLD" --include="*.html" --include="*.js" --include="*.json" --include="*.xml" . 2>/dev/null || true)
+          if [ -n "$REMAINING" ]; then
+            echo "WARNING: old URL still present in:"
+            echo "$REMAINING"
+            exit 1
+          fi
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "Fix: update Formspree endpoint site-wide"
+          git push
