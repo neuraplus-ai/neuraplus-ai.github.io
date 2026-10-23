@@ -39,7 +39,7 @@
 <script type="application/ld+json">
 [
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://neuraplus-ai.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://neuraplus-ai.github.io/blog.html"},{"@type":"ListItem","position":3,"name":"Business Branding Guide","item":"https://neuraplus-ai.github.io/blog/professional-cohesive-business-image-guide.html"}]},
-{"@context":"https://schema.org","@type":"Article","url":"https://neuraplus-ai.github.io/blog/professional-cohesive-business-image-guide.html","headline":"Tips to Keep Your Business Image Professional and Cohesive Everywhere","description":"Learn essential tips to keep your business image professional and cohesive everywhere. From custom domain emails to visual branding consistency.","datePublished":"2026-10-23","dateModified":"2026-10-23","author":{"@type":"Person","name":"Prashant Lalwani","url":"https://neuraplus-ai.github.io/about.html"},"publisher":{"@type":"Organization","name":"NeuraPulse","url":"https://neuraplus-ai.github.io","logo":{"@type":"ImageObject","url":"https://neuraplus-ai.github.io/assets/logo.png"}},"inLanguage":"en"},
+{"@context":"https://schema.org","@type":"Article","url":"https://neuraplus-ai.github.io/blog/professional-cohesive-business-image-guide.html","headline":"Tips to Keep Your Business Image Professional and Cohesive Everywhere","description":"Learn essential tips to keep your business image professional and cohesive everywhere. From custom domain emails to visual branding consistency.","image":"https://neuraplus-ai.github.io/images/business-professional-workspace.jpg","datePublished":"2026-10-23","dateModified":"2026-10-23","author":{"@type":"Person","name":"Prashant Lalwani","url":"https://neuraplus-ai.github.io/about.html"},"publisher":{"@type":"Organization","name":"NeuraPulse","url":"https://neuraplus-ai.github.io","logo":{"@type":"ImageObject","url":"https://neuraplus-ai.github.io/assets/logo.png"}},"inLanguage":"en"},
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is a custom domain email important for business image?","acceptedAnswer":{"@type":"Answer","text":"A custom domain email instantly legitimizes your outreach, builds trust, and signals that your company is established and professional."}},{"@type":"Question","name":"What are the first steps to fixing an inconsistent brand?","acceptedAnswer":{"@type":"Answer","text":"Start by auditing your visual identity: ensure your logo, color palette, and typography are strictly uniform across your website, social media, PDFs, and email signatures."}}]}
 ]
 </script>
@@ -219,11 +219,7 @@ aside{position:sticky;top:80px;height:fit-content;display:flex;flex-direction:co
 </style>
 <!-- NP:UNIVERSAL-FIX-V3 -->
 <style id="np-universal-fix-v3">
-/* ════════════════════════════════════════════════════
-   FIX 1 — BLACK SCREEN
-   Covers .fi  .fade  .reveal  .fade-up  .animate
-   and any data-animate / data-reveal attribute
-   ════════════════════════════════════════════════════ */
+/* FIX 1 — BLACK SCREEN */
 .fi,
 .fade,
 .reveal,
@@ -237,7 +233,6 @@ aside{position:sticky;top:80px;height:fit-content;display:flex;flex-direction:co
   visibility: visible !important;
 }
 
-/* Activated states — keep visible once class is added */
 .fi.v, .fi.in, .fi.vis,
 .fade.vis, .fade.in,
 .reveal.vis, .reveal.in {
@@ -246,9 +241,7 @@ aside{position:sticky;top:80px;height:fit-content;display:flex;flex-direction:co
   visibility: visible !important;
 }
 
-/* ════════════════════════════════════════════════════
-   FIX 2 — IMAGE LAYOUT SHIFT / JUMPING
-   ════════════════════════════════════════════════════ */
+/* FIX 2 — IMAGE LAYOUT SHIFT / JUMPING */
 .blog-hero-image,
 img[loading="lazy"] {
   display: block;
@@ -262,9 +255,7 @@ img[loading="lazy"] {
   max-width: 1200px;
 }
 
-/* ════════════════════════════════════════════════════
-   FIX 3 — BENCHMARK BARS STUCK AT 0%
-   ════════════════════════════════════════════════════ */
+/* FIX 3 — BENCHMARK BARS STUCK AT 0% */
 .bfill {
   width: var(--w, 80%) !important;
   transition: width 1.2s ease !important;
@@ -273,23 +264,18 @@ img[loading="lazy"] {
   width: var(--w, 80%) !important;
 }
 
-/* ════════════════════════════════════════════════════
-   FIX 4 — SCROLL PADDING (content behind sticky nav)
-   ════════════════════════════════════════════════════ */
+/* FIX 4 — SCROLL PADDING */
 html {
   scroll-padding-top: 80px;
 }
 
-/* ════════════════════════════════════════════════════
-   FIX 5 — NAV Z-INDEX
-   ════════════════════════════════════════════════════ */
+/* FIX 5 — NAV Z-INDEX */
 #np-nav { z-index: 500 !important; }
 #np-mob { z-index: 499 !important; }
 </style>
 <script>
-/* NeuraPulse Universal Fix JS v3 — fixes .fi + all animation classes */
+/* NeuraPulse Universal Fix JS v3 */
 (function(){
-  /* ALL selectors that can cause black screens */
   var SEL = '.fi,.reveal,.fade,.fade-up,.animate,[data-animate],[data-reveal]';
 
   function showEl(el) {
@@ -302,7 +288,6 @@ html {
   function npFix() {
     var els = document.querySelectorAll(SEL);
 
-    /* ── IntersectionObserver path (modern browsers) ── */
     if ('IntersectionObserver' in window) {
       var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
@@ -315,19 +300,14 @@ html {
 
       els.forEach(function(el) { obs.observe(el); });
 
-      /* ── Emergency fallback: force-show ALL after 300ms ──
-         This fires even if observer works, ensuring nothing
-         stays hidden due to off-screen elements or timing  */
       setTimeout(function() {
         document.querySelectorAll(SEL).forEach(showEl);
       }, 300);
 
     } else {
-      /* No IntersectionObserver — show everything immediately */
       els.forEach(showEl);
     }
 
-    /* ── Fix broken images ── */
     document.querySelectorAll('img').forEach(function(img) {
       img.addEventListener('error', function() {
         if (!this.dataset.errFixed) {
@@ -337,14 +317,12 @@ html {
       });
     });
 
-    /* ── Fix benchmark bars ── */
     setTimeout(function() {
       document.querySelectorAll('.bfill[data-w]').forEach(function(b) {
         b.style.width = b.getAttribute('data-w') + '%';
       });
     }, 600);
 
-    /* ── Fix stat counters stuck at 0 ── */
     setTimeout(function() {
       document.querySelectorAll('[data-target]').forEach(function(el) {
         if (el.textContent === '0' || el.textContent.trim() === '') {
@@ -354,7 +332,6 @@ html {
     }, 1000);
   }
 
-  /* Run immediately if DOM ready, otherwise wait */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', npFix);
   } else {
@@ -441,10 +418,11 @@ html {
 
   <img
     src="/images/business-professional-workspace.jpg"
-    alt="Professional business workspace with computer showing business website representing cohesive brand image and digital presence"
+    alt="Businessman in a navy suit typing on a desktop computer showing a blue Business website homepage, with a calculator, glasses, wallet, coffee mug and cactus plants on a wooden desk"
     class="hero-img"
-    width="1200" height="630"
+    width="1100" height="804"
     loading="eager"
+    fetchpriority="high"
   />
 
   <p class="sr">Let's be honest: an inconsistent brand is like wearing a tuxedo with flip-flops—it sends mixed signals and confuses your target audience. In a crowded marketplace, a cohesive and professional brand image does wonders; it builds instant trust, boosts brand recognition, and elevates your perceived value.</p>
