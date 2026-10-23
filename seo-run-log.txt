@@ -1,10 +1,10 @@
-[INFO] Found 668 HTML files
+[INFO] Found 669 HTML files
 [] =======================================================
 [PHASE] PHASE 1 — NAV + FOOTER + FADE FIX
 [] =======================================================
 [INFO] Fade fix    : 0 pages
-[INFO] Nav added   : 1 · skipped: 667
-[INFO] Footer added: 1 · skipped: 667
+[INFO] Nav added   : 1 · skipped: 668
+[INFO] Footer added: 1 · skipped: 668
 [] =======================================================
 [PHASE] PHASE 2 — SEO META + SCHEMA
 [] =======================================================
@@ -12,16 +12,16 @@
 [] =======================================================
 [PHASE] PHASE 3 — GEO/AEO TAGS
 [] =======================================================
-[INFO] GEO/AEO tags injected: 2 pages
+[INFO] GEO/AEO tags injected: 1 pages
 [] =======================================================
 [PHASE] PHASE 4 — TECHNICAL SEO FILES
 [] =======================================================
-[INFO] sitemap.xml — 668 URLs
+[INFO] sitemap.xml — 669 URLs
 [INFO] robots.txt · sitemap.xml · rss.xml · llms.txt · ai.txt — done
 [] =======================================================
 [PHASE] PHASE 5 — HTML SITEMAP (AUTO)
 [] =======================================================
-[INFO] sitemap.html generated — 668 pages across 8 categories
+[INFO] sitemap.html generated — 669 pages across 8 categories
 [] =======================================================
 [PHASE] PHASE 6 — ENTITY SCHEMA FILES
 [] =======================================================
