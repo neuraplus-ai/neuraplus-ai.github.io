@@ -86,6 +86,8 @@ article p{color:#cbd5e1;margin-bottom:1.15rem;font-size:.975rem;animation:fadeIn
 .table-outer{position:relative;margin:1.75rem 0;animation:fadeIn .8s ease backwards;}.scroll-hint{display:none;align-items:center;gap:.4rem;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(0,229,255,0.07);border:1px solid rgba(0,229,255,0.18);border-radius:4px;padding:.3rem .75rem;margin-bottom:.6rem;width:fit-content;}.scroll-hint svg{animation:scrollArrow 1.2s ease-in-out infinite;}@keyframes scrollArrow{0%,100%{transform:translateX(0);}50%{transform:translateX(5px);}}@media(max-width:720px){.scroll-hint{display:flex;}}
 .table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);position:relative;}.table-wrap::-webkit-scrollbar{height:4px;}.table-wrap::-webkit-scrollbar-track{background:var(--surface2);}.table-wrap::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}@media(max-width:720px){.table-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:40px;background:linear-gradient(to right,transparent,var(--bg));pointer-events:none;border-radius:0 10px 10px 0;}}
 .comp-table{width:100%;min-width:580px;border-collapse:collapse;font-size:.875rem;}.comp-table thead{background:var(--surface2);position:sticky;top:0;z-index:1;}.comp-table th{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;}.comp-table td{padding:.7rem 1rem;border-bottom:1px solid rgba(30,45,69,.5);color:#cbd5e1;vertical-align:top;transition:background .15s;}.comp-table tr:last-child td{border-bottom:none;}.comp-table tbody tr:hover td{background:rgba(0,229,255,0.03);}.comp-table .win{color:#34d399;font-weight:600;}.comp-table .warn{color:#f59e0b;}.comp-table .mid{color:#94a3b8;}.comp-table tbody tr{opacity:0;transform:translateX(-10px);transition:opacity .4s ease,transform .4s ease;}.comp-table.animate tbody tr{opacity:1;transform:translateX(0);}.comp-table tbody tr:nth-child(1){transition-delay:.05s;}.comp-table tbody tr:nth-child(2){transition-delay:.1s;}.comp-table tbody tr:nth-child(3){transition-delay:.15s;}.comp-table tbody tr:nth-child(4){transition-delay:.2s;}.comp-table tbody tr:nth-child(5){transition-delay:.25s;}.comp-table tbody tr:nth-child(6){transition-delay:.3s;}.comp-table tbody tr:nth-child(7){transition-delay:.35s;}.comp-table tbody tr:nth-child(8){transition-delay:.4s;}
+.sponsor-badge{display:inline-block;margin-left:.4rem;padding:.1rem .45rem;border:1px solid rgba(245,158,11,.4);border-radius:3px;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:#f59e0b;vertical-align:middle;white-space:nowrap;}
+.ad-note{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--text-dim);margin:-.4rem 0 1rem;line-height:1.6;}
 .chart-container{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin:1.75rem 0;animation:fadeIn .8s ease backwards;}.chart-title{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;}.chart-bar{display:flex;align-items:center;gap:1rem;margin-bottom:.8rem;}.chart-label{font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--text);min-width:140px;}.chart-track{flex:1;height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}.chart-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:4px;transition:width 1.2s ease;}.chart-value{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--accent);min-width:40px;text-align:right;}
 .il-card{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.35rem;margin:1.5rem 0;transition:border-color .2s,transform .2s;animation:fadeIn .8s ease backwards;}.il-card:hover{border-color:var(--accent);transform:translateX(3px);}.il-cat{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem;}.il-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.975rem;color:var(--text);margin-bottom:.2rem;}.il-desc{font-size:.85rem;color:var(--text-dim);}.il-arrow{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);margin-top:.45rem;display:inline-block;}
 .share-bar{border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.35rem;margin:2rem 0;background:var(--surface);animation:fadeIn .8s ease backwards;}.share-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;}.share-btns{display:flex;gap:.6rem;flex-wrap:wrap;}.share-btn{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;padding:.5rem 1.1rem;border-radius:5px;cursor:pointer;background:none;border:1px solid var(--border);color:var(--text-dim);text-decoration:none;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:.4rem;}.share-btn:hover{border-color:var(--accent);color:var(--accent);}
@@ -261,6 +263,7 @@ html {
 
 <h2>Top AI Image Generators for Business Use</h2>
 <p>Not all AI tools are created equal for commercial work. Below is our vetted comparison based on licensing, output quality, brand controls, and team collaboration features:</p>
+<p class="ad-note">Disclosure: Design.com is a sponsored placement and is listed first in this table.</p>
 
 <div class="table-outer">
 <div class="scroll-hint" aria-hidden="true">
@@ -281,6 +284,14 @@ html {
 </thead>
 <tbody>
 <tr>
+<td><strong>Design.com</strong></td>
+<td>SMB marketing, branded visuals &amp; social content</td>
+<td class="win">Business and marketing use supported</td>
+<td class="win">Logo, brand colors, fonts &amp; 50+ design tools</td>
+<td class="mid">Basic collaboration features</td>
+<td>Free generation; $4/mo annually</td>
+</tr>
+<tr>
 <td><strong>Adobe Firefly</strong></td>
 <td>Enterprise marketing teams</td>
 <td class="win">✓ Full indemnification</td>
@@ -295,14 +306,6 @@ html {
 <td class="mid">Style references</td>
 <td class="mid">Team workspaces</td>
 <td>$30/mo</td>
-</tr>
-<tr>
-<td><strong>Design.com</strong></td>
-<td>SMB marketing, branded visuals &amp; social content</td>
-<td class="win">Business and marketing use supported</td>
-<td class="win">Logo, brand colors, fonts &amp; 50+ design tools</td>
-<td class="mid">Basic collaboration features</td>
-<td>Free generation; $4/mo annually</td>
 </tr>
 <tr>
 <td><strong>Microsoft Designer</strong></td>
